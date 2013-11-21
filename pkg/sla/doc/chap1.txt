@@ -1,0 +1,43 @@
+  
+  [1X1 [33X[0;0YIntroduction[133X[101X
+  
+  [33X[0;0YThis  package is a collection of functions that I wrote for various research
+  projects  (e.g.,  [Gra08], [Gra09], [GE09], [GY10], [Gra10])), [GVY11]). The
+  reason to collect them in a package is to avoid them getting lost. Secondly,
+  I believe that the functions may be of wider interest.[133X
+  
+  [33X[0;0YApart  from  this  one,  this manual has four chapters. The second describes
+  various  small  functions that did not fit in any of the other chapters. The
+  remaining three chapters are all devoted to a particular area.[133X
+  
+  [33X[0;0YThe  third  chapter  contains (descriptions of) functions for computing with
+  the classification of the nilpotent orbits in simple Lie algebras. There are
+  functions  for  creating  the  orbits  and for computing representatives. We
+  refer  to [CM93] for an overview of the theory of nilpotent orbits in simple
+  Lie algebras.[133X
+  
+  [33X[0;0YThe  fourth chapter is dedicated to finite order automorphisms of the simple
+  Lie  algebras and the corresponding [22Xθ[122X-groups. The finite order automorphisms
+  have  been classified by Kac, up to conjugacy in the automorphism group. For
+  the  background on this we refer to [Hel78]. The classification is described
+  in  terms  of  so-called  Kac  diagrams. The package contains a function for
+  creating  all automorphisms of a given simple Lie algebra, of a given finite
+  order.[133X
+  
+  [33X[0;0YThe  eigenspaces  of an automorphism of finite order of a simple Lie algebra
+  form a grading of that Lie algebra. Moreover, the 0-component is a reductive
+  subalgebra,  acting  on  the  1-component.  The 0-component corresponds to a
+  reductive  reductive group, also acting on the 1-component. This group (with
+  its  action)  is called a [22Xθ[122X-group. It was introduced and studied in the 70-s
+  by  Vinberg  ([Vin75]  ,  [Vin76],  [Vin79])  The package has a function for
+  listing the nilpotent orbits of this group.[133X
+  
+  [33X[0;0YThe  fifth  chapter has functions for working with semisimple subalgebras of
+  semisimple  Lie  algebras.  The  package  contains  a database of semisimple
+  subalgebras  of the simple subalgebras of ranks up to 8. Moreover, there are
+  functions  for  computing  the  semisimple  subalgebras  of  semisimple  Lie
+  algebras  on  the  fly.  Finally,  there  are  some  functions for computing
+  branching rules.[133X
+  
+  [33X[0;0YWe remark that the package needs the package [5XQuaGroup[105X.[133X
+  

@@ -1,0 +1,270 @@
+  
+  [1X5 [33X[0;0YSemisimple Subalgebras of Semisimple Lie Algebras[133X[101X
+  
+  [33X[0;0YThis  chapter  contains functions for dealing with semisimple subalgebras of
+  semisimple  Lie algebras. There are functions for computing branching rules,
+  for  computing the regular subalgebras, and for working with the database of
+  semisimple  subalgebras  of  the  simple  Lie  algebras.  This last database
+  contains  the  semisimple subalgebras of the simple Lie algebras of ranks up
+  to  8.  The  semisimple subalgebras are classified up to linear equivalence.
+  (Two  subalgebras are called linearly equivalent if for every representation
+  of  the  big  algebra  in  the  space  [22XV[122X  the  images of the subalgebras are
+  conjugate under [22XGL(V)[122X.)[133X
+  
+  
+  [1X5.1 [33X[0;0YBranching[133X[101X
+  
+  [1X5.1-1 ProjectionMatrix[101X
+  
+  [29X[2XProjectionMatrix[102X( [3XL[103X, [3XK[103X ) [32X operation
+  
+  [33X[0;0YHere [3XL[103X and [3XK[103X are semisimple Lie algebras with the following properties: [3XK[103X is
+  contained   in   [3XL[103X,   the   Cartan   subalgebra   of   [3XL[103X,   as  returned  by
+  [3XCartanSubalgebra(L)[103X is split (this is automatic if [3XL[103X is created by the built
+  in  [5XGAP[105X  function) and [3XK[103X has a Cartan subalgebra that is a subalgebra of the
+  Cartan  subalgebra  of  [3XL[103X.  We  note  that the function checks only the last
+  property.  The  function  returns a matrix [3XP[103X such that if [3Xu[103X is a weight of a
+  [3XL[103X-module [22XV[122X, then [3XP*u[103X is a weight of [3XV[103X, when considered as a [3XK[103X-module.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",7,Rationals);;                [127X[104X
+    [4X[25Xgap>[125X [27XK:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               [127X[104X
+    [4X[25X>[125X [27XL.64,L.66,L.67,L.68,L.69,L.70,L.126] );;[127X[104X
+    [4X[25Xgap>[125X [27XDimension(K);[127X[104X
+    [4X[28X63[128X[104X
+    [4X[25Xgap>[125X [27XSemiSimpleType(K);[127X[104X
+    [4X[28X"A7"[128X[104X
+    [4X[25Xgap>[125X [27XProjectionMatrix( L, K );[127X[104X
+    [4X[28X[ [ 2, 2, 3, 4, 3, 2, 1 ], [ 0, 0, -1, 0, 0, 0, 0 ], [ 0, 0, 0, -1, 0, 0, 0 ],[128X[104X
+    [4X[28X  [ 0, 0, 0, 0, -1, 0, 0 ], [ 0, 0, 0, 0, 0, -1, 0 ], [128X[104X
+    [4X[28X  [ 0, 0, 0, 0, 0, 0, -1 ], [ -1, -2, -2, -3, -2, -1, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.1-2 Branching[101X
+  
+  [29X[2XBranching[102X( [3XL[103X, [3XK[103X, [3Xhw[103X ) [32X operation
+  
+  [33X[0;0YHere  [3XL[103X  and [3XK[103X are as in the previous function, and [3Xhw[103X is the highest weight
+  of  an  irreducible  [3XL[103X-module.  This  function computes the splitting of the
+  module  when  seen as a [3XK[103X-module. Returned is a list of two lists: the first
+  list  contains  the highest weights of the modules involved, the second list
+  contains their multiplicities.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",7,Rationals);;                [127X[104X
+    [4X[25Xgap>[125X [27XK:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               [127X[104X
+    [4X[25X>[125X [27XL.64,L.66,L.67,L.68,L.69,L.70,L.126] );;[127X[104X
+    [4X[25Xgap>[125X [27XBranching( L, K, [1,0,0,0,0,0,1] );[127X[104X
+    [4X[28X[ [ [ 1, 1, 0, 0, 0, 0, 1 ], [ 1, 1, 1, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 1, 0, 1 ],[128X[104X
+    [4X[28X      [ 0, 0, 1, 0, 1, 0, 0 ], [ 1, 0, 0, 1, 0, 0, 0 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 0 ], [ 0, 0, 0, 0, 0, 0, 1 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 0, 0, 0, 0 ] ], [ 1, 1, 1, 1, 1, 1, 1, 1 ] ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X5.2 [33X[0;0YConstructing Semisimple Subalgebras[133X[101X
+  
+  [1X5.2-1 RegularSemisimpleSubalgebras[101X
+  
+  [29X[2XRegularSemisimpleSubalgebras[102X( [3XL[103X ) [32X attribute
+  
+  [33X[0;0YHere  [3XL[103X  is  a  [13Xsimple[113X  Lie  algebra.  This  function  returns a list of its
+  conjugacy  classes  of  semisimple  subalgebras (conjugacy under the adjoint
+  group).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",6,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27XK:= RegularSemisimpleSubalgebras( L );; time;[127X[104X
+    [4X[28X1664[128X[104X
+    [4X[25Xgap>[125X [27XLength(K);[127X[104X
+    [4X[28X19[128X[104X
+    [4X[25Xgap>[125X [27XK[5];[127X[104X
+    [4X[28X<Lie algebra of dimension 45 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XSemiSimpleType( K[5] ); [127X[104X
+    [4X[28X"D5"[128X[104X
+    [4X[25Xgap>[125X [27XBranching( L, K[5], [1,0,0,0,0,1] );     [127X[104X
+    [4X[28X[ [ [ 1, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 1 ], [ 1, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 1 ], [ 2, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 0 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 0, 1 ], [ 0, 1, 0, 0, 0 ], [ 0, 0, 0, 0, 0 ] ], [128X[104X
+    [4X[28X  [ 2, 1, 1, 1, 1, 1, 1, 1, 1 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-2 SSSTypes[101X
+  
+  [29X[2XSSSTypes[102X(  ) [32X function
+  
+  [33X[0;0YThis returns a list of the types of the semisimple Lie algebras of which the
+  database  contains  the  classification of the semisimple subalgebras, up to
+  linear equivalence. (The three letters S stand for SemiSimple Subalgebras.)[133X
+  
+  [1X5.2-3 LieAlgebraAndSubalgebras[101X
+  
+  [29X[2XLieAlgebraAndSubalgebras[102X( [3Xtype[103X ) [32X operation
+  
+  [33X[0;0YHere  [3Xtype[103X  is  a  string describing the type of a semisimple Lie algebra. A
+  simple  type  is  a  capital  letter  (A, B, C, D, E, F, or G) followed by a
+  positive  integer.  Example: [3X"D5"[103X. In general a type is a sequence of simple
+  types separated by spaces. Example: [3X"A2 C3 E6"[103X. This function is appliccable
+  if each simple type that occurs in [3Xtype[103X has rank less than or equal to 8. In
+  that  case  a  record  is  returned  with two components: [3Xliealg[103X, which is a
+  semisimple  Lie  algebra  of type [3Xtype[103X, and [3Xsubalgs[103X which is the list of its
+  semisimple  subalgebras  up  to linear equivalence. If [3Xtype[103X is a simple type
+  then  the  list  will  be  simply  fetched  from  the  database. Otherwise a
+  computation  will  be triggered, and afterwards the database will be bigger.
+  (One  can  check  this  with  a call to [3XSSSTypes()[103X). Also we remark that for
+  non-simple types of not so small rank this computation can be difficult.[133X
+  
+  [1X5.2-4 InclusionsGraph[101X
+  
+  [29X[2XInclusionsGraph[102X( [3Xtype[103X ) [32X operation
+  
+  [33X[0;0YHere  [3Xtype[103X is a string describing the type of a semisimple Lie algebra. This
+  is  the  same  as  in  the  previous  function. This function returns a list
+  containing  the  edges  of the inclusion graph of the semisimple subalgebras
+  returned  by  the previous function. An edge is represented by a list of two
+  integers.  If  the edge [3X[ i, j ][103X occurs, then this means that the subalgebra
+  on  position  [3Xj[103X  in  the  list is linearly equivalent to a subalgebra of the
+  subalgebra in position [3Xi[103X. Only the maximal subalgebras are considered; so if
+  we  have  edges  [3X[  i, j ][103X and [3X[ j, k ][103X then there will be no edge [3X[ i, k ][103X.
+  (Otherwise  this  list  can become huge.) Edges of the form [3X[ 0, j ][103X express
+  that  the subalgebra on position [3Xj[103X is a maximal semisimple subalgebra of the
+  Lie algebra of type [3Xtype[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X# Semisimple subalgebras of the Lie algebra of type D4:[128X[104X
+    [4X[25Xgap>[125X [27Xs:= LieAlgebraAndSubalgebras( "D4" );;[127X[104X
+    [4X[25Xgap>[125X [27XL:= s.liealg;[127X[104X
+    [4X[28X<Lie algebra of dimension 28 over CF(3)>[128X[104X
+    [4X[25Xgap>[125X [27Xsub:= s.subalgs;;[127X[104X
+    [4X[25Xgap>[125X [27XLength(sub);[127X[104X
+    [4X[28X44[128X[104X
+    [4X[25Xgap>[125X [27Xg:= InclusionsGraph( "D4" );;[127X[104X
+    [4X[25Xgap>[125X [27Xg[1];[127X[104X
+    [4X[28X[ 12, 1 ][128X[104X
+    [4X[28X[128X[104X
+    [4X[28X# Find the maximal semisimple subalgebras:[128X[104X
+    [4X[28X[128X[104X
+    [4X[25Xgap>[125X [27Xm:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );[127X[104X
+    [4X[28X[ 13, 35, 36, 37, 41, 42, 43, 44 ][128X[104X
+    [4X[25Xgap>[125X [27XList( sub{i}, SemiSimpleType );                [127X[104X
+    [4X[28X[ "A2", "A1 B2", "A1 B2", "A1 B2", "B3", "B3", "B3", "A1 A1 A1 A1" ][128X[104X
+    [4X[28X[128X[104X
+    [4X[28X# We see that the subalgebras on positions 35 and 36 are isomorphic;[128X[104X
+    [4X[28X# however they are not linearly equivalent:[128X[104X
+    [4X[25Xgap>[125X [27XBranching( L, sub[35], [0,0,1,0] );[127X[104X
+    [4X[28X[ [ [ 1, 0, 1 ] ], [ 1 ] ][128X[104X
+    [4X[25Xgap>[125X [27XBranching( L, sub[36], [0,0,1,0] );[127X[104X
+    [4X[28X[ [ [ 0, 1, 0 ], [ 2, 0, 0 ] ], [ 1, 1 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-5 SubalgebrasInclusion[101X
+  
+  [29X[2XSubalgebrasInclusion[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation
+  
+  [33X[0;0YHere  [3XK1[103X,  [3XK2[103X,  are  two  subalgebras  of  the  semisimple  Lie  algebra  [3XL[103X,
+  constructed using the database. If [3XK2[103X contains a subalgebra that is linearly
+  equivalent to [3XK1[103X then such a subalgebra is returned. Otherwise the result is
+  [3Xfail[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xs:= LieAlgebraAndSubalgebras( "C3" );;[127X[104X
+    [4X[25Xgap>[125X [27Xg:= InclusionsGraph( "C3" );[127X[104X
+    [4X[28X[ [ 10, 1 ], [ 11, 1 ], [ 12, 1 ], [ 8, 2 ], [ 10, 2 ], [ 11, 2 ], [ 11, 3 ], [128X[104X
+    [4X[28X  [ 13, 3 ], [ 8, 4 ], [ 13, 4 ], [ 9, 5 ], [ 12, 5 ], [ 12, 6 ], [ 13, 6 ], [128X[104X
+    [4X[28X  [ 0, 7 ], [ 0, 8 ], [ 15, 9 ], [ 9, 10 ], [ 14, 10 ], [ 14, 11 ], [128X[104X
+    [4X[28X  [ 15, 12 ], [ 0, 13 ], [ 15, 14 ], [ 0, 15 ] ][128X[104X
+    [4X[28X# there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the[128X[104X
+    [4X[28X# second algebra is contained in the 14-th.[128X[104X
+    [4X[25Xgap>[125X [27XL:= s.liealg;[127X[104X
+    [4X[28X<Lie algebra of dimension 21 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27Xsub:= s.subalgs;;[127X[104X
+    [4X[25Xgap>[125X [27XK:=SubalgebrasInclusion( L, sub[2], sub[14] );[127X[104X
+    [4X[28X<Lie algebra of dimension 3 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XBasis(K)[1] in sub[14];[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-6 DynkinIndex[101X
+  
+  [29X[2XDynkinIndex[102X( [3XK[103X, [3XL[103X ) [32X operation
+  
+  [33X[0;0YHere [3XK[103X is a semisimple subalgebra of the [13Xsimple[113X Lie algebra [3XL[103X. This function
+  returns  a  list  of  integers,  containing the Dynkin indices of the simple
+  components of [3XK[103X. If the input Lie algebra [3XL[103X is not simple, then still a list
+  of  rationals is returned, but they may have no meaning. The Dynkin index is
+  defined as follows. Consider a simple component in [3XK[103X and let [22Xh[122X be the coroot
+  of the shortest root of [3XK[103X. Let [22Xk[122X denote the Killing form of [3XL[103X, normalised so
+  that  the  coroot  of  the shortest root of [3XL[103X has squared length 2. Then the
+  Dynkin index is [22Xk(h,h)/2[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xs:= LieAlgebraAndSubalgebras( "C7" );;[127X[104X
+    [4X[25Xgap>[125X [27Xg:= InclusionsGraph( "C7" );;[127X[104X
+    [4X[25Xgap>[125X [27Xm:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );[127X[104X
+    [4X[28X[ 63, 498, 665, 804, 819, 821, 822 ][128X[104X
+    [4X[25Xgap>[125X [27XL:= s.liealg;[127X[104X
+    [4X[28X<Lie algebra of dimension 105 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27Xsub:= s.subalgs;;[127X[104X
+    [4X[25Xgap>[125X [27XList( sub{i}, SemiSimpleType );   [127X[104X
+    [4X[28X[ "A1", "C3", "A1 B3", "A6", "C3 C4", "B2 C5", "A1 C6" ][128X[104X
+    [4X[25Xgap>[125X [27XDynkinIndex( sub[665], L );   [127X[104X
+    [4X[28X[ 7, 4 ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-7 AreLinearlyEquivalentSubalgebras[101X
+  
+  [29X[2XAreLinearlyEquivalentSubalgebras[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation
+  
+  [33X[0;0YHere  [3XL[103X  is  a  semisimple  Lie  algebra,  and [3XK1[103X, [3XK2[103X are subalgebras. It is
+  assumed that the Cartan subalgebras (as returned by [3XCartanSubalgebra[103X) of [3XK1[103X,
+  [3XK2[103X are contained in the Cartan subalgebra of [3XL[103X (otherwise [3Xfail[103X is returned).
+  This  function  returns  [3Xtrue[103X  if  [3XK1[103X,  [3XK2[103X  are  linearly equivalent, [3Xfalse [103X
+  otherwise.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[28X# Lets find the subalgebras in the database for C5 that are linearly[128X[104X
+    [4X[28X# equivalent to regular subalgebras:[128X[104X
+    [4X[25Xgap>[125X [27Xs:= LieAlgebraAndSubalgebras("C5");; L:= s.liealg; sub:= s.subalgs;;[127X[104X
+    [4X[28X<Lie algebra of dimension 55 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27Xreg:= RegularSemisimpleSubalgebras( L );;[127X[104X
+    [4X[25Xgap>[125X [27Xposn:= [];;[127X[104X
+    [4X[25Xgap>[125X [27Xfor K in reg do  [127X[104X
+    [4X[25X>[125X [27XAdd(posn,PositionProperty(sub,M -> AreLinearlyEquivalentSubalgebras(L,M,K)));[127X[104X
+    [4X[25X>[125X [27Xod;[127X[104X
+    [4X[25Xgap>[125X [27Xposn;[127X[104X
+    [4X[28X[ 2, 24, 93, 111, 105, 82, 106, 81, 41, 109, 70, 85, 29, 112, 94, 25, 1, 118, [128X[104X
+    [4X[28X  100, 102, 64, 108, 84, 28, 117, 107, 116, 96, 101, 63, 115, 114, 95, 113 ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-8 MakeDatabaseEntry[101X
+  
+  [29X[2XMakeDatabaseEntry[102X( [3Xr[103X ) [32X operation
+  [29X[2XAddToDatabase[102X( [3Xd[103X ) [32X operation
+  
+  [33X[0;0YThese  are  functions  that help to save a computed list of subalgebras of a
+  semisimple  Lie  algebra  in a file, and in a new session, read it again. In
+  the  first  function  [3Xr[103X  is a record as produced by [2XLieAlgebraAndSubalgebras[102X
+  ([14X5.2-3[114X).  It  returns  a  record  that  can  be  saved in a file. (It is not
+  advisable  to  print it on the screen.) In the second function [3Xd[103X is a record
+  that  is  output  by [2XMakeDatabaseEntry[102X. This function adds this entry to the
+  database.[133X
+  
+  [33X[0;0YWe  give  two examples; in the first one we create a new database entry, and
+  save  it  to  a  file.  In  the  second example we read it and add it to the
+  database.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xr:= LieAlgebraAndSubalgebras( "A2 B2" );;[127X[104X
+    [4X[25Xgap>[125X [27Xd:= MakeDatabaseEntry( r );;[127X[104X
+    [4X[25Xgap>[125X [27XPrintTo( "A2B2", "d:= ",d,";\n");[127X[104X
+  [4X[32X[104X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XRead("A2B2");[127X[104X
+    [4X[25Xgap>[125X [27XAddToDatabase( d );[127X[104X
+    [4X[25Xgap>[125X [27XSSSTypes();[127X[104X
+    [4X[28X[ "A1", "A2", "B2", "G2", "A3", "B3", "C3", "A4", "B4", "C4", "D4", "F4", [128X[104X
+    [4X[28X  "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6", "E6", "A7", "B7", "C7", [128X[104X
+    [4X[28X  "D7", "E7", "A8", "B8", "C8", "D8", "E8", "A2 B2" ][128X[104X
+  [4X[32X[104X
+  

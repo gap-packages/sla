@@ -1,0 +1,292 @@
+  
+  [1X4 [33X[0;0YFinite Order Automorphisms and [22Xθ[122X[101X[1X-Groups[133X[101X
+  
+  [33X[0;0YThis  chapter  contains functions for creating and working with finite order
+  automorphisms of simple Lie algebras (or, more precisely, representatives of
+  the conjugacy classes of such automorphisms).[133X
+  
+  [33X[0;0YNB:  such automorphisms are not created for a given Lie algebra, but the Lie
+  algebra  is  constructed  at the same time as the automorphism. This because
+  the base field may need extending (it needs enough roots of unity).[133X
+  
+  [33X[0;0YAs  noted above the functions give representatives of the conjugacy classes,
+  in  the  automorphism  group  of the underlying Lie algebra, of finite order
+  automorphisms.  Such  conjugacy  classes  are  classified  in  terms  of Kac
+  diagrams.  Roughly,  this  works  as  follows. A finite order automorphism [22Xf[122X
+  corresponds   to   a  diagram  automorphism  of  order  [22Xd=1,2,3[122X.  The  inner
+  automorphisms  correspond  to  a  diagram automorphism of order 1, the outer
+  automorphisms to a diagram automorphism of order 2 or 3. Let [22XL_0, L_1[122X denote
+  the eigenspaces of the underlying Lie algebra [22XL[122X, with respect to the diagram
+  automorphism, respectively corresponding to the eigenvalues 1 and [22Xw[122X (where [22Xw[122X
+  is  a primitive [22Xd[122X-th root of unity). (In case of [22Xd=1[122X, we have [22XL_0=L[122X, [22XL_1=0[122X.)
+  Then  [22XL_0[122X  is semisimple and we choose a set of canonical generators of [22XL_0[122X,
+  denoted  [22Xx_i[122X,  [22Xy_i[122X,  [22Xh_i[122X, for [22Xi=1,...,s[122X. Moreover, [22XL_1[122X is an [22XL_0[122X-module. Let
+  [22Xx_0[122X  be the lowest weight vector in [22XL_1[122X. (If [22Xd=1[122X then [22Xx_0[122X will be the lowest
+  (negative) root vector.) Let [22Xα_i[122X for [22Xi=0,...,s[122X be the roots corresponding to
+  [22Xx_i[122X,  with respect to the subalgebra spanned by the [22Xh_i[122X. Let [22XC[122X be the Cartan
+  matrix  of  these  roots.  The  rows of [22XC[122X are linearly dependent. The Dynkin
+  diagram  of  [22XC[122X  is labeled with integers [22Xa_i[122X with greatest common divisor 1,
+  that  form  the  coefficients  of  a  linear  dependency  of  the rows of [22XC[122X.
+  Furthermore,  the  [22Xx_i[122X  generate  [22XL[122X  and  the automorphism [22Xf[122X is described by
+  [22Xf(x_i) = v^s_i x_i[122X, where the non-negative integers [22Xs_i[122X have greatest common
+  divisor  1, and are such that [22Xm=d∑ a_i s_i[122X is the order of [22Xf[122X, and where [22Xv[122X is
+  a  primitive  [22Xm[122X-th  order  root  of  unity.  Now  the  Kac  diagram  of  the
+  automorphism [22Xf[122X is the Dynkin diagram of [22XC[122X, labelled with the labels [22Xs_i[122X.[133X
+  
+  
+  [1X4.1 [33X[0;0YThe functions[133X[101X
+  
+  [1X4.1-1 FiniteOrderInnerAutomorphisms[101X
+  
+  [29X[2XFiniteOrderInnerAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X ) [32X operation
+  
+  [33X[0;0YLet  [22XL[122X  be  the  simple Lie algebra of type [3Xtype[103X and rank [3Xrank[103X. The function
+  returns representatives of the conjugacy classes of inner automorphisms of [22XL[122X
+  of order [3Xm[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms("E",6,2);[127X[104X
+    [4X[28X[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (-1)*v.72, (-1)*v.1, v.2, v.3, [128X[104X
+    [4X[28X      v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [128X[104X
+    [4X[28X    [ v.72, v.1, (-1)*v.2, v.3, v.4, v.5, v.6 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.1-2 FiniteOrderOuterAutomorphisms[101X
+  
+  [29X[2XFiniteOrderOuterAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X, [3Xd[103X ) [32X operation
+  
+  [33X[0;0YLet  [22XL[122X  be  the  simple Lie algebra of type [3Xtype[103X and rank [3Xrank[103X. The function
+  returns representatives of the conjugacy classes of outer automorphisms of [22XL[122X
+  of order [3Xm[103X, corresponding to a diagram automorphism of order [3Xd[103X.[133X
+  
+  [1X4.1-3 Order[101X
+  
+  [29X[2XOrder[102X( [3Xf[103X ) [32X attribute
+  
+  [33X[0;0YHere [3Xf[103X is a finite order automorphism. This returns its order.[133X
+  
+  [1X4.1-4 KacDiagram[101X
+  
+  [29X[2XKacDiagram[102X( [3Xf[103X ) [32X attribute
+  
+  [33X[0;0YHere [3Xf[103X is a finite order automorphism. This returns its Kac diagram. This is
+  a record with three components: [3XCM[103X, which is the Cartan matrix of the Dynkin
+  diagram,  [3Xlabels[103X  the integers with gcd equal to 1 that are the coefficients
+  of  a linear dependency of the rows of [3XCM[103X, and [3Xweights[103X that are the integers
+  [22Xs_i[122X that define the automorphism.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderOuterAutomorphisms( "A", 5, 4, 2 );;[127X[104X
+    [4X[25Xgap>[125X [27Xr:= KacDiagram( f[1] );[127X[104X
+    [4X[28Xrec( [128X[104X
+    [4X[28X  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], [ 0, 0, -2, 2 [128X[104X
+    [4X[28X         ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )[128X[104X
+    [4X[25Xgap>[125X [27Xr.labels*r.CM;      [127X[104X
+    [4X[28X[ 0, 0, 0, 0 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.1-5 Grading[101X
+  
+  [29X[2XGrading[102X( [3Xf[103X ) [32X attribute
+  
+  [33X[0;0YHere  [3Xf[103X  is  a  finite order automorphism of order [22Xm[122X. This returns a list of
+  length  [22Xm[122X.  The  [22Xi[122X-th  element  contains a basis of the eigenspace of [3Xf[103X with
+  eigenvalue [22Xv^i[122X, where [22Xv[122X is a primitive [22Xm[122X-th root of unity (i.e., [3Xv=E(m)[103X).[133X
+  
+  [1X4.1-6 NilpotentOrbitsOfThetaRepresentation[101X
+  
+  [29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3Xf[103X ) [32X operation
+  [29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3XL[103X, [3Xd[103X ) [32X operation
+  
+  [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of  a simple Lie algebra [22XL[122X of order [22Xm[122X. Then [3Xf[103X
+  defines  a  grading  on [22XL[122X. Let the homogeneous components of this grading be
+  denoted  [22XL_i[122X  for  [22Xi=0,...,m-1[122X.  Let  [22XG_0[122X  be the group corresponding to [22XL_0[122X
+  (i.e.,  the  connected  subgroup  of the adjoint group of [22XL[122X with Lie algebra
+  [22XL_0[122X). This function computes representatives for the nilpotent orbits of [22XG_0[122X
+  acting  on  [22XL_1[122X.  The  output  is  a  list  of  triples.  Each  triple is an
+  [22Xsl_2[122X-triple  [22X(y,h,x)[122X, with [22Xh∈ L_0[122X, [22Xx∈ L_1[122X (the representative of the orbit),
+  and  [22Xy∈  L_m-1[122X.  The  element  [22Xh[122X also lies in the dominant Weyl chamber of a
+  Cartan subalgebra of [22XL_0[122X. Finally we note that all elements lie in [3XSource( f
+  )[103X.[133X
+  
+  [33X[0;0YIt  is  possible  to  add an extra optional argument: [3Xmethod:= "Carrier"[103X, or
+  [3Xmethod:=  "WeylOrbit"[103X.  Then  a  method  based  on  finding carrier algebras
+  (respectively,  computing  orbits  under  the  Weyl  group) is chosen. If no
+  optional  argument  is chosen, then the system will make its own choice. (In
+  the  case of outer automorphisms, currently the only available method is the
+  one based on orbits of the Weyl group.) The method based on carrier algebras
+  tends to work better for the higher order automorphisms.[133X
+  
+  [33X[0;0YThis  function prints some information on what it is doing to the info class
+  [3XInfoSLA[103X.  In  order  to  suppress  these  messages  one can do [3XSetInfoLevel(
+  InfoSLA, 1 );[103X.[133X
+  
+  [33X[0;0YIn the two-argument version, the first argument [3XL[103X has to be a semisimple Lie
+  algebra,  and  the second argument [3Xd[103X a list of non-negative integers. Then [3XL[103X
+  is  [22XZ[122X-graded  by giving the root space corresponding to the [22Xi[122X-th simple root
+  the degree [3Xd[i][103X. Apart from this the function works the same in this case as
+  in the one-argument version.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   [127X[104X
+    [4X[25Xgap>[125X [27Xs:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );; time;[127X[104X
+    [4X[28X#I  Selected carrier algebra method.[128X[104X
+    [4X[28X#I  Constructed 123 root bases of possible flat subalgebras, now checking them...[128X[104X
+    [4X[28X#I  Obtained 30 Cartan elements, weeding out equivalent copies...[128X[104X
+    [4X[28X776[128X[104X
+    [4X[25Xgap>[125X [27XLength(s);[127X[104X
+    [4X[28X10[128X[104X
+    [4X[25Xgap>[125X [27Xs[4];[127X[104X
+    [4X[28X[ v.14+v.15+v.38, (-2)*v.41+(-1)*v.42, v.18+v.34+v.35 ][128X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",6,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27XNilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );[127X[104X
+    [4X[28X#I  Selected Weyl orbit method.[128X[104X
+    [4X[28X#I  Constructed a Weyl transversal of 72 elements.[128X[104X
+    [4X[28X#I  Obtained 5 Cartan elements, weeding out equivalent copies...[128X[104X
+    [4X[28X[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.29+v.30+v.31 ], [128X[104X
+    [4X[28X  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.19+v.30 ], [128X[104X
+    [4X[28X  [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.1-7 ClosureDiagram[101X
+  
+  [29X[2XClosureDiagram[102X( [3XL[103X, [3Xf[103X, [3Xs[103X ) [32X operation
+  [29X[2XClosureDiagram[102X( [3XL[103X, [3Xd[103X, [3Xs[103X ) [32X operation
+  
+  [33X[0;0YHere [3Xf[103X is an automorphism of a simple Lie algebra [22XL[122X of order [22Xm[122X, and [3Xs[103X a list
+  of  [22Xsl_2[122X-triples  [22X(y,h,x)[122X,  with [22Xh∈ L_0[122X, [22Xx∈ L_1[122X (for instance as computed by
+  the previous function), corresponding to nilpotent orbits in [22XL_1[122X.[133X
+  
+  [33X[0;0YThis  function  computes  the Hasse diagram of the closures of the nilpotent
+  orbits. The output is a record with two components: [3Xdiag[103X (which is a list of
+  2-tuples;  a  tuple  [3X[  i, j ][103X means that orbit number [3Xi[103X is contained in the
+  closure  of  orbit  number  [3Xj[103X),  and [3Xsl2[103X (the same list of [22Xsl_2[122X-triples, but
+  sorted  according  to  decreasing  dimension,  i.e., the highest dimensional
+  orbit  comes first). The numbering used in the tuples in [3Xdiag[103X corresponds to
+  the order in which the orbits appear in the component [3Xsl2[103X.[133X
+  
+  [33X[0;0YDuring  the  execution  of  the  program  a message is printed. This message
+  either  states  that  all  inclusions have been proved, or lists a number of
+  possible  inclusions,  for  which  it  could  not  be  proved  with absolute
+  certainty  that  these do not occur. This is due to the randomised nature of
+  the  algorithm:  if the algorithm finds an inclusion, then this inclusion is
+  certain. However, sometimes a non-inclusion can only be estabished by random
+  methods,  which means that it is possible that there is an inclusion without
+  the  program  finding  it.  (This however, is very unlikely, and in practice
+  almost  never  happens.)  Now  showing  that  a  non-inclusion  really  is a
+  non-inclusion  can  be  done by computing the ranks of certain matrices with
+  polynomial  entries.  In  principle  [5XGAP[105X  can  do  this; however, the system
+  certainly  is  not  very  strong  at  it.  Therefore, as optional argument a
+  filename can be given, by [3Xfilenm:= "file.m"[103X. If this argument is present the
+  program prints a Magma script in the file, which can be loaded directly into
+  the  computer  algebra  system Magma. If the output is always true, then all
+  non-inclusions  are  proved.  If  there are non non-inclusions to be proved,
+  then the file is not written.[133X
+  
+  [33X[0;0YIn  the  second  version,  the  second  argument [3Xd[103X is a list of non-negative
+  integers.  Then  [3XL[103X is [22XZ[122X-graded by giving the root space corresponding to the
+  [22Xi[122X-th  simple root the degree [3Xd[i][103X. Apart from this the function works in the
+  same way.[133X
+  
+  [33X[0;0YWe  note  that the adjoint representation can be obtained by giving a [3Xd[103X that
+  eintirely consists of zeros.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "E", 8, 8 );;  [127X[104X
+    [4X[25Xgap>[125X [27Xh:= f[8];;[127X[104X
+    [4X[25Xgap>[125X [27Xsl2:= NilpotentOrbitsOfThetaRepresentation(h);;  [127X[104X
+    [4X[28X#I  Selected carrier algebra method.[128X[104X
+    [4X[28X#I  Constructed 2782 root bases of possible flat subalgebras, now checking them...[128X[104X
+    [4X[28X#I  Obtained 58 Cartan elements, weeding out equivalent copies...[128X[104X
+    [4X[25Xgap>[125X [27Xtime;[127X[104X
+    [4X[28X117792[128X[104X
+    [4X[25Xgap>[125X [27XLength(sl2);[127X[104X
+    [4X[28X27[128X[104X
+    [4X[25Xgap>[125X [27XL:= Source(h);;                    [127X[104X
+    [4X[25Xgap>[125X [27Xr:= ClosureDiagram( L, h, sl2 );;  [127X[104X
+    [4X[28X#I  All (non-) inclusions proved![128X[104X
+    [4X[25Xgap>[125X [27Xtime;[127X[104X
+    [4X[28X329248[128X[104X
+    [4X[25Xgap>[125X [27Xr.diag;[127X[104X
+    [4X[28X[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], [ 7, 5 ], [128X[104X
+    [4X[28X[ 8, 4 ], [ 9, 3 ], [ 9, 6 ], [ 10, 6 ], [ 10, 7 ], [ 11, 4 ], [ 11, 7 ], [ 12, 7 ], [128X[104X
+    [4X[28X[ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 11 ], [ 14, 12 ], [ 15, 6 ], [ 16, 8 ], [128X[104X
+    [4X[28X[ 16, 11 ], [ 17, 13 ], [ 17, 16 ], [ 18, 13 ], [ 18, 15 ], [ 19, 10 ], [ 19, 12 ], [128X[104X
+    [4X[28X[ 19, 15 ], [ 20, 14 ], [ 20, 16 ], [ 21, 9 ], [ 21, 15 ], [ 22, 14 ], [ 22, 18 ], [128X[104X
+    [4X[28X[ 22, 19 ], [ 23, 18 ], [ 23, 21 ], [ 24, 17 ], [ 24, 18 ], [ 25, 20 ], [ 25, 22 ], [128X[104X
+    [4X[28X[ 25, 24 ], [ 26, 22 ], [ 26, 23 ], [ 27, 23 ], [ 27, 24 ] ][128X[104X
+    [4X[28X# Now we do the adjoint representation of the Lie algebra of type F4:[128X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("F",4,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27Xo:= NilpotentOrbits(L);;[127X[104X
+    [4X[25Xgap>[125X [27Xsl2:= List( o, SL2Triple );;[127X[104X
+    [4X[25Xgap>[125X [27Xr:= ClosureDiagram( L, [0,0,0,0], sl2 );;      [127X[104X
+    [4X[28X#I  All (non-) inclusions proved![128X[104X
+    [4X[25Xgap>[125X [27Xr.diag;[127X[104X
+    [4X[28X[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 5 ], [ 6, 4 ], [ 7, 6 ], [ 8, 7 ], [128X[104X
+    [4X[28X  [ 9, 7 ], [ 10, 9 ], [ 10, 8 ], [ 11, 8 ], [ 12, 10 ], [ 13, 12 ], [ 13, 11 ], [128X[104X
+    [4X[28X  [ 14, 13 ], [ 15, 14 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.1-8 CarrierAlgebra[101X
+  
+  [29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xf[103X, [3Xe[103X ) [32X operation
+  [29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xd[103X, [3Xe[103X ) [32X operation
+  
+  [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of a simple Lie algebra [22XL[122X of order [22Xm[122X, and [3Xe[103X a
+  nilpotent  element  of  [22XL_1[122X. This function returns the carrier algebra of [3Xe[103X.
+  This  is  a  [22XZ[122X-graded semisimple subalgebra [22XK[122X of [22XL[122X, such that [3Xe[103X lies in [22XK_1[122X.
+  For the precise definition we refer to [Vin79], [Vin75]. The output is given
+  in  the  form  of  a record, with three components: [3Xg0[103X, a basis of [22XK_0[122X, [3Xgp[103X a
+  list  containing bases of [22XK_1[122X, [22XK_2[122X and so on, and [3Xgn[103X a list containing bases
+  of [22XK_-1[122X, [22XK_-2[122X and so on.[133X
+  
+  [33X[0;0YIn  the  second  version,  the  second  argument [3Xd[103X is a list of non-negative
+  integers.  Then  [3XL[103X is [22XZ[122X-graded by giving the root space corresponding to the
+  [22Xi[122X-th  simple root the degree [3Xd[i][103X. Apart from this the function works in the
+  same way.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "F", 4, 5 );;[127X[104X
+    [4X[25Xgap>[125X [27Xh:= f[4];;[127X[104X
+    [4X[25Xgap>[125X [27Xsl2:= NilpotentOrbitsOfThetaRepresentation( h );;  [127X[104X
+    [4X[28X#I  Selected Weyl orbit method.[128X[104X
+    [4X[28X#I  Constructed a Weyl transversal of 144 elements.[128X[104X
+    [4X[28X#I  Constructed 621 Cartan elements to be checked.[128X[104X
+    [4X[25Xgap>[125X [27XL:= Source(h);   [127X[104X
+    [4X[28X<Lie algebra of dimension 52 over CF(5)>[128X[104X
+    [4X[25Xgap>[125X [27Xr:=CarrierAlgebra( L, h, sl2[1][3] );   [127X[104X
+    [4X[28Xrec( g0 := [ v.49+(2)*v.50+(2)*v.51+(3)*v.52, v.50+(1/2)*v.51+v.52 ], [128X[104X
+    [4X[28Xgp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ], [128X[104X
+    [4X[28Xgn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ] )[128X[104X
+    [4X[25Xgap>[125X [27XK:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );[127X[104X
+    [4X[28X<Lie algebra over CF(5), with 10 generators>[128X[104X
+    [4X[25Xgap>[125X [27XSemiSimpleType( K );[127X[104X
+    [4X[28X"B2"[128X[104X
+  [4X[32X[104X
+  
+  [1X4.1-9 CartanSubspace[101X
+  
+  [29X[2XCartanSubspace[102X( [3Xf[103X ) [32X operation
+  
+  [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of  a simple Lie algebra [22XL[122X of order [22Xm[122X. Then [3Xf[103X
+  defines  a  grading  on [22XL[122X. Let the homogeneous components of this grading be
+  denoted  [22XL_i[122X  for  [22Xi=0,...,m-1[122X.  Let  [22XG_0[122X  be the group corresponding to [22XL_0[122X
+  (i.e.,  the  connected  subgroup  of the adjoint group of [22XL[122X with Lie algebra
+  [22XL_0[122X).  This  function  computes  a  maximal  subspace  of  [22XL_1[122X consisting of
+  commuting   semisimple  elements.  (Such  a  subspace  is  called  a  [13XCartan
+  subspace[113X.)[133X
+  
+  [33X[0;0YEvery  semisimple  orbit of [22XG_0[122X in [22XL_1[122X contains an element of a fixed Cartan
+  subspace.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;[127X[104X
+    [4X[25Xgap>[125X [27Xc:= CartanSubspace( f[3] ); [127X[104X
+    [4X[28X<vector space of dimension 1 over CF(3)>[128X[104X
+    [4X[25Xgap>[125X [27XBasisVectors( Basis( c ) );[127X[104X
+    [4X[28X[ v.1+v.5+v.12 ][128X[104X
+  [4X[32X[104X
+  

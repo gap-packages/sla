@@ -1,0 +1,52 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XAddToDatabase[102X  5.2-8
+  [2XAdmissibleLattice[102X  2.2-2
+  [2XAmbientLieAlgebra[102X  3.1-5
+  [2XAreLinearlyEquivalentSubalgebras[102X  5.2-7
+  [2XBranching[102X  5.1-2
+  [2XCarrierAlgebra[102X  4.1-8
+  [2XCarrierAlgebra[102X  4.1-8
+  [2XCartanSubspace[102X  4.1-9
+  [2XCartanType[102X  2.1-2
+  [2XClosureDiagram[102X  4.1-7
+  [2XClosureDiagram[102X  4.1-7
+  [2XDirectSumDecomposition[102X  2.2-3
+  [2XDynkinIndex[102X  5.2-6
+  [2XExtendedCartanMatrix[102X  2.1-1
+  [2XFiniteOrderInnerAutomorphisms[102X  4.1-1
+  [2XFiniteOrderOuterAutomorphisms[102X  4.1-2
+  [2XGrading[102X  4.1-5
+  [2XInclusionsGraph[102X  5.2-4
+  [2XInducedNilpotentOrbits[102X  3.1-11
+  [2XIsomorphismOfSemisimpleLieAlgebras[102X  2.2-1
+  [2XKacDiagram[102X  4.1-4
+  [2XLieAlgebraAndSubalgebras[102X  5.2-3
+  [2XMakeDatabaseEntry[102X  5.2-8
+  [2XNilpotentOrbit[102X  3.1-1
+  [2XNilpotentOrbits[102X  3.1-2
+  [2XNilpotentOrbitsOfThetaRepresentation[102X  4.1-6
+  [2XNilpotentOrbitsOfThetaRepresentation[102X  4.1-6
+  [2XOrder[102X  4.1-3
+  [2XProjectionMatrix[102X  5.1-1
+  [2XRandomSL2Triple[102X  3.1-8
+  [2XRegularSemisimpleSubalgebras[102X  5.2-1
+  [2XRigidNilpotentOrbits[102X  3.1-12
+  [2XSemiSimpleType[102X  3.1-6
+  [2XSizeOfWeylGroup[102X  2.1-4
+  [2XSizeOfWeylGroup[102X  2.1-4
+  [2XSizeOfWeylGroup[102X  2.1-4
+  [2XSL2Grading[102X  3.1-9
+  [2XSL2Triple[102X  3.1-10
+  [2XSL2Triple[102X  3.1-7
+  [2XSSSTypes[102X  5.2-2
+  [2XSubalgebrasInclusion[102X  5.2-5
+  [2XWeightedDynkinDiagram[102X  3.1-3
+  [2XWeightedDynkinDiagram[102X  3.1-4
+  [2XWeylTransversal[102X  2.1-3
+  [2XWeylTransversal[102X  2.1-3
+  
+  
+  -------------------------------------------------------

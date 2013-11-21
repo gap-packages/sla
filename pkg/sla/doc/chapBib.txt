@@ -1,0 +1,40 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XCM93[120X]  [16XCollingwood,  D.  H. and McGovern, W. M.[116X, [17XNilpotent orbits in semisimple Lie algebras[117X, Van Nostrand Reinhold Co.,
+  Van Nostrand Reinhold Mathematics Series, New York (1993).
+  
+  [[20XGra08[120X]  [16XGraaf,  W.  A.  d.[116X,  [17XComputing  with nilpotent orbits in simple Lie algebras of exceptional type[117X, [18XLMS J. Comput.
+  Math.[118X, [19X11[119X (2008), 280-297 (electronic).
+  
+  [[20XGra09[120X]  [16XGraaf,  W.  A.  d.[116X,  [17XComputing  representatives  of  nilpotent  orbits  of  θ-groups[117X  (2009),  ((preprint,  {\tt
+  arXiv:0905.3149v2}[math.RT])).
+  
+  [[20XGra10[120X]  [16XGraaf,  W.  A.  d.[116X,  [17XConstructing  semisimple  subalgebras  of  semisimple Lie algebras[117X (2010), ((preprint, {\tt
+  arXiv:1004.1972v1}[math.RA])).
+  
+  [[20XGE09[120X]  [16XGraaf,  W.  A.  d. and Elashvili, A. G.[116X, [17XInduced nilpotent orbits of the simple Lie algebras of exceptional type[117X,
+  [18XGeorgian Mathematical Journal[118X, [19X16[119X, 2 (2009), 257-278, (({\tt arXiv:0905.2743v1}[math.RT])).
+  
+  [[20XGVY11[120X]  [16XGraaf,  W.  A.  d.,  Vinberg,  E.  B.  and  Yakimova, O. S.[116X, [17XAn effective method to compute closure ordering for
+  nilpotent orbits of θ-representations[117X (2011), ((preprint, {\tt arXiv:1107.1864v1}[math.AG])).
+  
+  [[20XGY10[120X]  [16XGraaf,  W.  A.  d.  and  Yakimova,  O.  S.[116X, [17XGood index behaviour of θ-representations, I[117X (2010), ((preprint, {\tt
+  arXiv:1003.4162v1}[math.RT])).
+  
+  [[20XHel78[120X]  [16XHelgason,  S.[116X,  [17XDifferential  geometry,  Lie  groups,  and symmetric spaces[117X, Academic Press Inc. [Harcourt Brace
+  Jovanovich Publishers], Pure and Applied Mathematics, [19X80[119X, New York (1978).
+  
+  [[20XVin75[120X]  [16XVinberg,  E.  B.[116X, [17XThe classification of nilpotent elements of graded Lie algebras[117X, [18XDokl. Akad. Nauk SSSR[118X, [19X225[119X, 4
+  (1975), 745-748.
+  
+  [[20XVin76[120X]  [16XVinberg,  E.  B.[116X, [17XThe Weyl group of a graded Lie algebra[117X, [18XIzv. Akad. Nauk SSSR Ser. Mat.[118X, [19X40[119X, 3 (1976), 488-526,
+  709, ((English translation: Math. USSR-Izv. 10, 463-495 (1976))).
+  
+  [[20XVin79[120X]  [16XVinberg,  E. B.[116X, [17XClassification of homogeneous nilpotent elements of a semisimple graded Lie algebra[117X, [18XTrudy Sem.
+  Vektor. Tenzor. Anal.[118X, 19 (1979), 155-177, ((English translation: Selecta Math. Sov. 6, 15-35 (1987))).
+  
+  
+  
+  [32X

@@ -1,0 +1,68 @@
+\begin{thebibliography}{GVY11}
+
+\bibitem[CM93]{colmcgov}
+David~H. Collingwood and William~M. McGovern.
+\newblock {\em Nilpotent orbits in semisimple {L}ie algebras}.
+\newblock Van Nostrand Reinhold Mathematics Series. Van Nostrand Reinhold Co.,
+  New York, 1993.
+
+\bibitem[GE09]{elasgra}
+Willem A.~de Graaf and Alexander~G. Elashvili.
+\newblock Induced nilpotent orbits of the simple {L}ie algebras of exceptional
+  type.
+\newblock {\em Georgian Mathematical Journal}, 16(2):257--278, 2009.
+\newblock {\tt arXiv:0905.2743v1}[math.RT].
+
+\bibitem[Gra08]{wdg08}
+Willem A.~de Graaf.
+\newblock Computing with nilpotent orbits in simple {L}ie algebras of
+  exceptional type.
+\newblock {\em LMS J. Comput. Math.}, 11:280--297 (electronic), 2008.
+
+\bibitem[Gra09]{gra15}
+Willem A.~de Graaf.
+\newblock Computing representatives of nilpotent orbits of $\theta$-groups.
+\newblock preprint, {\tt arXiv:0905.3149v2}[math.RT], 2009.
+
+\bibitem[Gra10]{grasss}
+Willem A.~de Graaf.
+\newblock Constructing semisimple subalgebras of semisimple lie algebras.
+\newblock preprint, {\tt arXiv:1004.1972v1}[math.RA], 2010.
+
+\bibitem[GVY11]{closure}
+Willem A.~de Graaf, Ernest~B. Vinberg, and Oksana~S. Yakimova.
+\newblock An effective method to compute closure ordering for nilpotent orbits
+  of $\theta$-representations.
+\newblock preprint, {\tt arXiv:1107.1864v1}[math.AG], 2011.
+
+\bibitem[GY10]{graya}
+Willem A.~de Graaf and Oksana~S. Yakimova.
+\newblock Good index behaviour of $\theta$-representations, {I}.
+\newblock preprint, {\tt arXiv:1003.4162v1}[math.RT], 2010.
+
+\bibitem[Hel78]{helgason}
+Sigurdur Helgason.
+\newblock {\em Differential geometry, {L}ie groups, and symmetric spaces},
+  volume~80 of {\em Pure and Applied Mathematics}.
+\newblock Academic Press Inc. [Harcourt Brace Jovanovich Publishers], New York,
+  1978.
+
+\bibitem[Vin75]{vinberg3}
+E.~B. Vinberg.
+\newblock The classification of nilpotent elements of graded {L}ie algebras.
+\newblock {\em Dokl. Akad. Nauk SSSR}, 225(4):745--748, 1975.
+
+\bibitem[Vin76]{vinberg}
+E.~B. Vinberg.
+\newblock The {W}eyl group of a graded {L}ie algebra.
+\newblock {\em Izv. Akad. Nauk SSSR Ser. Mat.}, 40(3):488--526, 709, 1976.
+\newblock English translation: Math. USSR-Izv. 10, 463-495 (1976).
+
+\bibitem[Vin79]{vinberg2}
+E.~B. Vinberg.
+\newblock Classification of homogeneous nilpotent elements of a semisimple
+  graded {L}ie algebra.
+\newblock {\em Trudy Sem. Vektor. Tenzor. Anal.}, (19):155--177, 1979.
+\newblock English translation: Selecta Math. Sov. 6, 15-35 (1987).
+
+\end{thebibliography}

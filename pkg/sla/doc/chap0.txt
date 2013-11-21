@@ -1,0 +1,96 @@
+  
+  
+                                      [1XSLA[101X
+  
+  
+                              [1XSimple Lie Algebras[101X
+  
+  
+                                  Version 0.13
+  
+  
+                                   March 2013
+  
+  
+                                Willem de Graaf
+  
+  
+  
+  Willem de Graaf
+      Email:    [7Xmailto:degraaf@science.unitn.it[107X
+      Homepage: [7Xhttp://www.science.unitn.it/~degraaf/[107X
+      Address:  [33X[0;14YDipartimento di Matematica[133X
+                [33X[0;14YVia Sommarive 14[133X
+                [33X[0;14YI-38050 Povo (Trento)[133X
+                [33X[0;14YItaly[133X
+  
+  
+  
+  -------------------------------------------------------
+  [1XAbstract[101X
+  [33X[0;0YThis  package  provides  functions for computing with various aspects of the
+  theory of simple Lie algebras in characteristic zero.[133X
+  
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2013 Willem de Graaf[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (SLA)[101X
+  
+  1 [33X[0;0YIntroduction[133X
+  2 [33X[0;0YAuxiliary Functions[133X
+    2.1 [33X[0;0YRoot Systems[133X
+      2.1-1 ExtendedCartanMatrix
+      2.1-2 CartanType
+      2.1-3 WeylTransversal
+      2.1-4 SizeOfWeylGroup
+    2.2 [33X[0;0YLie Algebras and Their Modules[133X
+      2.2-1 IsomorphismOfSemisimpleLieAlgebras
+      2.2-2 AdmissibleLattice
+      2.2-3 DirectSumDecomposition
+  3 [33X[0;0YNilpotent Orbits[133X
+    3.1 [33X[0;0YThe functions[133X
+      3.1-1 NilpotentOrbit
+      3.1-2 NilpotentOrbits
+      3.1-3 WeightedDynkinDiagram
+      3.1-4 WeightedDynkinDiagram
+      3.1-5 AmbientLieAlgebra
+      3.1-6 SemiSimpleType
+      3.1-7 SL2Triple
+      3.1-8 RandomSL2Triple
+      3.1-9 SL2Grading
+      3.1-10 SL2Triple
+      3.1-11 InducedNilpotentOrbits
+      3.1-12 RigidNilpotentOrbits
+  4 [33X[0;0YFinite Order Automorphisms and [22Xθ[122X-Groups[133X
+    4.1 [33X[0;0YThe functions[133X
+      4.1-1 FiniteOrderInnerAutomorphisms
+      4.1-2 FiniteOrderOuterAutomorphisms
+      4.1-3 Order
+      4.1-4 KacDiagram
+      4.1-5 Grading
+      4.1-6 NilpotentOrbitsOfThetaRepresentation
+      4.1-7 ClosureDiagram
+      4.1-8 CarrierAlgebra
+      4.1-9 CartanSubspace
+  5 [33X[0;0YSemisimple Subalgebras of Semisimple Lie Algebras[133X
+    5.1 [33X[0;0YBranching[133X
+      5.1-1 ProjectionMatrix
+      5.1-2 Branching
+    5.2 [33X[0;0YConstructing Semisimple Subalgebras[133X
+      5.2-1 RegularSemisimpleSubalgebras
+      5.2-2 SSSTypes
+      5.2-3 LieAlgebraAndSubalgebras
+      5.2-4 InclusionsGraph
+      5.2-5 SubalgebrasInclusion
+      5.2-6 DynkinIndex
+      5.2-7 AreLinearlyEquivalentSubalgebras
+      5.2-8 MakeDatabaseEntry
+  
+  
+  [32X
