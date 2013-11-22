@@ -770,7 +770,7 @@ end;
 
 
 SLADBASE:= Objectify( NewType( NewFamily( "dbasefam", IsSSSDataBase ),
-    IsSSSDataBase and IsAttributeStoringRep ), rec( data:= db ) );
+    IsSSSDataBase and IsAttributeStoringRep ), rec( data:= SLAfcts.db ) );
 
 InstallMethod( PrintObj,
         "for database",
