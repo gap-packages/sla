@@ -42,13 +42,24 @@
   
   [33X[0;0YLet  [22XL[122X  be  the  simple Lie algebra of type [3Xtype[103X and rank [3Xrank[103X. The function
   returns representatives of the conjugacy classes of inner automorphisms of [22XL[122X
-  of order [3Xm[103X.[133X
+  of order [3Xm[103X. As noted also in the introduction to this chapter, this function
+  constructs the Lie algebra as well as the automorphisms (and the Lie algebra
+  is  accessible  through  the  source of these automorphisms). The reason for
+  this  is  that  depending  on the order of the automorphisms, the base field
+  needs certain roots of unity.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms("E",6,2);[127X[104X
-    [4X[28X[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (-1)*v.72, (-1)*v.1, v.2, v.3, [128X[104X
-    [4X[28X      v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [128X[104X
-    [4X[28X    [ v.72, v.1, (-1)*v.2, v.3, v.4, v.5, v.6 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms("E",6,3);[127X[104X
+    [4X[28X[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3)^2)*v.1, v.2, [128X[104X
+    [4X[28X      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [128X[104X
+    [4X[28X    [ v.72, (E(3))*v.1, (E(3))*v.2, v.3, v.4, v.5, v.6 ], [128X[104X
+    [4X[28X  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, v.1, (E(3))*v.2, [128X[104X
+    [4X[28X      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [128X[104X
+    [4X[28X    [ v.72, v.1, v.2, v.3, (E(3))*v.4, v.5, v.6 ], [128X[104X
+    [4X[28X  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3))*v.1, v.2, [128X[104X
+    [4X[28X      v.3, v.4, v.5, (E(3))*v.6 ] ][128X[104X
+    [4X[25Xgap>[125X [27XSource(f[1]);[127X[104X
+    [4X[28X<Lie algebra of dimension 78 over CF(3)>[128X[104X
   [4X[32X[104X
   
   [1X4.1-2 FiniteOrderOuterAutomorphisms[101X

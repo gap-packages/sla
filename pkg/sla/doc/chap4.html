@@ -53,14 +53,21 @@
 <h5>4.1-1 FiniteOrderInnerAutomorphisms</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FiniteOrderInnerAutomorphisms</code>( <var class="Arg">type</var>, <var class="Arg">rank</var>, <var class="Arg">m</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<p>Let <span class="SimpleMath">L</span> be the simple Lie algebra of type <var class="Arg">type</var> and rank <var class="Arg">rank</var>. The function returns representatives of the conjugacy classes of inner automorphisms of <span class="SimpleMath">L</span> of order <var class="Arg">m</var>.</p>
+<p>Let <span class="SimpleMath">L</span> be the simple Lie algebra of type <var class="Arg">type</var> and rank <var class="Arg">rank</var>. The function returns representatives of the conjugacy classes of inner automorphisms of <span class="SimpleMath">L</span> of order <var class="Arg">m</var>. As noted also in the introduction to this chapter, this function constructs the Lie algebra as well as the automorphisms (and the Lie algebra is accessible through the source of these automorphisms). The reason for this is that depending on the order of the automorphisms, the base field needs certain roots of unity.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms("E",6,2);</span>
-[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (-1)*v.72, (-1)*v.1, v.2, v.3, 
-      v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; 
-    [ v.72, v.1, (-1)*v.2, v.3, v.4, v.5, v.6 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms("E",6,3);</span>
+[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, (E(3)^2)*v.1, v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; 
+    [ v.72, (E(3))*v.1, (E(3))*v.2, v.3, v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, v.1, (E(3))*v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; 
+    [ v.72, v.1, v.2, v.3, (E(3))*v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, (E(3))*v.1, v.2, 
+      v.3, v.4, v.5, (E(3))*v.6 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Source(f[1]);</span>
+&lt;Lie algebra of dimension 78 over CF(3)&gt;
 </pre></div>
 
 <p><a id="X7E8CCC4885E2A443" name="X7E8CCC4885E2A443"></a></p>

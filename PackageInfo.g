@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
 PackageName := "SLA",
 Subtitle := "a package for doing computations with simple Lie algebras",        
-Version := "0.14",
-Date := "22/11/2013",
+Version := "1.1",
+Date := "29/12/2016",
 ArchiveURL := Concatenation("http://www.science.unitn.it/~degraaf/sla/sla-",
                             ~.Version),
 ArchiveFormats := ".tar.gz",
@@ -23,7 +23,9 @@ Persons := [
   Institution := "Dipartimento di Matematica"
   )
 ],
-Status := "deposited",
+Status := "accepted",
+CommunicatedBy := "Leonard Soicher (QMUL)",
+AcceptDate := "01/2016",
 README_URL := 
   "http://www.science.unitn.it/~degraaf/sla/README.sla",
 PackageInfoURL := 
@@ -34,7 +36,7 @@ PackageWWWHome := "http://www.science.unitn.it/~degraaf/sla.html",
 Dependencies := rec(
   GAP := ">=4.3",
   NeededOtherPackages:= [["quagroup", ">=1.3" ]],                 
-  SuggestedOtherPackages := [ ["GAPDoc", ">= 0.99"] ],
+  SuggestedOtherPackages := [ ["GAPDoc", ">= 1.0"] ],
   ExternalConditions := []
 ),
 PackageDoc := rec(

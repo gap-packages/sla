@@ -1,47 +1,48 @@
-This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: manual.aux
 The style file: alpha.bst
 Database file #1: sla.bib
 Warning--there's a number but no volume in vinberg2
-You've used 11 entries,
+You've used 13 entries,
             2543 wiz_defined-function locations,
-            623 strings with 6176 characters,
-and the built_in function-call counts, 3728 in all, are:
-= -- 379
-> -- 138
-< -- 8
-+ -- 44
-- -- 41
-* -- 258
-:= -- 641
-add.period$ -- 37
-call.type$ -- 11
-change.case$ -- 58
-chr.to.int$ -- 11
-cite$ -- 12
-duplicate$ -- 144
-empty$ -- 275
-format.name$ -- 59
-if$ -- 748
+            650 strings with 6699 characters,
+and the built_in function-call counts, 5067 in all, are:
+= -- 528
+> -- 154
+< -- 11
++ -- 49
+- -- 45
+* -- 369
+:= -- 819
+add.period$ -- 46
+call.type$ -- 13
+change.case$ -- 68
+chr.to.int$ -- 13
+cite$ -- 14
+duplicate$ -- 207
+empty$ -- 409
+format.name$ -- 66
+if$ -- 1047
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 9
-newline$ -- 61
-num.names$ -- 33
-pop$ -- 35
+missing$ -- 15
+newline$ -- 73
+num.names$ -- 39
+pop$ -- 44
 preamble$ -- 1
-purify$ -- 71
+purify$ -- 83
 quote$ -- 0
-skip$ -- 116
+skip$ -- 157
 stack$ -- 0
-substring$ -- 239
-swap$ -- 9
-text.length$ -- 8
-text.prefix$ -- 7
+substring$ -- 405
+swap$ -- 24
+text.length$ -- 11
+text.prefix$ -- 8
 top$ -- 0
-type$ -- 80
+type$ -- 96
 warning$ -- 1
-while$ -- 31
-width$ -- 13
-write$ -- 149
+while$ -- 48
+width$ -- 17
+write$ -- 186
 (There was 1 warning)

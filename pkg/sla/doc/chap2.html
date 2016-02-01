@@ -35,6 +35,7 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7FA167DB80B7D701">2.2-1 IsomorphismOfSemisimpleLieAlgebras</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7866133B814EA2B2">2.2-2 AdmissibleLattice</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A4E769A87A9B2B3">2.2-3 DirectSumDecomposition</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7889949D87615523">2.2-4 CharacteristicsOfStrata</a></span>
 </div></div>
 </div>
 
@@ -178,6 +179,22 @@ true
   &lt;left-module over &lt;Lie algebra of dimension 14 over Rationals&gt;&gt; ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( last, Dimension );</span>
 [ 14, 7, 1, 27 ]
+</pre></div>
+
+<p><a id="X7889949D87615523" name="X7889949D87615523"></a></p>
+
+<h5>2.2-4 CharacteristicsOfStrata</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CharacteristicsOfStrata</code>( <var class="Arg">L</var>, <var class="Arg">hw</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<p>Here <var class="Arg">L</var> is a semisimple Lie algebra over a field of characteristic 0. Secondly, <var class="Arg">hw</var> is a dominant weight, represented as a list of non-negative integers (where the ordering of the fundamantal weights is given by the Cartan matrix of the root system of <var class="Arg">L</var>). Let <span class="SimpleMath">G</span> denote the semisimple algebraic group acting on the irreducible representation with highest weight <var class="Arg">hw</var>. Hesselink (<a href="chapBib.html#biBhesselink">[Hes79]</a>) defined a stratification of the nullcone relative to the action of <span class="SimpleMath">G</span>. Popov and Vinberg (<a href="chapBib.html#biBpovin">[VP89]</a>) have described this stratification in terms of characteristics, which are elements of a Cartan subalgebra of <var class="Arg">L</var>. To each characteristic there corresponds a stratum. This function is an implementation of an algorithm due to Popov (<a href="chapBib.html#biBpopov">[Pop03]</a>), for computing the characteristics of the strata. It returns a list of two lists. The first list contains the characteristics. The second list contains the dimensions of the corresponding strata. If the highest weight <var class="Arg">hw</var> defines the adjoint representation, then the characteristics of the strata are exactly the characteristics of the nilpotent orbits in <var class="Arg">L</var>. This means the following: let <span class="SimpleMath">h</span> be a characteristic, then there are <span class="SimpleMath">e,f</span> in <var class="Arg">L</var> such that the triple <span class="SimpleMath">h,e,f</span> satisfies the commutation relations of <span class="SimpleMath">mathfraksl_2</span>, and the elements <span class="SimpleMath">e</span> thus obtained are the representatives of the nilpotent <span class="SimpleMath">G</span>-orbits in <var class="Arg">L</var>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("G",2,Rationals);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("G",2,Rationals);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CharacteristicsOfStrata( L, [0,1] );</span>
+[ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
+  [ 6, 8, 10, 12 ] ]
 </pre></div>
 
 

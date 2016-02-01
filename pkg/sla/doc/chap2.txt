@@ -158,3 +158,34 @@
     [4X[28X[ 14, 7, 1, 27 ][128X[104X
   [4X[32X[104X
   
+  [1X2.2-4 CharacteristicsOfStrata[101X
+  
+  [29X[2XCharacteristicsOfStrata[102X( [3XL[103X, [3Xhw[103X ) [32X operation
+  
+  [33X[0;0YHere  [3XL[103X  is  a  semisimple  Lie  algebra  over  a field of characteristic 0.
+  Secondly,  [3Xhw[103X  is  a  dominant weight, represented as a list of non-negative
+  integers  (where  the  ordering  of  the fundamantal weights is given by the
+  Cartan  matrix  of  the  root  system  of  [3XL[103X).  Let  [22XG[122X denote the semisimple
+  algebraic group acting on the irreducible representation with highest weight
+  [3Xhw[103X. Hesselink ([Hes79]) defined a stratification of the nullcone relative to
+  the   action   of   [22XG[122X.  Popov  and  Vinberg  ([VP89])  have  described  this
+  stratification  in  terms of characteristics, which are elements of a Cartan
+  subalgebra  of  [3XL[103X.  To each characteristic there corresponds a stratum. This
+  function  is  an  implementation of an algorithm due to Popov ([Pop03]), for
+  computing the characteristics of the strata. It returns a list of two lists.
+  The  first  list  contains the characteristics. The second list contains the
+  dimensions of the corresponding strata. If the highest weight [3Xhw[103X defines the
+  adjoint  representation,  then the characteristics of the strata are exactly
+  the  characteristics of the nilpotent orbits in [3XL[103X. This means the following:
+  let  [22Xh[122X  be  a  characteristic,  then there are [22Xe,f[122X in [3XL[103X such that the triple
+  [22Xh,e,f[122X  satisfies the commutation relations of [22Xmathfraksl_2[122X, and the elements
+  [22Xe[122X thus obtained are the representatives of the nilpotent [22XG[122X-orbits in [3XL[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27XCharacteristicsOfStrata( L, [0,1] );[127X[104X
+    [4X[28X[ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],[128X[104X
+    [4X[28X  [ 6, 8, 10, 12 ] ][128X[104X
+  [4X[32X[104X
+  

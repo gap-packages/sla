@@ -98,8 +98,8 @@
 {\Huge \textbf{Simple Lie Algebras\mbox{}}}\\
 \vfill
 
-{\Huge Version 0.13\mbox{}}\\[1cm]
-{March 2013\mbox{}}\\[1cm]
+{\Huge Version 1.1\mbox{}}\\[1cm]
+{January 2016\mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Willem de Graaf    \mbox{}}}\\
 \hypersetup{pdfauthor= Willem de Graaf    }
@@ -127,7 +127,7 @@ theory of simple Lie algebras in characteristic zero. \mbox{}}\\[1cm]
 {\small 
 \section*{Copyright}
 \logpage{[ 0, 0, 2 ]}
- {\copyright} 2013 Willem de Graaf \mbox{}}\\[1cm]
+ {\copyright} 2016 Willem de Graaf \mbox{}}\\[1cm]
 \newpage
 
 \def\contentsname{Contents\logpage{[ 0, 0, 3 ]}}
@@ -140,12 +140,13 @@ theory of simple Lie algebras in characteristic zero. \mbox{}}\\[1cm]
 \hyperdef{L}{X7DFB63A97E67C0A1}{}
 {
   This package is a collection of functions that I wrote for various research
-projects (e.g., \cite{wdg08}, \cite{gra15}, \cite{elasgra}, \cite{graya}, \cite{grasss})), \cite{closure}). The reason to collect them in a package is to avoid them getting lost.
+projects (e.g., \cite{wdg08}, \cite{gra15}, \cite{elasgra}, \cite{grasss}, \cite{closure}). The reason to collect them in a package is to avoid them getting lost.
 Secondly, I believe that the functions may be of wider interest. 
 
  Apart from this one, this manual has four chapters. The second describes
-various small functions that did not fit in any of the other chapters. The
-remaining three chapters are all devoted to a particular area.
+various functions that did not fit in any of the other chapters. They vary
+from short utility functions to functions implementing rather complex
+algorithms. The remaining three chapters are all devoted to a particular area.
 
  The third chapter contains (descriptions of) functions for computing with the
 classification of the nilpotent orbits in simple Lie algebras. There are
@@ -361,6 +362,34 @@ sub-modules such that \mbox{\texttt{\mdseries\slshape V}} is their direct sum.
     <left-module over <Lie algebra of dimension 14 over Rationals>> ]
   !gapprompt@gap>| !gapinput@List( last, Dimension );|
   [ 14, 7, 1, 27 ]
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{CharacteristicsOfStrata}}
+\logpage{[ 2, 2, 4 ]}\nobreak
+\hyperdef{L}{X7889949D87615523}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\ \ \texttt{CharacteristicsOfStrata({\mdseries\slshape L, hw})\index{CharacteristicsOfStrata@\texttt{CharacteristicsOfStrata}}
+\label{CharacteristicsOfStrata}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ Here \mbox{\texttt{\mdseries\slshape L}} is a semisimple Lie algebra over a field of characteristic 0. Secondly, \mbox{\texttt{\mdseries\slshape hw}} is a dominant weight, represented as a list of non-negative integers (where
+the ordering of the fundamantal weights is given by the Cartan matrix of the
+root system of \mbox{\texttt{\mdseries\slshape L}}). Let $G$ denote the semisimple algebraic group acting on the irreducible representation
+with highest weight \mbox{\texttt{\mdseries\slshape hw}}. Hesselink (\cite{hesselink}) defined a stratification of the nullcone relative to the action of $G$. Popov and Vinberg (\cite{povin}) have described this stratification in terms of characteristics, which are
+elements of a Cartan subalgebra of \mbox{\texttt{\mdseries\slshape L}}. To each characteristic there corresponds a stratum. This function is an
+implementation of an algorithm due to Popov (\cite{popov}), for computing the characteristics of the strata. It returns a list of two
+lists. The first list contains the characteristics. The second list contains
+the dimensions of the corresponding strata. If the highest weight \mbox{\texttt{\mdseries\slshape hw}} defines the adjoint representation, then the characteristics of the strata are
+exactly the characteristics of the nilpotent orbits in \mbox{\texttt{\mdseries\slshape L}}. This means the following: let $h$ be a characteristic, then there are $e,f$ in \mbox{\texttt{\mdseries\slshape L}} such that the triple $h,e,f$ satisfies the commutation relations of $\mathfrak{sl}_2$, and the elements $e$ thus obtained are the representatives of the nilpotent $G$-orbits in \mbox{\texttt{\mdseries\slshape L}}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@L:= SimpleLieAlgebra("G",2,Rationals);;|
+  !gapprompt@gap>| !gapinput@L:= SimpleLieAlgebra("G",2,Rationals);;|
+  !gapprompt@gap>| !gapinput@CharacteristicsOfStrata( L, [0,1] );|
+  [ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
+    [ 6, 8, 10, 12 ] ]
 \end{Verbatim}
  }
 
@@ -705,12 +734,23 @@ dependency of the rows of $C$. Furthermore, the $x_i$ generate $L$ and the autom
 
 
  Let $L$ be the simple Lie algebra of type \mbox{\texttt{\mdseries\slshape type}} and rank \mbox{\texttt{\mdseries\slshape rank}}. The function returns representatives of the conjugacy classes of inner
-automorphisms of $L$ of order \mbox{\texttt{\mdseries\slshape m}}. 
+automorphisms of $L$ of order \mbox{\texttt{\mdseries\slshape m}}. As noted also in the introduction to this chapter, this function constructs
+the Lie algebra as well as the automorphisms (and the Lie algebra is
+accessible through the source of these automorphisms). The reason for this is
+that depending on the order of the automorphisms, the base field needs certain
+roots of unity. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@f:= FiniteOrderInnerAutomorphisms("E",6,2);|
-  [ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (-1)*v.72, (-1)*v.1, v.2, v.3, 
-        v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
-      [ v.72, v.1, (-1)*v.2, v.3, v.4, v.5, v.6 ] ]
+  !gapprompt@gap>| !gapinput@f:= FiniteOrderInnerAutomorphisms("E",6,3);|
+  [ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3)^2)*v.1, v.2, 
+        v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
+      [ v.72, (E(3))*v.1, (E(3))*v.2, v.3, v.4, v.5, v.6 ], 
+    [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, v.1, (E(3))*v.2, 
+        v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
+      [ v.72, v.1, v.2, v.3, (E(3))*v.4, v.5, v.6 ], 
+    [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3))*v.1, v.2, 
+        v.3, v.4, v.5, (E(3))*v.6 ] ]
+  !gapprompt@gap>| !gapinput@Source(f[1]);|
+  <Lie algebra of dimension 78 over CF(3)>
 \end{Verbatim}
  }
 

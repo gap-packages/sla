@@ -1,7 +1,6 @@
 \backcite {wdg08}{{4}{1}{chapter.1}}
 \backcite {gra15}{{4}{1}{chapter.1}}
 \backcite {elasgra}{{4}{1}{chapter.1}}
-\backcite {graya}{{4}{1}{chapter.1}}
 \backcite {grasss}{{4}{1}{chapter.1}}
 \backcite {closure}{{4}{1}{chapter.1}}
 \backcite {colmcgov}{{4}{1}{chapter.1}}
@@ -9,8 +8,11 @@
 \backcite {vinberg3}{{4}{1}{chapter.1}}
 \backcite {vinberg}{{4}{1}{chapter.1}}
 \backcite {vinberg2}{{4}{1}{chapter.1}}
-\backcite {colmcgov}{{8}{3}{chapter.3}}
-\backcite {colmcgov}{{9}{3.1.2}{subsection.3.1.2}}
-\backcite {wdg08}{{10}{3.1.7}{subsection.3.1.7}}
-\backcite {vinberg2}{{17}{4.1.8}{subsection.4.1.8}}
-\backcite {vinberg3}{{17}{4.1.8}{subsection.4.1.8}}
+\backcite {hesselink}{{8}{2.2.4}{subsection.2.2.4}}
+\backcite {povin}{{8}{2.2.4}{subsection.2.2.4}}
+\backcite {popov}{{8}{2.2.4}{subsection.2.2.4}}
+\backcite {colmcgov}{{9}{3}{chapter.3}}
+\backcite {colmcgov}{{10}{3.1.2}{subsection.3.1.2}}
+\backcite {wdg08}{{11}{3.1.7}{subsection.3.1.7}}
+\backcite {vinberg2}{{18}{4.1.8}{subsection.4.1.8}}
+\backcite {vinberg3}{{18}{4.1.8}{subsection.4.1.8}}

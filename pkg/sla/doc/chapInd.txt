@@ -11,6 +11,7 @@
   [2XCarrierAlgebra[102X  4.1-8
   [2XCartanSubspace[102X  4.1-9
   [2XCartanType[102X  2.1-2
+  [2XCharacteristicsOfStrata[102X  2.2-4
   [2XClosureDiagram[102X  4.1-7
   [2XClosureDiagram[102X  4.1-7
   [2XDirectSumDecomposition[102X  2.2-3

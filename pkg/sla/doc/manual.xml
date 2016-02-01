@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE Book SYSTEM "gapdoc.dtd"
-[<!ENTITY FpLieRing "<Package>SLA</Package>">] >
+[<!ENTITY SLA "<Package>SLA</Package>">] >
 
 
 
@@ -12,7 +12,7 @@
 <TitlePage>
   <Title>SLA</Title>
   <Subtitle>Simple Lie Algebras</Subtitle>
-  <Version>Version 0.13</Version>
+  <Version>Version 1.1</Version>
 
 <Author>
   Willem de Graaf
@@ -26,7 +26,7 @@ Italy<Br/>
        </Address> 
   </Author>
 
-  <Date>March 2013</Date>
+  <Date>January 2016</Date>
 
 
 
@@ -36,7 +36,7 @@ the theory of simple Lie algebras in characteristic zero.
 </Abstract>
 
 <Copyright>
-  &copyright; 2013 Willem de Graaf 
+  &copyright; 2016 Willem de Graaf 
 </Copyright>
   
 
@@ -50,13 +50,14 @@ the theory of simple Lie algebras in characteristic zero.
 
 This package is a collection of functions that I wrote for various 
 research projects (e.g., <Cite Key="wdg08"/>, <Cite Key="gra15"/>, 
-<Cite Key="elasgra"/>, <Cite Key="graya"/>, <Cite Key="grasss"/>)),
-<Cite Key="closure"/>).
+<Cite Key="elasgra"/>, <Cite Key="grasss"/>, <Cite Key="closure"/>).
 The reason to collect them in a package is to
 avoid them getting lost. Secondly, I believe that the functions
 may be of wider interest. <P/>
 Apart from this one, this manual has four chapters. The second describes
-various small functions that did not fit in any of the other chapters.
+various functions that did not fit in any of the other chapters. They vary
+from short utility functions to functions implementing rather 
+complex algorithms. 
 The remaining three chapters are all devoted to a particular area.<P/>
 
 The third chapter contains (descriptions of) functions for computing 
@@ -278,7 +279,6 @@ true
 Here <A>V</A> is a module over a semisimple Lie algebra; this function
 computes a list of sub-modules such that <A>V</A> is their direct sum.
 
-
 <Example>
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> V:= HighestWeightModule( L, [1,0] );;
@@ -296,6 +296,47 @@ gap> List( last, Dimension );
 
 </Description>
 </ManSection>
+
+<ManSection>
+   <Oper Name="CharacteristicsOfStrata"  Arg="L, hw"/>
+
+<Description>
+
+Here <A>L</A> is a semisimple Lie algebra over a field of characteristic 0.
+Secondly, <A>hw</A> is a dominant weight, represented as a list of non-negative
+integers (where the ordering of the fundamantal weights is given by the
+Cartan matrix of the root system of <A>L</A>). Let <M>G</M> denote the 
+semisimple algebraic group acting on the irreducible representation with
+highest weight <A>hw</A>. Hesselink (<Cite Key="hesselink"/>)
+defined a stratification of the nullcone relative to the action of <M>G</M>. 
+Popov and Vinberg (<Cite Key="povin"/>) have described this
+stratification in terms of characteristics, which are elements of a Cartan
+subalgebra of <A>L</A>. To each characteristic there corresponds a stratum.
+This function is an implementation of an algorithm due to Popov
+(<Cite Key="popov"/>), for computing the characteristics of the strata. It
+returns a list of two lists. The first list contains the 
+characteristics. The second list contains the dimensions of the corresponding 
+strata. If the highest weight <A>hw</A> defines the adjoint representation,
+then the characteristics of the strata are exactly the characteristics
+of the nilpotent orbits in <A>L</A>. This means the following: let <M>h</M> be
+a characteristic, then there are <M>e,f</M> in <A>L</A> such that the triple
+<M>h,e,f</M> satisfies the commutation relations of <M>\mathfrak{sl}_2</M>,
+and the elements <M>e</M> thus obtained are the representatives of the
+nilpotent <M>G</M>-orbits in <A>L</A>.
+ 
+
+<Example>
+gap> L:= SimpleLieAlgebra("G",2,Rationals);;
+gap> L:= SimpleLieAlgebra("G",2,Rationals);;
+gap> CharacteristicsOfStrata( L, [0,1] );
+[ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
+  [ 6, 8, 10, 12 ] ]
+</Example>
+
+
+</Description>
+</ManSection>
+
 
 </Section>
 
@@ -689,13 +730,25 @@ the labels <M>s_i</M>.
 
 Let <M>L</M> be the simple Lie algebra of type <A>type</A> and rank
 <A>rank</A>. The function returns representatives of the conjugacy classes
-of inner automorphisms of <M>L</M> of order <A>m</A>. 
+of inner automorphisms of <M>L</M> of order <A>m</A>. As noted also in the
+introduction to this chapter, this function constructs the Lie algebra
+as well as the automorphisms (and the Lie algebra is accessible through the
+source of these automorphisms). The reason for this is that depending on the
+order of the automorphisms, the base field needs certain roots of unity.
+
 
 <Example>
-gap> f:= FiniteOrderInnerAutomorphisms("E",6,2);
-[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (-1)*v.72, (-1)*v.1, v.2, v.3, 
-      v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
-    [ v.72, v.1, (-1)*v.2, v.3, v.4, v.5, v.6 ] ]
+gap> f:= FiniteOrderInnerAutomorphisms("E",6,3);
+[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3)^2)*v.1, v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
+    [ v.72, (E(3))*v.1, (E(3))*v.2, v.3, v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, v.1, (E(3))*v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
+    [ v.72, v.1, v.2, v.3, (E(3))*v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3))*v.1, v.2, 
+      v.3, v.4, v.5, (E(3))*v.6 ] ]
+gap> Source(f[1]);
+&lt;Lie algebra of dimension 78 over CF(3)>
 </Example>
 
 </Description>

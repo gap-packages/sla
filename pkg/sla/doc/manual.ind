@@ -1,25 +1,26 @@
 \begin{theindex}
 
-  \item \texttt  {AddToDatabase}, \hyperpage{23}
+  \item \texttt  {AddToDatabase}, \hyperpage{24}
   \item \texttt  {AdmissibleLattice}, \hyperpage{7}
-  \item \texttt  {AmbientLieAlgebra}, \hyperpage{10}
-  \item \texttt  {AreLinearlyEquivalentSubalgebras}, \hyperpage{23}
+  \item \texttt  {AmbientLieAlgebra}, \hyperpage{11}
+  \item \texttt  {AreLinearlyEquivalentSubalgebras}, \hyperpage{24}
 
   \indexspace
 
-  \item \texttt  {Branching}, \hyperpage{20}
+  \item \texttt  {Branching}, \hyperpage{21}
 
   \indexspace
 
-  \item \texttt  {CarrierAlgebra}, \hyperpage{17}
-  \item \texttt  {CartanSubspace}, \hyperpage{17}
+  \item \texttt  {CarrierAlgebra}, \hyperpage{18}
+  \item \texttt  {CartanSubspace}, \hyperpage{19}
   \item \texttt  {CartanType}, \hyperpage{5}
-  \item \texttt  {ClosureDiagram}, \hyperpage{16}
+  \item \texttt  {CharacteristicsOfStrata}, \hyperpage{7}
+  \item \texttt  {ClosureDiagram}, \hyperpage{17}
 
   \indexspace
 
   \item \texttt  {DirectSumDecomposition}, \hyperpage{7}
-  \item \texttt  {DynkinIndex}, \hyperpage{22}
+  \item \texttt  {DynkinIndex}, \hyperpage{23}
 
   \indexspace
 
@@ -27,64 +28,64 @@
 
   \indexspace
 
-  \item \texttt  {FiniteOrderInnerAutomorphisms}, \hyperpage{13}
-  \item \texttt  {FiniteOrderOuterAutomorphisms}, \hyperpage{14}
+  \item \texttt  {FiniteOrderInnerAutomorphisms}, \hyperpage{14}
+  \item \texttt  {FiniteOrderOuterAutomorphisms}, \hyperpage{15}
 
   \indexspace
 
-  \item \texttt  {Grading}, \hyperpage{14}
+  \item \texttt  {Grading}, \hyperpage{16}
 
   \indexspace
 
-  \item \texttt  {InclusionsGraph}, \hyperpage{21}
-  \item \texttt  {InducedNilpotentOrbits}, \hyperpage{11}
+  \item \texttt  {InclusionsGraph}, \hyperpage{22}
+  \item \texttt  {InducedNilpotentOrbits}, \hyperpage{12}
   \item \texttt  {IsomorphismOfSemisimpleLieAlgebras}, \hyperpage{6}
 
   \indexspace
 
-  \item \texttt  {KacDiagram}, \hyperpage{14}
+  \item \texttt  {KacDiagram}, \hyperpage{15}
 
   \indexspace
 
-  \item \texttt  {LieAlgebraAndSubalgebras}, \hyperpage{21}
+  \item \texttt  {LieAlgebraAndSubalgebras}, \hyperpage{22}
 
   \indexspace
 
-  \item \texttt  {MakeDatabaseEntry}, \hyperpage{23}
+  \item \texttt  {MakeDatabaseEntry}, \hyperpage{24}
 
   \indexspace
 
-  \item \texttt  {NilpotentOrbit}, \hyperpage{9}
-  \item \texttt  {NilpotentOrbits}, \hyperpage{9}
+  \item \texttt  {NilpotentOrbit}, \hyperpage{10}
+  \item \texttt  {NilpotentOrbits}, \hyperpage{10}
   \item \texttt  {Nilpotent}\discretionary {-}{}{}\texttt  {Orbits}\discretionary {-}{}{}\texttt  {Of}\discretionary {-}{}{}\texttt  {Theta}\discretionary {-}{}{}\texttt  {Representation}, 
-		\hyperpage{15}
+		\hyperpage{16}
 
   \indexspace
 
-  \item \texttt  {Order}, \hyperpage{14}
+  \item \texttt  {Order}, \hyperpage{15}
 
   \indexspace
 
-  \item \texttt  {ProjectionMatrix}, \hyperpage{19}
+  \item \texttt  {ProjectionMatrix}, \hyperpage{20}
 
   \indexspace
 
-  \item \texttt  {RandomSL2Triple}, \hyperpage{10}
-  \item \texttt  {RegularSemisimpleSubalgebras}, \hyperpage{20}
-  \item \texttt  {RigidNilpotentOrbits}, \hyperpage{12}
+  \item \texttt  {RandomSL2Triple}, \hyperpage{11}
+  \item \texttt  {RegularSemisimpleSubalgebras}, \hyperpage{21}
+  \item \texttt  {RigidNilpotentOrbits}, \hyperpage{13}
 
   \indexspace
 
-  \item \texttt  {SemiSimpleType}, \hyperpage{10}
+  \item \texttt  {SemiSimpleType}, \hyperpage{11}
   \item \texttt  {SizeOfWeylGroup}, \hyperpage{6}
-  \item \texttt  {SL2Grading}, \hyperpage{11}
-  \item \texttt  {SL2Triple}, \hyperpage{10, 11}
-  \item \texttt  {SSSTypes}, \hyperpage{20}
-  \item \texttt  {SubalgebrasInclusion}, \hyperpage{22}
+  \item \texttt  {SL2Grading}, \hyperpage{12}
+  \item \texttt  {SL2Triple}, \hyperpage{11, 12}
+  \item \texttt  {SSSTypes}, \hyperpage{21}
+  \item \texttt  {SubalgebrasInclusion}, \hyperpage{23}
 
   \indexspace
 
-  \item \texttt  {WeightedDynkinDiagram}, \hyperpage{9}
+  \item \texttt  {WeightedDynkinDiagram}, \hyperpage{10}
   \item \texttt  {WeylTransversal}, \hyperpage{6}
 
 \end{theindex}
