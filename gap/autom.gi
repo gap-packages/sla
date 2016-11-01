@@ -2883,7 +2883,70 @@ SLAfcts.inc:= function( sl2, domh, L, K, GM, G1, H0, basH, C, dualBas, B, i0, j0
 
    local hi, hj, gh, W, ww, V2, U, wd, k, v0, f_chk, R, hh, BH, KH, Ci, Um, q,
          K0, h0, b0, sp0, h_start, c0, kk, KL, v, t, mats, oh, sp, kval, adh, Uinds, ord,
-         maxU, i, j, mats0, c1;
+         maxU, i, j, mats0, c1, inconvexhull, kappamat, kapinv, invnu, dist0, ip0;
+
+
+inconvexhull:= function( B, S0, p0, dist, ip, eps0 ) 
+                                            # S set of vecs in R^m (rat coords),
+                                            # p a point in R^m, is p\in S?
+                                            # dist: distance fct
+
+    local m, i, one, eps, dists, pos, v, pp, k, j, u, t, S, p;
+
+    S:= List( S0, x -> Coefficients( B, x ) );
+    p:= Coefficients( B, p0 );
+    one:= 1.00000000000000000000000000;
+    S:= List( S, u -> u*one );
+    p:= p*one;
+
+    eps:= one*eps0; 
+
+    dists:= List( S, s -> dist(s,p) );
+    pos:= Position( dists, Minimum( dists ) );
+    v:= S[pos];
+    pp:= S[pos];
+
+    while true do
+       if dist(p,pp) < eps*dist(p,v) then
+          return [ pp, true ];
+       else
+          k:= 0;
+          for j in [1..Length(S)] do
+              if dist(pp,S[j]) >= dist(p,S[j]) then
+                 k:= j; break;
+              fi;
+          od;
+          if k > 0 then
+             v:= S[k];
+          else
+             return [ pp, false ];
+          fi;
+       fi;
+
+       u:= pp-v;
+       t:= -ip(u,p-pp)/ip(u,u);
+       pp:= pp+t*(-u);
+
+    od;
+end;
+
+   kappamat:= List( Basis(H0), h1 -> List( Basis(H0), h2 ->
+        TraceMat( AdjointMatrix( Basis(L), h1 )*AdjointMatrix(Basis(L),h2)) ));
+   kapinv:= kappamat^-1;
+
+   invnu:= function(x)  # x a root vec in g1, compute invnu of corr root.
+
+        local sp, b, u;
+
+        sp:= Basis( Subspace( L, [x] ), [x] );
+        b:= List( Basis(H0), h1 -> Coefficients( sp, h1*x )[1] );
+        return (kapinv*b)*Basis(H0);
+   end;
+
+    dist0:= function(u,v) return (u-v)*kappamat*(u-v); end;
+    ip0:= function(u,v) return u*kappamat*v; end;
+
+
 
    ord:= function( i1, i2 )
 
@@ -2946,7 +3009,7 @@ SLAfcts.inc:= function( sl2, domh, L, K, GM, G1, H0, basH, C, dualBas, B, i0, j0
 
       local gh, U, k, v0, u1, A, sol, P, M, sp, B, q0, inds, p,
             i, j, m, n, x, u, c, cf, R, a, s, v, d, r, V, t0, Uind, pos, cf0, found, Om,
-            matrc, colinds, Bt, kval0, kval1;
+            matrc, colinds, Bt, kval0, kval1, hhh, kv, h00, eps, bl;
 
 
       if Length(c0) > 0 then
@@ -3001,6 +3064,19 @@ SLAfcts.inc:= function( sl2, domh, L, K, GM, G1, H0, basH, C, dualBas, B, i0, j0
              fi;
           fi;
 
+      od;
+
+      hhh:= List( U, x -> invnu(x) );
+      kv:= TraceMat(AdjointMatrix(Basis(L),hi)*AdjointMatrix(Basis(L),hi));
+      h00:= 2*hi/kv;
+      eps:= 1/10;
+      while eps > 1/10000000 do
+         bl:= inconvexhull( Basis(H0), hhh, h00, dist0, ip0, eps )[2];
+         if bl then
+            eps:= eps/10;
+         else  
+            return false;
+         fi;
       od;
 
       if Length(file) > 0 then

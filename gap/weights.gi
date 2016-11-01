@@ -189,9 +189,90 @@ true, [ IsLieAlgebra, IsList ], 0,
 function( L, hw ) # L: semisimple Lie algebra, hw: highest weight
 
     local ch, W, wts, w, o, hh, KM, hwts, perms, rk, i, R, B, rho, exprs, 
-          p, a, sa, mults, H, BH, ip, posR, csa, inconvexhull, hdimstrata;
+          p, a, sa, mults, H, BH, ip, posR, csa, inconvexhull, hdimstrata,
+          weylorbs, j, A, sim, id;
 
-# first we have two functions...
+# first we have three functions...
+
+weylorbs:= function( W, wts, A )
+
+     # wts is a set of weights, in usual notation, permuted 
+     # by the Weyl group, we find subsets of length up to the rank
+     # containing reps of each orbit of the Weyl group, but 
+     # probably rather redundant.
+
+     local sets, zeros, rk, s1, z1, i, j, k, s, z, s0, z0, inds, len, cont, 
+           r, l, OO, dt, dets, mat, rows, row, cols, col;
+
+     sets:= [ ];
+     zeros:= [ ];
+     rk:= Length( wts[1] );
+
+     s1:= [ ];
+     z1:= [ ];
+     for i in [1..Length(wts)] do
+         if ForAll( wts[i], m -> m >= 0 ) then 
+            Add( s1, [i] ); 
+            Add( z1, Filtered( [1..rk], m -> wts[i][m] = 0 ) );
+         fi;
+     od;
+     Add( sets, s1 );
+     Add( zeros, z1 );
+
+     for len in [2..rk] do
+         s1:= [ ]; z1:= [ ]; dets:= [ ]; rows:= [ ]; #cols:= [ ];
+         for i in [1..Length(sets[len-1])] do
+             s:= sets[len-1][i];
+             z:= zeros[len-1][i];
+             for j in [1..Length(wts)] do
+                 if not j in s then
+                    if ForAll( z, m -> wts[j][m] >= 0 ) then
+                       s0:= ShallowCopy(s); Add( s0, j );
+                       z0:= [ ];
+                       for k in [1..rk] do
+                           if k in z and wts[j][k]=0 then
+                              Add( z0, k );
+                           fi;
+                       od;
+                       cont:= false;
+                       mat:= List( [1..Length(s0)], s -> [ ] );
+                       for k in [1..Length(s0)] do
+                           for l in [k..Length(s0)] do
+                               mat[k][l]:= wts[s0[k]]*A*wts[s0[l]];
+                               mat[l][k]:= mat[k][l];
+                           od;
+                       od;
+                       dt:= Permanent(mat);
+                       row:= List( mat, Sum );
+                       Sort( row );
+                       #col:= List( TransposedMat(mat), Sum );
+                       #Sort(col);
+                       for l in [1..Length(s1)] do
+                           if dt = dets[l] and row = rows[l] #and col = cols[l]
+                                                             then
+                              r:= RepresentativeAction( W, s0, s1[l], OnSets );
+                              if r <> fail then
+                                 cont:= true;
+                                 break;
+                              fi;
+                           fi;
+                       od;
+
+                       if not cont then
+                          Add( s1, s0 ); Add( z1, z0 ); 
+                          Add( dets, dt ); Add( rows, row ); #Add( cols, col );
+                       fi;
+                    fi;
+                 fi; 
+             od;
+         od;
+         Add( sets, s1 ); Add( zeros, z1 );
+     od; 
+     
+     return sets;        
+
+end;
+
 
 inconvexhull:= function( B, S0, p0, dist, ip ) 
                                             # S set of vecs in R^m (rat coords),
@@ -206,7 +287,7 @@ inconvexhull:= function( B, S0, p0, dist, ip )
     S:= List( S, u -> u*one );
     p:= p*one;
 
-    eps:= one*1/20; # small eps, but not very small, the algorithm for 
+    eps:= one*1/10; # small eps, but not very small, the algorithm for 
                     # the strata is rather sensitive to the choice of eps,
                     # smaller eps, longer runtime...
 
@@ -239,7 +320,7 @@ inconvexhull:= function( B, S0, p0, dist, ip )
     od;
 end;
 
-hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, exps, bool )
+hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, exps, A, bool )
 
     # R: the root system of the big Lie alg
     # H: Cartan subalgebra of the "big" Lie alg
@@ -261,7 +342,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
           mat, sol, bas, B, dims, dim, cfs, p, inds, pR, wt0, ex0,
           h0, cs, hw0, mu0, perms, res, hs, dist0, w, ip0, bcsa, BC, bigger,
           sums, delt, xx, yy, hh, conjdomh, Onew, d, r, u, v, rep, len, N, 
-          totlen, dets, dt;
+          totlen, dets, dt, orbs0;
 
     dist:= function(u,v) return ip(u-v,u-v); end;
 
@@ -325,45 +406,54 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
 
        G:= Group(W);
        hs:= [ ];
-       
+
+       if bool then orbs0:= weylorbs( G, wts, A ); fi; 
+
        for k in [1..rk] do
-           N:= NrCombinations( [1..Length(h_wts)], k );
-           if N <= 1000000 then # some bound for memory reasons...
-              XX:= Combinations( [1..Length(h_wts)], k );
-              OO:= OrbitsDomain( G, XX, OnSets );
-              OO:= List( OO, u -> u[1] );
-           else
-              Onew:= [ ];
-              totlen:= 0;
-              dets:= [ ];
-              for u in OO do
-                  d:= u[Length(u)];
-                  v:= ShallowCopy(u);
-                  len:= Length(v)+1;
-                  for i in [d+1..Length(h_wts)] do
+           if bool then
+              OO:= orbs0[k];
+           else 
+              N:= NrCombinations( [1..Length(h_wts)], k );
+
+              if N <= 500000 then # some bound for memory reasons...
+                 XX:= Combinations( [1..Length(h_wts)], k );
+                 OO:= OrbitsDomain( G, XX, OnSets );
+                 OO:= List( OO, u -> u[1] );
+
+              else
+                 Onew:= [ ];
+                 totlen:= 0;
+                 dets:= [ ];
+                 for u in OO do
+                     d:= u[Length(u)];
+                     v:= ShallowCopy(u);
+                     len:= Length(v)+1;
+                     for i in [d+1..Length(h_wts)] do
                  
-                      v[len]:= i;
-                      dt:= Permanent( List( v, i -> List( v,
-                              j -> ip( h_wts[i], h_wts[j] ) ) ) );
-                      rep:= false;
-                      for j in [1..Length(Onew)] do
-                          if dets[j] = dt then 
-                             r:= RepresentativeAction( G, v, Onew[j], OnSets );
-                             if r <> fail then
-                                rep:= true;
-                                break;
+                         v[len]:= i;
+                         dt:= Permanent( List( v, i -> List( v,
+                                 j -> ip( h_wts[i], h_wts[j] ) ) ) );
+                         rep:= false;
+                         for j in [1..Length(Onew)] do
+                             if dets[j] = dt then 
+                                r:= RepresentativeAction( G, v, Onew[j], OnSets ); 
+                                if r <> fail then
+                                   rep:= true;
+                                   break;
+                                fi;
                              fi;
-                          fi;
-                      od;
-                      if not rep then 
-                         Add( Onew, ShallowCopy(v) );
-                         Add( dets, dt );
-                         totlen:= totlen + OrbitLength(G,v,OnSets);
-                      fi;
-                      if totlen=N then break; fi;
-                  od;
-              od;
-              OO:= Onew;
+                         od;
+                         if not rep then 
+                            Add( Onew, ShallowCopy(v) );
+                            Add( dets, dt );
+                            totlen:= totlen + OrbitLength(G,v,OnSets);
+                         fi;
+                         if totlen=N then break; fi;
+                     od;
+                 od;
+                 OO:= Onew;
+
+              fi;
            fi;
 
            orbs:= Filtered( OO, v -> not 0*h_wts[1] in
@@ -430,7 +520,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
               fi;
            od; 
        od;            
-       
+
        # now for each elt of hs we compute the dimension of the corr stratum
        # (in case it is a characteristic).
      
@@ -522,7 +612,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                                ApplyWeylElement(WeylGroup(R),w,ex0[i]) ))));
            od;
            res:= hdimstrata( R, H, BH, ip, rk-1, pR, cs, KM, hw0, mu0, wt0, 
-                             perms, ex0, false );
+                             perms, ex0, A, false );
 
            # is there a stratum in the recursive output of dimension equal
            # to the dimension of V_2(h)? If yes, then h is not a char.
@@ -597,9 +687,21 @@ end;
          end;
     posR:= PositiveRootsAsWeights(R);
     csa:= ShallowCopy( hh );
+
+    sim:= SimpleRootsAsWeights( R );
+    sim:= Basis( VectorSpace( Rationals, sim ), sim );
+    id:= IdentityMat(rk);
+    A:= List( [1..rk], i -> [ ] );
+    for i in [1..rk] do
+        for j in [i..rk] do
+            A[i][j]:= Coefficients(sim,id[i])*B*Coefficients(sim,id[j]);
+            A[j][i]:= A[i][j];
+        od;
+
+    od;
     
     return  hdimstrata( R, H, BH, ip, rk, posR, csa, KM, hwts, mults, 
-                 wts, perms, exprs, true );
+                 wts, perms, exprs, A, true );
 
 end );
 
