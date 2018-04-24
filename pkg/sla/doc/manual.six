@@ -25,8 +25,8 @@ entries :=
   [ 
       "\033[1X\033[33X\033[0;-2YFinite Order Automorphisms and \033[22X\316\270\\
 033[122X\033[101X\027\033[1X\027-Groups\033[133X\033[101X", "4", [ 4, 0, 0 ], 
-      1, 14, "finite order automorphisms and i\270\027\027-groups", 
-      "X780235AD7DD9CBA9" ], 
+      1, 14, "finite order automorphisms and i\270-groups", 
+      "X80D10A5D7D73D871" ], 
   [ "\033[1X\033[33X\033[0;-2YThe functions\033[133X\033[101X", "4.1", 
       [ 4, 1, 0 ], 36, 14, "the functions", "X8173135A7D187358" ], 
   [ 

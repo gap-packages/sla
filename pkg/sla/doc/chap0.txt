@@ -6,10 +6,10 @@
                               [1XSimple Lie Algebras[101X
   
   
-                                  Version 1.2
+                                  Version 1.4
   
   
-                                 November 2016
+                                   April 2018
   
   
                                 Willem de Graaf
@@ -21,7 +21,7 @@
       Homepage: [7Xhttp://www.science.unitn.it/~degraaf/[107X
       Address:  [33X[0;14YDipartimento di Matematica[133X
                 [33X[0;14YVia Sommarive 14[133X
-                [33X[0;14YI-38050 Povo (Trento)[133X
+                [33X[0;14YI-38123 Povo (Trento)[133X
                 [33X[0;14YItaly[133X
   
   
@@ -34,7 +34,7 @@
   
   -------------------------------------------------------
   [1XCopyright[101X
-  [33X[0;0Y© 2016 Willem de Graaf[133X
+  [33X[0;0Y© 2018 Willem de Graaf[133X
   
   
   -------------------------------------------------------

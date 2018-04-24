@@ -2,7 +2,7 @@
   [1X1 [33X[0;0YIntroduction[133X[101X
   
   [33X[0;0YThis  package is a collection of functions that I wrote for various research
-  projects  (e.g.,  [Gra08],  [dG11], [GE09], [Gra11], [GVY12]). The reason to
+  projects  (e.g.,  [Gra08], [dG11], [GE09], [Gra11], [dGVY12]). The reason to
   collect them in a package is to avoid them getting lost. Secondly, I believe
   that the functions may be of wider interest.[133X
   

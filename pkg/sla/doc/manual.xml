@@ -12,7 +12,7 @@
 <TitlePage>
   <Title>SLA</Title>
   <Subtitle>Simple Lie Algebras</Subtitle>
-  <Version>Version 1.2</Version>
+  <Version>Version 1.4</Version>
 
 <Author>
   Willem de Graaf
@@ -21,12 +21,12 @@
           <Address>
     	    Dipartimento di Matematica<Br/>
 Via Sommarive 14<Br/>
-I-38050 Povo (Trento)<Br/>
+I-38123 Povo (Trento)<Br/>
 Italy<Br/>
        </Address> 
   </Author>
 
-  <Date>November 2016</Date>
+  <Date>April 2018</Date>
 
 
 
@@ -36,7 +36,7 @@ the theory of simple Lie algebras in characteristic zero.
 </Abstract>
 
 <Copyright>
-  &copyright; 2016 Willem de Graaf 
+  &copyright; 2018 Willem de Graaf 
 </Copyright>
   
 

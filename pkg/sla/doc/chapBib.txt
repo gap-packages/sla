@@ -9,9 +9,13 @@
   [[20XdG11[120X]  [16Xde  Graaf,  W.  A.[116X, [17XComputing representatives of nilpotent orbits of
   θ-groups[117X, [18XJ. Symbolic Comput.[118X, [19X46[119X (2011), 438--458.
   
-  [[20XGVY12[120X]  [16Xde  Graaf,  W. A., Vinberg, E. B. and Yakimova, O. S.[116X, [17XAn effective
+  [[20XdGVY12[120X]  [16Xde  Graaf, W. A., Vinberg, E. B. and Yakimova, O. S.[116X, [17XAn effective
   method    to    compute   closure   ordering   for   nilpotent   orbits   of
   θ-representations[117X, [18XJ. Algebra[118X, [19X371[119X (2012), 38--62.
+  
+  [[20XGE09[120X] [16XGraaf, W. A. d. and Elashvili, A. G.[116X, [17XInduced nilpotent orbits of the
+  simple  Lie algebras of exceptional type[117X, [18XGeorgian Mathematical Journal[118X, [19X16[119X,
+  2 (2009), 257-278, (({\tt arXiv:0905.2743v1}[math.RT])).
   
   [[20XGra08[120X]  [16XGraaf,  W.  A.  d.[116X,  [17XComputing  with nilpotent orbits in simple Lie
   algebras  of  exceptional  type[117X,  [18XLMS  J.  Comput. Math.[118X, [19X11[119X (2008), 280-297
@@ -19,10 +23,6 @@
   
   [[20XGra11[120X]  [16XGraaf,  W. A. d.[116X, [17XConstructing semisimple subalgebras of semisimple
   Lie algebras[117X, [18XJ. Algebra[118X, [19X325[119X, 1 (2011), 416--430.
-  
-  [[20XGE09[120X] [16XGraaf, W. A. d. and Elashvili, A. G.[116X, [17XInduced nilpotent orbits of the
-  simple  Lie algebras of exceptional type[117X, [18XGeorgian Mathematical Journal[118X, [19X16[119X,
-  2 (2009), 257-278, (({\tt arXiv:0905.2743v1}[math.RT])).
   
   [[20XHel78[120X]  [16XHelgason,  S.[116X,  [17XDifferential  geometry,  Lie  groups, and symmetric
   spaces[117X, Academic Press Inc. [Harcourt Brace Jovanovich Publishers], Pure and
