@@ -411,7 +411,7 @@ SLAfcts.pi_systems:= function( R )
 end;
 
 
-sub_systems:= function( R )
+SLAfcts.sub_systems:= function( R )
 
    # simple root system..., we give reps of all orbits of
    # sub root systems under the Weyl group
@@ -518,7 +518,7 @@ function( L )
 
    
    R:= RootSystem(L);
-   s:= sub_systems( R );
+   s:= SLAfcts.sub_systems( R );
 
    posRw:= PositiveRootsAsWeights( R );
    ch:= ChevalleyBasis(L);
@@ -619,5 +619,426 @@ function( L )
    od;
 
    return algs;
+
+end );
+
+
+#    Functions for computing the closed subsystems of root systems
+#    up to conjugacy by the Weyl group.
+#
+#
+# the addition table of the roots will always be Q
+# if a sum is not a root, then the entry is 0, otherwise the index of the root.
+
+# Also note that if a is a root with index i then -a has index i+n0 mod 2n0,
+# where n0 is the number of positive roots.
+
+SLAfcts.closedsubsysOfPosRts:= function( R )
+
+        local p, G, pr, rts, C, rank, SS, B, i, j, closeds, newSS, S, T, conj,
+              gg, final, U, mat, l, k, p0, rows, ipmat, iT, prw, rw, vecs, v,
+              cols, c0, H, orbs, o, N, n0, Q, D, dets, d0, vals, ind, cnt,
+              Bvals, val, n0exp, cj;
+
+        p:= SLAfcts.perms(R);
+        G:= Group(p);
+
+        pr:= PositiveRootsNF(R);
+        n0:= Length( pr );
+        rts:= Concatenation( pr, -pr );
+
+        Q:= List( rts, x -> [] );
+        for k in [1..2*n0] do
+            for l in [1..2*n0] do
+                p0:= Position( rts, rts[k]+rts[l] );
+                if p0 = fail then p0:= 0; fi;
+                Q[k][l]:= p0;
+            od;
+        od;
+
+
+        B:= BilinearFormMatNF(R);
+        rank:= Length(B);
+        ipmat:= List( rts, x -> [ ] );
+        for k in [1..Length(rts)] do
+            for l in [k..Length(rts)] do
+                ipmat[k][l]:= rts[k]*B*rts[l];
+                ipmat[l][k]:= ipmat[k][l];
+            od;
+        od;
+
+        Bvals:= Set( Flat( ipmat ) );
+        n0exp:= List( [1..Length(Bvals)], i -> n0^(i-1) );
+
+        # a closed subsystem is represented by a list of the indices of its
+        # elements
+
+        SS:=[    List( [1..n0], x -> x )     ];
+        closeds:= ShallowCopy( SS );
+        
+        while Length(SS) > 0  do
+
+            newSS:= [ ];
+            rows:= [ ];
+            dets:= [ ];
+            for i in [1..Length(SS)] do
+                S:= ShallowCopy( SS[i] );
+                H:= Stabilizer( G, S, OnSets );
+
+                # now we compute the derived system of S, that is the closed
+                # set consisting of all sums of elements of S
+                N:= [ ];
+                for k in [1..Length(S)] do
+                    for l in [k+1..Length(S)] do
+                        AddSet( N, Q[S[k]][S[l]] );
+                    od;
+                od;     
+                N:= Filtered( N, x -> x <> 0 );
+                D:= Filtered( S, x -> not x in N );
+                orbs:= Orbits( H, D );
+     
+                for o in orbs do
+                    j:= o[1];
+                    T:= ShallowCopy( S );
+                    RemoveSet( T, j );
+
+                    mat:= List( T, x -> [ ] );
+                    for k in [1..Length(T)] do
+                        for l in [1..Length(T)] do
+                            mat[k][l]:= ipmat[T[k]][T[l]];
+                        od;
+                    od;
+                    d0:= List( mat, ShallowCopy );
+                    for k in d0 do Sort(k); od;
+                    Sort(d0);
+
+                    vals:= [ ];
+                    for l in [1..Length(d0)] do
+                        k:= 1; 
+                        val:= []; ind:= 1; cnt:=0;
+                        while k <= Length(d0) do
+                            while k <= Length(d0) and d0[l][k] = Bvals[ind] do
+                                  k:= k+1;
+                                  cnt:= cnt+1;
+                            od;
+                            Add( val, cnt );
+                            ind:= ind+1;
+                            cnt:=0;
+                        od;
+                        Add( vals, val );
+                    od;
+
+                    d0:= List( vals, x -> Sum( [1..Length(x)],
+                                          i -> x[i]*n0exp[Length(x)-i+1] ) );
+
+                    conj:= false;
+                    k:= PositionSorted( dets, d0 );
+                    while k<= Length(newSS) and dets[k] = d0 do
+
+                          cj:= RepresentativeAction( G, newSS[k], T, OnSets );
+                          if cj <> fail then
+                             conj:= true; break;
+                          fi;
+                          k:= k+1;
+                    od;
+                    if not conj then
+                       InsertElmList( newSS, k, T );
+                       InsertElmList( dets, k, d0 );
+                    fi;
+                od;
+            od;
+
+            Append( closeds, newSS );
+            SS:= newSS;
+            if Length(SS)>0 and Length(SS[1])=1 then SS:= [ ]; fi;
+        od;
+
+        return Filtered( closeds, x -> Length(x)>0 );
+
+end;
+
+
+SLAfcts.clos:= function( rts, S )
+        
+        local i,j, a, T, added, start, start0, u;
+
+        T:= ShallowCopy(S);
+        added:= true;
+        start:= 1;
+        while added do
+           added:= false; start0:= Length(T);
+           for i in [1..Length(T)] do
+               u:= Maximum( start, i+1 );
+               for j in [u..Length(T)] do
+                   a:= T[i]+T[j];
+                   if (a in rts) and (not a in T) then
+                      Add( T, a );
+                      added:= true;
+                   fi;
+               od;
+           od;
+           start:= start0+1;   
+        od;
+        return T;
+
+end;
+
+SLAfcts.dynkintable:= function( type, rank )
+
+        local defseq, R, s, Pw, rts, sys, r, sim;
+
+        defseq:= function( rk, rts, r )
+
+          local sim, pos, ip, s, sq;
+
+          sim:= rts{[1..rk]};
+          pos:= PositionProperty( r, x -> x <> 0 );
+          if r[pos] > 0 then
+             ip:= true;
+             s:= ShallowCopy(r);
+          else
+             ip:= false;
+             s:= -ShallowCopy(r);
+          fi;
+
+          sq:= [ ];
+          while not IsZero(s) do
+              pos:= PositionProperty( sim, x -> s-x in rts );
+              if pos = fail then
+                 pos:= Position( sim, s );
+              fi;
+              Add( sq, pos );
+              s:= s-sim[pos];
+          od;
+
+          return [ ip, Reversed(sq) ];
+
+        end;
+
+        R:= RootSystem( type, rank );
+        s:= SLAfcts.sub_systems(R);
+        Pw:= PositiveRootsAsWeights(R);
+        Pw:= Concatenation( Pw, -Pw );
+        rts:= Concatenation( PositiveRootsNF(R), -PositiveRootsNF(R) );
+	    sys:= [ ];
+	    for r in s.roots do
+	       sim:= List( r, x -> rts[ Position( Pw, x ) ] );
+	       sim:= Concatenation( sim, -sim );
+	       Add( sys, SLAfcts.clos( rts, sim ) );
+        od;
+        sys:= List( sys, x -> List( x, y -> defseq( rank, rts, y ) ) );
+	    return rec( type:= type, sys:= sys );
+
+end;
+
+InstallMethod( ClosedSubsets,
+"for a root system", true, [ IsRootSystem ], 0,
+
+function(R)
+
+        local p, G, clp, pr, n0, rts, Q, k, l, i, j, p0, B, ipmat, sys, s,
+              setss, rows, sm, max, r, a, b, c, iscl, H, sums, bas, C, tp,
+              sets, set, n, zyz, m, u, s0, ind, U, mat, conj, pos, T, Pw, sim;
+
+
+        p:= SLAfcts.perms(R);
+        G:= Group(p);
+
+        clp:= SLAfcts.closedsubsysOfPosRts( R );
+
+        pr:= PositiveRootsNF(R);
+        n0:= Length(pr);
+        rts:= Concatenation( pr, -pr );
+
+        Q:= List( rts, x -> [] );
+        for k in [1..2*n0] do
+            for l in [1..2*n0] do
+                p0:= Position( rts, rts[k]+rts[l] );
+                if p0 = fail then p0:= 0; fi;
+                Q[k][l]:= p0;
+            od;
+        od;
+
+        B:= BilinearFormMatNF(R);
+        ipmat:= List( rts, x -> [ ] );
+        for k in [1..Length(rts)] do
+            for l in [k..Length(rts)] do
+                ipmat[k][l]:= rts[k]*B*rts[l];
+                ipmat[l][k]:= ipmat[k][l];
+            od;
+        od;
+
+
+        sys:= [ ];
+        T:= [ ]; # table of all subrootsystems that occur...
+        for s in clp do
+
+            setss:= [ ];
+            rows:= [ ];
+
+            sm:= Sum(rts{s});
+            max:= [ ];  # max set that can be added...(just the pos rts)
+            for r in [1..n0] do
+                if (not r in s) and (not r+n0 in s) and (rts[r]*B*sm = 0) then
+                   iscl:= true;
+                   for a in s do
+                       b:= Q[a][r]; c:= Q[a][r+n0];
+                       if (b<>0 and not b in s) or (c<>0 and not c in s) then
+                          iscl:= false; break;
+                       fi;
+                   od;
+                   if iscl then Add( max, r ); fi;
+                fi;
+            od;
+
+            if Length(max) >0 then
+
+               H:= Stabilizer( G, s, OnSets );
+               sums:= [];
+               for k in max do for l in max do Add( sums, Q[k][l] ); od; od;
+               bas:= Filtered( max, x -> not x in sums );
+               C:= List( bas, x -> List( bas, y -> 2*ipmat[x][y]/ipmat[y][y]));
+               tp:= CartanType(C);
+               sets:= [ ];
+
+               for k in [1..Length(tp.types)] do
+                   set:= [ [] ];
+                   n:= tp.types[k][2];
+                   if not IsBound( T[n] ) then T[n]:= [ ]; fi;
+                   l:= PositionProperty( T[n], x -> x.type[1] =
+                                                          tp.types[k][1] );
+                   if l = fail then
+                      Add( T[n], SLAfcts.dynkintable( tp.types[k][1], n ) );
+                      l:= Length( T[n] );
+                   fi;
+                   zyz:= T[n][l].sys;
+                   for m in [1..Length(zyz)] do
+                       s0:= [ ];
+                       for r in zyz[m] do
+                           if r[1] then
+                              u:= bas[tp.enumeration[k][r[2][1]]];
+                              for j in [2..Length(r[2])] do
+                                  u:= Q[u][bas[tp.enumeration[k][r[2][j]]]];
+                              od;
+                              Add( s0, u );
+                           fi;
+                       od;
+                       Add( set, s0 );
+                   od;
+                   Add( sets, set );
+               od;
+               # now make unions...
+
+               ind:= List( sets, x -> 1 );
+               k:= 1;
+               while k <> 0 do
+
+                   s0:= Concatenation( List( [1..Length(ind)], j ->
+                                                      sets[j][ind[j]] ) );
+                   s0:= Concatenation( s0, List( s0, x -> 
+                                              ((x+n0) mod (2*n0)) ) );
+                   pos:= Position( s0, 0 );
+                   if pos <> fail then s0[pos]:= 2*n0; fi;
+                   U:= Concatenation( s0, s );
+                   Sort(U);
+                   mat:= List( U, x -> [ ] );
+                   for j in [1..Length(U)] do
+                       for l in [j..Length(U)] do
+                           mat[j][l]:= ipmat[U[j]][U[l]];
+                           mat[l][j]:= mat[j][l];
+                       od;
+                   od;
+
+                   p0:= List( mat, Sum ); Sort(p0);
+                   conj:= false;
+                   for l in [1..Length(setss)] do
+                       if Length(setss[l]) = Length(U) and
+                          p0 = rows[l] and
+                          RepresentativeAction(H,setss[l],U,OnSets) <> fail then
+                             conj:= true; break;
+                       fi;
+                   od;
+                   if not conj then
+                      Add( setss, U );
+                      Add( rows, p0 );
+                   fi;
+                
+                   k:= 0;
+                   for i in [1..Length(ind)] do
+                       if ind[i] < Length(sets[i]) then k:= i; break; fi;
+                   od;
+
+                   if k > 0 then
+                      for i in [1..k-1] do ind[i]:= 1; od;
+                      ind[k]:= ind[k]+1;
+                   fi;
+               od;
+            else
+               setss:= [s];
+            fi;
+            Append( sys, setss );
+        od;
+
+        sys:= List( sys, x -> rts{x} );
+        s:= SLAfcts.sub_systems(R);
+        Pw:= PositiveRootsAsWeights(R);
+        Pw:= Concatenation( Pw, -Pw );
+	    for r in s.roots do
+	       sim:= List( r, x -> rts[ Position( Pw, x ) ] );
+	       sim:= Concatenation( sim, -sim );
+	       Add( sys, SLAfcts.clos( rts, sim ) );
+        od;
+
+        return sys;
+
+end );        
+
+
+InstallMethod( IsSpecialClosedSet,
+"for a closed subset of a root system", true, [ IsList ], 0,
+
+function(c)
+
+   return ForAll( c, x -> not -x in c );
+
+end );
+
+
+InstallMethod( DecompositionOfClosedSet,
+"for a closed subset of a root system", true, [ IsList ], 0,
+
+function(c)
+
+   local S, N;
+
+   S:= Filtered( c, x -> -x in c );
+   N:= Filtered( c, x -> not x in S );
+   return [S,N];
+
+end );
+
+
+InstallMethod( SubalgebraOfClosedSet,
+"for a Lie algebra and a closed subset of its root system", true,
+[ IsLieAlgebra, IsList ], 0,
+
+function( L, c )
+
+     local b, pr, rts, ch, rvcs, bas, r, pos;
+
+     b:= [ ];
+     pr:= PositiveRootsNF(RootSystem(L));
+     rts:= Concatenation( pr, -pr );
+     ch:= ChevalleyBasis(L);
+     rvcs:= Concatenation( ch[1], ch[2] );
+     bas:= ShallowCopy( ch[3] );
+     for r in c do
+         pos:= Position( rts, r );
+	 if pos = fail then
+	    Error( "One of the elements of <c> is not a root" );
+	 fi;
+	 Add( bas, rvcs[pos] );
+     od;
+     return Subalgebra( L, bas, "basis" );
 
 end );

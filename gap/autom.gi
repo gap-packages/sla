@@ -1058,7 +1058,7 @@ SLAfcts.zero_systems:= function( B, posr )
     
       rrr:= bas{tp.enumeration[i]};
       R:= RootSystem( tp.types[i] );
-      pi:= sub_systems( R );
+      pi:= SLAfcts.sub_systems( R );
       sub:= [ [ ] ];
       posRw:= PositiveRootsAsWeights( R );
       for j in [1..Length( pi.types )] do
