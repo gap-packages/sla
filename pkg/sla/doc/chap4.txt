@@ -38,7 +38,7 @@
   
   [1X4.1-1 FiniteOrderInnerAutomorphisms[101X
   
-  [29X[2XFiniteOrderInnerAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X ) [32X operation
+  [33X[1;0Y[29X[2XFiniteOrderInnerAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X ) [32X operation[133X
   
   [33X[0;0YLet  [22XL[122X  be  the  simple Lie algebra of type [3Xtype[103X and rank [3Xrank[103X. The function
   returns representatives of the conjugacy classes of inner automorphisms of [22XL[122X
@@ -64,7 +64,7 @@
   
   [1X4.1-2 FiniteOrderOuterAutomorphisms[101X
   
-  [29X[2XFiniteOrderOuterAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X, [3Xd[103X ) [32X operation
+  [33X[1;0Y[29X[2XFiniteOrderOuterAutomorphisms[102X( [3Xtype[103X, [3Xrank[103X, [3Xm[103X, [3Xd[103X ) [32X operation[133X
   
   [33X[0;0YLet  [22XL[122X  be  the  simple Lie algebra of type [3Xtype[103X and rank [3Xrank[103X. The function
   returns representatives of the conjugacy classes of outer automorphisms of [22XL[122X
@@ -72,13 +72,13 @@
   
   [1X4.1-3 Order[101X
   
-  [29X[2XOrder[102X( [3Xf[103X ) [32X attribute
+  [33X[1;0Y[29X[2XOrder[102X( [3Xf[103X ) [32X attribute[133X
   
   [33X[0;0YHere [3Xf[103X is a finite order automorphism. This returns its order.[133X
   
   [1X4.1-4 KacDiagram[101X
   
-  [29X[2XKacDiagram[102X( [3Xf[103X ) [32X attribute
+  [33X[1;0Y[29X[2XKacDiagram[102X( [3Xf[103X ) [32X attribute[133X
   
   [33X[0;0YHere [3Xf[103X is a finite order automorphism. This returns its Kac diagram. This is
   a record with three components: [3XCM[103X, which is the Cartan matrix of the Dynkin
@@ -98,7 +98,7 @@
   
   [1X4.1-5 Grading[101X
   
-  [29X[2XGrading[102X( [3Xf[103X ) [32X attribute
+  [33X[1;0Y[29X[2XGrading[102X( [3Xf[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3Xf[103X  is  a  finite order automorphism of order [22Xm[122X. This returns a list of
   length  [22Xm[122X.  The  [22Xi[122X-th  element  contains a basis of the eigenspace of [3Xf[103X with
@@ -106,8 +106,8 @@
   
   [1X4.1-6 NilpotentOrbitsOfThetaRepresentation[101X
   
-  [29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3Xf[103X ) [32X operation
-  [29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3XL[103X, [3Xd[103X ) [32X operation
+  [33X[1;0Y[29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3Xf[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XNilpotentOrbitsOfThetaRepresentation[102X( [3XL[103X, [3Xd[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of  a simple Lie algebra [22XL[122X of order [22Xm[122X. Then [3Xf[103X
   defines  a  grading  on [22XL[122X. Let the homogeneous components of this grading be
@@ -164,8 +164,8 @@
   
   [1X4.1-7 ClosureDiagram[101X
   
-  [29X[2XClosureDiagram[102X( [3XL[103X, [3Xf[103X, [3Xs[103X ) [32X operation
-  [29X[2XClosureDiagram[102X( [3XL[103X, [3Xd[103X, [3Xs[103X ) [32X operation
+  [33X[1;0Y[29X[2XClosureDiagram[102X( [3XL[103X, [3Xf[103X, [3Xs[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XClosureDiagram[102X( [3XL[103X, [3Xd[103X, [3Xs[103X ) [32X operation[133X
   
   [33X[0;0YHere [3Xf[103X is an automorphism of a simple Lie algebra [22XL[122X of order [22Xm[122X, and [3Xs[103X a list
   of  [22Xsl_2[122X-triples  [22X(y,h,x)[122X,  with [22Xh∈ L_0[122X, [22Xx∈ L_1[122X (for instance as computed by
@@ -243,8 +243,8 @@
   
   [1X4.1-8 CarrierAlgebra[101X
   
-  [29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xf[103X, [3Xe[103X ) [32X operation
-  [29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xd[103X, [3Xe[103X ) [32X operation
+  [33X[1;0Y[29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xf[103X, [3Xe[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XCarrierAlgebra[102X( [3XL[103X, [3Xd[103X, [3Xe[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of a simple Lie algebra [22XL[122X of order [22Xm[122X, and [3Xe[103X a
   nilpotent  element  of  [22XL_1[122X. This function returns the carrier algebra of [3Xe[103X.
@@ -280,7 +280,7 @@
   
   [1X4.1-9 CartanSubspace[101X
   
-  [29X[2XCartanSubspace[102X( [3Xf[103X ) [32X operation
+  [33X[1;0Y[29X[2XCartanSubspace[102X( [3Xf[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xf[103X  is  an  automorphism  of  a simple Lie algebra [22XL[122X of order [22Xm[122X. Then [3Xf[103X
   defines  a  grading  on [22XL[122X. Let the homogeneous components of this grading be

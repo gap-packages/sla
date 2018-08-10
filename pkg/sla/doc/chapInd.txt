@@ -11,7 +11,9 @@
   [2XCartanSubspace[102X 4.1-9 
   [2XCartanType[102X 2.1-2 
   [2XCharacteristicsOfStrata[102X 2.2-4 
+  [2XClosedSubsets[102X 5.2-9 
   [2XClosureDiagram[102X 4.1-7  4.1-7 
+  [2XDecompositionOfClosedSet[102X 5.2-10 
   [2XDirectSumDecomposition[102X 2.2-3 
   [2XDynkinIndex[102X 5.2-6 
   [2XExtendedCartanMatrix[102X 2.1-1 
@@ -21,8 +23,10 @@
   [2XInclusionsGraph[102X 5.2-4 
   [2XInducedNilpotentOrbits[102X 3.1-11 
   [2XIsomorphismOfSemisimpleLieAlgebras[102X 2.2-1 
+  [2XIsSpecialClosedSet[102X 5.2-11 
   [2XKacDiagram[102X 4.1-4 
   [2XLieAlgebraAndSubalgebras[102X 5.2-3 
+  [2XLieAlgebraOfClosedSet[102X 5.2-12 
   [2XMakeDatabaseEntry[102X 5.2-8 
   [2XNilpotentOrbit[102X 3.1-1 
   [2XNilpotentOrbits[102X 3.1-2 

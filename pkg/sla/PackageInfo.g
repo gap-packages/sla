@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
 PackageName := "SLA",
 Subtitle := "a package for doing computations with simple Lie algebras",        
-Version := "1.4",
-Date := "24/04/2018",
+Version := "1.5",
+Date := "25/07/2018",
 ArchiveURL := Concatenation("http://www.science.unitn.it/~degraaf/sla/sla-",
                             ~.Version),
 ArchiveFormats := ".tar.gz",

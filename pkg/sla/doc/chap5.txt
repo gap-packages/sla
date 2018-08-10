@@ -16,7 +16,7 @@
   
   [1X5.1-1 ProjectionMatrix[101X
   
-  [29X[2XProjectionMatrix[102X( [3XL[103X, [3XK[103X ) [32X operation
+  [33X[1;0Y[29X[2XProjectionMatrix[102X( [3XL[103X, [3XK[103X ) [32X operation[133X
   
   [33X[0;0YHere [3XL[103X and [3XK[103X are semisimple Lie algebras with the following properties: [3XK[103X is
   contained   in   [3XL[103X,   the   Cartan   subalgebra   of   [3XL[103X,   as  returned  by
@@ -42,7 +42,7 @@
   
   [1X5.1-2 Branching[101X
   
-  [29X[2XBranching[102X( [3XL[103X, [3XK[103X, [3Xhw[103X ) [32X operation
+  [33X[1;0Y[29X[2XBranching[102X( [3XL[103X, [3XK[103X, [3Xhw[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  and [3XK[103X are as in the previous function, and [3Xhw[103X is the highest weight
   of  an  irreducible  [3XL[103X-module.  This  function computes the splitting of the
@@ -66,7 +66,7 @@
   
   [1X5.2-1 RegularSemisimpleSubalgebras[101X
   
-  [29X[2XRegularSemisimpleSubalgebras[102X( [3XL[103X ) [32X attribute
+  [33X[1;0Y[29X[2XRegularSemisimpleSubalgebras[102X( [3XL[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3XL[103X  is  a  [13Xsimple[113X  Lie  algebra.  This  function  returns a list of its
   conjugacy  classes  of  semisimple  subalgebras (conjugacy under the adjoint
@@ -91,7 +91,7 @@
   
   [1X5.2-2 SSSTypes[101X
   
-  [29X[2XSSSTypes[102X(  ) [32X function
+  [33X[1;0Y[29X[2XSSSTypes[102X(  ) [32X function[133X
   
   [33X[0;0YThis returns a list of the types of the semisimple Lie algebras of which the
   database  contains  the  classification of the semisimple subalgebras, up to
@@ -99,7 +99,7 @@
   
   [1X5.2-3 LieAlgebraAndSubalgebras[101X
   
-  [29X[2XLieAlgebraAndSubalgebras[102X( [3Xtype[103X ) [32X operation
+  [33X[1;0Y[29X[2XLieAlgebraAndSubalgebras[102X( [3Xtype[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xtype[103X  is  a  string describing the type of a semisimple Lie algebra. A
   simple  type  is  a  capital  letter  (A, B, C, D, E, F, or G) followed by a
@@ -116,7 +116,7 @@
   
   [1X5.2-4 InclusionsGraph[101X
   
-  [29X[2XInclusionsGraph[102X( [3Xtype[103X ) [32X operation
+  [33X[1;0Y[29X[2XInclusionsGraph[102X( [3Xtype[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xtype[103X is a string describing the type of a semisimple Lie algebra. This
   is  the  same  as  in  the  previous  function. This function returns a list
@@ -159,7 +159,7 @@
   
   [1X5.2-5 SubalgebrasInclusion[101X
   
-  [29X[2XSubalgebrasInclusion[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation
+  [33X[1;0Y[29X[2XSubalgebrasInclusion[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XK1[103X,  [3XK2[103X,  are  two  subalgebras  of  the  semisimple  Lie  algebra  [3XL[103X,
   constructed using the database. If [3XK2[103X contains a subalgebra that is linearly
@@ -186,7 +186,7 @@
   
   [1X5.2-6 DynkinIndex[101X
   
-  [29X[2XDynkinIndex[102X( [3XK[103X, [3XL[103X ) [32X operation
+  [33X[1;0Y[29X[2XDynkinIndex[102X( [3XK[103X, [3XL[103X ) [32X operation[133X
   
   [33X[0;0YHere [3XK[103X is a semisimple subalgebra of the [13Xsimple[113X Lie algebra [3XL[103X. This function
   returns  a  list  of  integers,  containing the Dynkin indices of the simple
@@ -213,7 +213,7 @@
   
   [1X5.2-7 AreLinearlyEquivalentSubalgebras[101X
   
-  [29X[2XAreLinearlyEquivalentSubalgebras[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation
+  [33X[1;0Y[29X[2XAreLinearlyEquivalentSubalgebras[102X( [3XL[103X, [3XK1[103X, [3XK2[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  is  a  semisimple  Lie  algebra,  and [3XK1[103X, [3XK2[103X are subalgebras. It is
   assumed that the Cartan subalgebras (as returned by [3XCartanSubalgebra[103X) of [3XK1[103X,
@@ -238,8 +238,8 @@
   
   [1X5.2-8 MakeDatabaseEntry[101X
   
-  [29X[2XMakeDatabaseEntry[102X( [3Xr[103X ) [32X operation
-  [29X[2XAddToDatabase[102X( [3Xd[103X ) [32X operation
+  [33X[1;0Y[29X[2XMakeDatabaseEntry[102X( [3Xr[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XAddToDatabase[102X( [3Xd[103X ) [32X operation[133X
   
   [33X[0;0YThese  are  functions  that help to save a computed list of subalgebras of a
   semisimple  Lie  algebra  in a file, and in a new session, read it again. In
@@ -266,5 +266,102 @@
     [4X[28X[ "A1", "A2", "B2", "G2", "A3", "B3", "C3", "A4", "B4", "C4", "D4", "F4", [128X[104X
     [4X[28X  "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6", "E6", "A7", "B7", "C7", [128X[104X
     [4X[28X  "D7", "E7", "A8", "B8", "C8", "D8", "E8", "A2 B2" ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-9 ClosedSubsets[101X
+  
+  [33X[1;0Y[29X[2XClosedSubsets[102X( [3XR[103X ) [32X operation[133X
+  
+  [33X[0;0YHere  [3XR[103X  is a root system. A subset [22XS[122X of the roots of [3XR[103X is said to be closed
+  if  for  all  [22Xa,b∈ S[122X we have that [22Xa+b[122X lies in [22XS[122X whenever [22Xa+b[122X is a root. This
+  function computes the list of the closed subsets of [3XR[103X up to conjugacy by the
+  Weyl  group.  In other words, each closed subset of [3XR[103X is conjugate under the
+  Weyl group to exactly one element of the output of this function. The output
+  is  a  list of which each element is a list of roots. A root in such a list,
+  or its negative, lies in the attribute [3XPositiveRootsNF( R )[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XR:= RootSystem("F",4);[127X[104X
+    [4X[28X<root system of type F4>[128X[104X
+    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);; time;[127X[104X
+    [4X[28X10812[128X[104X
+    [4X[25Xgap>[125X [27XLength(c);[127X[104X
+    [4X[28X4844[128X[104X
+    [4X[25Xgap>[125X [27Xc[1005];[127X[104X
+    [4X[28X[ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 2, 0 ], [ 0, 1, 1, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1 ], [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], [128X[104X
+    [4X[28X  [ 1, 1, 2, 2 ], [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], [128X[104X
+    [4X[28X  [ 1, 2, 4, 2 ], [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ], [ 0, -1, -2, 0 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-10 DecompositionOfClosedSet[101X
+  
+  [33X[1;0Y[29X[2XDecompositionOfClosedSet[102X( [3Xc[103X ) [32X operation[133X
+  
+  [33X[0;0YHere  [3Xc[103X  is a closed set of roots of some root system. We have that [3Xc[103X is the
+  disjoint  union  of  its symmetric part (consisting of all roots [22Xa[122X in [3Xc[103X such
+  that [22X-a[122X also lies in [3Xc[103X) and its special part (consisting of all roots [22Xa[122X in [3Xc[103X
+  such  that  [22X-a[122X  does  not  lie  in  [3Xc[103X).  This function returns a list of two
+  entries.  The  first  is  the symmetric part of [3Xc[103X, the second is the special
+  part of [3Xc[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XR:= RootSystem("F",4);[127X[104X
+    [4X[28X<root system of type F4>[128X[104X
+    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);;[127X[104X
+    [4X[25Xgap>[125X [27XDecompositionOfClosedSet( c[1005] );[127X[104X
+    [4X[28X[ [ [ 0, 1, 2, 0 ], [ 0, -1, -2, 0 ] ], [128X[104X
+    [4X[28X  [ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 1, 1 ], [ 1, 1, 1, 1 ], [128X[104X
+    [4X[28X      [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], [ 1, 1, 2, 2 ], [128X[104X
+    [4X[28X      [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], [ 1, 2, 4, 2 ], [128X[104X
+    [4X[28X      [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-11 IsSpecialClosedSet[101X
+  
+  [33X[1;0Y[29X[2XIsSpecialClosedSet[102X( [3Xc[103X ) [32X operation[133X
+  
+  [33X[0;0YHere  [3Xc[103X  is a closed set of roots of some root system. This function returns
+  [3Xtrue[103X  is  [3Xc[103X is special (that is, for all [22Xa[122X in [3Xc[103X we have that [22X-a[122X does not lie
+  in [3Xc[103X), otherwise it returns [3Xfalse[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XR:= RootSystem("F",4);[127X[104X
+    [4X[28X<root system of type F4>[128X[104X
+    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);;[127X[104X
+    [4X[25Xgap>[125X [27XIsSpecialClosedSet( c[1005] );[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsSpecialClosedSet( c[1006] );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XLength( Filtered( c, IsSpecialClosedSet ) );[127X[104X
+    [4X[28X3579[128X[104X
+  [4X[32X[104X
+  
+  [1X5.2-12 LieAlgebraOfClosedSet[101X
+  
+  [33X[1;0Y[29X[2XLieAlgebraOfClosedSet[102X( [3XL[103X, [3Xc[103X ) [32X operation[133X
+  
+  [33X[0;0YHere  [3XL[103X  is  a  semisimple Lie algebra and [3Xc[103X is a closed set of roots of its
+  root  system. This function returns the subalgebra of [3XL[103X spanned a the Cartan
+  subalgebra  of  [3XL[103X (the one relative to which the root system is taken) along
+  with the root vectors corresponding to the roots in [3Xc[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("F",4,Rationals);[127X[104X
+    [4X[28X<Lie algebra of dimension 52 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XR:= RootSystem( L );[127X[104X
+    [4X[28X<root system of rank 4>[128X[104X
+    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);; [127X[104X
+    [4X[25Xgap>[125X [27Xc[1005];[127X[104X
+    [4X[28X[ [ 1, 0, 1, 0 ], [ 0, 1, 0, 1 ], [ 1, 0, 1, 1 ], [ 0, 0, 2, 1 ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1 ], [ 1, 1, 2, 1 ], [ 2, 0, 2, 1 ], [ 0, 1, 2, 2 ], [128X[104X
+    [4X[28X  [ 2, 1, 2, 1 ], [ 1, 1, 3, 2 ], [ 2, 1, 2, 2 ], [ 2, 1, 3, 2 ], [128X[104X
+    [4X[28X  [ 2, 1, 4, 2 ], [ 2, 1, 4, 3 ], [ 2, 2, 4, 3 ], [ 0, 0, -2, -1 ] ][128X[104X
+    [4X[25Xgap>[125X [27XK:= SubalgebraOfClosedSet( L, c[1005] );[127X[104X
+    [4X[28X<Lie algebra of dimension 20 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XLeviMalcevDecomposition(K);[127X[104X
+    [4X[28X[ <Lie algebra of dimension 3 over Rationals>, [128X[104X
+    [4X[28X  <two-sided ideal in <Lie algebra of dimension 20 over Rationals>, [128X[104X
+    [4X[28X      (dimension 17)> ][128X[104X
   [4X[32X[104X
   

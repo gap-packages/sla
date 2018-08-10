@@ -15,10 +15,12 @@
   \item \texttt  {CartanSubspace}, \hyperpage{19}
   \item \texttt  {CartanType}, \hyperpage{5}
   \item \texttt  {CharacteristicsOfStrata}, \hyperpage{7}
+  \item \texttt  {ClosedSubsets}, \hyperpage{24}
   \item \texttt  {ClosureDiagram}, \hyperpage{17}
 
   \indexspace
 
+  \item \texttt  {DecompositionOfClosedSet}, \hyperpage{25}
   \item \texttt  {DirectSumDecomposition}, \hyperpage{7}
   \item \texttt  {DynkinIndex}, \hyperpage{23}
 
@@ -40,6 +42,7 @@
   \item \texttt  {InclusionsGraph}, \hyperpage{22}
   \item \texttt  {InducedNilpotentOrbits}, \hyperpage{12}
   \item \texttt  {IsomorphismOfSemisimpleLieAlgebras}, \hyperpage{6}
+  \item \texttt  {IsSpecialClosedSet}, \hyperpage{25}
 
   \indexspace
 
@@ -48,6 +51,7 @@
   \indexspace
 
   \item \texttt  {LieAlgebraAndSubalgebras}, \hyperpage{22}
+  \item \texttt  {LieAlgebraOfClosedSet}, \hyperpage{26}
 
   \indexspace
 

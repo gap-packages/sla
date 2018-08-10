@@ -6,10 +6,10 @@
                               [1XSimple Lie Algebras[101X
   
   
-                                  Version 1.4
+                                  Version 1.5
   
   
-                                   April 2018
+                                   July 2018
   
   
                                 Willem de Graaf
@@ -92,6 +92,10 @@
       5.2-6 DynkinIndex
       5.2-7 AreLinearlyEquivalentSubalgebras
       5.2-8 MakeDatabaseEntry
+      5.2-9 ClosedSubsets
+      5.2-10 DecompositionOfClosedSet
+      5.2-11 IsSpecialClosedSet
+      5.2-12 LieAlgebraOfClosedSet
   
   
   [32X

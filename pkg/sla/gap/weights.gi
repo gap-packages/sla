@@ -245,6 +245,7 @@ weylorbs:= function( W, wts, A )
                        dt:= Permanent(mat);
                        row:= List( mat, Sum );
                        Sort( row );
+
                        #col:= List( TransposedMat(mat), Sum );
                        #Sort(col);
                        for l in [1..Length(s1)] do
@@ -342,7 +343,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
           mat, sol, bas, B, dims, dim, cfs, p, inds, pR, wt0, ex0,
           h0, cs, hw0, mu0, perms, res, hs, dist0, w, ip0, bcsa, BC, bigger,
           sums, delt, xx, yy, hh, conjdomh, Onew, d, r, u, v, rep, len, N, 
-          totlen, dets, dt, orbs0;
+          totlen, dets, dt, orbs0, q;
 
     dist:= function(u,v) return ip(u-v,u-v); end;
 
@@ -433,6 +434,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                          v[len]:= i;
                          dt:= Permanent( List( v, i -> List( v,
                                  j -> ip( h_wts[i], h_wts[j] ) ) ) );
+
                          rep:= false;
                          for j in [1..Length(Onew)] do
                              if dets[j] = dt then 

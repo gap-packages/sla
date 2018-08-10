@@ -98,8 +98,8 @@
 {\Huge \textbf{Simple Lie Algebras\mbox{}}}\\
 \vfill
 
-{\Huge Version 1.4\mbox{}}\\[1cm]
-{April 2018\mbox{}}\\[1cm]
+{\Huge Version 1.5\mbox{}}\\[1cm]
+{July 2018\mbox{}}\\[1cm]
 \mbox{}\\[2cm]
 {\Large \textbf{ Willem de Graaf    \mbox{}}}\\
 \hypersetup{pdfauthor= Willem de Graaf    }
@@ -1305,6 +1305,116 @@ database.
   [ "A1", "A2", "B2", "G2", "A3", "B3", "C3", "A4", "B4", "C4", "D4", "F4", 
     "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6", "E6", "A7", "B7", "C7", 
     "D7", "E7", "A8", "B8", "C8", "D8", "E8", "A2 B2" ]
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{ClosedSubsets}}
+\logpage{[ 5, 2, 9 ]}\nobreak
+\hyperdef{L}{X85A6B70B83A36495}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{ClosedSubsets({\mdseries\slshape R})\index{ClosedSubsets@\texttt{ClosedSubsets}}
+\label{ClosedSubsets}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ Here \mbox{\texttt{\mdseries\slshape R}} is a root system. A subset $S$ of the roots of \mbox{\texttt{\mdseries\slshape R}} is said to be closed if for all $a,b\in S$ we have that $a+b$ lies in $S$ whenever $a+b$ is a root. This function computes the list of the closed subsets of \mbox{\texttt{\mdseries\slshape R}} up to conjugacy by the Weyl group. In other words, each closed subset of \mbox{\texttt{\mdseries\slshape R}} is conjugate under the Weyl group to exactly one element of the output of this
+function. The output is a list of which each element is a list of roots. A
+root in such a list, or its negative, lies in the attribute \mbox{\texttt{\mdseries\slshape PositiveRootsNF( R )}}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@R:= RootSystem("F",4);|
+  <root system of type F4>
+  !gapprompt@gap>| !gapinput@c:= ClosedSubsets(R);; time;|
+  10812
+  !gapprompt@gap>| !gapinput@Length(c);|
+  4844
+  !gapprompt@gap>| !gapinput@c[1005];|
+  [ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 2, 0 ], [ 0, 1, 1, 1 ], 
+    [ 1, 1, 1, 1 ], [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], 
+    [ 1, 1, 2, 2 ], [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], 
+    [ 1, 2, 4, 2 ], [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ], [ 0, -1, -2, 0 ] ]
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{DecompositionOfClosedSet}}
+\logpage{[ 5, 2, 10 ]}\nobreak
+\hyperdef{L}{X7A3EAA637F94D973}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{DecompositionOfClosedSet({\mdseries\slshape c})\index{DecompositionOfClosedSet@\texttt{DecompositionOfClosedSet}}
+\label{DecompositionOfClosedSet}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ Here \mbox{\texttt{\mdseries\slshape c}} is a closed set of roots of some root system. We have that \mbox{\texttt{\mdseries\slshape c}} is the disjoint union of its symmetric part (consisting of all roots $a$ in \mbox{\texttt{\mdseries\slshape c}} such that $-a$ also lies in \mbox{\texttt{\mdseries\slshape c}}) and its special part (consisting of all roots $a$ in \mbox{\texttt{\mdseries\slshape c}} such that $-a$ does not lie in \mbox{\texttt{\mdseries\slshape c}}). This function returns a list of two entries. The first is the symmetric
+part of \mbox{\texttt{\mdseries\slshape c}}, the second is the special part of \mbox{\texttt{\mdseries\slshape c}}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@R:= RootSystem("F",4);|
+  <root system of type F4>
+  !gapprompt@gap>| !gapinput@c:= ClosedSubsets(R);;|
+  !gapprompt@gap>| !gapinput@DecompositionOfClosedSet( c[1005] );|
+  [ [ [ 0, 1, 2, 0 ], [ 0, -1, -2, 0 ] ], 
+    [ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 1, 1 ], [ 1, 1, 1, 1 ], 
+        [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], [ 1, 1, 2, 2 ], 
+        [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], [ 1, 2, 4, 2 ], 
+        [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ] ] ]
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{IsSpecialClosedSet}}
+\logpage{[ 5, 2, 11 ]}\nobreak
+\hyperdef{L}{X798DF4D67DE56EB1}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsSpecialClosedSet({\mdseries\slshape c})\index{IsSpecialClosedSet@\texttt{IsSpecialClosedSet}}
+\label{IsSpecialClosedSet}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ Here \mbox{\texttt{\mdseries\slshape c}} is a closed set of roots of some root system. This function returns \mbox{\texttt{\mdseries\slshape true}} is \mbox{\texttt{\mdseries\slshape c}} is special (that is, for all $a$ in \mbox{\texttt{\mdseries\slshape c}} we have that $-a$ does not lie in \mbox{\texttt{\mdseries\slshape c}}), otherwise it returns \mbox{\texttt{\mdseries\slshape false}}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@R:= RootSystem("F",4);|
+  <root system of type F4>
+  !gapprompt@gap>| !gapinput@c:= ClosedSubsets(R);;|
+  !gapprompt@gap>| !gapinput@IsSpecialClosedSet( c[1005] );|
+  false
+  !gapprompt@gap>| !gapinput@IsSpecialClosedSet( c[1006] );|
+  true
+  !gapprompt@gap>| !gapinput@Length( Filtered( c, IsSpecialClosedSet ) );|
+  3579
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{LieAlgebraOfClosedSet}}
+\logpage{[ 5, 2, 12 ]}\nobreak
+\hyperdef{L}{X7D31AA9780B054C1}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{LieAlgebraOfClosedSet({\mdseries\slshape L, c})\index{LieAlgebraOfClosedSet@\texttt{LieAlgebraOfClosedSet}}
+\label{LieAlgebraOfClosedSet}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ Here \mbox{\texttt{\mdseries\slshape L}} is a semisimple Lie algebra and \mbox{\texttt{\mdseries\slshape c}} is a closed set of roots of its root system. This function returns the
+subalgebra of \mbox{\texttt{\mdseries\slshape L}} spanned a the Cartan subalgebra of \mbox{\texttt{\mdseries\slshape L}} (the one relative to which the root system is taken) along with the root
+vectors corresponding to the roots in \mbox{\texttt{\mdseries\slshape c}}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@L:= SimpleLieAlgebra("F",4,Rationals);|
+  <Lie algebra of dimension 52 over Rationals>
+  !gapprompt@gap>| !gapinput@R:= RootSystem( L );|
+  <root system of rank 4>
+  !gapprompt@gap>| !gapinput@c:= ClosedSubsets(R);; |
+  !gapprompt@gap>| !gapinput@c[1005];|
+  [ [ 1, 0, 1, 0 ], [ 0, 1, 0, 1 ], [ 1, 0, 1, 1 ], [ 0, 0, 2, 1 ], 
+    [ 1, 1, 1, 1 ], [ 1, 1, 2, 1 ], [ 2, 0, 2, 1 ], [ 0, 1, 2, 2 ], 
+    [ 2, 1, 2, 1 ], [ 1, 1, 3, 2 ], [ 2, 1, 2, 2 ], [ 2, 1, 3, 2 ], 
+    [ 2, 1, 4, 2 ], [ 2, 1, 4, 3 ], [ 2, 2, 4, 3 ], [ 0, 0, -2, -1 ] ]
+  !gapprompt@gap>| !gapinput@K:= SubalgebraOfClosedSet( L, c[1005] );|
+  <Lie algebra of dimension 20 over Rationals>
+  !gapprompt@gap>| !gapinput@LeviMalcevDecomposition(K);|
+  [ <Lie algebra of dimension 3 over Rationals>, 
+    <two-sided ideal in <Lie algebra of dimension 20 over Rationals>, 
+        (dimension 17)> ]
 \end{Verbatim}
  }
 

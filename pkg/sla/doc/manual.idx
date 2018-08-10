@@ -44,3 +44,7 @@
 \indexentry{AreLinearlyEquivalentSubalgebras@\texttt  {AreLinearlyEquivalentSubalgebras}|hyperpage}{24}
 \indexentry{MakeDatabaseEntry@\texttt  {MakeDatabaseEntry}|hyperpage}{24}
 \indexentry{AddToDatabase@\texttt  {AddToDatabase}|hyperpage}{24}
+\indexentry{ClosedSubsets@\texttt  {ClosedSubsets}|hyperpage}{24}
+\indexentry{DecompositionOfClosedSet@\texttt  {DecompositionOfClosedSet}|hyperpage}{25}
+\indexentry{IsSpecialClosedSet@\texttt  {IsSpecialClosedSet}|hyperpage}{25}
+\indexentry{LieAlgebraOfClosedSet@\texttt  {LieAlgebraOfClosedSet}|hyperpage}{26}

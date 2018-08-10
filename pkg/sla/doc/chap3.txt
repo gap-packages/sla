@@ -50,7 +50,7 @@
   
   [1X3.1-1 NilpotentOrbit[101X
   
-  [29X[2XNilpotentOrbit[102X( [3XL[103X, [3Xwd[103X ) [32X operation
+  [33X[1;0Y[29X[2XNilpotentOrbit[102X( [3XL[103X, [3Xwd[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  is  a  simple Lie algebra and [3Xwd[103X a weighted Dynkin diagram (i.e., a
   list  containing  the  weights  of  the weighted Dynkin diagram, in the same
@@ -68,7 +68,7 @@
   
   [1X3.1-2 NilpotentOrbits[101X
   
-  [29X[2XNilpotentOrbits[102X( [3XL[103X ) [32X attribute
+  [33X[1;0Y[29X[2XNilpotentOrbits[102X( [3XL[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3XL[103X  is  a semisimple Lie algebra. This function returns the list of all
   nilpotent  orbits of [3XL[103X. If [3XL[103X is simple of classical type, then the nilpotent
@@ -92,14 +92,14 @@
   
   [1X3.1-3 WeightedDynkinDiagram[101X
   
-  [29X[2XWeightedDynkinDiagram[102X( [3Xo[103X ) [32X attribute
+  [33X[1;0Y[29X[2XWeightedDynkinDiagram[102X( [3Xo[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3Xo[103X  is  a  nilpotent  orbit;  this function returns its weighted Dynkin
   diagram.[133X
   
   [1X3.1-4 WeightedDynkinDiagram[101X
   
-  [29X[2XWeightedDynkinDiagram[102X( [3XL[103X, [3Xx[103X ) [32X method
+  [33X[1;0Y[29X[2XWeightedDynkinDiagram[102X( [3XL[103X, [3Xx[103X ) [32X method[133X
   
   [33X[0;0YHere [3XL[103X is a semisimple Lie algebra, and [3Xx[103X a nilpotent element. This function
   returns the weighted Dynkin diagram of the orbit containing [3Xx[103X.[133X
@@ -121,21 +121,21 @@
   
   [1X3.1-5 AmbientLieAlgebra[101X
   
-  [29X[2XAmbientLieAlgebra[102X( [3Xo[103X ) [32X attribute
+  [33X[1;0Y[29X[2XAmbientLieAlgebra[102X( [3Xo[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3Xo[103X is a nilpotent orbit; this function returns the Lie algebra it lives
   in.[133X
   
   [1X3.1-6 SemiSimpleType[101X
   
-  [29X[2XSemiSimpleType[102X( [3Xo[103X ) [32X attribute
+  [33X[1;0Y[29X[2XSemiSimpleType[102X( [3Xo[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3Xo[103X  is  a  nilpotent  orbit;  this function returns the type of the Lie
   algebra it lives in.[133X
   
   [1X3.1-7 SL2Triple[101X
   
-  [29X[2XSL2Triple[102X( [3Xo[103X ) [32X attribute
+  [33X[1;0Y[29X[2XSL2Triple[102X( [3Xo[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3Xo[103X  is  a nilpotent orbit; this function returns an sl_2-triple [22X(y,h,x)[122X
   corresponding  to  [3Xo[103X.  For  the  exceptional  types the [22Xx[122X is as in the paper
@@ -151,7 +151,7 @@
   
   [1X3.1-8 RandomSL2Triple[101X
   
-  [29X[2XRandomSL2Triple[102X( [3Xo[103X ) [32X operation
+  [33X[1;0Y[29X[2XRandomSL2Triple[102X( [3Xo[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3Xo[103X  is  a  nilpotent  orbit; this function returns a random sl_2-triple
   [22X(x,h,y)[122X corresponding to [3Xo[103X. This means that every call (potentially) returns
@@ -170,7 +170,7 @@
   
   [1X3.1-9 SL2Grading[101X
   
-  [29X[2XSL2Grading[102X( [3XL[103X, [3Xh[103X ) [32X operation
+  [33X[1;0Y[29X[2XSL2Grading[102X( [3XL[103X, [3Xh[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  is  a Lie algebra, and [3Xh[103X is an element of it, such that there is an
   sl_2  triple  of  which  it is the Cartan element (the system does not check
@@ -198,7 +198,7 @@
   
   [1X3.1-10 SL2Triple[101X
   
-  [29X[2XSL2Triple[102X( [3XL[103X, [3Xx[103X ) [32X operation
+  [33X[1;0Y[29X[2XSL2Triple[102X( [3XL[103X, [3Xx[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  is a simple Lie algebra, and [3Xx[103X is a nilpotent element of it. A list
   of  three elements is returned, forming an sl_2-triple, the last of which is
@@ -212,7 +212,7 @@
   
   [1X3.1-11 InducedNilpotentOrbits[101X
   
-  [29X[2XInducedNilpotentOrbits[102X( [3XL[103X ) [32X attribute
+  [33X[1;0Y[29X[2XInducedNilpotentOrbits[102X( [3XL[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3XL[103X  is  a  simple  Lie  algebra.  This function returns the list of all
   induced  nilpotent  orbits  of  [3XL[103X.  An  induced  orbit  is given by a record
@@ -243,7 +243,7 @@
   
   [1X3.1-12 RigidNilpotentOrbits[101X
   
-  [29X[2XRigidNilpotentOrbits[102X( [3XL[103X ) [32X attribute
+  [33X[1;0Y[29X[2XRigidNilpotentOrbits[102X( [3XL[103X ) [32X attribute[133X
   
   [33X[0;0YHere  [3XL[103X is a simple Lie algebra. This function returns the list of all rigid
   nilpotent orbits of [3XL[103X, [13Xexcept[113X the zero orbit (which is always rigid).[133X

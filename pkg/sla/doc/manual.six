@@ -40,11 +40,11 @@ entries :=
       "\033[1X\033[33X\033[0;-2YConstructing Semisimple Subalgebras\033[133X\033[\
 101X", "5.2", [ 5, 2, 0 ], 64, 21, "constructing semisimple subalgebras", 
       "X7CC8010B7F31B486" ], 
-  [ "Bibliography", "bib", [ "Bib", 0, 0 ], 1, 25, "bibliography", 
+  [ "Bibliography", "bib", [ "Bib", 0, 0 ], 1, 27, "bibliography", 
       "X7A6F98FD85F02BFE" ], 
-  [ "References", "bib", [ "Bib", 0, 0 ], 1, 25, "references", 
+  [ "References", "bib", [ "Bib", 0, 0 ], 1, 27, "references", 
       "X7A6F98FD85F02BFE" ], 
-  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 27, "index", "X83A0356F839C696F" ], 
+  [ "Index", "ind", [ "Ind", 0, 0 ], 1, 29, "index", "X83A0356F839C696F" ], 
   [ "\033[2XExtendedCartanMatrix\033[102X", "2.1-1", [ 2, 1, 1 ], 10, 5, 
       "extendedcartanmatrix", "X8122C42F7CCFC6ED" ], 
   [ "\033[2XCartanType\033[102X", "2.1-2", [ 2, 1, 2 ], 30, 5, "cartantype", 
@@ -139,5 +139,13 @@ entries :=
   [ "\033[2XMakeDatabaseEntry\033[102X", "5.2-8", [ 5, 2, 8 ], 239, 24, 
       "makedatabaseentry", "X7B1A01FE86A7718F" ], 
   [ "\033[2XAddToDatabase\033[102X", "5.2-8", [ 5, 2, 8 ], 239, 24, 
-      "addtodatabase", "X7B1A01FE86A7718F" ] ]
+      "addtodatabase", "X7B1A01FE86A7718F" ], 
+  [ "\033[2XClosedSubsets\033[102X", "5.2-9", [ 5, 2, 9 ], 271, 24, 
+      "closedsubsets", "X85A6B70B83A36495" ], 
+  [ "\033[2XDecompositionOfClosedSet\033[102X", "5.2-10", [ 5, 2, 10 ], 297, 
+      25, "decompositionofclosedset", "X7A3EAA637F94D973" ], 
+  [ "\033[2XIsSpecialClosedSet\033[102X", "5.2-11", [ 5, 2, 11 ], 320, 25, 
+      "isspecialclosedset", "X798DF4D67DE56EB1" ], 
+  [ "\033[2XLieAlgebraOfClosedSet\033[102X", "5.2-12", [ 5, 2, 12 ], 340, 26, 
+      "liealgebraofclosedset", "X7D31AA9780B054C1" ] ]
 );

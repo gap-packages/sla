@@ -52,7 +52,7 @@
 
 <h5>2.1-1 ExtendedCartanMatrix</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ExtendedCartanMatrix</code>( <var class="Arg">R</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ExtendedCartanMatrix</code>( <var class="Arg">R</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">R</var> is a root system. This function returns the extended Cartan matrix of <var class="Arg">R</var>. That is the Cartan matrix correponding to the lowest root (coming first), and the simple roots of <var class="Arg">R</var>.</p>
 
 <p>The output is a record with components <var class="Arg">ECM</var> (the extended Cartan matrix) and <var class="Arg">labels</var> (the labels of the corresponding Dynkin diagram; they are the integer coefficients of a linear dependency of the roots corresponding to the nodes).</p>
@@ -69,7 +69,7 @@ rec( ECM := [ [ 2, -1, 0, 0, 0 ], [ -1, 2, -1, 0, 0 ], [ 0, -1, 2, -2, 0 ],
 
 <h5>2.1-2 CartanType</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CartanType</code>( <var class="Arg">C</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CartanType</code>( <var class="Arg">C</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">C</var> is a Cartan matrix (i.e., an integer matrix with 2-s on the diagonal, non-positive entries otherwise, and there exists a diagonal integer matrix <var class="Arg">D</var> such that <var class="Arg">CD</var> is a positive definite symmetric matrix). This function returns a record with two components: <var class="Arg">types</var>, a list containing the types of the simple components of the corresponding root system, and <var class="Arg">enumeration</var>, a standard enumeration of the vertices of the Dynkin diagram of <var class="Arg">C</var>. So this can be used to construct isomorphisms of root systems.</p>
 
 
@@ -85,8 +85,8 @@ rec( types := [ [ "G", 2 ], [ "A", 2 ] ],
 
 <h5>2.1-3 WeylTransversal</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeylTransversal</code>( <var class="Arg">R</var>, <var class="Arg">inds</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeylTransversal</code>( <var class="Arg">R</var>, <var class="Arg">roots</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeylTransversal</code>( <var class="Arg">R</var>, <var class="Arg">inds</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; WeylTransversal</code>( <var class="Arg">R</var>, <var class="Arg">roots</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">R</var> is a root system, and <var class="Arg">inds</var> a list of indices of <em>positive</em> roots of <var class="Arg">R</var> that form a set of simple roots of a root subsystem of <var class="Arg">R</var> (the system does not check this). Here an index of a positive root is its position in the list <var class="Arg">PositiveRootsNF( R )</var>.</p>
 
 <p>This function returns a list of shortest representatives of the right cosets of the corresponding Weyl subgroup of the Weyl group of <var class="Arg">R</var>. The elements of the Weyl group are given as reduced expressions.</p>
@@ -109,9 +109,9 @@ rec( types := [ [ "G", 2 ], [ "A", 2 ] ],
 
 <h5>2.1-4 SizeOfWeylGroup</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">R</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">type</var> )</td><td class="tdright">( operation )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">X</var>, <var class="Arg">n</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">R</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">type</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SizeOfWeylGroup</code>( <var class="Arg">X</var>, <var class="Arg">n</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>In the first from <var class="Arg">R</var> is a root system. In the second form <var class="Arg">type</var> is a list of lists describing the type of a root system. For example: <var class="Arg">[["A",3],["B",5],["G",2]]</var>. In the third form <var class="Arg">X</var> is a letter (i.e., a string) and <var class="Arg">n</var> a positive integer, so that <var class="Arg"> Xn</var> is the type of a root system. In all cases the number of elements of the Weyl group is returned.</p>
 
 
@@ -133,14 +133,14 @@ rec( types := [ [ "G", 2 ], [ "A", 2 ] ],
 
 <h5>2.2-1 IsomorphismOfSemisimpleLieAlgebras</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismOfSemisimpleLieAlgebras</code>( <var class="Arg">L1</var>, <var class="Arg">L2</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismOfSemisimpleLieAlgebras</code>( <var class="Arg">L1</var>, <var class="Arg">L2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">L1</var> and <var class="Arg">L2</var> are two semisimple Lie algebras that are known to be isomorphic (i.e., they have the same type). This function returns an isomorphism.</p>
 
 <p><a id="X7866133B814EA2B2" name="X7866133B814EA2B2"></a></p>
 
 <h5>2.2-2 AdmissibleLattice</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AdmissibleLattice</code>( <var class="Arg">V</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AdmissibleLattice</code>( <var class="Arg">V</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">V</var> is a <em>simple</em> module over a semisimple Lie algebra. This function returns a basis of <var class="Arg">V</var> that spans an admissible lattice in <var class="Arg">V</var>. This means that for a root vector <span class="SimpleMath">x</span> of the acting Lie algebra the matrix <span class="SimpleMath">exp( mx )</span> is integral, where <span class="SimpleMath">mx</span> denotes the matrix of <span class="SimpleMath">x</span> relative to the admissible lattice.</p>
 
 
@@ -164,7 +164,7 @@ true
 
 <h5>2.2-3 DirectSumDecomposition</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DirectSumDecomposition</code>( <var class="Arg">V</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DirectSumDecomposition</code>( <var class="Arg">V</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">V</var> is a module over a semisimple Lie algebra; this function computes a list of sub-modules such that <var class="Arg">V</var> is their direct sum.</p>
 
 
@@ -186,7 +186,7 @@ true
 
 <h5>2.2-4 CharacteristicsOfStrata</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CharacteristicsOfStrata</code>( <var class="Arg">L</var>, <var class="Arg">hw</var> )</td><td class="tdright">( operation )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CharacteristicsOfStrata</code>( <var class="Arg">L</var>, <var class="Arg">hw</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
 <p>Here <var class="Arg">L</var> is a semisimple Lie algebra over a field of characteristic 0. Secondly, <var class="Arg">hw</var> is a dominant weight, represented as a list of non-negative integers (where the ordering of the fundamantal weights is given by the Cartan matrix of the root system of <var class="Arg">L</var>). Let <span class="SimpleMath">G</span> denote the semisimple algebraic group acting on the irreducible representation with highest weight <var class="Arg">hw</var>. Hesselink (<a href="chapBib.html#biBhesselink">[Hes79]</a>) defined a stratification of the nullcone relative to the action of <span class="SimpleMath">G</span>. Popov and Vinberg (<a href="chapBib.html#biBpovin">[VP89]</a>) have described this stratification in terms of characteristics, which are elements of a Cartan subalgebra of <var class="Arg">L</var>. To each characteristic there corresponds a stratum. This function is an implementation of an algorithm due to Popov (<a href="chapBib.html#biBpopov">[Pop03]</a>), for computing the characteristics of the strata. It returns a list of two lists. The first list contains the characteristics. The second list contains the dimensions of the corresponding strata. If the highest weight <var class="Arg">hw</var> defines the adjoint representation, then the characteristics of the strata are exactly the characteristics of the nilpotent orbits in <var class="Arg">L</var>. This means the following: let <span class="SimpleMath">h</span> be a characteristic, then there are <span class="SimpleMath">e,f</span> in <var class="Arg">L</var> such that the triple <span class="SimpleMath">h,e,f</span> satisfies the commutation relations of <span class="SimpleMath">mathfraksl_2</span>, and the elements <span class="SimpleMath">e</span> thus obtained are the representatives of the nilpotent <span class="SimpleMath">G</span>-orbits in <var class="Arg">L</var>.</p>
 
 

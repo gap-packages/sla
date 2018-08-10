@@ -9,7 +9,7 @@
   
   [1X2.1-1 ExtendedCartanMatrix[101X
   
-  [29X[2XExtendedCartanMatrix[102X( [3XR[103X ) [32X operation
+  [33X[1;0Y[29X[2XExtendedCartanMatrix[102X( [3XR[103X ) [32X operation[133X
   
   [33X[0;0YHere [3XR[103X is a root system. This function returns the extended Cartan matrix of
   [3XR[103X. That is the Cartan matrix correponding to the lowest root (coming first),
@@ -29,7 +29,7 @@
   
   [1X2.1-2 CartanType[101X
   
-  [29X[2XCartanType[102X( [3XC[103X ) [32X operation
+  [33X[1;0Y[29X[2XCartanType[102X( [3XC[103X ) [32X operation[133X
   
   [33X[0;0YHere [3XC[103X is a Cartan matrix (i.e., an integer matrix with 2-s on the diagonal,
   non-positive entries otherwise, and there exists a diagonal integer matrix [3XD[103X
@@ -49,8 +49,8 @@
   
   [1X2.1-3 WeylTransversal[101X
   
-  [29X[2XWeylTransversal[102X( [3XR[103X, [3Xinds[103X ) [32X operation
-  [29X[2XWeylTransversal[102X( [3XR[103X, [3Xroots[103X ) [32X operation
+  [33X[1;0Y[29X[2XWeylTransversal[102X( [3XR[103X, [3Xinds[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XWeylTransversal[102X( [3XR[103X, [3Xroots[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XR[103X  is a root system, and [3Xinds[103X a list of indices of [13Xpositive[113X roots of [3XR[103X
   that  form  a  set of simple roots of a root subsystem of [3XR[103X (the system does
@@ -80,9 +80,9 @@
   
   [1X2.1-4 SizeOfWeylGroup[101X
   
-  [29X[2XSizeOfWeylGroup[102X( [3XR[103X ) [32X operation
-  [29X[2XSizeOfWeylGroup[102X( [3Xtype[103X ) [32X operation
-  [29X[2XSizeOfWeylGroup[102X( [3XX[103X, [3Xn[103X ) [32X operation
+  [33X[1;0Y[29X[2XSizeOfWeylGroup[102X( [3XR[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSizeOfWeylGroup[102X( [3Xtype[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XSizeOfWeylGroup[102X( [3XX[103X, [3Xn[103X ) [32X operation[133X
   
   [33X[0;0YIn  the  first from [3XR[103X is a root system. In the second form [3Xtype[103X is a list of
   lists    describing    the   type   of   a   root   system.   For   example:
@@ -105,7 +105,7 @@
   
   [1X2.2-1 IsomorphismOfSemisimpleLieAlgebras[101X
   
-  [29X[2XIsomorphismOfSemisimpleLieAlgebras[102X( [3XL1[103X, [3XL2[103X ) [32X operation
+  [33X[1;0Y[29X[2XIsomorphismOfSemisimpleLieAlgebras[102X( [3XL1[103X, [3XL2[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL1[103X  and  [3XL2[103X  are  two  semisimple  Lie  algebras  that are known to be
   isomorphic  (i.e.,  they  have  the  same  type).  This  function returns an
@@ -113,7 +113,7 @@
   
   [1X2.2-2 AdmissibleLattice[101X
   
-  [29X[2XAdmissibleLattice[102X( [3XV[103X ) [32X operation
+  [33X[1;0Y[29X[2XAdmissibleLattice[102X( [3XV[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XV[103X  is  a  [13Xsimple[113X  module  over a semisimple Lie algebra. This function
   returns  a basis of [3XV[103X that spans an admissible lattice in [3XV[103X. This means that
@@ -139,7 +139,7 @@
   
   [1X2.2-3 DirectSumDecomposition[101X
   
-  [29X[2XDirectSumDecomposition[102X( [3XV[103X ) [32X operation
+  [33X[1;0Y[29X[2XDirectSumDecomposition[102X( [3XV[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XV[103X  is a module over a semisimple Lie algebra; this function computes a
   list of sub-modules such that [3XV[103X is their direct sum.[133X
@@ -160,7 +160,7 @@
   
   [1X2.2-4 CharacteristicsOfStrata[101X
   
-  [29X[2XCharacteristicsOfStrata[102X( [3XL[103X, [3Xhw[103X ) [32X operation
+  [33X[1;0Y[29X[2XCharacteristicsOfStrata[102X( [3XL[103X, [3Xhw[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  is  a  semisimple  Lie  algebra  over  a field of characteristic 0.
   Secondly,  [3Xhw[103X  is  a  dominant weight, represented as a list of non-negative
