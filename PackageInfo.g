@@ -27,7 +27,7 @@ Status := "accepted",
 CommunicatedBy := "Leonard Soicher (QMUL)",
 AcceptDate := "01/2016",
 README_URL := 
-  "http://www.science.unitn.it/~degraaf/sla/README.sla",
+  "http://www.science.unitn.it/~degraaf/sla/README.md",
 PackageInfoURL := 
   "http://www.science.unitn.it/~degraaf/sla/PackageInfo.g",
 AbstractHTML := "The package <span class=\"pkgname\">SLA</span> contains \
