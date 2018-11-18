@@ -7,10 +7,8 @@ SetPackageInfo( rec(
 PackageName := "SLA",
 Subtitle := "Computing with simple Lie algebras",        
 Version := "1.5",
-Date := "25/07/2018",
-ArchiveURL := Concatenation("http://www.science.unitn.it/~degraaf/sla/sla-",
-                            ~.Version),
-ArchiveFormats := ".tar.gz",
+Date := "25/07/2018", # this is in dd/mm/yyyy format
+
 Persons := [
   rec(
   LastName := "de Graaf",
@@ -26,13 +24,23 @@ Persons := [
 Status := "accepted",
 CommunicatedBy := "Leonard Soicher (QMUL)",
 AcceptDate := "01/2016",
-README_URL := 
-  "http://www.science.unitn.it/~degraaf/sla/README.md",
-PackageInfoURL := 
-  "http://www.science.unitn.it/~degraaf/sla/PackageInfo.g",
+
+PackageWWWHome  := "https://gap-packages.github.io/sla/",
+README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
+PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
+SourceRepository := rec(
+    Type := "git",
+    URL := "https://github.com/gap-packages/sla",
+),
+IssueTrackerURL := Concatenation( ~.SourceRepository.URL, "/issues" ),
+ArchiveURL      := Concatenation( ~.SourceRepository.URL,
+                                 "/releases/download/v", ~.Version,
+                                 "/sla-", ~.Version ),
+ArchiveFormats := ".tar.gz",
+
 AbstractHTML := "The package <span class=\"pkgname\">SLA</span> contains \
                  functionality for working with simple Lie algebras,",
-PackageWWWHome := "http://www.science.unitn.it/~degraaf/sla.html",
+
 Dependencies := rec(
   GAP := ">=4.3",
   NeededOtherPackages:= [["quagroup", ">=1.3" ]],                 
