@@ -5,7 +5,7 @@
 
 SetPackageInfo( rec(
 PackageName := "SLA",
-Subtitle := "a package for doing computations with simple Lie algebras",        
+Subtitle := "Computing with simple Lie algebras",        
 Version := "1.5",
 Date := "25/07/2018",
 ArchiveURL := Concatenation("http://www.science.unitn.it/~degraaf/sla/sla-",
@@ -55,5 +55,18 @@ Autoload := false,
 # the banner
 #BannerString := 
 #"     SLA --- computations with Simple Lie Algebras \n",
-Keywords := ["simple Lie algebras","representation tehory"]
+Keywords := ["simple Lie algebras","representation theory"],
+
+AutoDoc := rec(
+    TitlePage := rec(
+        Version := Concatenation( "Version ", ~.Version ),
+        Abstract := """
+            This package provides functions for computing with various
+            aspects of the theory of simple Lie algebras in characteristic
+            zero.
+            """,
+        Copyright := "&copyright; 2013-2018 Willem de Graaf",
+    ),
+),
+
 ));

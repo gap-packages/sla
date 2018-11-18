@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 
 <!DOCTYPE Book SYSTEM "gapdoc.dtd"
@@ -9,38 +9,7 @@
 
 <Book Name="SLA">
 
-<TitlePage>
-  <Title>SLA</Title>
-  <Subtitle>Simple Lie Algebras</Subtitle>
-  <Version>Version 1.5</Version>
-
-<Author>
-  Willem de Graaf
-  <Email>degraaf@science.unitn.it</Email>
-  <Homepage>http://www.science.unitn.it/~degraaf/</Homepage>
-          <Address>
-    	    Dipartimento di Matematica<Br/>
-Via Sommarive 14<Br/>
-I-38123 Povo (Trento)<Br/>
-Italy<Br/>
-       </Address> 
-  </Author>
-
-  <Date>July 2018</Date>
-
-
-
-<Abstract>
-This package provides functions for computing with various aspects of
-the theory of simple Lie algebras in characteristic zero.
-</Abstract>
-
-<Copyright>
-  &copyright; 2018 Willem de Graaf 
-</Copyright>
-  
-
-</TitlePage>
+<#Include SYSTEM "title.xml">
 
 <TableOfContents/>
 
