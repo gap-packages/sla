@@ -42,9 +42,9 @@ AbstractHTML := "The package <span class=\"pkgname\">SLA</span> contains \
                  functionality for working with simple Lie algebras,",
 
 Dependencies := rec(
-  GAP := ">=4.3",
-  NeededOtherPackages:= [["quagroup", ">=1.3" ]],                 
-  SuggestedOtherPackages := [ ["GAPDoc", ">= 1.0"] ],
+  GAP := ">=4.8",
+  NeededOtherPackages:= [["quagroup", ">=1.8" ]],
+  SuggestedOtherPackages := [],
   ExternalConditions := []
 ),
 PackageDoc := rec(
