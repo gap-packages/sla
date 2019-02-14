@@ -7,7 +7,8 @@ SetPackageInfo( rec(
 PackageName := "SLA",
 Subtitle := "Computing with simple Lie algebras",        
 Version := "1.5dev",
-Date := "25/07/2018", # this is in dd/mm/yyyy format
+Date := "25/07/2018", # dd/mm/yyyy format
+License := "GPL-2.0-or-later",
 
 Persons := [
   rec(
