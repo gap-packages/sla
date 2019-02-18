@@ -2,7 +2,6 @@
 ##
 #W    init.g             share package SLA           Willem de Graaf
 ##
-##    
 ##
 
 # read declarations.

@@ -1,4 +1,4 @@
-# read the code. 
+# read the code.
 ReadPackage( "sla", "gap/asilo.gi");
 ReadPackage( "sla", "gap/sheets.g" );
 ReadPackage( "sla", "gap/ssubalg.gi");

@@ -1,11 +1,11 @@
 #############################################################################
-##  
+##
 ##  PkgInfo file for the package SLA               Willem de Graaf
-##  
+##
 
 SetPackageInfo( rec(
 PackageName := "SLA",
-Subtitle := "Computing with simple Lie algebras",        
+Subtitle := "Computing with simple Lie algebras",
 Version := "1.5dev",
 Date := "25/07/2018", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
@@ -69,7 +69,7 @@ AvailabilityTest := ReturnTrue,
 Autoload := false,
 
 # the banner
-#BannerString := 
+#BannerString :=
 #"     SLA --- computations with Simple Lie Algebras \n",
 Keywords := ["simple Lie algebras","representation theory"],
 
