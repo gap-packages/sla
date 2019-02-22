@@ -450,12 +450,6 @@ gap> WeightedDynkinDiagram( L, L.1+L.9 );
 gap> L:= SimpleLieAlgebra("E",6,Rationals );;
 gap> WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );
 [ 0, 0, 0, 1, 0, 0 ]
-gap> time;
-2048
-gap> WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );
-[ 0, 0, 0, 1, 0, 0 ]
-gap> time;
-64
 </Example>
 
 </Description>
@@ -827,11 +821,10 @@ as in the one-argument version.
 
 <Example>
 gap> f:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   
-gap> s:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );; time;
+gap> s:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;
 #I  Selected carrier algebra method.
 #I  Constructed 123 root bases of possible flat subalgebras, now checking them...
 #I  Obtained 30 Cartan elements, weeding out equivalent copies...
-776
 gap> Length(s);
 10
 gap> s[4];
@@ -910,15 +903,11 @@ gap> sl2:= NilpotentOrbitsOfThetaRepresentation(h);;
 #I  Selected carrier algebra method.
 #I  Constructed 2782 root bases of possible flat subalgebras, now checking them...
 #I  Obtained 58 Cartan elements, weeding out equivalent copies...
-gap> time;
-117792
 gap> Length(sl2);
 27
 gap> L:= Source(h);;                    
 gap> r:= ClosureDiagram( L, h, sl2 );;  
 #I  All (non-) inclusions proved!
-gap> time;
-329248
 gap> r.diag;
 [ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], [ 7, 5 ], 
 [ 8, 4 ], [ 9, 3 ], [ 9, 6 ], [ 10, 6 ], [ 10, 7 ], [ 11, 4 ], [ 11, 7 ], [ 12, 7 ], 
@@ -1120,8 +1109,7 @@ under the adjoint group).
 
 <Example>
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
-gap> K:= RegularSemisimpleSubalgebras( L );; time;
-1664
+gap> K:= RegularSemisimpleSubalgebras( L );;
 gap> Length(K);
 19
 gap> K[5];
@@ -1383,8 +1371,7 @@ such a list, or its negative, lies in the attribute
 <Example>
 gap> R:= RootSystem("F",4);
 &lt;root system of type F4>
-gap> c:= ClosedSubsets(R);; time;
-10812
+gap> c:= ClosedSubsets(R);;
 gap> Length(c);
 4844
 gap> c[1005];
