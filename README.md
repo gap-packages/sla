@@ -9,12 +9,12 @@ algebras in GAP (base fields are of characteristic 0).
 To install the package SLA move the file `sla-XX.tar.gz`
 (or any other archive containing it) into the `pkg` directory.
 Usually this will be the `pkg` subdirectory in your GAP4 installation.
-However, it is also possible to have a `pkg` subdirectory in a 
-different place, see the section `Installing GAP Packages` of the 
+However, it is also possible to have a `pkg` subdirectory in a
+different place, see the section `Installing GAP Packages` of the
 GAP4 reference manual for more information.
 Then simply unpack `sla-XX.tar.gz` and your installation is
 complete.
-In GAP issue 
+In GAP issue
 
     gap> LoadPackage( "sla" );
 
