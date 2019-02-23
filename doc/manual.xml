@@ -118,8 +118,8 @@ So this can be used to construct isomorphisms of root systems.
 gap> C:= [[2,0,-3,0],[0,2,0,-1],[-1,0,2,0],[0,-1,0,2]];
 [ [ 2, 0, -3, 0 ], [ 0, 2, 0, -1 ], [ -1, 0, 2, 0 ], [ 0, -1, 0, 2 ] ]
 gap> CartanType(C);
-rec( types := [ [ "G", 2 ], [ "A", 2 ] ], 
-  enumeration := [ [ 3, 1 ], [ 2, 4 ] ] )
+rec( enumeration := [ [ 3, 1 ], [ 2, 4 ] ], 
+  types := [ [ "G", 2 ], [ "A", 2 ] ] )
 </Example>
 
 </Description>
@@ -259,7 +259,7 @@ gap> DirectSumDecomposition( W );
   &lt;left-module over &lt;Lie algebra of dimension 14 over Rationals>>, 
   &lt;left-module over &lt;Lie algebra of dimension 14 over Rationals>> ]
 gap> List( last, Dimension );
-[ 14, 7, 1, 27 ]
+[ 27, 7, 14, 1 ]
 </Example>
 
 
@@ -417,7 +417,7 @@ gap> Length(orbs);
 gap> L:= SimpleLieAlgebra("B",4,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;            
 gap> OrbitPartition( orbs[10] );
-[ 5, 2, 2 ]
+[ 5, 3, 1 ]
 </Example>
 
 </Description>
@@ -515,8 +515,8 @@ gap> RandomSL2Triple( orbs[10] );
 [ (3)*v.49+(3)*v.50+v.51+(4)*v.59, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
     8)*v.77+(4)*v.78, v.13+v.14+v.15+v.23 ]
 gap> RandomSL2Triple( orbs[10] );
-[ (3)*v.50+(3)*v.53+v.54+(4)*v.57, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
-    8)*v.77+(4)*v.78, v.14+v.17+v.18+v.21 ]
+[ (3)*v.49+(4)*v.54+(3)*v.56+v.57, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
+    8)*v.77+(4)*v.78, v.13+v.18+v.20+v.21 ]
 </Example>
 </Description>
 </ManSection>
@@ -541,7 +541,7 @@ last list contains a basis of the zero component.
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;
 gap> sl2:= RandomSL2Triple( orbs[6] );
-[ v.36+(2)*v.40+(2)*v.42, (3)*v.49+(4)*v.50+(6)*v.51+(8)*v.52, v.12+v.16+v.18 
+[ (2)*v.37+(2)*v.39+v.41, (3)*v.49+(4)*v.50+(6)*v.51+(8)*v.52, v.13+v.15+v.17 
  ]
 gap> SL2Grading( L, sl2[2] );
 [ [ [ v.3, v.5, v.7, v.8, v.9, v.11 ], 
@@ -604,7 +604,7 @@ gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> s:= InducedNilpotentOrbits(L);;
 gap> s[19];
 rec( norbit := &lt;nilpotent orbit in Lie algebra of type E6>, 
-sheetdiag := [ 2, 0, 0, 1, 0, 2 ] )
+  sheetdiag := [ 2, 0, 0, 1, 0, 2 ] )
 gap> WeightedDynkinDiagram( s[19].norbit );
 [ 0, 0, 0, 2, 0, 0 ]
 </Example>
@@ -756,8 +756,8 @@ define the automorphism.
 gap> f:= FiniteOrderOuterAutomorphisms( "A", 5, 4, 2 );;
 gap> r:= KacDiagram( f[1] );
 rec( 
-  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], [ 0, 0, -2, 2 
-         ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )
+  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], 
+      [ 0, 0, -2, 2 ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )
 gap> r.labels*r.CM;      
 [ 0, 0, 0, 0 ]
 </Example>
@@ -834,10 +834,10 @@ gap> NilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );
 #I  Selected Weyl orbit method.
 #I  Constructed a Weyl transversal of 72 elements.
 #I  Obtained 5 Cartan elements, weeding out equivalent copies...
-[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.29+v.30+v.31 ], 
-  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.19+v.30 ], 
+[ [ v.64+v.65+v.69, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.28+v.29+v.33 ], 
+  [ (2)*v.60+(2)*v.63, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.24+v.27 ], 
   [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
       v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
 </Example>
@@ -909,23 +909,24 @@ gap> L:= Source(h);;
 gap> r:= ClosureDiagram( L, h, sl2 );;  
 #I  All (non-) inclusions proved!
 gap> r.diag;
-[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], [ 7, 5 ], 
-[ 8, 4 ], [ 9, 3 ], [ 9, 6 ], [ 10, 6 ], [ 10, 7 ], [ 11, 4 ], [ 11, 7 ], [ 12, 7 ], 
-[ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 11 ], [ 14, 12 ], [ 15, 6 ], [ 16, 8 ], 
-[ 16, 11 ], [ 17, 13 ], [ 17, 16 ], [ 18, 13 ], [ 18, 15 ], [ 19, 10 ], [ 19, 12 ], 
-[ 19, 15 ], [ 20, 14 ], [ 20, 16 ], [ 21, 9 ], [ 21, 15 ], [ 22, 14 ], [ 22, 18 ], 
-[ 22, 19 ], [ 23, 18 ], [ 23, 21 ], [ 24, 17 ], [ 24, 18 ], [ 25, 20 ], [ 25, 22 ], 
-[ 25, 24 ], [ 26, 22 ], [ 26, 23 ], [ 27, 23 ], [ 27, 24 ] ]
-# Now we do the adjoint representation of the Lie algebra of type F4:
+[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], 
+  [ 7, 5 ], [ 8, 4 ], [ 9, 4 ], [ 9, 7 ], [ 10, 6 ], [ 10, 7 ], [ 11, 3 ], 
+  [ 11, 6 ], [ 12, 7 ], [ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 9 ], 
+  [ 14, 12 ], [ 15, 8 ], [ 15, 9 ], [ 16, 6 ], [ 17, 10 ], [ 17, 12 ], 
+  [ 17, 16 ], [ 18, 13 ], [ 18, 16 ], [ 19, 13 ], [ 19, 15 ], [ 20, 11 ], 
+  [ 20, 16 ], [ 21, 14 ], [ 21, 17 ], [ 21, 18 ], [ 22, 14 ], [ 22, 15 ], 
+  [ 23, 18 ], [ 23, 20 ], [ 24, 18 ], [ 24, 19 ], [ 25, 21 ], [ 25, 22 ], 
+  [ 25, 24 ], [ 26, 23 ], [ 26, 24 ], [ 27, 21 ], [ 27, 23 ] ]
+gap> # Now we do the adjoint representation of the Lie algebra of type F4:
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
 gap> o:= NilpotentOrbits(L);;
 gap> sl2:= List( o, SL2Triple );;
 gap> r:= ClosureDiagram( L, [0,0,0,0], sl2 );;      
 #I  All (non-) inclusions proved!
 gap> r.diag;
-[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 5 ], [ 6, 4 ], [ 7, 6 ], [ 8, 7 ], 
-  [ 9, 7 ], [ 10, 9 ], [ 10, 8 ], [ 11, 8 ], [ 12, 10 ], [ 13, 12 ], [ 13, 11 ], 
-  [ 14, 13 ], [ 15, 14 ] ]
+[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 4 ], [ 6, 5 ], [ 7, 6 ], 
+  [ 8, 7 ], [ 9, 7 ], [ 10, 8 ], [ 10, 9 ], [ 11, 8 ], [ 12, 10 ], 
+  [ 13, 11 ], [ 13, 12 ], [ 14, 13 ], [ 15, 14 ] ]
 </Example>
 
 </Description>
@@ -969,8 +970,8 @@ gap> L:= Source(h);
 &lt;Lie algebra of dimension 52 over CF(5)>
 gap> r:=CarrierAlgebra( L, h, sl2[1][3] );   
 rec( g0 := [ v.49+(2)*v.50+(2)*v.51+(3)*v.52, v.50+(1/2)*v.51+v.52 ], 
-gp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ], 
-gn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ] )
+  gn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ], 
+  gp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ] )
 gap> K:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );
 &lt;Lie algebra over CF(5), with 10 generators>
 gap> SemiSimpleType( K );
@@ -1003,7 +1004,7 @@ gap> f:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;
 gap> c:= CartanSubspace( f[3] ); 
 &lt;vector space of dimension 1 over CF(3)>
 gap> BasisVectors( Basis( c ) );
-[ v.1+v.5+v.12 ]
+[ v.1+v.2+v.10 ]
 </Example>
 
 </Description>
@@ -1198,7 +1199,6 @@ gap> g[1];
 [ 12, 1 ]
 
 # Find the maximal semisimple subalgebras:
-
 gap> m:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );
 [ 13, 35, 36, 37, 41, 42, 43, 44 ]
 gap> List( sub{i}, SemiSimpleType );                
@@ -1231,8 +1231,8 @@ gap> g:= InclusionsGraph( "C3" );
   [ 13, 3 ], [ 8, 4 ], [ 13, 4 ], [ 9, 5 ], [ 12, 5 ], [ 12, 6 ], [ 13, 6 ], 
   [ 0, 7 ], [ 0, 8 ], [ 15, 9 ], [ 9, 10 ], [ 14, 10 ], [ 14, 11 ], 
   [ 15, 12 ], [ 0, 13 ], [ 15, 14 ], [ 0, 15 ] ]
-# there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the
-# second algebra is contained in the 14-th.
+gap> # there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the
+gap> # second algebra is contained in the 14-th.
 gap> L:= s.liealg;
 &lt;Lie algebra of dimension 21 over Rationals>
 gap> sub:= s.subalgs;;
@@ -1339,14 +1339,14 @@ gap> d:= MakeDatabaseEntry( r );;
 gap> PrintTo( "A2B2", "d:= ",d,";\n");
 </Example>
 
-<Example>
+<Log>
 gap> Read("A2B2");
 gap> AddToDatabase( d );
 gap> SSSTypes();
 [ "A1", "A2", "B2", "G2", "A3", "B3", "C3", "A4", "B4", "C4", "D4", "F4", 
   "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6", "E6", "A7", "B7", "C7", 
   "D7", "E7", "A8", "B8", "C8", "D8", "E8", "A2 B2" ]
-</Example>
+</Log>
 
 
 </Description>

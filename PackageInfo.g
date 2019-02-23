@@ -66,11 +66,7 @@ PackageDoc := rec(
 ),
 
 AvailabilityTest := ReturnTrue,
-Autoload := false,
-
-# the banner
-#BannerString :=
-#"     SLA --- computations with Simple Lie Algebras \n",
+TestFile := "tst/testall.g",
 Keywords := ["simple Lie algebras","representation theory"],
 
 AutoDoc := rec(
