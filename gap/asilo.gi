@@ -580,3 +580,80 @@ end;
    return Basis( V, bas );
   
 end ); 
+
+
+############################ functions for Weyl groups as perm groups ######
+
+InstallMethod( WeylGroupAsPermGroup,
+"for a root system", true, [ IsRootSystem ], 0,
+
+function( R )
+
+    local W;
+
+    W:= Group( SLAfcts.perms(R) );
+    W!.rootSystem:= R;
+    return W; 
+
+end );
+
+InstallMethod( ApplyWeylPermToWeight, 
+"for a root system a permutation and a list", true, 
+[ IsRootSystem, IsPerm, IsList ], 0,
+
+function( R, p, lam )
+
+    local W, sim, cf, pr, N, im, i, j;
+
+    if p = () then return lam; fi;
+
+    W:= WeylGroupAsPermGroup( R );
+    if not IsBound( W!.wtSpace ) then
+       sim:= SimpleRootsAsWeights(R);
+       W!.wtSpace:= Basis( VectorSpace( Rationals, sim ), sim );
+    fi;
+    cf:= Coefficients( W!.wtSpace, lam );
+    
+    pr:= PositiveRootsAsWeights( R );
+    N:= Length(pr);
+    im:= 0*lam;
+    for i in [1..Length(cf)] do
+        j:= i^p;
+        if j <= N then
+           im:= im + cf[i]*pr[j];
+        else
+           im:= im - cf[i]*pr[j-N];
+        fi;
+    od;
+
+    return im;
+
+end );
+
+InstallMethod( WeylWordAsPerm,
+"for root system and a list", true, [ IsRootSystem, IsList ], 0,
+
+function( R, u )
+
+    local W, p, v;
+
+    if Length(u) = 0 then return (); fi;
+    W:= WeylGroupAsPermGroup(R);
+    p:= GeneratorsOfGroup(W);
+    v:= Reversed(u);
+    return Product( v, i -> p[i] );
+
+end );
+
+InstallMethod( PermAsWeylWord,
+"for a root system and a permutation", true, [ IsRootSystem, IsPerm ], 0,
+
+function( R, p )
+
+    local rho, im;
+
+    rho:= List( CartanMatrix(R), i -> 1 );
+    im:= ApplyWeylPermToWeight( R, p, rho );
+    return ConjugateDominantWeightWithWord( WeylGroup(R), im )[2];
+
+end );
