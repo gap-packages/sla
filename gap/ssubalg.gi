@@ -824,7 +824,7 @@ SLAfcts.semsim:= function(s,H,n0,rts,Q,B,ipmat)
 
 end;
 
-SLAfcts.normaliser:= function( S, n0, Q )
+SLAfcts.normaliser_ofclset:= function( S, n0, Q )
                                 # all a such that a+b in S for all b in S
                                 # if a+b is a root; assume S closed...
                                 # we return the part that is not in S
@@ -1014,7 +1014,7 @@ function(R)
                     pos:= Position( S, j );
                     RemoveSet( T, j );
 
-                    N:= SLAfcts.normaliser( T, n0, Q );
+                    N:= SLAfcts.normaliser_ofclset( T, n0, Q );
 
                     vecs:= [ ];
                     d0:= Sum( prw{T} );
