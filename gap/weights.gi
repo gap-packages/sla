@@ -31,6 +31,48 @@ function( L, K )
 end );
 
 
+InstallOtherMethod( ProjectionMatrix,
+"for two semisimple Lie algebras", true, [ IsLieAlgebra, IsLieAlgebra, IsList ], 0,
+
+function( L, K, cc )
+
+    local H, HK, N, K0, hK, hL, b;
+
+    H:= CartanSubalgebra(L);
+    HK:= Intersection( H, K );
+
+    N:= LieNormalizer( K, HK );
+    if N <> HK then
+       Error("The Cartan subalgebras do not match.");
+    fi;
+
+    if not ForAll( cc, x -> x in H ) then
+       Error("The toral elements do noy lie in the Cartan.");
+    fi;
+
+    if not HasCartanSubalgebra(K) then
+       K0:= K;
+       SetCartanSubalgebra(K0,HK);
+    elif  CartanSubalgebra(K) <> HK then
+       K0:= Subalgebra( L, BasisVectors( Basis(K) ), "basis" );
+       SetCartanSubalgebra(K0,HK);
+    else
+       K0:= K;
+    fi;
+
+    hK:= Concatenation( CanonicalGenerators( RootSystem(K0) )[3], cc );
+    hL:= CanonicalGenerators( RootSystem(L) )[3];
+
+    b:= Basis( Subspace( L, hL ), hL );
+    
+    return List( hK, x -> Coefficients( b, x ) );
+    
+
+end );
+
+
+
+
 InstallMethod( Branching,
 "for two semisimple Lie algebras and a weight", true, 
 [ IsLieAlgebra, IsLieAlgebra, IsList ], 0,
@@ -121,6 +163,105 @@ function( L, K, wt )
     return [ww,mm];
 
 end );
+
+
+InstallOtherMethod( Branching,
+"for two semisimple Lie algebras and a weight", true, 
+[ IsLieAlgebra, IsLieAlgebra, IsList, IsList ], 0,
+
+function( L, K, cc, wt )
+
+
+    local P, ch, R, W, w0, m0, i, o, mu, pos, S, sim, b, ord, ww, mm, mult,
+          w, isg, semsimrk;
+
+   
+
+    P:= ProjectionMatrix( L, K, cc );
+    semsimrk:= Dimension( CartanSubalgebra(K) );
+
+    ch:= DominantCharacter( L, wt );
+    R:= RootSystem(L);
+    W:= WeylGroup(R);
+    w0:= [ ]; m0:= [ ];
+    for i in [1..Length(ch[1])] do
+        o:= WeylOrbitIterator( W, ch[1][i] );
+        while not IsDoneIterator(o) do
+             mu:= P*NextIterator( o );
+             if ForAll( [1..semsimrk], k -> mu[k] >= 0 ) then
+                pos:= Position( w0, mu );
+                if pos = fail then
+                   Add( w0, mu );
+                   Add( m0, ch[2][i] );
+                else
+                   m0[pos]:= m0[pos]+ch[2][i];
+                fi;
+             fi;
+        od;
+    od;
+
+    S:= RootSystem(K);
+    sim:= SimpleRootsAsWeights(S);
+    b:= Basis( VectorSpace( Rationals, sim ), sim );
+    
+    ord:= function( mu, nu )
+
+        # true if mu < nu
+
+        local cf, mu0, nu0;
+
+        mu0:= mu{[1..semsimrk]};
+        nu0:= nu{[1..semsimrk]};	
+        if mu0 = nu0 then return fail; fi;
+        cf:= Coefficients( b, nu0-mu0 );
+        if ForAll( cf, IsInt ) then
+           if ForAll( cf, x -> x >= 0 ) then
+              return true;
+           elif ForAll( cf, x -> x <= 0 ) then
+              return false;
+           fi;
+        fi;
+
+        return fail;
+
+    end;
+
+    ww:=[ ]; mm:= [ ];
+
+    while Length(w0) > 0 do
+
+        # look for a maximum in w0...
+
+        w:= w0[1];
+        mult:= m0[1];
+        for i in [1..Length(w0)] do
+            isg:= ord( w, w0[i] );
+            if isg <> fail and isg then
+                 w:= w0[i]; mult:= m0[i];
+            fi;
+        od;
+
+        Add( ww, w ); Add( mm, mult );
+        ch:= DominantCharacter( K, w{[1..semsimrk]} );
+        for i in [1..Length(ch[1])] do
+	    mu:= Concatenation( ch[1][i], w{[semsimrk+1..Length(w)]} );
+            pos:= Position( w0, mu );
+            m0[pos]:= m0[pos] - mult*ch[2][i];
+        od;
+        for i in [1..Length(w0)] do
+            if m0[i] = 0 then
+               Unbind( m0[i] );
+               Unbind( w0[i] );
+            fi;
+        od;
+        m0:= Filtered( m0, x -> IsBound(x) );
+        w0:= Filtered( w0, x -> IsBound(x) );
+    od;
+
+    return [ww,mm];
+
+end );
+
 
 
 
