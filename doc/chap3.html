@@ -86,7 +86,7 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("B",4,Rationals);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">orbs:= NilpotentOrbits(L);;            </span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">OrbitPartition( orbs[10] );</span>
-[ 5, 2, 2 ]
+[ 5, 3, 1 ]
 </pre></div>
 
 <p><a id="X804830757E5971E9" name="X804830757E5971E9"></a></p>
@@ -111,12 +111,6 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",6,Rationals );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );</span>
 [ 0, 0, 0, 1, 0, 0 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">time;</span>
-2048
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );</span>
-[ 0, 0, 0, 1, 0, 0 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">time;</span>
-64
 </pre></div>
 
 <p><a id="X7F2B6308785707B9" name="X7F2B6308785707B9"></a></p>
@@ -164,8 +158,8 @@
 [ (3)*v.49+(3)*v.50+v.51+(4)*v.59, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
     8)*v.77+(4)*v.78, v.13+v.14+v.15+v.23 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RandomSL2Triple( orbs[10] );</span>
-[ (3)*v.50+(3)*v.53+v.54+(4)*v.57, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
-    8)*v.77+(4)*v.78, v.14+v.17+v.18+v.21 ]
+[ (3)*v.49+(4)*v.54+(3)*v.56+v.57, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
+    8)*v.77+(4)*v.78, v.13+v.18+v.20+v.21 ]
 </pre></div>
 
 <p><a id="X8029297A7C3372E9" name="X8029297A7C3372E9"></a></p>
@@ -180,7 +174,7 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("F",4,Rationals);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">orbs:= NilpotentOrbits(L);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl2:= RandomSL2Triple( orbs[6] );</span>
-[ v.36+(2)*v.40+(2)*v.42, (3)*v.49+(4)*v.50+(6)*v.51+(8)*v.52, v.12+v.16+v.18 
+[ (2)*v.37+(2)*v.39+v.41, (3)*v.49+(4)*v.50+(6)*v.51+(8)*v.52, v.13+v.15+v.17 
  ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SL2Grading( L, sl2[2] );</span>
 [ [ [ v.3, v.5, v.7, v.8, v.9, v.11 ], 
@@ -219,7 +213,7 @@
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= InducedNilpotentOrbits(L);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s[19];</span>
 rec( norbit := &lt;nilpotent orbit in Lie algebra of type E6&gt;, 
-sheetdiag := [ 2, 0, 0, 1, 0, 2 ] )
+  sheetdiag := [ 2, 0, 0, 1, 0, 2 ] )
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WeightedDynkinDiagram( s[19].norbit );</span>
 [ 0, 0, 0, 2, 0, 0 ]
 </pre></div>

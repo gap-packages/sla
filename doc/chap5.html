@@ -81,7 +81,8 @@
 <h5>5.1-2 Branching</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Branching</code>( <var class="Arg">L</var>, <var class="Arg">K</var>, <var class="Arg">hw</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> and <var class="Arg">K</var> are as in the previous function, and <var class="Arg">hw</var> is the highest weight of an irreducible <var class="Arg">L</var>-module. This function computes the splitting of the module when seen as a <var class="Arg">K</var>-module. Returned is a list of two lists: the first list contains the highest weights of the modules involved, the second list contains their multiplicities.</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Branching</code>( <var class="Arg">L</var>, <var class="Arg">K</var>, <var class="Arg">cc</var>, <var class="Arg">hw</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">L</var> and <var class="Arg">K</var> are as in the previous function, and <var class="Arg">hw</var> is the highest weight of an irreducible <var class="Arg">L</var>-module. This function computes the splitting of the module when seen as a <var class="Arg">K</var>-module. Returned is a list of two lists: the first list contains the highest weights of the modules involved, the second list contains their multiplicities. In the second form the subalgebra is reductive rather than semisimple. Here <var class="Arg">K</var> is again a semisimple subalgebra, and <var class="Arg">cc</var> is a list of toral elements centralizing <var class="Arg">K</var>. These toral elements must lie in the given Cartan subalgebra of <var class="Arg">L</var>. The reductive subalgebra is the direct sum of <var class="Arg">K</var> and the subalgebra spanned by the elements of <var class="Arg">cc</var>. The output is the same as in the first form. However, the last <span class="SimpleMath">t</span> coordinates of the weights give the eigenvalues of the toral elements in <var class="Arg">cc</var> on the irreducible modules.</p>
 
 
 <div class="example"><pre>
@@ -93,6 +94,22 @@
       [ 0, 0, 1, 0, 1, 0, 0 ], [ 1, 0, 0, 1, 0, 0, 0 ], 
       [ 0, 1, 0, 0, 0, 1, 0 ], [ 0, 0, 0, 0, 0, 0, 1 ], 
       [ 0, 0, 1, 0, 0, 0, 0 ] ], [ 1, 1, 1, 1, 1, 1, 1, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",7,Rationals);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= RegularSemisimpleSubalgebras(L);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= Filtered( r, M -&gt; SemiSimpleType(M)="E6" )[1];</span>
+&lt;Lie algebra of dimension 78 over Rationals&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">cc:= BasisVectors( Basis( LieCentralizer( L, K ) ) );</span>
+[ v.127+(3/2)*v.128+(2)*v.129+(3)*v.130+(5/2)*v.131+(2)*v.132+(3/2)*v.133 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, K, cc, [1,0,0,0,0,0,1] );</span>
+[ [ [ 0, 0, 0, 0, 0, 2, -1/2 ], [ 1, 1, 0, 0, 0, 0, -1/2 ], 
+      [ 0, 0, 0, 0, 1, 0, -1/2 ], [ 1, 0, 0, 0, 0, 0, 5/2 ], 
+      [ 0, 1, 0, 0, 0, 1, 1/2 ], [ 2, 0, 0, 0, 0, 0, 1/2 ], 
+      [ 0, 0, 1, 0, 0, 0, 1/2 ], [ 0, 0, 0, 0, 0, 1, -5/2 ], 
+      [ 1, 0, 0, 0, 0, 1, -3/2 ], [ 1, 0, 0, 0, 0, 1, 3/2 ], 
+      [ 0, 1, 0, 0, 0, 0, 3/2 ], [ 0, 1, 0, 0, 0, 0, -3/2 ], 
+      [ 0, 0, 0, 0, 0, 0, 3/2 ], [ 0, 0, 0, 0, 0, 0, -3/2 ], 
+      [ 0, 0, 0, 0, 0, 1, 1/2 ], [ 1, 0, 0, 0, 0, 0, -1/2 ] ], 
+  [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ] ]      
 </pre></div>
 
 <p><a id="X7CC8010B7F31B486" name="X7CC8010B7F31B486"></a></p>
@@ -109,8 +126,7 @@
 
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",6,Rationals);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= RegularSemisimpleSubalgebras( L );; time;</span>
-1664
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= RegularSemisimpleSubalgebras( L );;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(K);</span>
 19
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K[5];</span>
@@ -159,7 +175,6 @@
 [ 12, 1 ]
 
 # Find the maximal semisimple subalgebras:
-
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:= Filtered( g, x -&gt; x[1]=0 );; i:= List( m, x -&gt; x[2] );</span>
 [ 13, 35, 36, 37, 41, 42, 43, 44 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( sub{i}, SemiSimpleType );                </span>
@@ -188,8 +203,8 @@
   [ 13, 3 ], [ 8, 4 ], [ 13, 4 ], [ 9, 5 ], [ 12, 5 ], [ 12, 6 ], [ 13, 6 ], 
   [ 0, 7 ], [ 0, 8 ], [ 15, 9 ], [ 9, 10 ], [ 14, 10 ], [ 14, 11 ], 
   [ 15, 12 ], [ 0, 13 ], [ 15, 14 ], [ 0, 15 ] ]
-# there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the
-# second algebra is contained in the 14-th.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># second algebra is contained in the 14-th.</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= s.liealg;</span>
 &lt;Lie algebra of dimension 21 over Rationals&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:= s.subalgs;;</span>
@@ -282,8 +297,7 @@ true
 <div class="example"><pre>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:= RootSystem("F",4);</span>
 &lt;root system of type F4&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);; time;</span>
-10812
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(c);</span>
 4844
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c[1005];</span>

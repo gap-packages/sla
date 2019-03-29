@@ -43,12 +43,20 @@
   [1X5.1-2 Branching[101X
   
   [33X[1;0Y[29X[2XBranching[102X( [3XL[103X, [3XK[103X, [3Xhw[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XBranching[102X( [3XL[103X, [3XK[103X, [3Xcc[103X, [3Xhw[103X ) [32X operation[133X
   
   [33X[0;0YHere  [3XL[103X  and [3XK[103X are as in the previous function, and [3Xhw[103X is the highest weight
   of  an  irreducible  [3XL[103X-module.  This  function computes the splitting of the
   module  when  seen as a [3XK[103X-module. Returned is a list of two lists: the first
   list  contains  the highest weights of the modules involved, the second list
-  contains their multiplicities.[133X
+  contains  their  multiplicities.  In  the  second  form  the  subalgebra  is
+  reductive  rather  than semisimple. Here [3XK[103X is again a semisimple subalgebra,
+  and [3Xcc[103X is a list of toral elements centralizing [3XK[103X. These toral elements must
+  lie  in  the  given  Cartan subalgebra of [3XL[103X. The reductive subalgebra is the
+  direct sum of [3XK[103X and the subalgebra spanned by the elements of [3Xcc[103X. The output
+  is  the  same  as  in the first form. However, the last [22Xt[122X coordinates of the
+  weights  give the eigenvalues of the toral elements in [3Xcc[103X on the irreducible
+  modules.[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",7,Rationals);;                [127X[104X
@@ -59,6 +67,22 @@
     [4X[28X      [ 0, 0, 1, 0, 1, 0, 0 ], [ 1, 0, 0, 1, 0, 0, 0 ], [128X[104X
     [4X[28X      [ 0, 1, 0, 0, 0, 1, 0 ], [ 0, 0, 0, 0, 0, 0, 1 ], [128X[104X
     [4X[28X      [ 0, 0, 1, 0, 0, 0, 0 ] ], [ 1, 1, 1, 1, 1, 1, 1, 1 ] ][128X[104X
+    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",7,Rationals);;[127X[104X
+    [4X[25Xgap>[125X [27Xr:= RegularSemisimpleSubalgebras(L);;[127X[104X
+    [4X[25Xgap>[125X [27XK:= Filtered( r, M -> SemiSimpleType(M)="E6" )[1];[127X[104X
+    [4X[28X<Lie algebra of dimension 78 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27Xcc:= BasisVectors( Basis( LieCentralizer( L, K ) ) );[127X[104X
+    [4X[28X[ v.127+(3/2)*v.128+(2)*v.129+(3)*v.130+(5/2)*v.131+(2)*v.132+(3/2)*v.133 ][128X[104X
+    [4X[25Xgap>[125X [27XBranching( L, K, cc, [1,0,0,0,0,0,1] );[127X[104X
+    [4X[28X[ [ [ 0, 0, 0, 0, 0, 2, -1/2 ], [ 1, 1, 0, 0, 0, 0, -1/2 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 0, 1, 0, -1/2 ], [ 1, 0, 0, 0, 0, 0, 5/2 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 1, 1/2 ], [ 2, 0, 0, 0, 0, 0, 1/2 ], [128X[104X
+    [4X[28X      [ 0, 0, 1, 0, 0, 0, 1/2 ], [ 0, 0, 0, 0, 0, 1, -5/2 ], [128X[104X
+    [4X[28X      [ 1, 0, 0, 0, 0, 1, -3/2 ], [ 1, 0, 0, 0, 0, 1, 3/2 ], [128X[104X
+    [4X[28X      [ 0, 1, 0, 0, 0, 0, 3/2 ], [ 0, 1, 0, 0, 0, 0, -3/2 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 0, 0, 0, 3/2 ], [ 0, 0, 0, 0, 0, 0, -3/2 ], [128X[104X
+    [4X[28X      [ 0, 0, 0, 0, 0, 1, 1/2 ], [ 1, 0, 0, 0, 0, 0, -1/2 ] ], [128X[104X
+    [4X[28X  [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ] ]      [128X[104X
   [4X[32X[104X
   
   
@@ -74,8 +98,7 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("E",6,Rationals);;[127X[104X
-    [4X[25Xgap>[125X [27XK:= RegularSemisimpleSubalgebras( L );; time;[127X[104X
-    [4X[28X1664[128X[104X
+    [4X[25Xgap>[125X [27XK:= RegularSemisimpleSubalgebras( L );;[127X[104X
     [4X[25Xgap>[125X [27XLength(K);[127X[104X
     [4X[28X19[128X[104X
     [4X[25Xgap>[125X [27XK[5];[127X[104X
@@ -143,7 +166,6 @@
     [4X[28X[ 12, 1 ][128X[104X
     [4X[28X[128X[104X
     [4X[28X# Find the maximal semisimple subalgebras:[128X[104X
-    [4X[28X[128X[104X
     [4X[25Xgap>[125X [27Xm:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );[127X[104X
     [4X[28X[ 13, 35, 36, 37, 41, 42, 43, 44 ][128X[104X
     [4X[25Xgap>[125X [27XList( sub{i}, SemiSimpleType );                [127X[104X
@@ -173,8 +195,8 @@
     [4X[28X  [ 13, 3 ], [ 8, 4 ], [ 13, 4 ], [ 9, 5 ], [ 12, 5 ], [ 12, 6 ], [ 13, 6 ], [128X[104X
     [4X[28X  [ 0, 7 ], [ 0, 8 ], [ 15, 9 ], [ 9, 10 ], [ 14, 10 ], [ 14, 11 ], [128X[104X
     [4X[28X  [ 15, 12 ], [ 0, 13 ], [ 15, 14 ], [ 0, 15 ] ][128X[104X
-    [4X[28X# there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the[128X[104X
-    [4X[28X# second algebra is contained in the 14-th.[128X[104X
+    [4X[25Xgap>[125X [27X# there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the[127X[104X
+    [4X[25Xgap>[125X [27X# second algebra is contained in the 14-th.[127X[104X
     [4X[25Xgap>[125X [27XL:= s.liealg;[127X[104X
     [4X[28X<Lie algebra of dimension 21 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27Xsub:= s.subalgs;;[127X[104X
@@ -283,8 +305,7 @@
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XR:= RootSystem("F",4);[127X[104X
     [4X[28X<root system of type F4>[128X[104X
-    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);; time;[127X[104X
-    [4X[28X10812[128X[104X
+    [4X[25Xgap>[125X [27Xc:= ClosedSubsets(R);;[127X[104X
     [4X[25Xgap>[125X [27XLength(c);[127X[104X
     [4X[28X4844[128X[104X
     [4X[25Xgap>[125X [27Xc[1005];[127X[104X

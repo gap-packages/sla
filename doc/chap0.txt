@@ -6,10 +6,10 @@
                       [1X Computing with simple Lie algebras [101X
   
   
-                                 Version 1.5.1
+                                 Version 1.5.2
   
   
-                                22 February 2019
+                                 29 March 2019
   
   
                             Willem Adriaan de Graaf
@@ -45,13 +45,18 @@
     2.1 [33X[0;0YRoot Systems[133X
       2.1-1 ExtendedCartanMatrix
       2.1-2 CartanType
-      2.1-3 WeylTransversal
-      2.1-4 SizeOfWeylGroup
-    2.2 [33X[0;0YLie Algebras and Their Modules[133X
-      2.2-1 IsomorphismOfSemisimpleLieAlgebras
-      2.2-2 AdmissibleLattice
-      2.2-3 DirectSumDecomposition
-      2.2-4 CharacteristicsOfStrata
+    2.2 [33X[0;0YWeyl groups[133X
+      2.2-1 WeylTransversal
+      2.2-2 SizeOfWeylGroup
+      2.2-3 WeylGroupAsPermGroup
+      2.2-4 ApplyWeylPermToWeight
+      2.2-5 WeylWordAsPerm
+      2.2-6 PermAsWeylWord
+    2.3 [33X[0;0YLie Algebras and Their Modules[133X
+      2.3-1 IsomorphismOfSemisimpleLieAlgebras
+      2.3-2 AdmissibleLattice
+      2.3-3 DirectSumDecomposition
+      2.3-4 CharacteristicsOfStrata
   3 [33X[0;0YNilpotent Orbits[133X
     3.1 [33X[0;0YThe functions[133X
       3.1-1 NilpotentOrbit

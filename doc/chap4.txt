@@ -90,8 +90,8 @@
     [4X[25Xgap>[125X [27Xf:= FiniteOrderOuterAutomorphisms( "A", 5, 4, 2 );;[127X[104X
     [4X[25Xgap>[125X [27Xr:= KacDiagram( f[1] );[127X[104X
     [4X[28Xrec( [128X[104X
-    [4X[28X  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], [ 0, 0, -2, 2 [128X[104X
-    [4X[28X         ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )[128X[104X
+    [4X[28X  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], [128X[104X
+    [4X[28X      [ 0, 0, -2, 2 ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )[128X[104X
     [4X[25Xgap>[125X [27Xr.labels*r.CM;      [127X[104X
     [4X[28X[ 0, 0, 0, 0 ][128X[104X
   [4X[32X[104X
@@ -140,11 +140,10 @@
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   [127X[104X
-    [4X[25Xgap>[125X [27Xs:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );; time;[127X[104X
+    [4X[25Xgap>[125X [27Xs:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;[127X[104X
     [4X[28X#I  Selected carrier algebra method.[128X[104X
     [4X[28X#I  Constructed 123 root bases of possible flat subalgebras, now checking them...[128X[104X
     [4X[28X#I  Obtained 30 Cartan elements, weeding out equivalent copies...[128X[104X
-    [4X[28X776[128X[104X
     [4X[25Xgap>[125X [27XLength(s);[127X[104X
     [4X[28X10[128X[104X
     [4X[25Xgap>[125X [27Xs[4];[127X[104X
@@ -154,10 +153,10 @@
     [4X[28X#I  Selected Weyl orbit method.[128X[104X
     [4X[28X#I  Constructed a Weyl transversal of 72 elements.[128X[104X
     [4X[28X#I  Obtained 5 Cartan elements, weeding out equivalent copies...[128X[104X
-    [4X[28X[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
-    [4X[28X      v.29+v.30+v.31 ], [128X[104X
-    [4X[28X  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
-    [4X[28X      v.19+v.30 ], [128X[104X
+    [4X[28X[ [ v.64+v.65+v.69, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.28+v.29+v.33 ], [128X[104X
+    [4X[28X  [ (2)*v.60+(2)*v.63, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.24+v.27 ], [128X[104X
     [4X[28X  [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, [128X[104X
     [4X[28X      v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ][128X[104X
   [4X[32X[104X
@@ -212,33 +211,30 @@
     [4X[28X#I  Selected carrier algebra method.[128X[104X
     [4X[28X#I  Constructed 2782 root bases of possible flat subalgebras, now checking them...[128X[104X
     [4X[28X#I  Obtained 58 Cartan elements, weeding out equivalent copies...[128X[104X
-    [4X[25Xgap>[125X [27Xtime;[127X[104X
-    [4X[28X117792[128X[104X
     [4X[25Xgap>[125X [27XLength(sl2);[127X[104X
     [4X[28X27[128X[104X
     [4X[25Xgap>[125X [27XL:= Source(h);;                    [127X[104X
     [4X[25Xgap>[125X [27Xr:= ClosureDiagram( L, h, sl2 );;  [127X[104X
     [4X[28X#I  All (non-) inclusions proved![128X[104X
-    [4X[25Xgap>[125X [27Xtime;[127X[104X
-    [4X[28X329248[128X[104X
     [4X[25Xgap>[125X [27Xr.diag;[127X[104X
-    [4X[28X[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], [ 7, 5 ], [128X[104X
-    [4X[28X[ 8, 4 ], [ 9, 3 ], [ 9, 6 ], [ 10, 6 ], [ 10, 7 ], [ 11, 4 ], [ 11, 7 ], [ 12, 7 ], [128X[104X
-    [4X[28X[ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 11 ], [ 14, 12 ], [ 15, 6 ], [ 16, 8 ], [128X[104X
-    [4X[28X[ 16, 11 ], [ 17, 13 ], [ 17, 16 ], [ 18, 13 ], [ 18, 15 ], [ 19, 10 ], [ 19, 12 ], [128X[104X
-    [4X[28X[ 19, 15 ], [ 20, 14 ], [ 20, 16 ], [ 21, 9 ], [ 21, 15 ], [ 22, 14 ], [ 22, 18 ], [128X[104X
-    [4X[28X[ 22, 19 ], [ 23, 18 ], [ 23, 21 ], [ 24, 17 ], [ 24, 18 ], [ 25, 20 ], [ 25, 22 ], [128X[104X
-    [4X[28X[ 25, 24 ], [ 26, 22 ], [ 26, 23 ], [ 27, 23 ], [ 27, 24 ] ][128X[104X
-    [4X[28X# Now we do the adjoint representation of the Lie algebra of type F4:[128X[104X
+    [4X[28X[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], [128X[104X
+    [4X[28X  [ 7, 5 ], [ 8, 4 ], [ 9, 4 ], [ 9, 7 ], [ 10, 6 ], [ 10, 7 ], [ 11, 3 ], [128X[104X
+    [4X[28X  [ 11, 6 ], [ 12, 7 ], [ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 9 ], [128X[104X
+    [4X[28X  [ 14, 12 ], [ 15, 8 ], [ 15, 9 ], [ 16, 6 ], [ 17, 10 ], [ 17, 12 ], [128X[104X
+    [4X[28X  [ 17, 16 ], [ 18, 13 ], [ 18, 16 ], [ 19, 13 ], [ 19, 15 ], [ 20, 11 ], [128X[104X
+    [4X[28X  [ 20, 16 ], [ 21, 14 ], [ 21, 17 ], [ 21, 18 ], [ 22, 14 ], [ 22, 15 ], [128X[104X
+    [4X[28X  [ 23, 18 ], [ 23, 20 ], [ 24, 18 ], [ 24, 19 ], [ 25, 21 ], [ 25, 22 ], [128X[104X
+    [4X[28X  [ 25, 24 ], [ 26, 23 ], [ 26, 24 ], [ 27, 21 ], [ 27, 23 ] ][128X[104X
+    [4X[25Xgap>[125X [27X# Now we do the adjoint representation of the Lie algebra of type F4:[127X[104X
     [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("F",4,Rationals);;[127X[104X
     [4X[25Xgap>[125X [27Xo:= NilpotentOrbits(L);;[127X[104X
     [4X[25Xgap>[125X [27Xsl2:= List( o, SL2Triple );;[127X[104X
     [4X[25Xgap>[125X [27Xr:= ClosureDiagram( L, [0,0,0,0], sl2 );;      [127X[104X
     [4X[28X#I  All (non-) inclusions proved![128X[104X
     [4X[25Xgap>[125X [27Xr.diag;[127X[104X
-    [4X[28X[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 5 ], [ 6, 4 ], [ 7, 6 ], [ 8, 7 ], [128X[104X
-    [4X[28X  [ 9, 7 ], [ 10, 9 ], [ 10, 8 ], [ 11, 8 ], [ 12, 10 ], [ 13, 12 ], [ 13, 11 ], [128X[104X
-    [4X[28X  [ 14, 13 ], [ 15, 14 ] ][128X[104X
+    [4X[28X[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 4 ], [ 6, 5 ], [ 7, 6 ], [128X[104X
+    [4X[28X  [ 8, 7 ], [ 9, 7 ], [ 10, 8 ], [ 10, 9 ], [ 11, 8 ], [ 12, 10 ], [128X[104X
+    [4X[28X  [ 13, 11 ], [ 13, 12 ], [ 14, 13 ], [ 15, 14 ] ][128X[104X
   [4X[32X[104X
   
   [1X4.1-8 CarrierAlgebra[101X
@@ -270,8 +266,8 @@
     [4X[28X<Lie algebra of dimension 52 over CF(5)>[128X[104X
     [4X[25Xgap>[125X [27Xr:=CarrierAlgebra( L, h, sl2[1][3] );   [127X[104X
     [4X[28Xrec( g0 := [ v.49+(2)*v.50+(2)*v.51+(3)*v.52, v.50+(1/2)*v.51+v.52 ], [128X[104X
-    [4X[28Xgp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ], [128X[104X
-    [4X[28Xgn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ] )[128X[104X
+    [4X[28X  gn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ], [128X[104X
+    [4X[28X  gp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ] )[128X[104X
     [4X[25Xgap>[125X [27XK:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );[127X[104X
     [4X[28X<Lie algebra over CF(5), with 10 generators>[128X[104X
     [4X[25Xgap>[125X [27XSemiSimpleType( K );[127X[104X
@@ -298,6 +294,6 @@
     [4X[25Xgap>[125X [27Xc:= CartanSubspace( f[3] ); [127X[104X
     [4X[28X<vector space of dimension 1 over CF(3)>[128X[104X
     [4X[25Xgap>[125X [27XBasisVectors( Basis( c ) );[127X[104X
-    [4X[28X[ v.1+v.5+v.12 ][128X[104X
+    [4X[28X[ v.1+v.2+v.10 ][128X[104X
   [4X[32X[104X
   
