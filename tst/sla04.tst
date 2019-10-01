@@ -32,7 +32,9 @@ rec(
 gap> r.labels*r.CM;      
 [ 0, 0, 0, 0 ]
 
-# doc/manual.xml:941-962
+# doc/manual.xml:941-964
+gap> # reset random state to ensure the output of this example match
+gap> Reset(GlobalMersenneTwister, 1);;
 gap> f:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   
 gap> s:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;
 #I  Selected carrier algebra method.
@@ -47,14 +49,14 @@ gap> NilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );
 #I  Selected Weyl orbit method.
 #I  Constructed a Weyl transversal of 72 elements.
 #I  Obtained 5 Cartan elements, weeding out equivalent copies...
-[ [ v.64+v.65+v.69, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.28+v.29+v.33 ], 
-  [ (2)*v.60+(2)*v.63, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.24+v.27 ], 
-  [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
-      v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
+[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.29+v.30+v.31 ], 
+  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.19+v.30 ],
+  [ v.66+v.70, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
+      v.30+v.34 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
 
-# doc/manual.xml:1018-1049
+# doc/manual.xml:1020-1051
 gap> f:= FiniteOrderInnerAutomorphisms( "E", 8, 8 );;  
 gap> h:= f[8];;
 gap> sl2:= NilpotentOrbitsOfThetaRepresentation(h);;  
@@ -86,7 +88,7 @@ gap> r.diag;
   [ 8, 7 ], [ 9, 7 ], [ 10, 8 ], [ 10, 9 ], [ 11, 8 ], [ 12, 10 ], 
   [ 13, 11 ], [ 13, 12 ], [ 14, 13 ], [ 15, 14 ] ]
 
-# doc/manual.xml:1081-1098
+# doc/manual.xml:1083-1100
 gap> f:= FiniteOrderInnerAutomorphisms( "F", 4, 5 );;
 gap> h:= f[4];;
 gap> sl2:= NilpotentOrbitsOfThetaRepresentation( h );;  
@@ -104,12 +106,12 @@ gap> K:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );
 gap> SemiSimpleType( K );
 "B2"
 
-# doc/manual.xml:1121-1127
+# doc/manual.xml:1123-1129
 gap> f:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;
 gap> c:= CartanSubspace( f[3] ); 
 <vector space of dimension 1 over CF(3)>
 gap> BasisVectors( Basis( c ) );
-[ v.1+v.2+v.10 ]
+[ v.1+v.5+v.12 ]
 
 #
 gap> STOP_TEST("sla04.tst", 1 );
