@@ -6,23 +6,19 @@
                       [1X Computing with simple Lie algebras [101X
   
   
-                                 Version 1.5.2
+                                 Version 1.5.3
   
   
-                                 29 March 2019
+                                15 November 2019
   
   
                             Willem Adriaan de Graaf
-  
-                                  The GAP Team
   
   
   
   Willem Adriaan de Graaf
       Email:    [7Xmailto:degraaf@science.unitn.it[107X
       Homepage: [7Xhttp://www.science.unitn.it/~degraaf[107X
-  The GAP Team
-      Email:    [7Xmailto:support@gap-system.org[107X
   
   -------------------------------------------------------
   [1XAbstract[101X

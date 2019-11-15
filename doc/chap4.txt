@@ -139,6 +139,8 @@
   in the one-argument version.[133X
   
   [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27X# reset random state to ensure the output of this example match[127X[104X
+    [4X[25Xgap>[125X [27XReset(GlobalMersenneTwister, 1);;[127X[104X
     [4X[25Xgap>[125X [27Xf:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   [127X[104X
     [4X[25Xgap>[125X [27Xs:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;[127X[104X
     [4X[28X#I  Selected carrier algebra method.[128X[104X
@@ -153,12 +155,12 @@
     [4X[28X#I  Selected Weyl orbit method.[128X[104X
     [4X[28X#I  Constructed a Weyl transversal of 72 elements.[128X[104X
     [4X[28X#I  Obtained 5 Cartan elements, weeding out equivalent copies...[128X[104X
-    [4X[28X[ [ v.64+v.65+v.69, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
-    [4X[28X      v.28+v.29+v.33 ], [128X[104X
-    [4X[28X  [ (2)*v.60+(2)*v.63, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
-    [4X[28X      v.24+v.27 ], [128X[104X
-    [4X[28X  [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, [128X[104X
-    [4X[28X      v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ][128X[104X
+    [4X[28X[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.29+v.30+v.31 ], [128X[104X
+    [4X[28X  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.19+v.30 ],[128X[104X
+    [4X[28X  [ v.66+v.70, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, [128X[104X
+    [4X[28X      v.30+v.34 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ][128X[104X
   [4X[32X[104X
   
   [1X4.1-7 ClosureDiagram[101X
@@ -294,6 +296,6 @@
     [4X[25Xgap>[125X [27Xc:= CartanSubspace( f[3] ); [127X[104X
     [4X[28X<vector space of dimension 1 over CF(3)>[128X[104X
     [4X[25Xgap>[125X [27XBasisVectors( Basis( c ) );[127X[104X
-    [4X[28X[ v.1+v.2+v.10 ][128X[104X
+    [4X[28X[ v.1+v.5+v.12 ][128X[104X
   [4X[32X[104X
   

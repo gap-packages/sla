@@ -126,6 +126,8 @@ rec(
 
 
 <div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># reset random state to ensure the output of this example match</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Reset(GlobalMersenneTwister, 1);;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   </span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;</span>
 #I  Selected carrier algebra method.
@@ -140,12 +142,12 @@ rec(
 #I  Selected Weyl orbit method.
 #I  Constructed a Weyl transversal of 72 elements.
 #I  Obtained 5 Cartan elements, weeding out equivalent copies...
-[ [ v.64+v.65+v.69, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.28+v.29+v.33 ], 
-  [ (2)*v.60+(2)*v.63, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
-      v.24+v.27 ], 
-  [ v.63+v.71, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
-      v.27+v.35 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
+[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.29+v.30+v.31 ], 
+  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.19+v.30 ],
+  [ v.66+v.70, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
+      v.30+v.34 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
 </pre></div>
 
 <p><a id="X7D4106C37DBD0943" name="X7D4106C37DBD0943"></a></p>
@@ -243,7 +245,7 @@ rec( g0 := [ v.49+(2)*v.50+(2)*v.51+(3)*v.52, v.50+(1/2)*v.51+v.52 ],
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= CartanSubspace( f[3] ); </span>
 &lt;vector space of dimension 1 over CF(3)&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BasisVectors( Basis( c ) );</span>
-[ v.1+v.2+v.10 ]
+[ v.1+v.5+v.12 ]
 </pre></div>
 
 
