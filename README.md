@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/sla.svg)](https://travis-ci.org/gap-packages/sla)
+[![Build Status](https://travis-ci.com/gap-packages/sla.svg)](https://travis-ci.com/gap-packages/sla)
 [![Code Coverage](https://codecov.io/github/gap-packages/sla/coverage.svg)](https://codecov.io/gh/gap-packages/sla)
 
 # SLA
