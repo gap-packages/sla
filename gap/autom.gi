@@ -141,7 +141,7 @@ function( type, rank, m, d )
 
      local phi, L, w, R, cg, cg0, sim, i, pos, f, mat, mat0, sol, cK, H, K,
            V, y, rt, sp, h, g, rts, B, C, j, v, a, ss, done, s, auts, g0, G, 
-           t, n, p2, good, u, p1, stack, stack0;
+           t, n, p2, good, u, p1, stack, stack0, en;
 
      phi:= function( rt )
 
@@ -263,18 +263,29 @@ function( type, rank, m, d )
         od;
     od;
 
+    Append( g, cK[1] );
+
+    if type ="D" and d=2 then
+       # find the standard enumeration...
+       pos:= PositionProperty( C, x -> Length(Filtered(x,y-> y<>0 ) ) = 2);
+       en:= [ pos ];
+       while Length(en) < Length(C) do 
+           pos:= Filtered( [1..Length(C[pos])], j -> C[pos][j] < 0 and
+	                                                     not j in en )[1];
+	   Add( en, pos );
+       od;
+       C:= C{en}{en};
+       g:= g{en};
+    fi;
+
     v:= NullspaceMat(C)[1];
     a:= Lcm( List( v, DenominatorRat ) );
     v:= a*v;
 
-    Append( g, cK[1] );
-
     ss:= [ ];
 
     stack:= [ List( g, x -> 0 ) ]; 
-
     for i in [1..Length(g)] do
-
         stack0:= [ ];
         for s in stack do
             u:= d*(v*s);
@@ -299,6 +310,7 @@ function( type, rank, m, d )
         od;
         stack:= stack0;
     od;
+    
     for s in stack do
         u:= d*(v*s);
         if u = m and Gcd(s) = 1 then
@@ -380,7 +392,7 @@ SLAfcts.nil_orbs_inner:= function( L, gr0, gr1, gr2 )
 
      R:= RootSystem(L);
      Ci:= CartanMatrix( R )^-1;
-     hL:= ChevalleyBasis(L)[3];
+     hL:= CanonicalGenerators(R)[3];
      hl:= List( NilpotentOrbits(L), x -> (Ci*WeightedDynkinDiagram(x))*hL );
 
      for i in [1..Length(hl)] do
@@ -594,6 +606,8 @@ Info( InfoSLA, 2, info );
          od;
      od;
 
+     return sl2s;
+
      return rec( hs:= good_h, sl2:= sl2s, chars:= List( good_h, x ->
                    Cs*( Coefficients( b, x*hL ){[1..Length(x)]} ) ) );
 
@@ -708,7 +722,7 @@ SLAfcts.nil_orbs_outer:= function( L, gr0, gr1, gr2 )
 
      R:= RootSystem(L);
      Ci:= CartanMatrix( R )^-1;
-     hL:= ChevalleyBasis(L)[3];
+     hL:= CanonicalGenerators(R)[3];
 
      hl:= List( NilpotentOrbits(L), x -> Ci*WeightedDynkinDiagram(x) );
      for i in [1..Length(hl)] do
@@ -721,14 +735,19 @@ SLAfcts.nil_orbs_outer:= function( L, gr0, gr1, gr2 )
      C:= CartanMatrix( R );
      rank:= Length(C);
 
-     Rs:= RootSystem(s);
-     Cs:= CartanMatrix( Rs );
-     ranks:= Length( Cs );
+     if Dimension(s) > 0 then 
+        Rs:= RootSystem(s);
+        Cs:= CartanMatrix( Rs );
+        ranks:= Length( Cs );
 
-     bas:= ShallowCopy( CanonicalGenerators(Rs)[3] );
-     Append( bas, BasisVectors( Basis(r) ) );
-     b0:= Basis( VectorSpace( F, bas ), bas );
-
+        bas:= ShallowCopy( CanonicalGenerators(Rs)[3] );
+        Append( bas, BasisVectors( Basis(r) ) );
+        b0:= Basis( VectorSpace( F, bas ), bas );
+     else
+        ranks:= 0;
+        bas:= BasisVectors( Basis(r) );
+	b0:= Basis( VectorSpace( F, bas ), bas );
+     fi;
 
      in_weylch:= function( h )
 
@@ -737,6 +756,7 @@ SLAfcts.nil_orbs_outer:= function( L, gr0, gr1, gr2 )
           u:= h*hL;
           if not u in g0 then return false; fi;
           cf:= Coefficients( b0, u ){[1..ranks]};
+	  if Length(cf)=0 then return true; fi;
           if ForAll( Cs*cf, x -> x >= 0 ) then
              return true;
           else
@@ -867,6 +887,8 @@ Info(InfoSLA,2,info);
 
          fi;
      od;
+
+     return sl2s;
 
      return rec( hs:= good_h, sl2:= sl2s, chars:= List( good_h, charact ) );
 
@@ -1028,6 +1050,10 @@ SLAfcts.zero_systems:= function( B, posr )
 
   local inds, i, j, pos, bas, C, tp, subs, sub, s, rrr, R, pi, posRw,
         rts, concs, news, r;
+
+  if Length(posr) = 0 then
+     return rec( bas:= [ ], subs:= [ [] ] );
+  fi;
 
   inds:=[ ];
   for i in [1..Length(posr)] do
@@ -1628,7 +1654,11 @@ function( f )
          for i in [1..Length(kd.weights)] do
              if kd.weights[i] = 0 then Add( inds, i ); fi;
          od;
-         w:= SizeOfWeylGroup( CartanType( C{inds}{inds} ).types );
+	 if Length(inds) > 0 then
+            w:= SizeOfWeylGroup( CartanType( C{inds}{inds} ).types );
+	 else
+	    w:= 1;
+	 fi;
          tr:= SizeOfWeylGroup( RootSystem(L) )/w;
          if tr > 8000 then 
             meth:= "Carrier";
@@ -1639,13 +1669,13 @@ function( f )
 
       if meth = "WeylOrbit" then
          Info(InfoSLA,2,"Selected Weyl orbit method."); 
-         r:= SLAfcts.nil_orbs_inner( L, g[1], g[2], g[Length(g)] ).sl2;
+         r:= SLAfcts.nil_orbs_inner( L, g[1], g[2], g[Length(g)] );
       else
          Info(InfoSLA,2,"Selected carrier algebra method."); 
          r:= SLAfcts.inner_orbits_carrier( f );
       fi;
    else
-      r:= SLAfcts.nil_orbs_outer( L, g[1], g[2], g[Length(g)] ).sl2;
+      r:= SLAfcts.nil_orbs_outer( L, g[1], g[2], g[Length(g)] );
    fi;
 
    return r;
@@ -1850,6 +1880,10 @@ SLAfcts.zero_systems_Z:= function( B, posr )
   local inds, i, j, pos, bas, C, tp, subs, sub, s, rrr, R, pi, posRw,
         rts, concs, news, r;
 
+  if Length( posr ) = 0 then
+     return rec( bas:= [ ], subs:= [ [] ] );
+  fi;
+  
   inds:=[ ];
   for i in [1..Length(posr)] do
       for j in [i+1..Length(posr)] do
@@ -2658,7 +2692,11 @@ function( L, d )
       for i in [1..Length(d)] do
           if d[i] = 0 then Add( inds, i ); fi;
       od;
-      w:= SizeOfWeylGroup( CartanType( C{inds}{inds} ).types );
+      if Length(inds) > 0 then
+         w:= SizeOfWeylGroup( CartanType( C{inds}{inds} ).types );
+      else
+         w:= 1;
+      fi;	 
       tr:= SizeOfWeylGroup( RootSystem(L) )/w;
       if tr > 8000 then 
          meth:= "Carrier";
