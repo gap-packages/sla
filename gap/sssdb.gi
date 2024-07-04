@@ -374,7 +374,8 @@ SLAfcts.ssisomorphism:= function( L1, L2 )
     b1:= SLAfcts.canbas( L1, c1 );
     b2:= SLAfcts.canbas( L2, c2 );
 
-    return AlgebraHomomorphismByImagesNC( L1, L2, Flat(b1), Flat(b2) );
+    return AlgebraHomomorphismByImagesNC( L1, L2, Concatenation(b1),
+                     Concatenation(b2) );
 
 end;
 
@@ -801,7 +802,7 @@ SSSTypes:= function()
             s:= s{[1..Length(s)-1]};
             Add( t, s );
         od;
-        SLADBASE!.types:= Immutable(t);
+        SLADBASE!.types:= t;
      fi;
 
      return SLADBASE!.types;
@@ -1124,9 +1125,12 @@ function( r )
 
 end );
 
+
 InstallMethod( AddToDatabase,
 "for a record", true, [ IsRecord ], 0,
 function( d )
+
+    local s, j;
 
     if not IsBound( d.dim ) or not IsBound( d.type ) or 
        not IsBound( d.subalgs ) then
@@ -1134,6 +1138,15 @@ function( d )
     fi;
 
     Add( SLADBASE!.data, d );
-
+    if IsBound( SLADBASE!.types ) then
+       s:= "";
+       for j in d.type do
+           Append( s, j[1] );
+           Append( s, String(j[2]) );
+           Append( s, " " );
+       od;
+       s:= s{[1..Length(s)-1]};
+       Add( SLADBASE!.types, s );
+    fi;
 
 end );

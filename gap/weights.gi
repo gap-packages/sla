@@ -287,16 +287,13 @@ function( V )
 
    R:= RootSystem(K);
    if R = fail then return fail; fi;
-   e:= CanonicalGenerators( R )[1];
 
+   e:= CanonicalGenerators( R )[1];
    sp:= V;
-   for x in e do
-       m:= MatrixOfAction( Basis(V), x );
-       m:= TransposedMatDestructive(m);
-       c:= NullspaceMat(m);
-       sp0:= Subspace( V, List( c, u -> u*Basis(V) ), "basis" );
-       sp:= Intersection( sp, sp0 );
-   od;
+   m:= List( e, u -> TransposedMatDestructive( MatrixOfAction( Basis(V), u )));
+   m:= List( [1..Dimension(V)], i -> Concatenation( List( m, u -> u[i] ) ) );
+   c:= NullspaceMatDestructive(m);
+   sp:= Subspace( V, List( c, u -> u*Basis(V) ), "basis" );
 
    # in sp find a basis of weight vectors
    h:= CanonicalGenerators( R )[3];
@@ -698,7 +695,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
        else
           dim:= Sum( mults );
           inds:= Filtered( [1..Length(hs)], i -> dims[i] <= dim );
-          hs:= hs{inds}; 
+	  hs:= hs{inds}; dims:= dims{inds};
        fi;
 
        # now for each elt of hs, do a recursive call...

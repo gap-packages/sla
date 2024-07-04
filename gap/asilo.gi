@@ -276,6 +276,13 @@ function( R, inds )
            w, i, j, mu, w0, reduced, bas, gd, posR, sums, cur_Pm, pm, s, 
            p, k, N, crho, imgs, Pm, pmi; 
 
+     if Length(inds) = 0 then
+
+        # return all elements
+        w:= WeylGroupAsPermGroup(R);
+        return List( Elements(w), u -> PermAsWeylWord(R,u) );
+     fi;    
+
     
      if IsList(inds[1]) then
 
