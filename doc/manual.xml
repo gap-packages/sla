@@ -387,7 +387,7 @@ gap> List( last, Dimension );
 
 <ManSection>
    <Oper Name="CharacteristicsOfStrata"  Arg="L, hw"/>
-
+ <Oper Name="CharacteristicsOfStrata"  Arg="L, B, hw"/>
 <Description>
 
 Here <A>L</A> is a semisimple Lie algebra over a field of characteristic 0.
@@ -395,7 +395,11 @@ Secondly, <A>hw</A> is a dominant weight, represented as a list of non-negative
 integers (where the ordering of the fundamantal weights is given by the
 Cartan matrix of the root system of <A>L</A>). Let <M>G</M> denote the 
 semisimple algebraic group acting on the irreducible representation with
-highest weight <A>hw</A>. Hesselink (<Cite Key="hesselink"/>)
+highest weight <A>hw</A>. Alternatively, <A>hw</A> can also be a list of
+highest weights, in which case the representation is the direct sum of the
+irreducible representations with highest weights in the list. 
+
+Hesselink (<Cite Key="hesselink"/>)
 defined a stratification of the nullcone relative to the action of <M>G</M>. 
 Popov and Vinberg (<Cite Key="povin"/>) have described this
 stratification in terms of characteristics, which are elements of a Cartan
@@ -410,16 +414,103 @@ of the nilpotent orbits in <A>L</A>. This means the following: let <M>h</M> be
 a characteristic, then there are <M>e,f</M> in <A>L</A> such that the triple
 <M>h,e,f</M> satisfies the commutation relations of <M>\mathfrak{sl}_2</M>,
 and the elements <M>e</M> thus obtained are the representatives of the
-nilpotent <M>G</M>-orbits in <A>L</A>.
+nilpotent <M>G</M>-orbits in <A>L</A>. <P/>
+
+We remark that the characteristics depend on the choice of an invariant bilinear
+form. This form is unique if <A>L</A> is simple. If we give just two arguments,
+<A>L</A>, <A>hw</A>, then Killing form is chosen.
+It is possible to use a different form using the three argument variant of the
+function. <P/>
+
+In the three argument variant <A>L</A> is a reductive Lie algebra and <A>B</A>
+is the restriction of a non-degenerate invariant bilinear form on the Cartan
+subalgebra of <A>L</A>. This bilinear form must be given with respect to
+a specific basis, which we now describe. Let <A>K</A> denote the derived
+subalgebra of <A>L</A> (which is semisimple). Let <A>h</A> be the list
+<A>CanonicalGenerators( RootSystem( K ) )[3]</A> (this is a basis of a
+Cartan subalgebra of <A>K</A>). Let <A>c</A> be the list
+<A>BasisVectors( Basis( LieCentre(K) ) )</A>. Then the basis we require
+is the concatenation of <A>h</A> and <A>c</A>. Again <A>hw</A> can be a highest
+weight, or a list of highest weights. These highest weights are lists of
+eigenvalues of the elements of the particular basis of a Cartan subalgebra of
+<A>L</A> described above.
  
 
 <Example>
-gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> CharacteristicsOfStrata( L, [0,1] );
 [ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
   [ 6, 8, 10, 12 ] ]
 </Example>
+
+In the next example we compute the strata of a representation of a reductive
+subalgebra of the Lie algebra of type <M>E_6</M>, obtained as the set of
+fixed points of an inner automorphism. We compute the strata of the 
+<M>\theta</M>-representation corresponding to the automorphism. For this we
+first need to work out the highest weights of the module. The bilinear form
+is the restriction of the Killing form to the subalgebra.
+
+<Example>
+gap> f:= FiniteOrderInnerAutomorphisms("E",6,3)[2];;
+gap> M:= Source(f);;
+gap> gr:= Grading(f);;
+gap> L:= Subalgebra(M,gr[1]);
+&lt;Lie algebra over CF(3), with 28 generators>
+gap> K:= LieDerivedSubalgebra( L );
+&lt;Lie algebra of dimension 27 over CF(3)>
+gap> V:= LeftAlgebraModuleByGenerators( K, function(x,v) return x*v; end, gr[2]); 
+&lt;left-module over &lt;Lie algebra of dimension 27 over CF(3)>>
+gap> DisplayDynkinDiagram( K ); 
+A4:  1---4---3---2
+A1:  5
+gap> dV:= DirectSumDecomposition(V);
+[ &lt;left-module over &lt;Lie algebra of dimension 27 over CF(3)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 27 over CF(3)>> ]
+gap> DisplayHighestWeight( dV[1] );        
+A4:  0---0---0---1
+A1:  0
+gap> DisplayHighestWeight( dV[2] );
+A4:  0---0---1---0
+A1:  1
+gap> t0:= Basis(LieCentre(L))[1];
+v.73+(4/5)*v.75+(3/5)*v.76+(2/5)*v.77+(1/5)*v.78
+gap> HighestWeightVector( dV[1] ); t0^last;
+v.7
+(6/5)*v.7
+gap> HighestWeightVector( dV[2] ); t0^last;
+v.13
+(-3/5)*v.13
+gap> hw:= [ [0,1,0,0,0,6/5], [0,0,1,0,1,-3/5] ]; 
+[ [ 0, 1, 0, 0, 0, 6/5 ], [ 0, 0, 1, 0, 1, -3/5 ] ]
+gap> bas:= Concatenation( CanonicalGenerators( RootSystem(K) )[3],
+> Basis(LieCentre(L)) );;
+gap> B:= List( bas, x -> [] );;
+gap> ad:= List( bas, x -> AdjointMatrix( Basis(M), x ) );;
+gap> for i in [1..Length(B)] do for j in [i..Length(B)] do
+> B[i][j]:= TraceMat( ad[i]*ad[j]); B[j][i]:= B[i][j];
+> od; od;
+gap> B;
+[ [ 48, 0, 0, -24, 0, 0 ], [ 0, 48, -24, 0, 0, 0 ], [ 0, -24, 48, -24, 0, 0 ], 
+  [ -24, 0, -24, 48, 0, 0 ], [ 0, 0, 0, 0, 48, 0 ], [ 0, 0, 0, 0, 0, 144/5 ] ]
+gap> CharacteristicsOfStrata( L, B, hw );
+[ [ v.74+v.75+v.76, v.73+v.75, (-2)*v.73, (2)*v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, 
+      (-1)*v.73+(-1)*v.76+(-1)*v.77+(-1)*v.78, v.73+v.74+(2)*v.75+v.76, 
+      (2)*v.73+(2)*v.74+(4)*v.75+(4)*v.76+(2)*v.77, (-2)*v.73+v.74, 
+      v.74+(4)*v.75+(2)*v.76+v.77, (-1)*v.73+v.74+v.75+v.76, 
+      (2)*v.73+(3)*v.74+(5)*v.75+(5)*v.76+(3)*v.77+v.78, v.73+(4)*v.75+v.76, 
+      v.75+(-1)*v.76+(-1)*v.77+(-1)*v.78, v.73+v.74+(3)*v.75+(2)*v.76+(-1)*v.78, 
+      (4)*v.73+(6)*v.74+(7)*v.75+(9)*v.76+(6)*v.77+(3)*v.78, 
+      (-3)*v.73+(-2)*v.75+(-2)*v.76+(-2)*v.77+(-1)*v.78, (4)*v.75+(2)*v.76, 
+      (2)*v.73+(6)*v.74+(8)*v.75+(8)*v.76+(4)*v.77+(2)*v.78, 
+      (2)*v.74+(4)*v.75+(2)*v.76+v.77, (2)*v.74+(4)*v.75+(2)*v.76+(-2)*v.77+(-2)*v.78,
+      v.73+v.74+(5)*v.75+(3)*v.76+v.77, v.73+(2)*v.74+(4)*v.75+(3)*v.76+v.77, 
+      (4)*v.73+(6)*v.74+(10)*v.75+(10)*v.76+(4)*v.77, 
+      (3)*v.73+(6)*v.74+(10)*v.75+(10)*v.76+(5)*v.77, 
+      (-1)*v.73+v.74+(3)*v.75+(-3)*v.77+(-2)*v.78, 
+      (6)*v.74+(10)*v.75+(8)*v.76+(2)*v.77 ], 
+  [ 8, 5, 16, 11, 12, 10, 13, 18, 18, 15, 15, 17, 13, 15, 16, 20, 20, 20, 19, 21, 19, 
+      17, 20, 22, 22, 24 ] ]
+</Example>  
 
 
 </Description>
