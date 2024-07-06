@@ -318,88 +318,115 @@ function( V )
 
 end );
 
-
-
-InstallMethod( CharacteristicsOfStrata,
-"for a semisimple Lie algebra and a highest weight", 
-true, [ IsLieAlgebra, IsList ], 0,
-
-function( L, hw ) # L: semisimple Lie algebra, hw: highest weight
+SLAfcts.strata:= function( K, L, cen, Bil, hw )
+        # K : reductive Lie algebra
+        # L: semisimple part of L
+        # cen: list of basis vectors of the centre,
+        # hw: list of highest weights, the last coords are the
+        # eigenvectors of the centre. It is assumed that
+        # with R = RootSystem(L), h = CanonicalGenerators(R)[3],
+        # the first coordinates of each elt of hw are the eigenvalues
+        # of the elements of h.
+        # Bil: matrix of nondegenerate bilinear form on the maximal torus,
+        # wrt basis given by h \cup cen (h as before).
 
     local ch, W, wts, w, o, hh, KM, hwts, perms, rk, i, R, B, rho, exprs, 
           p, a, sa, mults, H, BH, ip, posR, csa, inconvexhull, hdimstrata,
-          weylorbs, j, A, sim, id;
+          weylorbs, j, A, sim, id, q, wt, pos, hw0, M, g, D, v, sp, convdata,
+          srk, rrk, u, lst, wts0, torustrata;
 
 # first we have three functions...
 
-weylorbs:= function( W, wts, A )
+weylorbs:= function( W, srk, rrk, wts, A )
 
      # wts is a set of weights, in usual notation, permuted 
      # by the Weyl group, we find subsets of length up to the rank
      # containing reps of each orbit of the Weyl group, but 
      # probably rather redundant.
 
-     local sets, zeros, rk, s1, z1, i, j, k, s, z, s0, z0, inds, len, cont, 
-           r, l, OO, dt, dets, mat, rows, row, cols, col;
+     local sets, zeros, s1, z1, i, j, k, s, z, s0, z0, inds, len, cont, 
+           r, l, OO, dt, dets, mat, rows, row, cols, col, pms, t1;
 
      sets:= [ ];
      zeros:= [ ];
-     rk:= Length( wts[1] );
 
      s1:= [ ];
      z1:= [ ];
      for i in [1..Length(wts)] do
-         if ForAll( wts[i], m -> m >= 0 ) then 
+         if ForAll( wts[i]{[1..srk]}, m -> m >= 0 ) then 
             Add( s1, [i] ); 
-            Add( z1, Filtered( [1..rk], m -> wts[i][m] = 0 ) );
+            Add( z1, Filtered( [1..srk], m -> wts[i][m] = 0 ) );
          fi;
      od;
      Add( sets, s1 );
      Add( zeros, z1 );
 
-     for len in [2..rk] do
-         s1:= [ ]; z1:= [ ]; dets:= [ ]; rows:= [ ]; #cols:= [ ];
+     for len in [2..rrk] do
+         s1:= [ ]; z1:= [ ]; dets:= [ ]; rows:= [ ]; cols:= [ ];
          for i in [1..Length(sets[len-1])] do
              s:= sets[len-1][i];
              z:= zeros[len-1][i];
              for j in [1..Length(wts)] do
-                 if not j in s then
+                 pos:= PositionSorted( s, j );
+                 if pos > Length(s) or s[pos] <> j then
                     if ForAll( z, m -> wts[j][m] >= 0 ) then
-                       s0:= ShallowCopy(s); Add( s0, j );
+                       s0:= ShallowCopy(s); 
+                       InsertElmList( s0, pos, j );
                        z0:= [ ];
-                       for k in [1..rk] do
+                       for k in [1..srk] do
                            if k in z and wts[j][k]=0 then
                               Add( z0, k );
                            fi;
                        od;
-                       cont:= false;
-                       mat:= List( [1..Length(s0)], s -> [ ] );
+
+                       pms:= [ ];
                        for k in [1..Length(s0)] do
-                           for l in [k..Length(s0)] do
-                               mat[k][l]:= wts[s0[k]]*A*wts[s0[l]];
-                               mat[l][k]:= mat[k][l];
-                           od;
+                           t1:= ShallowCopy(s0);
+                           l:= RemoveElmList( t1, k );
+                           mat:= A{t1}{t1};
+                           row:= List( mat, Sum );
+                           Sort( row );
+                           Add( pms, row );
                        od;
-                       dt:= Permanent(mat);
-                       row:= List( mat, Sum );
-                       Sort( row );
+                       if Minimum(pms) = pms[pos] then
 
-                       #col:= List( TransposedMat(mat), Sum );
-                       #Sort(col);
-                       for l in [1..Length(s1)] do
-                           if dt = dets[l] and row = rows[l] #and col = cols[l]
-                                                             then
-                              r:= RepresentativeAction( W, s0, s1[l], OnSets );
-                              if r <> fail then
-                                 cont:= true;
-                                 break;
-                              fi;
-                           fi;
-                       od;
+                          pos:= PositionSorted( s1, s0 );
+                          if pos > Length(s1) or s1[pos] <> s0 then 
+                             cont:= false;
+                             mat:= List( [1..Length(s0)], s -> [ ] );
+                             for k in [1..Length(s0)] do
+                                 for l in [k..Length(s0)] do
+                                     mat[k][l]:= A[s0[k]][s0[l]];
+                                     mat[l][k]:= mat[k][l];
+                                 od;
+                             od;
+                             dt:= Permanent(mat);
+                             row:= List( mat, Sum );
+                             Sort( row );
+   
+                             col:= List( mat, ShallowCopy );
+                             for l in [1..Length(col)] do Sort(col[l]); od;
+                             Sort(col);
+                             for l in [1..Length(s1)] do
+                                if dt = dets[l] and row = rows[l] and
+                                  col = cols[l] then
+                                    r:= RepresentativeAction( W, s0, s1[l],
+                                                                       OnSets );
+                                    if r <> fail then
+                                       cont:= true;
+                                       break;
+                                    fi;
+                                fi;
+                             od;
 
-                       if not cont then
-                          Add( s1, s0 ); Add( z1, z0 ); 
-                          Add( dets, dt ); Add( rows, row ); #Add( cols, col );
+                             if not cont then
+                                InsertElmList( s1, pos, s0 );
+                                InsertElmList( z1, pos, z0 );
+                                InsertElmList( dets, pos, dt );
+                                InsertElmList( rows, pos, row );
+                                InsertElmList( cols, pos, col );
+                             fi;
+                          fi;
                        fi;
                     fi;
                  fi; 
@@ -407,21 +434,24 @@ weylorbs:= function( W, wts, A )
          od;
          Add( sets, s1 ); Add( zeros, z1 );
      od; 
-     
+
      return sets;        
 
 end;
 
 
-inconvexhull:= function( B, S0, p0, dist, ip ) 
+inconvexhull:= function( data, S0, p0 ) 
                                             # S set of vecs in R^m (rat coords),
                                             # p a point in R^m, is p\in S?
                                             # dist: distance fct
 
-    local m, i, one, eps, dists, pos, v, pp, k, j, u, t, S, p;
+    local m, i, one, eps, dists, pos, v, pp, k, j, u, t, S, p, dist, ip;
 
-    S:= List( S0, x -> Coefficients( B, x ) );
-    p:= Coefficients( B, p0 );
+    dist:= data.dist;
+    ip:= data.ip;
+
+    S:= List( S0, x -> Coefficients( data.BH, x ) );
+    p:= Coefficients( data.BH, p0 );
     one:= 1.000000000000000000000;
     S:= List( S, u -> u*one );
     p:= p*one;
@@ -434,6 +464,8 @@ inconvexhull:= function( B, S0, p0, dist, ip )
     pos:= Position( dists, Minimum( dists ) );
     v:= S[pos];
     pp:= S[pos];
+
+    if p = pp then return [ pp, true ]; fi;
 
     while true do
        if dist(p,pp) < eps*dist(p,v) then
@@ -459,69 +491,228 @@ inconvexhull:= function( B, S0, p0, dist, ip )
     od;
 end;
 
-hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, exps, A, bool )
+torustrata:= function( H, hh, ip, rrk, h_wts, mults, wts, convdata, bool )
 
-    # R: the root system of the big Lie alg
-    # H: Cartan subalgebra of the "big" Lie alg
-    # BH: basis of H, wrt Chevalley basis vecs
-    # ip: inner product function on H (fct of two arguments)
-    # rk: rank of the input Lie algebra (in general a reductive subalgebra)
-    # posR: pos roots of input Lie alg, as weights,
-    # csa : basis of the Cartan of the input Lie alg
-    # h_wts: List of wts of the rep, as elts in the CSA,
-    # mults: their multiplicities
-    # wts: the weights in usual form
-    # W : list of perms on [1..Length(wts)], giving the action on the
-    # Weyl group
-    # exps: reduces expressions of the reflections corr to the rts in posR
-    # bool: a boolean, if true then we do not consider only the stata of 
-    #       highest dim.
 
-    local dist, out, i, G, k, XX, OO, orbs, st, hst, diffs, V, j, hset, h,
-          mat, sol, bas, B, dims, dim, cfs, p, inds, pR, wt0, ex0,
-          h0, cs, hw0, mu0, perms, res, hs, dist0, w, ip0, bcsa, BC, bigger,
-          sums, delt, xx, yy, hh, conjdomh, Onew, d, r, u, v, rep, len, N, 
-          totlen, dets, dt, orbs0, q;
+    # this is the same function as hdimstrata (i.e., the next function),
+    # but specially for tori. 
 
-    dist:= function(u,v) return ip(u-v,u-v); end;
+    local w, hs, k, OO, orbs, st, hst, diffs, i, j, V, hset, h, mat, sol,
+          bas, B, cfs, h0, dims, dim, out, hh0, bcsa, BC, hw0, mu0,
+          res, inds, wt0;
 
-    dist0:= function(u,v) return (u-v)*KM*(u-v); end;
-    ip0:= function(u,v) return u*KM*v; end;
 
     # detect the trivial rep, ie all weights are 0
-    w:= List( h_wts, v -> List( csa, u -> ip(u,v) ) );
+    w:= List( h_wts, v -> List( hh, u -> ip(u,v) ) );
     if ForAll( w, IsZero ) then
        # no nilpotent elements
        return [ [], [] ];
     fi;       
 
-    if Length(posR)=0 then  #torus
-       out:= [ [], [] ];
-       for i in [1..Length(h_wts)] do
-           w:= List( csa, u -> ip(u,h_wts[i]) ); # so the weight corr.
-           if not IsZero(w) then
-              Add( out[1], h_wts[i] );
-              Add( out[2], mults[i] );
+       hs:= [ ];
+
+       for k in [1..rrk] do
+           OO:= Combinations( [1..Length(h_wts)], k );
+           orbs:= Filtered( OO, v -> not 0*h_wts[1] in h_wts{v} );
+
+           for st in orbs do
+               # find the affine space generated by st...
+
+               hst:= h_wts{st};
+               diffs:= [ ];
+               for i in [1..Length(hst)] do
+                   for j in [i+1..Length(hst)] do
+                       Add( diffs, hst[j]-hst[i] );
+                   od;
+               od;
+               V:= Subspace( H, diffs );
+               
+               # so the affine space is A=hst[1]+V...
+               # see if there are more elms in this space
+
+               hset:= ShallowCopy( hst );
+               for h in h_wts do
+                   if h-hst[1] in V and not h in hset then
+                      Add( hset, h );
+                   fi;
+               od;
+               hst:= hset;
+
+               # find point closest to 0 on A:
+               if Length(st)>1 then
+                  mat:= List( [1..Dimension(H)], i -> 
+                            List( [1..Dimension(V)], j -> 
+                                     ip( Basis(H)[i], Basis(V)[j] ) ) );
+                  sol:= List( NullspaceMat( mat ), u -> u*Basis(H) );
+
+                 # so this is a basis of the space orthogonal to V...
+                 # so sol and V span the whole space, therefore, finding the
+                 # intersection point amounts to expressing hst[1] on this basis
+
+                  bas:= -ShallowCopy( Basis(V) );
+                  Append( bas, sol );
+                  B:= Basis( H, bas );
+                  cfs:= Coefficients( B, hst[1] );
+                  h0:= hst[1]+cfs{[1..Dimension(V)]}*Basis(V);
+               else
+                  h0:= h_wts[ st[1] ];
+               fi;
+
+               # see whether it is contained
+               # in the convex hull of hst.
+                 
+               if not IsZero(h0) then
+                  if Length(hst)=1 or 
+                           inconvexhull( convdata, hst, h0 )[2] then
+                     h0:= (2/ip(h0,h0))*h0;
+                     if not h0 in hs then
+                        Add( hs, h0 );
+                     fi; 
+                  fi;
+               fi;
+           od;
+
+       od;            
+
+       # now for each elt of hs we compute the dimension of the corr stratum
+       # (in case it is a characteristic).
+     
+       dims:= [ ];
+       for h0 in hs do
+          dim:= 0;
+          for i in [1..Length(h_wts)] do
+              if ip(h0,h_wts[i]) >= 2 then dim:= dim+mults[i]; fi;
+          od;
+          Add( dims, dim );
+       od;    
+
+       if not bool then
+          dim:= 0; # compute maximum dim, less than total dim of V...
+          for i in [1..Length(dims)] do
+              if dims[i] > dim and dims[i] <= Sum( mults ) then
+                 dim:= dims[i];
+              fi;
+          od;             
+          inds:= Filtered( [1..Length(hs)], i -> dims[i] = dim );
+          hs:= hs{inds};      
+       else
+          dim:= Sum( mults );
+          inds:= Filtered( [1..Length(hs)], i -> dims[i] <= dim );
+          hs:= hs{inds}; dims:= dims{inds};
+       fi;
+
+       # now for each elt of hs, do a recursive call...
+
+       out:= [ [], [] ]; # first the chars, then the dims of the corr stratum.
+
+       for k in [1..Length(hs)] do
+
+           h0:= hs[k];
+           # have to compute tilde z(h)...
+
+           mat:= List( hh, h1 -> [ip(h1,h0)] );
+           hh0:= List( NullspaceMat(mat), u -> u*hh );
+
+           bcsa:= ShallowCopy(hh0); Add( bcsa, h0 );
+           BC:= Basis( Subspace(H,bcsa), bcsa );
+           # now the h_wts of V_2(h0):
+           # those are the elts h of h_wts such that ip(h0,h)=2...
+           hw0:= [ ];
+           mu0:= [ ];
+           wt0:= [ ];
+           for i in [1..Length(h_wts)] do
+               if ip(h0,h_wts[i]) = 2 then
+                  # project h_wts[i] on cs:
+                  if Length(hh0) > 0 then
+                     cfs:= Coefficients( BC, h_wts[i] );
+                     Add( hw0, cfs{[1..Length(hh0)]}*hh0 );
+                  else
+                     Add( hw0, Zero(H) );
+                  fi;
+                  Add( mu0, mults[i] );
+                  Add( wt0, wts[i] );
+               fi;
+           od;
+
+            res:= torustrata( H, hh0, ip, rrk-1, hw0, mu0, wt0, 
+                             convdata, false );
+
+           # is there a stratum in the recursive output of dimension equal
+           # to the dimension of V_2(h)? If yes, then h is not a char.
+
+           if not Sum( mu0 ) in res[2] then
+              # so h0 is a char
+              if bool then
+                 Add( out[1], h0 ); Add( out[2], dims[k] ); 
+              else
+                 Add( out[1], h0 ); Add( out[2], dim );
+              fi;
            fi;
+
        od;
-       return out;  
+       return out;
+
+end;        
+
+
+
+hdimstrata:= function( R, H, BH, hh, ip, srk, rrk, posR, delt, h_wts, mults, wts, www, W, exps, A, convdata, bool )
+
+    # This function has a lot of inputs, divided into two groups: the first
+    # group remains the same for every round of the recursion, the second
+    # group changes every round of the recursion.
+
+    # first group:    
+
+    # R: the root system of the big Lie alg
+    # H: Cartan subalgebra of the "big" Lie alg
+    # BH: basis of H, wrt Chevalley basis vecs
+    # ip: inner product function on H (fct of two arguments)
+    # convdata: a record with some data used to decide whether a point in H
+    #           lies in the convex hull of a list of other points
+
+    # second group:    
+
+    # hh: "canonical basis" of the a CSA of the reductive input Lie algebra
+    #     this consists of first the Chevalley generators, then a basis of
+    #     the centre    
+    # srk: semisimple rank of the input Lie algebra (rk of root system)
+    # rrk: reductive rank of input Lie algebra (i.e., dim of its CSA)    
+    # posR: pos roots of input Lie alg, as weights (this is always a subset
+    #       of the positive roots of R)        
+    # h_wts: List of wts of the rep, as elts in the CSA,
+    # mults: their multiplicities
+    # wts: the weights in in weight notation relative to the big root system R
+    # www: the weights, but now the i-th coordinate of each weight gives its
+    #      value on hh[i]    
+    # W : list of perms on [1..Length(wts)], giving the action of the
+    #     Weyl group
+    # exps: reduced expressions of the reflections corr to the rts in posR
+    # A: matrix of the bilinear form on the weights A[i][j] is the inner
+    #    product of wts[i], wts[j]    
+    # bool: a boolean, if true then we do not consider only the stata of 
+    #       highest dim (it is true in the first iteration, false afterwards).
+
+    local dist, out, i, G, k, XX, OO, orbs, st, hst, diffs, V, j, hset, h,
+          mat, sol, bas, B, dims, dim, cfs, p, inds, pR, wt0, ex0,
+          h0, cs, hw0, mu0, perms, res, hs, dist0, w, ip0, bcsa, BC, bigger,
+          sums, xx, yy, conjdomh, Onew, d, r, u, v, rep, len, N, 
+          totlen, dets, dt, orbs0, q, sim, sp, BH0, hh0, wtsnf, A0, hmat;
+
+
+    # detect the trivial rep, ie all weights are 0
+    w:= List( h_wts, v -> List( hh, u -> ip(u,v) ) );
+    if ForAll( w, IsZero ) then
+       # no nilpotent elements
+       return [ [], [] ];
+    fi;       
+
+    if srk = 0 then  #torus
+        return torustrata( H, hh, ip, rrk, h_wts, mults, wts, convdata, bool);
     fi;
 
     # compute simple roots, Weyl group etc.
     # to later erase W-conjugate h-s...
-
-    sums:= [ ];
-    for i in [1..Length(posR)] do
-        for j in [i+1..Length(posR)] do
-            Add( sums, posR[i]+posR[j] );
-        od;
-    od;
-    delt:= Filtered( posR, x -> not x in sums );
-
-    inds:= List( delt, x -> Position( PositiveRootsAsWeights(R), x ) );
-    xx:= PositiveRootVectors(R){inds};
-    yy:= NegativeRootVectors(R){inds};
-    hh:= List( [1..Length(inds)], i -> xx[i]*yy[i] );
 
     conjdomh:= function( h )
            # the conjugate dominant elt in H to h.
@@ -546,58 +737,12 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
        G:= Group(W);
        hs:= [ ];
 
-       if bool then orbs0:= weylorbs( G, wts, A ); fi; 
+       orbs0:= weylorbs( G, srk, rrk, www, A );
 
-       for k in [1..rk] do
-           if bool then
-              OO:= orbs0[k];
-           else 
-              N:= NrCombinations( [1..Length(h_wts)], k );
+       for k in [1..rrk] do
+           OO:= orbs0[k];
+           orbs:= Filtered( OO, v -> not 0*h_wts[1] in h_wts{v} );
 
-              if N <= 500000 then # some bound for memory reasons...
-                 XX:= Combinations( [1..Length(h_wts)], k );
-                 OO:= OrbitsDomain( G, XX, OnSets );
-                 OO:= List( OO, u -> u[1] );
-
-              else
-                 Onew:= [ ];
-                 totlen:= 0;
-                 dets:= [ ];
-                 for u in OO do
-                     d:= u[Length(u)];
-                     v:= ShallowCopy(u);
-                     len:= Length(v)+1;
-                     for i in [d+1..Length(h_wts)] do
-                 
-                         v[len]:= i;
-                         dt:= Permanent( List( v, i -> List( v,
-                                 j -> ip( h_wts[i], h_wts[j] ) ) ) );
-
-                         rep:= false;
-                         for j in [1..Length(Onew)] do
-                             if dets[j] = dt then 
-                                r:= RepresentativeAction( G, v, Onew[j], OnSets ); 
-                                if r <> fail then
-                                   rep:= true;
-                                   break;
-                                fi;
-                             fi;
-                         od;
-                         if not rep then 
-                            Add( Onew, ShallowCopy(v) );
-                            Add( dets, dt );
-                            totlen:= totlen + OrbitLength(G,v,OnSets);
-                         fi;
-                         if totlen=N then break; fi;
-                     od;
-                 od;
-                 OO:= Onew;
-
-              fi;
-           fi;
-
-           orbs:= Filtered( OO, v -> not 0*h_wts[1] in
-                       h_wts{v} );
            for st in orbs do
                # find the affine space generated by st...
 
@@ -614,51 +759,48 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                # see if there are more elms in this space
 
                hset:= ShallowCopy( hst );
-               #bigger:= false;
                for h in h_wts do
                    if h-hst[1] in V and not h in hset then
                       Add( hset, h );
-                      #bigger:= true;
                    fi;
                od;
+               hst:= hset;
 
-               #if not bigger or k=rk then
-
-                 # find point closest to 0 on A:
-                 if Length(st)>1 then
-                    mat:= List( [1..Dimension(H)], i -> 
+               # find point closest to 0 on A:
+               if Length(st)>1 then
+                  mat:= List( [1..Dimension(H)], i -> 
                             List( [1..Dimension(V)], j -> 
                                      ip( Basis(H)[i], Basis(V)[j] ) ) );
-                    sol:= List( NullspaceMat( mat ), u -> u*Basis(H) );
+                  sol:= List( NullspaceMat( mat ), u -> u*Basis(H) );
 
-                   # so this is a basis of the space orthogonal to V...
-                   # so sol and V span the whole space, therefore, finding the
+                 # so this is a basis of the space orthogonal to V...
+                 # so sol and V span the whole space, therefore, finding the
                  # intersection point amounts to expressing hst[1] on this basis
 
-                    bas:= -ShallowCopy( Basis(V) );
-                    Append( bas, sol );
-                    B:= Basis( H, bas );
-                    cfs:= Coefficients( B, hst[1] );
-                    h0:= hst[1]+cfs{[1..Dimension(V)]}*Basis(V);
-                 else
-                    h0:= h_wts[ st[1] ];
-                 fi;
+                  bas:= -ShallowCopy( Basis(V) );
+                  Append( bas, sol );
+                  B:= Basis( H, bas );
+                  cfs:= Coefficients( B, hst[1] );
+                  h0:= hst[1]+cfs{[1..Dimension(V)]}*Basis(V);
+               else
+                  h0:= h_wts[ st[1] ];
+               fi;
 
-                 # see whether it is contained
-                 # in the convex hull of hst.
+               # see whether it is contained
+               # in the convex hull of hst.
                  
-                 if not IsZero(h0) then
-                    if Length(hst)=1 or 
-                           inconvexhull( BH, hst, h0, dist0, ip0 )[2] then
-                       h0:= (2/ip(h0,h0))*h0;
-                       h0:= conjdomh(h0);
-                       if not h0 in hs then
-                          Add( hs, h0 );
-                       fi; 
-                    fi;
-                 #fi;
-              fi;
-           od; 
+               if not IsZero(h0) then
+                  if Length(hst)=1 or 
+                           inconvexhull( convdata, hst, h0 )[2] then
+                     h0:= (2/ip(h0,h0))*h0;
+                     h0:= conjdomh(h0);
+                     if not h0 in hs then
+                        Add( hs, h0 );
+                     fi; 
+                  fi;
+               fi;
+           od;
+
        od;            
 
        # now for each elt of hs we compute the dimension of the corr stratum
@@ -666,7 +808,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
      
        dims:= [ ];
        for h0 in hs do
-          dim:= 2*Length(posR)+Length(csa);
+          dim:= 2*Length(posR)+Length(hh);
           for i in [1..Length(h_wts)] do
               if ip(h0,h_wts[i]) >= 2 then dim:= dim+mults[i]; fi;
           od;
@@ -679,7 +821,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                  dim:= dim-2;
               fi;
           od;
-          dim:= dim-Length(csa);
+          dim:= dim-Length(hh);
           Add( dims, dim );
        od;    
 
@@ -695,12 +837,14 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
        else
           dim:= Sum( mults );
           inds:= Filtered( [1..Length(hs)], i -> dims[i] <= dim );
-	  hs:= hs{inds}; dims:= dims{inds};
+          hs:= hs{inds}; dims:= dims{inds};
        fi;
 
        # now for each elt of hs, do a recursive call...
 
        out:= [ [], [] ]; # first the chars, then the dims of the corr stratum.
+
+       BH0:= Basis( Subspace(H,hh), hh );
 
        for k in [1..Length(hs)] do
 
@@ -719,10 +863,34 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                fi;
            od;
 
+           sums:= [ ];
+           for i in [1..Length(pR)] do
+               for j in [i+1..Length(pR)] do
+                   Add( sums, pR[i]+pR[j] );
+               od;
+           od;
+           sim:= Filtered( pR, x -> not x in sums );
+
+           inds:= List( sim, x -> Position( PositiveRootsAsWeights(R), x ) );
+           xx:= PositiveRootVectors(R){inds};
+           yy:= NegativeRootVectors(R){inds};
+           hh0:= List( [1..Length(inds)], i -> xx[i]*yy[i] );
            
            # next the csa:
-           mat:= List( csa, h1 -> [ip(h1,h0)] );
-           cs:= List( NullspaceMat(mat), u -> u*csa );
+           mat:= List( hh, h1 -> [ip(h1,h0)] );
+           cs:= List( NullspaceMat(mat), u -> u*hh );
+
+           sp:= MutableBasis( LeftActingDomain(H), hh0, Zero(H) );
+           i:= 1;
+           while Length(hh0) < Length(cs) do
+                if not IsContainedInSpan( sp, cs[i] ) then
+                   CloseMutableBasis( sp, cs[i] );
+                   Add( hh0, cs[i] );
+                fi;
+                i:= i+1;
+           od;
+
+           hmat:= List( hh0, x -> Coefficients( BH0, x ) );
 
            bcsa:= ShallowCopy(cs); Add( bcsa, h0 );
            BC:= Basis( Subspace(H,bcsa), bcsa );
@@ -730,6 +898,7 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
            # those are the elts h of h_wts such that ip(h0,h)=2...
            hw0:= [ ];
            mu0:= [ ];
+           wtsnf:= [ ];
            for i in [1..Length(h_wts)] do
                if ip(h0,h_wts[i]) = 2 then
                   # project h_wts[i] on cs:
@@ -741,18 +910,28 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
                   fi;
                   Add( mu0, mults[i] );
                   Add( wt0, wts[i] );
+                  if Length(cs) > 0 then
+                     Add( wtsnf, hmat*www[i] );
+                  else
+                     Add( wtsnf, [] );
+                  fi;
                fi;
            od;
+
+           inds:= List( wt0, x -> Position( wts, x ) );
+           A0:= A{inds}{inds};
 
            # and finally the Weyl group: 
            perms:= [ ];
            for i in [1..Length(pR)] do
                Add( perms, PermList( 
                  List( wt0, w -> Position( wt0, 
-                               ApplyWeylElement(WeylGroup(R),w,ex0[i]) ))));
+                               ApplyWeylElement(WeylGroup(R),w,ex0[i]) ))) );
            od;
-           res:= hdimstrata( R, H, BH, ip, rk-1, pR, cs, KM, hw0, mu0, wt0, 
-                             perms, ex0, A, false );
+
+            res:= hdimstrata( R, H, BH, hh0, ip, Length(sim), rrk-1, pR, sim,
+            hw0, mu0, wt0, wtsnf,
+                             perms, ex0, A0, convdata, false );
 
            # is there a stratum in the recursive output of dimension equal
            # to the dimension of V_2(h)? If yes, then h is not a char.
@@ -771,79 +950,185 @@ hdimstrata:= function( R, H, BH, ip, rk, posR, csa, KM, h_wts, mults, wts, W, ex
 
 end;
 
-   # Now we start with the main function.
+    # Now we start with the main function.
 
     # first we compute the character of the module,
     # then map the weights to the CSA, where we use the Killing form.
 
+    if Dimension(L) = 0 then # torus case
+
+        hh:= cen;
+        H:= K;
+        BH:= Basis( H, hh );
+
+        ip:= function(h1,h2) return Coefficients(BH,h1)*Bil*Coefficients(BH,h2);
+                   end;
+        rrk:= Dimension( H );
+
+        convdata:= rec( # stuff needed for the convex hull function
+                 dist:= function(u,v) return (u-v)*Bil*(u-v); end,
+                 ip:= function(u,v) return u*Bil*v; end,
+                 BH:= BH ); 
+
+        hw0:= Collected( hw );
+        wts:= List( hw0, x -> x[1] );
+        mults:= List( hw0, x -> x[2] );
+        hwts:= [ ];
+        for w in wts do
+            Add( hwts, SolutionMat( Bil, w )*hh );
+        od;
+
+        return torustrata( H, hh, ip, rrk, hwts, mults, wts, convdata, true );
+    fi;
+
+
     R:= RootSystem(L);
-    ch:= DominantCharacter( L, hw );
+    srk:= Length( CartanMatrix( R ) );
+    rrk:= srk+Length(cen);
     W:= WeylGroup( R );
     wts:= [ ];
     mults:= [ ];
-    for w in [1..Length(ch[1])] do
-        o:= WeylOrbitIterator( W, ch[1][w] );
-        while not IsDoneIterator( o ) do 
-            Add( wts, NextIterator(o) ); 
-            Add( mults, ch[2][w] );
+    hw0:= Collected( hw );
+    for q in hw0 do 
+        ch:= DominantCharacter( L, q[1]{[1..srk]} );
+        for w in [1..Length(ch[1])] do
+            o:= WeylOrbitIterator( W, ch[1][w] );
+            while not IsDoneIterator( o ) do
+                  wt:= NextIterator( o );
+                  wt:= Concatenation( wt, q[1]{[srk+1..rrk]} );
+                  pos:= Position( wts, wt );
+                  if pos = fail then
+                     Add( wts, wt ); 
+                     Add( mults, q[2]*ch[2][w] );
+                  else
+                     mults[pos]:= mults[pos]+q[2]*ch[2][w];
+                  fi;
+            od;
         od;
     od;
 
-    hh:= ChevalleyBasis(L)[3];
-    rk:= Length(hh);
-    KM:= List( hh, h1 -> List( hh, h2-> TraceMat( AdjointMatrix(Basis(L),h1)*
-           AdjointMatrix(Basis(L),h2) ) ) );
+    #hh:= ChevalleyBasis(L)[3];
+    #rk:= Length(hh);
+    #KM:= List( hh, h1 -> List( hh, h2-> TraceMat( AdjointMatrix(Basis(L),h1)*
+    #       AdjointMatrix(Basis(L),h2) ) ) );
+
+    hh:= ShallowCopy( CanonicalGenerators(R)[3] );
+    Append( hh, cen );
+     
 
     hwts:= [ ];
     for w in wts do
-        Add( hwts, SolutionMat( KM, w )*hh );
+        Add( hwts, SolutionMat( Bil, w )*hh );
     od;
 
     # next we get permutations generating the permutation action of W on the
     # weights:
 
     perms:= [ ];
-    for i in [1..rk] do
-        Add( perms, PermList( 
-              List( wts, w -> Position( wts, ApplyWeylElement(W,w,[i]) ))));
+    wts0:= List( wts, u -> u{[1..srk]} );
+    for i in [1..srk] do
+        lst:= [ ];
+        for w in [1..Length(wts)] do
+            u:= ApplyWeylElement(W,wts0[w],[i]);
+            Append( u, wts[w]{[srk+1..rrk]} );
+            Add( lst, Position( wts, u ) );
+        od;
+        Add( perms, PermList( lst ) );
     od;
 
     # find reduced expressions for the reflections corr the pos rts:
     B:= BilinearFormMatNF(R);
-    rho:= List( [1..rk], i -> 1);
+    rho:= List( [1..srk], i -> 1);
     exprs:= [ ];
     for i in [1..Length(PositiveRoots(R))] do
         p:= PositiveRootsNF(R)[i];
-        a:= Sum( [1..rk], j -> p[j]*B[j][j] );
+        a:= Sum( [1..srk], j -> p[j]*B[j][j] );
         sa:= rho -a/(p*B*p)*PositiveRootsAsWeights(R)[i];
         w:= ConjugateDominantWeightWithWord( W, sa );
         Add( exprs, w[2] );
     od;
 
-    H:= CartanSubalgebra(L);
-    BH:= Basis(H, hh );
+    H:= Subalgebra( K, hh );
+    BH:= Basis( H, hh );
 
-    ip:= function(h1,h2) return Coefficients(BH,h1)*KM*Coefficients(BH,h2);
+    ip:= function(h1,h2) return Coefficients(BH,h1)*Bil*Coefficients(BH,h2);
          end;
     posR:= PositiveRootsAsWeights(R);
-    csa:= ShallowCopy( hh );
-
-    sim:= SimpleRootsAsWeights( R );
-    sim:= Basis( VectorSpace( Rationals, sim ), sim );
-    id:= IdentityMat(rk);
-    A:= List( [1..rk], i -> [ ] );
-    for i in [1..rk] do
-        for j in [i..rk] do
-            A[i][j]:= Coefficients(sim,id[i])*B*Coefficients(sim,id[j]);
+ 
+    A:= List( hwts, x -> [] );
+    for i in [1..Length(hwts)] do
+        for j in [i..Length(hwts)] do
+            A[i][j]:= ip(hwts[i],hwts[j]);
             A[j][i]:= A[i][j];
         od;
-
     od;
-    
-    return  hdimstrata( R, H, BH, ip, rk, posR, csa, KM, hwts, mults, 
-                 wts, perms, exprs, A, true );
+
+    # now A is the matrix of an invariant inner product on the space of weights
+
+    convdata:= rec( # stuff needed for the convex hull function
+                 dist:= function(u,v) return (u-v)*Bil*(u-v); end,
+                 ip:= function(u,v) return u*Bil*v; end,
+                 BH:= BH ); 
+
+    return  hdimstrata( R, H, BH, hh, ip, srk, rrk, posR,
+                SimpleRootsAsWeights(R), hwts, mults, 
+                wts, wts, perms, exprs, A, convdata, true );
+
+
+end;
+
+
+InstallMethod( CharacteristicsOfStrata,
+"for a semisimple Lie algebra and a highest weight", 
+true, [ IsLieAlgebra, IsList ], 0,
+
+function( L, hw ) # L: semisimple Lie algebra, hw: highest weight
+                  # or list of highest weights
+
+     local hw0, h, ad, Bil, i, j;
+
+     h:= CanonicalGenerators( RootSystem(L) )[3];
+     ad:= List( h, x -> AdjointMatrix( Basis(L), x ) );
+     Bil:= List( ad, x -> [] );
+     for i in [1..Length(ad)] do
+         for j in [i..Length(ad)] do
+	     Bil[i][j]:= TraceMat( ad[i]*ad[j] );
+	     Bil[j][i]:= Bil[i][j];
+	 od;
+     od;
+
+     if not IsList( hw[1] ) then
+        hw0:= [ hw ];
+     else
+        hw0:= hw;
+     fi;
+
+     return SLAfcts.strata( L, L, [], Bil, hw0 );
 
 end );
+
+
+InstallOtherMethod( CharacteristicsOfStrata,
+"for a semisimple Lie algebra and a highest weight", 
+true, [ IsLieAlgebra, IsMatrix, IsList ], 0,
+
+function( L, Bil, hw ) # L: semisimple Lie algebra, hw: highest weight
+                       # or list of highest weights
+
+     local hw0;
+
+     if not IsList( hw[1] ) then
+        hw0:= [ hw ];
+     else
+        hw0:= hw;
+     fi;
+
+     return SLAfcts.strata( L, LieDerivedSubalgebra(L),
+               BasisVectors(Basis(LieCentre(L))), Bil, hw0 );
+
+end );
+
+
 
 
 
