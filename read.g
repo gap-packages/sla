@@ -7,4 +7,4 @@ ReadPackage( "sla", "gap/autom.gi");
 ReadPackage( "sla", "gap/weights.gi");
 ReadPackage( "sla", "gap/sssdb.dat");
 ReadPackage( "sla", "gap/sssdb.gi");
-
+ReadPackage( "sla", "gap/hwrep.gi");
