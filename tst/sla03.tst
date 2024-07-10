@@ -10,12 +10,12 @@
 #
 gap> START_TEST( "sla03.tst");
 
-# doc/manual.xml:876-880
+# doc/manual.xml:870-874
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> o:= NilpotentOrbit( L, [1,2,0,0,0,1] );
 <nilpotent orbit in Lie algebra of type E6>
 
-# doc/manual.xml:901-912
+# doc/manual.xml:895-906
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;
 gap> orbs[10];
@@ -27,7 +27,7 @@ gap> orbs:= NilpotentOrbits(L);;
 gap> OrbitPartition( orbs[10] );
 [ 5, 3, 1 ]
 
-# doc/manual.xml:937-944
+# doc/manual.xml:931-938
 gap> L:= SimpleLieAlgebra("B",3,Rationals);;
 gap> WeightedDynkinDiagram( L, L.1+L.9 ); 
 [ 2, 0, 0 ]
@@ -35,7 +35,7 @@ gap> L:= SimpleLieAlgebra("E",6,Rationals );;
 gap> WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );
 [ 0, 0, 0, 1, 0, 0 ]
 
-# doc/manual.xml:958-965
+# doc/manual.xml:952-959
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> no:= NilpotentOrbits(L);;
 gap> DisplayWeightedDynkinDiagram( no[10] );
@@ -43,7 +43,7 @@ gap> DisplayWeightedDynkinDiagram( no[10] );
              |
 E6:  0---1---0---1---0
 
-# doc/manual.xml:978-987
+# doc/manual.xml:972-981
 gap> K1:= SimpleLieAlgebra("B",3,Rationals);;                                         
 gap> K2:= SimpleLieAlgebra("F",4,Rationals);;
 gap> L:= DirectSumOfAlgebras( K1, K2 );;
@@ -53,14 +53,14 @@ gap> DisplayWeightedDynkinDiagram( L, x );
 B3:  2---2=>=2
 F4:  0---0=>=0---1
 
-# doc/manual.xml:1027-1033
+# doc/manual.xml:1021-1027
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;
 gap> SL2Triple( orbs[10] );
 [ (4)*v.51+(3)*v.53+(3)*v.56+v.59, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
     8)*v.77+(4)*v.78, v.15+v.17+v.20+v.23 ]
 
-# doc/manual.xml:1047-1056
+# doc/manual.xml:1041-1050
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;
 gap> RandomSL2Triple( orbs[10] );
@@ -70,7 +70,7 @@ gap> RandomSL2Triple( orbs[10] );
 [ (3)*v.49+(4)*v.54+(3)*v.56+v.57, (4)*v.73+(6)*v.74+(8)*v.75+(11)*v.76+(
     8)*v.77+(4)*v.78, v.13+v.18+v.20+v.21 ]
 
-# doc/manual.xml:1076-1090
+# doc/manual.xml:1070-1084
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
 gap> orbs:= NilpotentOrbits(L);;
 gap> sl2:= RandomSL2Triple( orbs[6] );
@@ -85,18 +85,18 @@ gap> SL2Grading( L, sl2[2] );
       [ v.43, v.45 ], [ v.46, v.47, v.48 ] ], 
   [ v.1, v.2, v.4, v.6, v.25, v.26, v.28, v.30, v.49, v.50, v.51, v.52 ] ]
 
-# doc/manual.xml:1103-1107
+# doc/manual.xml:1097-1101
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
 gap> SL2Triple( L, L.1+L.20 );
 [ v.16+v.25, v.49, v.1+v.20 ]
 
-# doc/manual.xml:1117-1122
+# doc/manual.xml:1111-1116
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> no:= NilpotentOrbits(L);;
 gap> Dimension( no[13] );                 
 60
 
-# doc/manual.xml:1137-1144
+# doc/manual.xml:1131-1138
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> no:= NilpotentOrbits(L);;
 gap> IsRegular( no[13] );
@@ -104,7 +104,7 @@ false
 gap> IsRegular( no[20] );
 true
 
-# doc/manual.xml:1170-1177
+# doc/manual.xml:1164-1171
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> no:= NilpotentOrbits(L);;
 gap> IsDistinguished( no[10] );
@@ -112,7 +112,7 @@ false
 gap> IsDistinguished( no[17] );
 true
 
-# doc/manual.xml:1188-1204
+# doc/manual.xml:1182-1198
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> dis:= DistinguishedNilpotentOrbits( L );; Length(dis);
 3
@@ -129,15 +129,13 @@ gap> DisplayWeightedDynkinDiagram( dis[3] );
              |
 E6:  2---2---2---2---2
 
-# doc/manual.xml:1234-1253
+# doc/manual.xml:1233-1250
 gap> L:= SimpleLieAlgebra("E",8,Rationals);;
 gap> no:= NilpotentOrbits(L);; 
 gap> C:= ComponentGroup( no[41] ); 
 <matrix group with 2 generators>
 gap> Length( Elements(C) );
 120
-# We can construct the automorphisms corresponding to the generators
-# in the following way.
 gap> gens:= GeneratorsOfGroup(C);;
 gap> f1:= function(x) return (gens[1]*Coefficients(Basis(L),x))*Basis(L); end;
 function( x ) ... end
@@ -149,7 +147,7 @@ true
 gap> List( sl2, f2 ) = sl2;
 true
 
-# doc/manual.xml:1288-1296
+# doc/manual.xml:1285-1293
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> s:= InducedNilpotentOrbits(L);;
 gap> s[19];
@@ -158,7 +156,7 @@ rec( norbit := <nilpotent orbit in Lie algebra of type E6>,
 gap> WeightedDynkinDiagram( s[19].norbit );
 [ 0, 0, 0, 2, 0, 0 ]
 
-# doc/manual.xml:1310-1318
+# doc/manual.xml:1307-1315
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> RigidNilpotentOrbits(L);
 [ <nilpotent orbit in Lie algebra of type E6>, 
@@ -167,9 +165,7 @@ gap> RigidNilpotentOrbits(L);
 gap> List( last, WeightedDynkinDiagram );
 [ [ 0, 1, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 0, 0 ], [ 1, 0, 0, 1, 0, 1 ] ]
 
-# doc/manual.xml:1332-1349
-gap> L:= SimpleLieAlgebra("E",6,Rationals);;
-gap> RichardsonOrbits(L);
+# doc/manual.xml:1329-1344
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> RichardsonOrbits(L);
 [ <nilpotent orbit in Lie algebra of type E6>, <nilpotent orbit in Lie algebra of type E6>, 

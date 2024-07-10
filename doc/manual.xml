@@ -601,7 +601,6 @@ B5:  2---3---4---5=>=6
 gap> V:= AdjointModule( L );;
 gap> W:= ModuleByRestriction( V, K );;
 gap> dW:= DirectSumDecomposition( W );;
-[ 33, 3, 3, 3, 64, 64, 11, 11, 55, 1 ]
 gap> DisplayHighestWeight( dW[5] );
 A1:  1
 B5:  0---0---0---0=>=1
@@ -654,11 +653,6 @@ gap> f:= ExtRepOfObj( v0 );
 (1)*F@y15*y23*y36^(2)*v0
 gap> Image(f, Basis(V)[10] );
 0
-gap> Image(f, Random(V) );   
-3
-gap> f:= ExtRepOfObj( Random(Vst) );;
-gap> Image(f, Basis(V)[10] );
--1
 </Example>
 
 
@@ -1229,6 +1223,11 @@ lies in <M>S^\circ</M>. <P/>
 
 We remark that it is known that the component group of <M>S</M> is the same
 as the component group of the stabilizer of <A>e</A>. 
+<P/>
+
+In the next example we construct the automorphisms that correspond to 
+the generators of a component group.
+
 
 
 <Example>
@@ -1238,8 +1237,6 @@ gap> C:= ComponentGroup( no[41] );
 &lt;matrix group with 2 generators>
 gap> Length( Elements(C) );
 120
-# We can construct the automorphisms corresponding to the generators
-# in the following way.
 gap> gens:= GeneratorsOfGroup(C);;
 gap> f1:= function(x) return (gens[1]*Coefficients(Basis(L),x))*Basis(L); end;
 function( x ) ... end
@@ -1330,8 +1327,6 @@ Richardson if it is induced from the zero orbit in a Levi subalgebra.
 This function returns the list of all Richardson nilpotent orbits of <A>L</A>.
 
 <Example>
-gap> L:= SimpleLieAlgebra("E",6,Rationals);;
-gap> RichardsonOrbits(L);
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> RichardsonOrbits(L);
 [ &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 

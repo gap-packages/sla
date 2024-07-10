@@ -118,7 +118,7 @@ gap> DisplayHighestWeight( dW[1] );
 A1:  2
 B5:  1---0---0---0=>=0
 
-# doc/manual.xml:594-616
+# doc/manual.xml:594-615
 gap> r:= LieAlgebraAndSubalgebras( "E8" );;
 gap> L:= r.liealg;;
 gap> K:= r.subalgs[823];;
@@ -128,7 +128,6 @@ B5:  2---3---4---5=>=6
 gap> V:= AdjointModule( L );;
 gap> W:= ModuleByRestriction( V, K );;
 gap> dW:= DirectSumDecomposition( W );;
-[ 33, 3, 3, 3, 64, 64, 11, 11, 55, 1 ]
 gap> DisplayHighestWeight( dW[5] );
 A1:  1
 B5:  0---0---0---0=>=1
@@ -141,7 +140,7 @@ v.205
 gap> HighestWeightVector( dW[6] );
 v.205
 
-# doc/manual.xml:637-662
+# doc/manual.xml:636-656
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> V:= HighestWeightModule( L, [0,0,1,0,0,0] );; Dimension(V);
 351
@@ -161,19 +160,14 @@ gap> f:= ExtRepOfObj( v0 );
 (1)*F@y15*y23*y36^(2)*v0
 gap> Image(f, Basis(V)[10] );
 0
-gap> Image(f, Random(V) );   
-3
-gap> f:= ExtRepOfObj( Random(Vst) );;
-gap> Image(f, Basis(V)[10] );
--1
 
-# doc/manual.xml:720-725
+# doc/manual.xml:714-719
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> CharacteristicsOfStrata( L, [0,1] );
 [ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
   [ 6, 8, 10, 12 ] ]
 
-# doc/manual.xml:734-794
+# doc/manual.xml:728-788
 gap> f:= FiniteOrderInnerAutomorphisms("E",6,3)[2];;
 gap> M:= Source(f);;
 gap> gr:= Grading(f);;
