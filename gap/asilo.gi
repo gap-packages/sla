@@ -664,3 +664,38 @@ function( R, p )
     return ConjugateDominantWeightWithWord( WeylGroup(R), im )[2];
 
 end );
+
+
+InstallMethod( ApplyWeylPermToCartanElement,
+"for Lie algebra, permutation and Cartan elt", true, 
+[ IsLieAlgebra, IsPerm, IsObject ], 0,
+
+function( L, w, h )
+
+       local W, ch, hh, cf, ha, N, im, i, j;
+
+       W := WeylGroupAsPermGroup( RootSystem(L) );
+       if not IsBound( W!.hSpace ) then
+          ch:= ChevalleyBasis(L);
+          hh:= ch[3];
+          W!.hSpace:= Basis( VectorSpace( LeftActingDomain(L), hh ), hh );
+	  W!.halphas:= List( [1..Length(ch[1])], i -> ch[1][i]*ch[2][i] ); 
+       fi;
+
+       cf:= Coefficients( W!.hSpace, h );
+       if cf = fail then return fail; fi;
+       
+       ha:= W!.halphas;
+       N:= Length( ha );
+       im:= 0*h;
+       for i in [ 1 .. Length( cf ) ] do
+           j := i^w;
+           if j <= N then
+              im := im + cf[i] * ha[j];
+           else
+              im := im - cf[i] * ha[(j - N)];
+          fi;
+       od;
+       return im;
+end );
+       

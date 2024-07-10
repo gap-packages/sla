@@ -22,4 +22,5 @@ DeclareOperation( "WeylWordAsPerm", [IsRootSystem, IsList] );
 
 DeclareOperation( "PermAsWeylWord", [IsRootSystem, IsPerm] );
 
-
+DeclareOperation( "ApplyWeylPermToCartanElement", [IsLieAlgebra, IsPerm,
+IsObject ] );

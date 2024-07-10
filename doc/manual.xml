@@ -69,11 +69,11 @@ We remark that the package needs the package <Package>QuaGroup</Package>.
 
 </Chapter>
 
-<Chapter> <Heading>Auxiliary Functions</Heading>
+<Chapter> <Heading>Root Systems and Weyl Groups</Heading>
 
 
-This chapter contains the description of some functions 
-that do not fit in any other chapter.
+This chapter contains the description of some functions for the
+objects in the title of the chapter.
 
 
 <Section> <Heading> Root Systems </Heading>
@@ -124,6 +124,30 @@ rec( enumeration := [ [ 3, 1 ], [ 2, 4 ] ],
 
 </Description>
 </ManSection>
+
+<ManSection>
+  <Oper Name="DisplayDynkinDiagram"  Arg="C" Comm="Cartan matrix"/>
+   <Oper Name="DisplayDynkinDiagram"  Arg="R" Comm="Root system"/>
+   <Description>
+
+Here <A>C</A> is a Cartan matrix. This function displays the Dynkin diagram of
+the Cartan matrix. (Remark: this just works for Cartan matrices of root
+systems, not for extended Cartan matrices.) <P/>
+
+In the second form <A>R</A> is a root system. We display its Dynkin diagram.
+
+<Example>
+gap> C:=[[2,0,-1,0,0,0],[0,2,0,0,-3,0],[-1,0,2,0,0,-1],[0,0,0,2,0,-1],
+> [0,-1,0,0,2,0],[0,0,-2,-1,0,2]];;
+gap> DisplayDynkinDiagram(C); 
+F4:  4---6=>=3---1
+G2:  5#&lt;#2
+</Example>
+
+</Description>
+</ManSection>
+
+
 
 </Section>
 
@@ -313,7 +337,11 @@ gap> List( GeneratorsOfGroup(S), g -> PermAsWeylWord( R, g ) );
 
 </Section>
 
-<Section> <Heading> Lie Algebras and Their Modules </Heading>
+</Chapter>
+
+<Chapter> <Heading>Semisimple Lie Algebras and their Modules</Heading>
+
+<Section> <Heading> Semisimple Lie algebras </Heading>
 
 <ManSection>
    <Oper Name="IsomorphismOfSemisimpleLieAlgebras"  Arg="L1, L2"/>
@@ -326,6 +354,57 @@ returns an isomorphism.
 
 </Description>
 </ManSection>
+
+<ManSection>
+   <Oper Name="DisplayDynkinDiagram"  Arg="L"/>
+
+<Description>
+
+Here <A>L</A> is a semisimple Lie algebra. This function displays its
+Dynkin diagram.
+
+<Example>
+gap> L:= SimpleLieAlgebra("F",4,Rationals);
+&lt;Lie algebra of dimension 52 over Rationals>
+gap> DisplayDynkinDiagram(L);              
+F4:  2---4=>=3---1
+</Example>
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="ApplyWeylPermToCartanElement"  Arg="L, w, h"/>
+
+<Description>
+
+Here <A>L</A> is a semisimple Lie algebra, <A>w</A> is a permutation which is
+an element of <A>WeylGroupAsPermGroup( RootSystem(L) )</A>, and <A>h</A> is
+an element of the Cartan subalgebra <A>CartanSubalgebra( L )</A>. The Weyl
+groups naturally acts on this Cartan subalgebra and this function returns
+the result of applying <A>w</A> to <A>h</A>.
+
+<Example>
+gap> L:= SimpleLieAlgebra("F",4,Rationals);;
+gap> R:= RootSystem(L);;
+gap> W:= WeylGroupAsPermGroup(R);;
+gap> w:= Product( GeneratorsOfGroup(W) );
+(1,32,33,36,35,27,25,8,9,12,11,3)(2,30,34,44,37,39,26,6,10,20,13,15)(4,16,23,24,22,18,28,
+40,47,48,46,42)(5,31,41,43,45,38,29,7,17,19,21,14)
+gap> H:= CartanSubalgebra(L);;
+gap> h:= Sum( Basis(H) );
+v.49+v.50+v.51+v.52
+gap> ApplyWeylPermToCartanElement( L, w, h );
+(-1)*v.52
+</Example>
+
+</Description>
+</ManSection>
+
+
+</Section>
+
+<Section> <Heading> Representations of semisimple Lie algebras </Heading>
 
 <ManSection>
    <Oper Name="AdmissibleLattice"  Arg="V"/>
@@ -384,6 +463,208 @@ gap> List( last, Dimension );
 
 </Description>
 </ManSection>
+
+<ManSection>
+   <Oper Name="IsIrreducibleHWModule"  Arg="V"/>
+
+<Description>
+
+Returns <A>true</A> if <A>V</A> is an irreducible module over a semisimple
+Lie algebra, and <A>false</A> otherwise  
+
+<Example>
+gap> L:= SimpleLieAlgebra("F",4,Rationals);
+&lt;Lie algebra of dimension 52 over Rationals>
+gap> V:= HighestWeightModule( L, [0,1,0,0] );
+&lt;52-dimensional left-module over &lt;Lie algebra of dimension 52 over Rationals>>
+gap> IsIrreducibleHWModule(V);
+true
+</Example>
+
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="HighestWeightVector"  Arg="V"/>
+
+<Description>
+
+Here <A>V</A> is an irreducible module over a semisimple Lie algebra.
+This function returns a highest weight vector <A>v0</A> in <A>V</A>. This means
+that it is a weight vector for the Cartan subalgebra of the acting Lie
+algebra, and all positive root vectors send it to zero.
+
+
+<Example>
+gap> L:= SimpleLieAlgebra("G",2,Rationals);;
+gap> V:= HighestWeightModule( L, [1,0] );;
+gap> W:= TensorProductOfAlgebraModules( V, V );;
+gap> dW:= DirectSumDecomposition( W );;
+gap> cg:= CanonicalGenerators( RootSystem(L) );;
+gap> v0:= HighestWeightVector( dW[3] );
+1*(1*v0&lt;x>y1*v0)-1*(y1*v0&lt;x>1*v0)
+gap> List( cg[3], h -> h^v0 );
+[ &lt;0-tensor>, 1*(1*v0&lt;x>y1*v0)-1*(y1*v0&lt;x>1*v0) ]
+gap> List( cg[1], h -> h^v0 );
+[ &lt;0-tensor>, &lt;0-tensor> ]
+</Example>
+
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="HighestWeight"  Arg="V"/>
+
+<Description>
+
+Here <A>V</A> is an irreducible module over a semisimple Lie algebra.
+This function returns the highest weight of <A>V</A>. That is, the list of
+eigenvalues of the Cartan elements in a canonical generating set of the
+Lie algebra, when acting on a highest weight vector.
+
+<Example>
+gap> L:= SimpleLieAlgebra("G",2,Rationals);;
+gap> V:= HighestWeightModule( L, [1,0] );;
+gap> W:= TensorProductOfAlgebraModules( V, V );;
+gap> dW:= DirectSumDecomposition( W );;
+gap> List( dW, HighestWeight );
+[ [ 2, 0 ], [ 1, 0 ], [ 0, 1 ], [ 0, 0 ] ]
+</Example>
+
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="DisplayHighestWeight"  Arg="V"/>
+
+<Description>
+Here <A>V</A> is an irreducible module over a semisimple Lie algebra.
+This function displays its highest weight, that is, it shows the coordinates of
+the highest weight on the Dynkin diagram of the Lie algebra.
+
+<Example>
+gap> r:= LieAlgebraAndSubalgebras( "E8" );;
+gap> L:= r.liealg;;
+gap> K:= r.subalgs[823];
+&lt;Lie algebra of dimension 58 over CF(84)>
+gap> DisplayDynkinDiagram(K);
+A1:  1
+B5:  2---3---4---5=>=6
+gap> V:= AdjointModule( L );
+&lt;248-dimensional left-module over &lt;Lie algebra of dimension 248 over CF(84)>>
+gap> W:= ModuleByRestriction( V, K );
+&lt;248-dimensional left-module over &lt;Lie algebra of dimension 58 over CF(84)>>
+gap> dW:= DirectSumDecomposition( W ); 
+[ &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>>, 
+  &lt;left-module over &lt;Lie algebra of dimension 58 over CF(84)>> ]
+gap> List( dW, Dimension );
+[ 33, 3, 3, 3, 64, 64, 11, 11, 55, 1 ]
+gap> DisplayHighestWeight( dW[5] );
+A1:  1
+B5:  0---0---0---0=>=1
+gap> DisplayHighestWeight( dW[1] );
+A1:  2
+B5:  1---0---0---0=>=0
+</Example>
+
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="IsomorphismOfIrreducibleHWModules"  Arg="V1, V2"/>
+
+<Description>
+
+Here <A>V1</A>, <A>V2</A> are two irreducible modules over the same semisimple
+Lie algebra with the same highest weights. This function returns an isomorphism
+between the two. 
+
+<Example>
+gap> r:= LieAlgebraAndSubalgebras( "E8" );;
+gap> L:= r.liealg;;
+gap> K:= r.subalgs[823];;
+gap> DisplayDynkinDiagram(K);
+A1:  1
+B5:  2---3---4---5=>=6
+gap> V:= AdjointModule( L );;
+gap> W:= ModuleByRestriction( V, K );;
+gap> dW:= DirectSumDecomposition( W );;
+[ 33, 3, 3, 3, 64, 64, 11, 11, 55, 1 ]
+gap> DisplayHighestWeight( dW[5] );
+A1:  1
+B5:  0---0---0---0=>=1
+gap> DisplayHighestWeight( dW[6] );
+A1:  1
+B5:  0---0---0---0=>=1
+gap> f:= IsomorphismOfIrreducibleHWModules( dW[5], dW[6] );;
+gap> Image( f, HighestWeightVector( dW[5] ) );
+v.205
+gap> HighestWeightVector( dW[6] );
+v.205
+</Example>
+
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="DualAlgebraModule"  Arg="V"/>
+
+<Description>
+
+Here <A>V</A> is a module over a Lie algebra. This function returns the
+dual module. <P/>
+
+The basis elements of this module are printed as <A>F@v</A> where <A>v</A> is
+a basis element of <A>v</A>. This represents the function which takes the value
+1 on te basis element <A>v</A> and 0 on all other basis elements. However,
+an element of the module is a module element and not a function. We can
+access the function by taking the <A>ExtRepOfObj</A> of an element of the
+module, as illustrated by the example below.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> V:= HighestWeightModule( L, [0,0,1,0,0,0] );; Dimension(V);
+351
+gap> Vst:= DualAlgebraModule( V );
+&lt;351-dimensional left-module over &lt;Lie algebra of dimension 78 over Rationals>>
+gap> DisplayHighestWeight( Vst );
+             0
+             |
+E6:  0---0---0---1---0
+gap> DisplayHighestWeight( V );  
+             0
+             |
+E6:  0---1---0---0---0
+gap> v0:= HighestWeightVector( Vst );
+(1)*F@y15*y23*y36^(2)*v0
+gap> f:= ExtRepOfObj( v0 );         
+(1)*F@y15*y23*y36^(2)*v0
+gap> Image(f, Basis(V)[10] );
+0
+gap> Image(f, Random(V) );   
+3
+gap> f:= ExtRepOfObj( Random(Vst) );;
+gap> Image(f, Basis(V)[10] );
+-1
+</Example>
+
+
+</Description>
+</ManSection>
+
 
 <ManSection>
    <Oper Name="CharacteristicsOfStrata"  Arg="L, hw"/>
@@ -665,6 +946,51 @@ gap> WeightedDynkinDiagram(L, L.1+L.6+L.20+2*L.32 : table:= true );
 </Description>
 </ManSection>
 
+
+<ManSection>
+   <Meth Name="DisplayWeightedDynkinDiagram"  Arg="o" 
+         Comm="nilpotent orbit"/>
+   <Description>
+
+This displays the weighted Dynkin diagram of the nilpotent orbit <A>o</A> on
+the Dynkin diagram of the Lie algebra.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> no:= NilpotentOrbits(L);;
+gap> DisplayWeightedDynkinDiagram( no[10] );
+             1
+             |
+E6:  0---1---0---1---0
+</Example>
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Meth Name="DisplayWeightedDynkinDiagram"  Arg="L, x" />
+   <Description>
+
+Here <A>L</A> is a semisimple Lie algebra with nilpotent element <A>x</A>.
+This displays the weighted Dynkin diagram of the nilpotent orbit containing
+<A>x</A> on the Dynkin diagram of the Lie algebra.
+
+<Example>
+gap> K1:= SimpleLieAlgebra("B",3,Rationals);;                                         
+gap> K2:= SimpleLieAlgebra("F",4,Rationals);;
+gap> L:= DirectSumOfAlgebras( K1, K2 );;
+gap> x:=L.1+L.3+L.17+L.33;
+v.1+v.3+v.17+v.33
+gap> DisplayWeightedDynkinDiagram( L, x );
+B3:  2---2=>=2
+F4:  0---0=>=0---1
+</Example>
+
+</Description>
+</ManSection>
+
+
+
 <ManSection>
    <Attr Name="AmbientLieAlgebra"  Arg="o" 
          Comm="nilpotent orbit"/>
@@ -783,6 +1109,156 @@ gap> SL2Triple( L, L.1+L.20 );
 </ManSection>
 
 <ManSection>
+   <Attr Name="Dimension"  Arg="o" />
+   <Description>
+
+Returns the dimension of the nilpotent orbit <A>o</A>.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> no:= NilpotentOrbits(L);;
+gap> Dimension( no[13] );                 
+60
+</Example>
+
+</Description>
+</ManSection>
+
+
+<ManSection>
+   <Oper Name="IsRegular"  Arg="o" /> 
+
+   <Description>
+
+The regular nilpotent orbit is the one of maximal dimension. This function
+returns <A>true</A> if the nilpotent orbit <A>o</A> is regular, <A>false</A>
+otherwise.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> no:= NilpotentOrbits(L);;
+gap> IsRegular( no[13] );
+false
+gap> IsRegular( no[20] );
+true
+</Example>
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="RegularNilpotentOrbit"  Arg="L" /> 
+
+   <Description>
+
+Here <A>L</A> is a semisimple Lie algebra. This function returns the regular
+nilpotent orbit of <A>L</A>. 
+
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name= "IsDistinguished"  Arg="o" /> 
+
+   <Description>
+
+A nilpotent orbit is said to be distinguished if for a representative <A>x</A>
+we have that the only Levi subalgebra containing <A>x</A> is the ambient
+Lie algebra itself. This function returns <A>true</A> if the nilpotent
+orbit <A>o</A> is distinguished, <A>false</A> otherwise.
+
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> no:= NilpotentOrbits(L);;
+gap> IsDistinguished( no[10] );
+false
+gap> IsDistinguished( no[17] );
+true
+</Example>
+</Description>
+</ManSection>
+
+<ManSection>
+   <Oper Name="DistinguishedNilpotentOrbits"  Arg="L" /> 
+
+   <Description>
+
+Returns the list of distinguished nilpotent orbits of <A>L</A>.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> dis:= DistinguishedNilpotentOrbits( L );; Length(dis);
+3
+gap> DisplayWeightedDynkinDiagram( dis[1] );
+             0
+             |
+E6:  2---0---2---0---2
+gap> DisplayWeightedDynkinDiagram( dis[2] );
+             2
+             |
+E6:  2---2---0---2---2
+gap> DisplayWeightedDynkinDiagram( dis[3] );
+             2
+             |
+E6:  2---2---2---2---2
+</Example>
+</Description>
+</ManSection>
+
+
+<ManSection>
+   <Attr Name="ComponentGroup"  Arg="o" />
+   <Description>
+
+Here <A>o</A> is a nilpotent orbit in a <E>simple</E> Lie algebra <A>L</A>.
+Let <A>(f,h,e)</A> be an <M>\mathfrak{sl}_2</M>-triple as returned by 
+<A>SL2Triple( o )</A>. We consider the stabilizer <M>S</M> of <A>(f,h,e)</A> 
+in the
+adjoint group <M>G</M> of <A>L</A>. This stabilizer consists of the elements 
+in <M>G</M> that map each of <A>f, h, e</A> to itself. This function
+returns a subgroup of <M>G</M> that in all but four cases (see below) is 
+isomorphic to
+the component group of <M>S</M>. The elements of this group are 
+given by their matrices relative to the basis <A>Basis( L )</A> of <A>L</A>.
+<P/>
+
+In four cases (one in type <M>E_7</M> and three in type <M>E_8</M>) the group
+returned has order 4, whereas the component group <M>S/S^\circ</M> has
+order 2. In these cases the square of a generator of the returned group
+lies in <M>S^\circ</M>. <P/>
+
+We remark that it is known that the component group of <M>S</M> is the same
+as the component group of the stabilizer of <A>e</A>. 
+
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",8,Rationals);;
+gap> no:= NilpotentOrbits(L);; 
+gap> C:= ComponentGroup( no[41] ); 
+&lt;matrix group with 2 generators>
+gap> Length( Elements(C) );
+120
+# We can construct the automorphisms corresponding to the generators
+# in the following way.
+gap> gens:= GeneratorsOfGroup(C);;
+gap> f1:= function(x) return (gens[1]*Coefficients(Basis(L),x))*Basis(L); end;
+function( x ) ... end
+gap> f2:= function(x) return (gens[2]*Coefficients(Basis(L),x))*Basis(L); end;
+function( x ) ... end
+gap> sl2:= SL2Triple( no[41] );;
+gap> List( sl2, f1 ) = sl2;
+true
+gap> List( sl2, f2 ) = sl2;
+true
+</Example>
+
+</Description>
+</ManSection>
+
+
+
+
+<ManSection>
    <Attr Name="InducedNilpotentOrbits"  Arg="L" 
          Comm="Lie algebra"/>
    <Description>
@@ -843,6 +1319,38 @@ gap> List( last, WeightedDynkinDiagram );
 
 </Description>
 </ManSection>
+
+<ManSection>
+   <Attr Name="RichardsonOrbits"  Arg="L" 
+         Comm="Lie algebra"/>
+   <Description>
+
+Here <A>L</A> is a simple Lie algebra. A nilpotent orbit is said to be 
+Richardson if it is induced from the zero orbit in a Levi subalgebra. 
+This function returns the list of all Richardson nilpotent orbits of <A>L</A>.
+
+<Example>
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> RichardsonOrbits(L);
+gap> L:= SimpleLieAlgebra("E",6,Rationals);;
+gap> RichardsonOrbits(L);
+[ &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6>, 
+  &lt;nilpotent orbit in Lie algebra of type E6>, &lt;nilpotent orbit in Lie algebra of type E6> ]
+gap> List( last, WeightedDynkinDiagram );    
+[ [ 2, 2, 2, 2, 2, 2 ], [ 2, 2, 2, 0, 2, 2 ], [ 2, 2, 0, 2, 0, 2 ], [ 1, 2, 1, 0, 1, 1 ], 
+  [ 1, 2, 0, 0, 0, 1 ], [ 1, 0, 0, 0, 0, 1 ], [ 0, 0, 1, 0, 1, 0 ], [ 1, 1, 1, 0, 1, 1 ], 
+  [ 0, 0, 0, 2, 0, 0 ], [ 2, 0, 0, 2, 0, 2 ], [ 2, 2, 0, 0, 0, 2 ], [ 0, 2, 0, 0, 0, 0 ], 
+  [ 0, 2, 0, 2, 0, 0 ], [ 2, 0, 0, 0, 0, 2 ] ]
+</Example>
+
+</Description>
+</ManSection>
+
 
 
 </Section>

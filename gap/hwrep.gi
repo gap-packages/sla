@@ -313,7 +313,7 @@ end;
 
 
 InstallMethod( DisplayHighestWeight,
-    "for a Cartan matrix",
+    "for an irred Lie algebra module",
     true, [ IsAlgebraModule and  IsLeftAlgebraModuleElementCollection], 0,
     function( V )
 
@@ -354,29 +354,6 @@ InstallOtherMethod( DisplayDynkinDiagram,
 end);
 
 
-InstallMethod( DisplayWeightedDynkinDiagram,
-    "for a nilpotent orbit",
-    true, [ IsNilpotentOrbit ], 0,
-    function(o )
-
-    local C;
-    
-    C:= CartanMatrix(RootSystem(AmbientLieAlgebra(o)));
-    SLAfcts.printdyndiag(C,WeightedDynkinDiagram(o));
-end);
-
-
-InstallOtherMethod( DisplayWeightedDynkinDiagram,
-    "for a Lie algebra and a weighted Dynkin diagram",
-    true, [ IsLieAlgebra, IsList ], 0,
-    function( L, w )
-
-    local C;
-    
-    C:= CartanMatrix(RootSystem(L));
-    SLAfcts.printdyndiag(C,w);
-end);
-
 WeightSpacesOfIrreduciblewHWModule:= function( V )
 
    local a, vv, wts, wts0, sp, w, ii;
@@ -411,7 +388,7 @@ InstallMethod( DualAlgebraModule,
         [ IsAlgebraModule and IsLeftAlgebraModuleElementCollection ], 0,
         function( M )
     
-    local L, Mstr, act;
+    local L, Mstr, act, Bst, sp, bas, ff, aa, R, y, k, rhs, sol, Vst;
     
     L:= LeftActingAlgebra( M );
     if not IsLieAlgebra( L ) then TryNextMethod(); fi;
@@ -435,113 +412,27 @@ InstallMethod( DualAlgebraModule,
 	  return a*Basis(Mstr);
 
     end;
-# construct a basis of the module directly!!
-    return LeftAlgebraModule( L, act, Mstr );
+
+    Bst:= Basis( Mstr );
+    Vst:= LeftAlgebraModule( L, act, Mstr );
+
+    if IsIrreducibleHWModule(M) then
+
+       sp:= WeightSpacesOfIrreduciblewHWModule(M)[2];
+       bas:= Concatenation( List( sp, Basis ) );
+       ff:= BasisVectors( Basis(Mstr) );
+       aa:= List( ff, f -> List( bas, v -> Image( f, v ) ) );
+       R:= RootSystem( L );
+       y:= CanonicalGenerators( R )[2];
+       k:= PositionProperty( bas, v -> ForAll( y, x -> IsZero(x^v) ) );
+       rhs:= List( ff, f -> Zero(LeftActingDomain(L)) );
+       rhs[k]:= One( LeftActingDomain(L) );
+       sol:= SolutionMat( aa, rhs );
+       SetHighestWeightVector( Vst, sol*Basis(Vst) );
+    fi;
+
+    return Vst;
 
 end );
 
-
-##########################################################################
-#
-#  Some stuff for nilpotent orbits...
-
-InstallOtherMethod( Dimension,
-        "for a nilpotent orbit", true,
-        [ IsNilpotentOrbit ], 0,
-        function( o )
-    
-        local wd, L, R, posR, dim, r0;
-
-        wd:= WeightedDynkinDiagram(o);
-	L:= AmbientLieAlgebra(o);
-	R:= RootSystem(L);
-	posR:= PositiveRootsNF(R);
-	dim:= Dimension(L);
-	r0:= Length( Filtered( posR, r -> wd*r = 0 ) );
-	dim:= dim-Length(CartanMatrix(R))-2*r0;
-	r0:= Length( Filtered( posR, r -> wd*r = 1 ) );
-	return dim-r0;
-
-end );
-
-InstallMethod( IsRegular,
-        "for a nilpotent orbit", true,
-        [ IsNilpotentOrbit ], 0,
-        function( o )
-
-      return ForAll( WeightedDynkinDiagram(o), x -> x=2 );
-
-end );
-
-InstallMethod( RegularNilpotentOrbit,
-        "for a semisimple Lie algebra", true,
-        [ IsLieAlgebra ], 0,
-        function( L )
-
-      return Filtered( NilpotentOrbits(L), IsRegular )[1];
-
-end );
-
-InstallMethod( IsDistinguished,
-        "for a nilpotent orbit", true,
-        [ IsNilpotentOrbit ], 0,
-        function( o )
-
-
-        local wd, L, R, posR, d0, r0;
-
-        wd:= WeightedDynkinDiagram(o);
-	L:= AmbientLieAlgebra(o);
-	R:= RootSystem(L);
-	posR:= PositiveRootsNF(R);
-	r0:= Length( Filtered( posR, r -> wd*r = 0 ) );
-	d0:= Length(CartanMatrix(R))+2*r0;
-	r0:= Length( Filtered( posR, r -> wd*r = 2 ) );
-
-        return d0=r0;
-
-end );
-
-InstallMethod( DistinguishedNilpotentOrbits,
-        "for a semisimple Lie algebra", true,
-        [ IsLieAlgebra ], 0,
-        function( L )
-
-      return Filtered( NilpotentOrbits(L), IsDistinguished );
-
-end );
-
-
-
-############################################################################
-
-ApplyWeylPermToCartanElement:= function( L, w, h )
-
-       local W, ch, hh, cf, ha, N, im, i, j;
-
-       W := WeylGroupAsPermGroup( RootSystem(L) );
-       if not IsBound( W!.hSpace ) then
-          ch:= ChevalleyBasis(L);
-          hh:= ch[3];
-          W!.hSpace:= Basis( VectorSpace( LeftActingDomain(L), hh ), hh );
-	  W!.halphas:= List( [1..Length(ch[1])], i -> ch[1][i]*ch[2][i] ); 
-       fi;
-
-       cf:= Coefficients( W!.hSpace, h );
-       if cf = fail then return fail; fi;
-       
-       ha:= W!.halphas;
-       N:= Length( ha );
-       im:= 0*h;
-       for i in [ 1 .. Length( cf ) ] do
-           j := i^w;
-           if j <= N then
-              im := im + cf[i] * ha[j];
-           else
-              im := im - cf[i] * ha[(j - N)];
-          fi;
-       od;
-       return im;
-end;
-       
 
