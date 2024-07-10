@@ -14,6 +14,8 @@ DeclareAttribute( "SemiSimpleType", IsNilpotentOrbit );
 
 DeclareAttribute( "OrbitPartition", IsNilpotentOrbit );
 
+DeclareAttribute( "ComponentGroup", IsNilpotentOrbit );
+
 DeclareOperation( "NilpotentOrbit", [ IsLieAlgebra, IsList ] );
 
 DeclareAttribute( "NilpotentOrbits", IsLieAlgebra );
@@ -31,4 +33,16 @@ DeclareAttribute( "SLAComponents", IsLieAlgebra );
 DeclareAttribute( "RigidNilpotentOrbits", IsLieAlgebra );
 
 DeclareAttribute( "InducedNilpotentOrbits", IsLieAlgebra );
+
+DeclareAttribute( "RichardsonOrbits", IsLieAlgebra );
+
+DeclareOperation( "DisplayWeightedDynkinDiagram", [IsNilpotentOrbit] );
+
+DeclareProperty( "IsRegular", IsNilpotentOrbit );
+
+DeclareOperation( "RegularNilpotentOrbit", [IsLieAlgebra] );
+
+DeclareProperty( "IsDistinguished", IsNilpotentOrbit );
+
+DeclareOperation( "DistinguishedNilpotentOrbits", [IsLieAlgebra] );
 
