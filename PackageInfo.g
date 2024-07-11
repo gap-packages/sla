@@ -6,8 +6,8 @@
 SetPackageInfo( rec(
 PackageName := "SLA",
 Subtitle := "Computing with simple Lie algebras",
-Version := "1.5.3",
-Date := "15/11/2019", # dd/mm/yyyy format
+Version := "1.6.1",
+Date := "11/07/2024", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 Persons := [
@@ -50,7 +50,7 @@ AbstractHTML := "The package <span class=\"pkgname\">SLA</span> contains \
                  functionality for working with simple Lie algebras,",
 
 Dependencies := rec(
-  GAP := ">=4.8",
+  GAP := ">=4.12",
   NeededOtherPackages:= [["quagroup", ">=1.8" ]],
   SuggestedOtherPackages := [],
   ExternalConditions := []
