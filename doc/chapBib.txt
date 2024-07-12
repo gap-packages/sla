@@ -15,7 +15,7 @@
   
   [[20XGE09[120X] [16XGraaf, W. A. d. and Elashvili, A. G.[116X, [17XInduced nilpotent orbits of the
   simple  Lie algebras of exceptional type[117X, [18XGeorgian Mathematical Journal[118X, [19X16[119X,
-  2 (2009), 257-278, (({\tt arXiv:0905.2743v1}[math.RT])).
+  2 (2009), 257-278, ({\tt arXiv:0905.2743v1}[math.RT]).
   
   [[20XGra08[120X]  [16XGraaf,  W.  A.  d.[116X,  [17XComputing  with nilpotent orbits in simple Lie
   algebras  of  exceptional  type[117X,  [18XLMS  J.  Comput. Math.[118X, [19X11[119X (2008), 280-297
@@ -33,28 +33,27 @@
   
   [[20XPop03[120X]  [16XPopov,  V.  L.[116X,  [17XThe  cone  of  Hilbert  null forms[117X, [18XTr. Mat. Inst.
   Steklova[118X,  [19X241[119X,  Teor.  Chisel,  Algebra  i  Algebr. Geom. (2003), 192--209,
-  ((English translation in: {\em Proc. Steklov Inst. Math.} 241 (2003), no. 1,
-  177--194)).
+  (English  translation in: {\em Proc. Steklov Inst. Math.} 241 (2003), no. 1,
+  177--194).
   
   [[20XVin75[120X]  [16XVinberg,  E. B.[116X, [17XThe classification of nilpotent elements of graded
   Lie algebras[117X, [18XDokl. Akad. Nauk SSSR[118X, [19X225[119X, 4 (1975), 745-748.
   
   [[20XVin76[120X]  [16XVinberg,  E. B.[116X, [17XThe Weyl group of a graded Lie algebra[117X, [18XIzv. Akad.
-  Nauk  SSSR  Ser.  Mat.[118X,  [19X40[119X,  3 (1976), 488-526, 709, ((English translation:
-  Math. USSR-Izv. 10, 463-495 (1976))).
+  Nauk SSSR Ser. Mat.[118X, [19X40[119X, 3 (1976), 488-526, 709, (English translation: Math.
+  USSR-Izv. 10, 463-495 (1976)).
   
   [[20XVin79[120X]  [16XVinberg, E. B.[116X, [17XClassification of homogeneous nilpotent elements of
   a  semisimple  graded  Lie  algebra[117X,  [18XTrudy  Sem.  Vektor. Tenzor. Anal.[118X, 19
-  (1979),   155-177,  ((English  translation:  Selecta  Math.  Sov.  6,  15-35
-  (1987))).
+  (1979), 155-177, (English translation: Selecta Math. Sov. 6, 15-35 (1987)).
   
   [[20XVP89[120X]  [16XVinberg,  {.  B.  and  Popov,  V. L.[116X, [17XInvariant theory[117X, in Algebraic
   geometry,  4  (Russian),  Akad.  Nauk  SSSR Vsesoyuz. Inst. Nauchn. i Tekhn.
-  Inform.,   Itogi  Nauki  i  Tekhniki,  Moscow  (1989),  137--314,  ((English
+  Inform.,   Itogi   Nauki  i  Tekhniki,  Moscow  (1989),  137--314,  (English
   translation  in:  V. L. Popov and {\`E}. B. Vinberg, {\em Invariant Theory},
   in: {\em Algebraic Geometry IV}, Encyclopedia of Mathematical Sciences, Vol.
   55,  Springer-Verlag,  {\em  Proc.  Steklov  Inst. Math.} 264 (2009), no. 1,
-  146--158)).
+  146--158).
   
   
   

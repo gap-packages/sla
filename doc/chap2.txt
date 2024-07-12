@@ -1,8 +1,8 @@
   
-  [1X2 [33X[0;0YAuxiliary Functions[133X[101X
+  [1X2 [33X[0;0YRoot Systems and Weyl Groups[133X[101X
   
-  [33X[0;0YThis  chapter  contains the description of some functions that do not fit in
-  any other chapter.[133X
+  [33X[0;0YThis  chapter  contains the description of some functions for the objects in
+  the title of the chapter.[133X
   
   
   [1X2.1 [33X[0;0YRoot Systems[133X[101X
@@ -45,6 +45,25 @@
     [4X[25Xgap>[125X [27XCartanType(C);[127X[104X
     [4X[28Xrec( enumeration := [ [ 3, 1 ], [ 2, 4 ] ], [128X[104X
     [4X[28X  types := [ [ "G", 2 ], [ "A", 2 ] ] )[128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-3 DisplayDynkinDiagram[101X
+  
+  [33X[1;0Y[29X[2XDisplayDynkinDiagram[102X( [3XC[103X ) [32X operation[133X
+  [33X[1;0Y[29X[2XDisplayDynkinDiagram[102X( [3XR[103X ) [32X operation[133X
+  
+  [33X[0;0YHere  [3XC[103X is a Cartan matrix. This function displays the Dynkin diagram of the
+  Cartan matrix. (Remark: this just works for Cartan matrices of root systems,
+  not for extended Cartan matrices.)[133X
+  
+  [33X[0;0YIn the second form [3XR[103X is a root system. We display its Dynkin diagram.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XC:=[[2,0,-1,0,0,0],[0,2,0,0,-3,0],[-1,0,2,0,0,-1],[0,0,0,2,0,-1],[127X[104X
+    [4X[25X>[125X [27X[0,-1,0,0,2,0],[0,0,-2,-1,0,2]];;[127X[104X
+    [4X[25Xgap>[125X [27XDisplayDynkinDiagram(C); [127X[104X
+    [4X[28XF4:  4---6=>=3---1[128X[104X
+    [4X[28XG2:  5#<#2[128X[104X
   [4X[32X[104X
   
   
@@ -194,94 +213,5 @@
     [4X[25Xgap>[125X [27XList( GeneratorsOfGroup(S), g -> PermAsWeylWord( R, g ) );[127X[104X
     [4X[28X[ [ 3 ], [ 3, 4 ], [ 2, 1, 3, 2, 4, 2, 1, 3, 2, 4 ], [ 2, 1, 3, 2 ], [128X[104X
     [4X[28X  [ 2, 1, 4, 2 ], [ 1, 3 ] ][128X[104X
-  [4X[32X[104X
-  
-  
-  [1X2.3 [33X[0;0YLie Algebras and Their Modules[133X[101X
-  
-  [1X2.3-1 IsomorphismOfSemisimpleLieAlgebras[101X
-  
-  [33X[1;0Y[29X[2XIsomorphismOfSemisimpleLieAlgebras[102X( [3XL1[103X, [3XL2[103X ) [32X operation[133X
-  
-  [33X[0;0YHere  [3XL1[103X  and  [3XL2[103X  are  two  semisimple  Lie  algebras  that are known to be
-  isomorphic  (i.e.,  they  have  the  same  type).  This  function returns an
-  isomorphism.[133X
-  
-  [1X2.3-2 AdmissibleLattice[101X
-  
-  [33X[1;0Y[29X[2XAdmissibleLattice[102X( [3XV[103X ) [32X operation[133X
-  
-  [33X[0;0YHere  [3XV[103X  is  a  [13Xsimple[113X  module  over a semisimple Lie algebra. This function
-  returns  a basis of [3XV[103X that spans an admissible lattice in [3XV[103X. This means that
-  for  a  root  vector  [22Xx[122X  of  the  acting Lie algebra the matrix [22Xexp( mx )[122X is
-  integral,  where  [22Xmx[122X  denotes  the  matrix  of  [22Xx[122X relative to the admissible
-  lattice.[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
-    [4X[25Xgap>[125X [27XV:= HighestWeightModule( L, [2,0] );[127X[104X
-    [4X[28X<27-dimensional left-module over <Lie algebra of dimension 14 over Rationals>>[128X[104X
-    [4X[25Xgap>[125X [27XB:=AdmissibleLattice(V);;[127X[104X
-    [4X[25Xgap>[125X [27Xx:= L.1;[127X[104X
-    [4X[28Xv.1[128X[104X
-    [4X[25Xgap>[125X [27Xmx:= MatrixOfAction( B, x );;[127X[104X
-    [4X[25Xgap>[125X [27XIsZero(mx^4); IsZero(mx^5);[127X[104X
-    [4X[28Xfalse[128X[104X
-    [4X[28Xtrue[128X[104X
-    [4X[25Xgap>[125X [27Xexp:=Sum( List( [0..4], i -> mx^i/Factorial(i) ) );;[127X[104X
-    [4X[25Xgap>[125X [27XForAll( Flat(exp), IsInt );[127X[104X
-    [4X[28Xtrue[128X[104X
-  [4X[32X[104X
-  
-  [1X2.3-3 DirectSumDecomposition[101X
-  
-  [33X[1;0Y[29X[2XDirectSumDecomposition[102X( [3XV[103X ) [32X operation[133X
-  
-  [33X[0;0YHere  [3XV[103X  is a module over a semisimple Lie algebra; this function computes a
-  list of sub-modules such that [3XV[103X is their direct sum.[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
-    [4X[25Xgap>[125X [27XV:= HighestWeightModule( L, [1,0] );;[127X[104X
-    [4X[25Xgap>[125X [27XW:= TensorProductOfAlgebraModules( V, V );[127X[104X
-    [4X[28X<49-dimensional left-module over <Lie algebra of dimension 14 over Rationals>>[128X[104X
-    [4X[25Xgap>[125X [27XDirectSumDecomposition( W );[127X[104X
-    [4X[28X[ <left-module over <Lie algebra of dimension 14 over Rationals>>, [128X[104X
-    [4X[28X  <left-module over <Lie algebra of dimension 14 over Rationals>>, [128X[104X
-    [4X[28X  <left-module over <Lie algebra of dimension 14 over Rationals>>, [128X[104X
-    [4X[28X  <left-module over <Lie algebra of dimension 14 over Rationals>> ][128X[104X
-    [4X[25Xgap>[125X [27XList( last, Dimension );[127X[104X
-    [4X[28X[ 27, 7, 14, 1 ][128X[104X
-  [4X[32X[104X
-  
-  [1X2.3-4 CharacteristicsOfStrata[101X
-  
-  [33X[1;0Y[29X[2XCharacteristicsOfStrata[102X( [3XL[103X, [3Xhw[103X ) [32X operation[133X
-  
-  [33X[0;0YHere  [3XL[103X  is  a  semisimple  Lie  algebra  over  a field of characteristic 0.
-  Secondly,  [3Xhw[103X  is  a  dominant weight, represented as a list of non-negative
-  integers  (where  the  ordering  of  the fundamantal weights is given by the
-  Cartan  matrix  of  the  root  system  of  [3XL[103X).  Let  [22XG[122X denote the semisimple
-  algebraic group acting on the irreducible representation with highest weight
-  [3Xhw[103X. Hesselink ([Hes79]) defined a stratification of the nullcone relative to
-  the   action   of   [22XG[122X.  Popov  and  Vinberg  ([VP89])  have  described  this
-  stratification  in  terms of characteristics, which are elements of a Cartan
-  subalgebra  of  [3XL[103X.  To each characteristic there corresponds a stratum. This
-  function  is  an  implementation of an algorithm due to Popov ([Pop03]), for
-  computing the characteristics of the strata. It returns a list of two lists.
-  The  first  list  contains the characteristics. The second list contains the
-  dimensions of the corresponding strata. If the highest weight [3Xhw[103X defines the
-  adjoint  representation,  then the characteristics of the strata are exactly
-  the  characteristics of the nilpotent orbits in [3XL[103X. This means the following:
-  let  [22Xh[122X  be  a  characteristic,  then there are [22Xe,f[122X in [3XL[103X such that the triple
-  [22Xh,e,f[122X  satisfies the commutation relations of [22Xmathfraksl_2[122X, and the elements
-  [22Xe[122X thus obtained are the representatives of the nilpotent [22XG[122X-orbits in [3XL[103X.[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
-    [4X[25Xgap>[125X [27XL:= SimpleLieAlgebra("G",2,Rationals);;[127X[104X
-    [4X[25Xgap>[125X [27XCharacteristicsOfStrata( L, [0,1] );[127X[104X
-    [4X[28X[ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],[128X[104X
-    [4X[28X  [ 6, 8, 10, 12 ] ][128X[104X
   [4X[32X[104X
   

@@ -5,7 +5,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-<title>GAP (SLA) - Chapter 5: Semisimple Subalgebras of Semisimple Lie Algebras</title>
+<title>GAP (SLA) - Chapter 5: Finite Order Automorphisms and θ-Groups</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="GAPDoc2HTML" />
 <link rel="stylesheet" type="text/css" href="manual.css" />
@@ -15,372 +15,246 @@
 <body class="chap5"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
-<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"><a href="chap5_mj.html">[MathJax on]</a></p>
-<p><a id="X7FF8A8057E0BFAFD" name="X7FF8A8057E0BFAFD"></a></p>
-<div class="ChapSects"><a href="chap5.html#X7FF8A8057E0BFAFD">5 <span class="Heading">Semisimple Subalgebras of Semisimple Lie Algebras</span></a>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X806713FE83F21540">5.1 <span class="Heading"> Branching </span></a>
+<p><a id="X80D10A5D7D73D871" name="X80D10A5D7D73D871"></a></p>
+<div class="ChapSects"><a href="chap5.html#X80D10A5D7D73D871">5 <span class="Heading">Finite Order Automorphisms and <span class="SimpleMath">θ</span>-Groups</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X8173135A7D187358">5.1 <span class="Heading"> The functions </span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X8147807D7B92C613">5.1-1 ProjectionMatrix</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X806713FE83F21540">5.1-2 Branching</a></span>
-</div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap5.html#X7CC8010B7F31B486">5.2 <span class="Heading"> Constructing Semisimple Subalgebras </span></a>
-</span>
-<div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7E95AD2C79B19D15">5.2-1 RegularSemisimpleSubalgebras</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X857808A77C13E46C">5.2-2 SSSTypes</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X832B17BA819FB057">5.2-3 LieAlgebraAndSubalgebras</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X82ECC8237E213AAB">5.2-4 InclusionsGraph</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7C81C2B57D94EC2B">5.2-5 SubalgebrasInclusion</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X82458B807A8D77F6">5.2-6 DynkinIndex</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7AAE2B317A4B7D9F">5.2-7 AreLinearlyEquivalentSubalgebras</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7B1A01FE86A7718F">5.2-8 MakeDatabaseEntry</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X85A6B70B83A36495">5.2-9 ClosedSubsets</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7A3EAA637F94D973">5.2-10 DecompositionOfClosedSet</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X798DF4D67DE56EB1">5.2-11 IsSpecialClosedSet</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7D31AA9780B054C1">5.2-12 LieAlgebraOfClosedSet</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X856FF71D8565C1E5">5.1-1 FiniteOrderInnerAutomorphisms</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7E8CCC4885E2A443">5.1-2 FiniteOrderOuterAutomorphisms</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X84F59A2687C62763">5.1-3 Order</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X8635ABCD7D5ACED8">5.1-4 KacDiagram</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7DCA2568870A2D34">5.1-5 Grading</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7D9BDD03811B3C98">5.1-6 NilpotentOrbitsOfThetaRepresentation</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7D4106C37DBD0943">5.1-7 ClosureDiagram</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X8108B6487A3A363B">5.1-8 CarrierAlgebra</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap5.html#X7A8D86667BC7C033">5.1-9 CartanSubspace</a></span>
 </div></div>
 </div>
 
-<h3>5 <span class="Heading">Semisimple Subalgebras of Semisimple Lie Algebras</span></h3>
+<h3>5 <span class="Heading">Finite Order Automorphisms and <span class="SimpleMath">θ</span>-Groups</span></h3>
 
-<p>This chapter contains functions for dealing with semisimple subalgebras of semisimple Lie algebras. There are functions for computing branching rules, for computing the regular subalgebras, and for working with the database of semisimple subalgebras of the simple Lie algebras. This last database contains the semisimple subalgebras of the simple Lie algebras of ranks up to 8. The semisimple subalgebras are classified up to linear equivalence. (Two subalgebras are called linearly equivalent if for every representation of the big algebra in the space <span class="SimpleMath">V</span> the images of the subalgebras are conjugate under <span class="SimpleMath">GL(V)</span>.)</p>
+<p>This chapter contains functions for creating and working with finite order automorphisms of simple Lie algebras (or, more precisely, representatives of the conjugacy classes of such automorphisms).</p>
 
-<p><a id="X806713FE83F21540" name="X806713FE83F21540"></a></p>
+<p>NB: such automorphisms are not created for a given Lie algebra, but the Lie algebra is constructed at the same time as the automorphism. This because the base field may need extending (it needs enough roots of unity).</p>
 
-<h4>5.1 <span class="Heading"> Branching </span></h4>
+<p>As noted above the functions give representatives of the conjugacy classes, in the automorphism group of the underlying Lie algebra, of finite order automorphisms. Such conjugacy classes are classified in terms of Kac diagrams. Roughly, this works as follows. A finite order automorphism <span class="SimpleMath">f</span> corresponds to a diagram automorphism of order <span class="SimpleMath">d=1,2,3</span>. The inner automorphisms correspond to a diagram automorphism of order 1, the outer automorphisms to a diagram automorphism of order 2 or 3. Let <span class="SimpleMath">L_0, L_1</span> denote the eigenspaces of the underlying Lie algebra <span class="SimpleMath">L</span>, with respect to the diagram automorphism, respectively corresponding to the eigenvalues 1 and <span class="SimpleMath">w</span> (where <span class="SimpleMath">w</span> is a primitive <span class="SimpleMath">d</span>-th root of unity). (In case of <span class="SimpleMath">d=1</span>, we have <span class="SimpleMath">L_0=L</span>, <span class="SimpleMath">L_1=0</span>.) Then <span class="SimpleMath">L_0</span> is semisimple and we choose a set of canonical generators of <span class="SimpleMath">L_0</span>, denoted <span class="SimpleMath">x_i</span>, <span class="SimpleMath">y_i</span>, <span class="SimpleMath">h_i</span>, for <span class="SimpleMath">i=1,...,s</span>. Moreover, <span class="SimpleMath">L_1</span> is an <span class="SimpleMath">L_0</span>-module. Let <span class="SimpleMath">x_0</span> be the lowest weight vector in <span class="SimpleMath">L_1</span>. (If <span class="SimpleMath">d=1</span> then <span class="SimpleMath">x_0</span> will be the lowest (negative) root vector.) Let <span class="SimpleMath">α_i</span> for <span class="SimpleMath">i=0,...,s</span> be the roots corresponding to <span class="SimpleMath">x_i</span>, with respect to the subalgebra spanned by the <span class="SimpleMath">h_i</span>. Let <span class="SimpleMath">C</span> be the Cartan matrix of these roots. The rows of <span class="SimpleMath">C</span> are linearly dependent. The Dynkin diagram of <span class="SimpleMath">C</span> is labeled with integers <span class="SimpleMath">a_i</span> with greatest common divisor 1, that form the coefficients of a linear dependency of the rows of <span class="SimpleMath">C</span>. Furthermore, the <span class="SimpleMath">x_i</span> generate <span class="SimpleMath">L</span> and the automorphism <span class="SimpleMath">f</span> is described by <span class="SimpleMath">f(x_i) = v^s_i x_i</span>, where the non-negative integers <span class="SimpleMath">s_i</span> have greatest common divisor 1, and are such that <span class="SimpleMath">m=d∑ a_i s_i</span> is the order of <span class="SimpleMath">f</span>, and where <span class="SimpleMath">v</span> is a primitive <span class="SimpleMath">m</span>-th order root of unity. Now the Kac diagram of the automorphism <span class="SimpleMath">f</span> is the Dynkin diagram of <span class="SimpleMath">C</span>, labelled with the labels <span class="SimpleMath">s_i</span>.</p>
 
-<p><a id="X8147807D7B92C613" name="X8147807D7B92C613"></a></p>
+<p><a id="X8173135A7D187358" name="X8173135A7D187358"></a></p>
 
-<h5>5.1-1 ProjectionMatrix</h5>
+<h4>5.1 <span class="Heading"> The functions </span></h4>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ProjectionMatrix</code>( <var class="Arg">L</var>, <var class="Arg">K</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> and <var class="Arg">K</var> are semisimple Lie algebras with the following properties: <var class="Arg">K</var> is contained in <var class="Arg">L</var>, the Cartan subalgebra of <var class="Arg">L</var>, as returned by <var class="Arg">CartanSubalgebra(L)</var> is split (this is automatic if <var class="Arg">L</var> is created by the built in <strong class="pkg">GAP</strong> function) and <var class="Arg">K</var> has a Cartan subalgebra that is a subalgebra of the Cartan subalgebra of <var class="Arg">L</var>. We note that the function checks only the last property. The function returns a matrix <var class="Arg">P</var> such that if <var class="Arg">u</var> is a weight of a <var class="Arg">L</var>-module <span class="SimpleMath">V</span>, then <var class="Arg">P*u</var> is a weight of <var class="Arg">V</var>, when considered as a <var class="Arg">K</var>-module.</p>
+<p><a id="X856FF71D8565C1E5" name="X856FF71D8565C1E5"></a></p>
+
+<h5>5.1-1 FiniteOrderInnerAutomorphisms</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FiniteOrderInnerAutomorphisms</code>( <var class="Arg">type</var>, <var class="Arg">rank</var>, <var class="Arg">m</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Let <span class="SimpleMath">L</span> be the simple Lie algebra of type <var class="Arg">type</var> and rank <var class="Arg">rank</var>. The function returns representatives of the conjugacy classes of inner automorphisms of <span class="SimpleMath">L</span> of order <var class="Arg">m</var>. As noted also in the introduction to this chapter, this function constructs the Lie algebra as well as the automorphisms (and the Lie algebra is accessible through the source of these automorphisms). The reason for this is that depending on the order of the automorphisms, the base field needs certain roots of unity.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",7,Rationals);;                </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               </span>
-<span class="GAPprompt">&gt;</span> <span class="GAPinput">L.64,L.66,L.67,L.68,L.69,L.70,L.126] );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Dimension(K);</span>
-63
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SemiSimpleType(K);</span>
-"A7"
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ProjectionMatrix( L, K );</span>
-[ [ 2, 2, 3, 4, 3, 2, 1 ], [ 0, 0, -1, 0, 0, 0, 0 ], [ 0, 0, 0, -1, 0, 0, 0 ],
-  [ 0, 0, 0, 0, -1, 0, 0 ], [ 0, 0, 0, 0, 0, -1, 0 ], 
-  [ 0, 0, 0, 0, 0, 0, -1 ], [ -1, -2, -2, -3, -2, -1, 0 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms("E",6,3);</span>
+[ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, (E(3)^2)*v.1, v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; 
+    [ v.72, (E(3))*v.1, (E(3))*v.2, v.3, v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, v.1, (E(3))*v.2, 
+      v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; 
+    [ v.72, v.1, v.2, v.3, (E(3))*v.4, v.5, v.6 ], 
+  [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -&gt; [ (E(3))*v.72, (E(3))*v.1, v.2, 
+      v.3, v.4, v.5, (E(3))*v.6 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Source(f[1]);</span>
+&lt;Lie algebra of dimension 78 over CF(3)&gt;
 </pre></div>
 
-<p><a id="X806713FE83F21540" name="X806713FE83F21540"></a></p>
+<p><a id="X7E8CCC4885E2A443" name="X7E8CCC4885E2A443"></a></p>
 
-<h5>5.1-2 Branching</h5>
+<h5>5.1-2 FiniteOrderOuterAutomorphisms</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Branching</code>( <var class="Arg">L</var>, <var class="Arg">K</var>, <var class="Arg">hw</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Branching</code>( <var class="Arg">L</var>, <var class="Arg">K</var>, <var class="Arg">cc</var>, <var class="Arg">hw</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> and <var class="Arg">K</var> are as in the previous function, and <var class="Arg">hw</var> is the highest weight of an irreducible <var class="Arg">L</var>-module. This function computes the splitting of the module when seen as a <var class="Arg">K</var>-module. Returned is a list of two lists: the first list contains the highest weights of the modules involved, the second list contains their multiplicities. In the second form the subalgebra is reductive rather than semisimple. Here <var class="Arg">K</var> is again a semisimple subalgebra, and <var class="Arg">cc</var> is a list of toral elements centralizing <var class="Arg">K</var>. These toral elements must lie in the given Cartan subalgebra of <var class="Arg">L</var>. The reductive subalgebra is the direct sum of <var class="Arg">K</var> and the subalgebra spanned by the elements of <var class="Arg">cc</var>. The output is the same as in the first form. However, the last <span class="SimpleMath">t</span> coordinates of the weights give the eigenvalues of the toral elements in <var class="Arg">cc</var> on the irreducible modules.</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FiniteOrderOuterAutomorphisms</code>( <var class="Arg">type</var>, <var class="Arg">rank</var>, <var class="Arg">m</var>, <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Let <span class="SimpleMath">L</span> be the simple Lie algebra of type <var class="Arg">type</var> and rank <var class="Arg">rank</var>. The function returns representatives of the conjugacy classes of outer automorphisms of <span class="SimpleMath">L</span> of order <var class="Arg">m</var>, corresponding to a diagram automorphism of order <var class="Arg">d</var>.</p>
+
+<p><a id="X84F59A2687C62763" name="X84F59A2687C62763"></a></p>
+
+<h5>5.1-3 Order</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Order</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is a finite order automorphism. This returns its order.</p>
+
+<p><a id="X8635ABCD7D5ACED8" name="X8635ABCD7D5ACED8"></a></p>
+
+<h5>5.1-4 KacDiagram</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; KacDiagram</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is a finite order automorphism. This returns its Kac diagram. This is a record with three components: <var class="Arg">CM</var>, which is the Cartan matrix of the Dynkin diagram, <var class="Arg">labels</var> the integers with gcd equal to 1 that are the coefficients of a linear dependency of the rows of <var class="Arg">CM</var>, and <var class="Arg">weights</var> that are the integers <span class="SimpleMath">s_i</span> that define the automorphism.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",7,Rationals);;                </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               </span>
-<span class="GAPprompt">&gt;</span> <span class="GAPinput">L.64,L.66,L.67,L.68,L.69,L.70,L.126] );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, K, [1,0,0,0,0,0,1] );</span>
-[ [ [ 1, 1, 0, 0, 0, 0, 1 ], [ 1, 1, 1, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 1, 0, 1 ],
-      [ 0, 0, 1, 0, 1, 0, 0 ], [ 1, 0, 0, 1, 0, 0, 0 ], 
-      [ 0, 1, 0, 0, 0, 1, 0 ], [ 0, 0, 0, 0, 0, 0, 1 ], 
-      [ 0, 0, 1, 0, 0, 0, 0 ] ], [ 1, 1, 1, 1, 1, 1, 1, 1 ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",7,Rationals);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= RegularSemisimpleSubalgebras(L);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= Filtered( r, M -&gt; SemiSimpleType(M)="E6" )[1];</span>
-&lt;Lie algebra of dimension 78 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">cc:= BasisVectors( Basis( LieCentralizer( L, K ) ) );</span>
-[ v.127+(3/2)*v.128+(2)*v.129+(3)*v.130+(5/2)*v.131+(2)*v.132+(3/2)*v.133 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, K, cc, [1,0,0,0,0,0,1] );</span>
-[ [ [ 0, 0, 0, 0, 0, 2, -1/2 ], [ 1, 1, 0, 0, 0, 0, -1/2 ], 
-      [ 0, 0, 0, 0, 1, 0, -1/2 ], [ 1, 0, 0, 0, 0, 0, 5/2 ], 
-      [ 0, 1, 0, 0, 0, 1, 1/2 ], [ 2, 0, 0, 0, 0, 0, 1/2 ], 
-      [ 0, 0, 1, 0, 0, 0, 1/2 ], [ 0, 0, 0, 0, 0, 1, -5/2 ], 
-      [ 1, 0, 0, 0, 0, 1, -3/2 ], [ 1, 0, 0, 0, 0, 1, 3/2 ], 
-      [ 0, 1, 0, 0, 0, 0, 3/2 ], [ 0, 1, 0, 0, 0, 0, -3/2 ], 
-      [ 0, 0, 0, 0, 0, 0, 3/2 ], [ 0, 0, 0, 0, 0, 0, -3/2 ], 
-      [ 0, 0, 0, 0, 0, 1, 1/2 ], [ 1, 0, 0, 0, 0, 0, -1/2 ] ], 
-  [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ] ]      
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderOuterAutomorphisms( "A", 5, 4, 2 );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= KacDiagram( f[1] );</span>
+rec( 
+  CM := [ [ 2, 0, -1, 0 ], [ 0, 2, -1, 0 ], [ -1, -1, 2, -1 ], 
+      [ 0, 0, -2, 2 ] ], labels := [ 1, 1, 2, 1 ], weights := [ 1, 1, 0, 0 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r.labels*r.CM;      </span>
+[ 0, 0, 0, 0 ]
 </pre></div>
 
-<p><a id="X7CC8010B7F31B486" name="X7CC8010B7F31B486"></a></p>
+<p><a id="X7DCA2568870A2D34" name="X7DCA2568870A2D34"></a></p>
 
-<h4>5.2 <span class="Heading"> Constructing Semisimple Subalgebras </span></h4>
+<h5>5.1-5 Grading</h5>
 
-<p><a id="X7E95AD2C79B19D15" name="X7E95AD2C79B19D15"></a></p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Grading</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is a finite order automorphism of order <span class="SimpleMath">m</span>. This returns a list of length <span class="SimpleMath">m</span>. The <span class="SimpleMath">i</span>-th element contains a basis of the eigenspace of <var class="Arg">f</var> with eigenvalue <span class="SimpleMath">v^i</span>, where <span class="SimpleMath">v</span> is a primitive <span class="SimpleMath">m</span>-th root of unity (i.e., <var class="Arg">v=E(m)</var>).</p>
 
-<h5>5.2-1 RegularSemisimpleSubalgebras</h5>
+<p><a id="X7D9BDD03811B3C98" name="X7D9BDD03811B3C98"></a></p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RegularSemisimpleSubalgebras</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> is a <em>simple</em> Lie algebra. This function returns a list of its conjugacy classes of semisimple subalgebras (conjugacy under the adjoint group).</p>
+<h5>5.1-6 NilpotentOrbitsOfThetaRepresentation</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NilpotentOrbitsOfThetaRepresentation</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NilpotentOrbitsOfThetaRepresentation</code>( <var class="Arg">L</var>, <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is an automorphism of a simple Lie algebra <span class="SimpleMath">L</span> of order <span class="SimpleMath">m</span>. Then <var class="Arg">f</var> defines a grading on <span class="SimpleMath">L</span>. Let the homogeneous components of this grading be denoted <span class="SimpleMath">L_i</span> for <span class="SimpleMath">i=0,...,m-1</span>. Let <span class="SimpleMath">G_0</span> be the group corresponding to <span class="SimpleMath">L_0</span> (i.e., the connected subgroup of the adjoint group of <span class="SimpleMath">L</span> with Lie algebra <span class="SimpleMath">L_0</span>). This function computes representatives for the nilpotent orbits of <span class="SimpleMath">G_0</span> acting on <span class="SimpleMath">L_1</span>. The output is a list of triples. Each triple is an <span class="SimpleMath">sl_2</span>-triple <span class="SimpleMath">(y,h,x)</span>, with <span class="SimpleMath">h∈ L_0</span>, <span class="SimpleMath">x∈ L_1</span> (the representative of the orbit), and <span class="SimpleMath">y∈ L_m-1</span>. The element <span class="SimpleMath">h</span> also lies in the dominant Weyl chamber of a Cartan subalgebra of <span class="SimpleMath">L_0</span>. Finally we note that all elements lie in <var class="Arg">Source( f )</var>.</p>
+
+<p>It is possible to add an extra optional argument: <var class="Arg">method:= "Carrier"</var>, or <var class="Arg">method:= "WeylOrbit"</var>. Then a method based on finding carrier algebras (respectively, computing orbits under the Weyl group) is chosen. If no optional argument is chosen, then the system will make its own choice. (In the case of outer automorphisms, currently the only available method is the one based on orbits of the Weyl group.) The method based on carrier algebras tends to work better for the higher order automorphisms.</p>
+
+<p>This function prints some information on what it is doing to the info class <var class="Arg">InfoSLA</var>. In order to suppress these messages one can do <var class="Arg">SetInfoLevel( InfoSLA, 1 );</var>.</p>
+
+<p>In the two-argument version, the first argument <var class="Arg">L</var> has to be a semisimple Lie algebra, and the second argument <var class="Arg">d</var> a list of non-negative integers. Then <var class="Arg">L</var> is <span class="SimpleMath">Z</span>-graded by giving the root space corresponding to the <span class="SimpleMath">i</span>-th simple root the degree <var class="Arg">d[i]</var>. Apart from this the function works the same in this case as in the one-argument version.</p>
 
 
 <div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># reset random state to ensure the output of this example match</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Reset(GlobalMersenneTwister, 1);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= NilpotentOrbitsOfThetaRepresentation( f[2] : method:= "Carrier" );;</span>
+#I  Selected carrier algebra method.
+#I  Constructed 123 root bases of possible flat subalgebras, now checking them...
+#I  Obtained 30 Cartan elements, weeding out equivalent copies...
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(s);</span>
+10
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s[4];</span>
+[ v.14+v.15+v.38, (-2)*v.41+(-1)*v.42, v.18+v.34+v.35 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("E",6,Rationals);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= RegularSemisimpleSubalgebras( L );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(K);</span>
-19
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K[5];</span>
-&lt;Lie algebra of dimension 45 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SemiSimpleType( K[5] ); </span>
-"D5"
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, K[5], [1,0,0,0,0,1] );     </span>
-[ [ [ 1, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 1 ], [ 1, 0, 0, 1, 0 ], 
-      [ 1, 0, 0, 0, 1 ], [ 2, 0, 0, 0, 0 ], [ 0, 0, 0, 1, 0 ], 
-      [ 0, 0, 0, 0, 1 ], [ 0, 1, 0, 0, 0 ], [ 0, 0, 0, 0, 0 ] ], 
-  [ 2, 1, 1, 1, 1, 1, 1, 1, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">NilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );</span>
+#I  Selected Weyl orbit method.
+#I  Constructed a Weyl transversal of 72 elements.
+#I  Obtained 5 Cartan elements, weeding out equivalent copies...
+[ [ v.65+v.66+v.67, (2)*v.73+(3)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.29+v.30+v.31 ], 
+  [ (2)*v.55+(2)*v.66, (2)*v.73+(4)*v.74+(4)*v.75+(6)*v.76+(4)*v.77+(2)*v.78, 
+      v.19+v.30 ],
+  [ v.66+v.70, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
+      v.30+v.34 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
 </pre></div>
 
-<p><a id="X857808A77C13E46C" name="X857808A77C13E46C"></a></p>
+<p><a id="X7D4106C37DBD0943" name="X7D4106C37DBD0943"></a></p>
 
-<h5>5.2-2 SSSTypes</h5>
+<h5>5.1-7 ClosureDiagram</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SSSTypes</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>This returns a list of the types of the semisimple Lie algebras of which the database contains the classification of the semisimple subalgebras, up to linear equivalence. (The three letters S stand for SemiSimple Subalgebras.)</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ClosureDiagram</code>( <var class="Arg">L</var>, <var class="Arg">f</var>, <var class="Arg">s</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ClosureDiagram</code>( <var class="Arg">L</var>, <var class="Arg">d</var>, <var class="Arg">s</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is an automorphism of a simple Lie algebra <span class="SimpleMath">L</span> of order <span class="SimpleMath">m</span>, and <var class="Arg">s</var> a list of <span class="SimpleMath">sl_2</span>-triples <span class="SimpleMath">(y,h,x)</span>, with <span class="SimpleMath">h∈ L_0</span>, <span class="SimpleMath">x∈ L_1</span> (for instance as computed by the previous function), corresponding to nilpotent orbits in <span class="SimpleMath">L_1</span>.</p>
 
-<p><a id="X832B17BA819FB057" name="X832B17BA819FB057"></a></p>
+<p>This function computes the Hasse diagram of the closures of the nilpotent orbits. The output is a record with two components: <var class="Arg">diag</var> (which is a list of 2-tuples; a tuple <var class="Arg">[ i, j ]</var> means that orbit number <var class="Arg">i</var> is contained in the closure of orbit number <var class="Arg">j</var>), and <var class="Arg">sl2</var> (the same list of <span class="SimpleMath">sl_2</span>-triples, but sorted according to decreasing dimension, i.e., the highest dimensional orbit comes first). The numbering used in the tuples in <var class="Arg">diag</var> corresponds to the order in which the orbits appear in the component <var class="Arg">sl2</var>.</p>
 
-<h5>5.2-3 LieAlgebraAndSubalgebras</h5>
+<p>During the execution of the program a message is printed. This message either states that all inclusions have been proved, or lists a number of possible inclusions, for which it could not be proved with absolute certainty that these do not occur. This is due to the randomised nature of the algorithm: if the algorithm finds an inclusion, then this inclusion is certain. However, sometimes a non-inclusion can only be estabished by random methods, which means that it is possible that there is an inclusion without the program finding it. (This however, is very unlikely, and in practice almost never happens.) Now showing that a non-inclusion really is a non-inclusion can be done by computing the ranks of certain matrices with polynomial entries. In principle <strong class="pkg">GAP</strong> can do this; however, the system certainly is not very strong at it. Therefore, as optional argument a filename can be given, by <var class="Arg">filenm:= "file.m"</var>. If this argument is present the program prints a Magma script in the file, which can be loaded directly into the computer algebra system Magma. If the output is always true, then all non-inclusions are proved. If there are non non-inclusions to be proved, then the file is not written.</p>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LieAlgebraAndSubalgebras</code>( <var class="Arg">type</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">type</var> is a string describing the type of a semisimple Lie algebra. A simple type is a capital letter (A, B, C, D, E, F, or G) followed by a positive integer. Example: <var class="Arg">"D5"</var>. In general a type is a sequence of simple types separated by spaces. Example: <var class="Arg">"A2 C3 E6"</var>. This function is appliccable if each simple type that occurs in <var class="Arg">type</var> has rank less than or equal to 8. In that case a record is returned with two components: <var class="Arg">liealg</var>, which is a semisimple Lie algebra of type <var class="Arg">type</var>, and <var class="Arg">subalgs</var> which is the list of its semisimple subalgebras up to linear equivalence. If <var class="Arg">type</var> is a simple type then the list will be simply fetched from the database. Otherwise a computation will be triggered, and afterwards the database will be bigger. (One can check this with a call to <var class="Arg">SSSTypes()</var>). Also we remark that for non-simple types of not so small rank this computation can be difficult.</p>
+<p>In the second version, the second argument <var class="Arg">d</var> is a list of non-negative integers. Then <var class="Arg">L</var> is <span class="SimpleMath">Z</span>-graded by giving the root space corresponding to the <span class="SimpleMath">i</span>-th simple root the degree <var class="Arg">d[i]</var>. Apart from this the function works in the same way.</p>
 
-<p><a id="X82ECC8237E213AAB" name="X82ECC8237E213AAB"></a></p>
-
-<h5>5.2-4 InclusionsGraph</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; InclusionsGraph</code>( <var class="Arg">type</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">type</var> is a string describing the type of a semisimple Lie algebra. This is the same as in the previous function. This function returns a list containing the edges of the inclusion graph of the semisimple subalgebras returned by the previous function. An edge is represented by a list of two integers. If the edge <var class="Arg">[ i, j ]</var> occurs, then this means that the subalgebra on position <var class="Arg">j</var> in the list is linearly equivalent to a subalgebra of the subalgebra in position <var class="Arg">i</var>. Only the maximal subalgebras are considered; so if we have edges <var class="Arg">[ i, j ]</var> and <var class="Arg">[ j, k ]</var> then there will be no edge <var class="Arg">[ i, k ]</var>. (Otherwise this list can become huge.) Edges of the form <var class="Arg">[ 0, j ]</var> express that the subalgebra on position <var class="Arg">j</var> is a maximal semisimple subalgebra of the Lie algebra of type <var class="Arg">type</var>.</p>
+<p>We note that the adjoint representation can be obtained by giving a <var class="Arg">d</var> that eintirely consists of zeros.</p>
 
 
 <div class="example"><pre>
-# Semisimple subalgebras of the Lie algebra of type D4:
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= LieAlgebraAndSubalgebras( "D4" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= s.liealg;</span>
-&lt;Lie algebra of dimension 28 over CF(3)&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:= s.subalgs;;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(sub);</span>
-44
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:= InclusionsGraph( "D4" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g[1];</span>
-[ 12, 1 ]
-
-# Find the maximal semisimple subalgebras:
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:= Filtered( g, x -&gt; x[1]=0 );; i:= List( m, x -&gt; x[2] );</span>
-[ 13, 35, 36, 37, 41, 42, 43, 44 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( sub{i}, SemiSimpleType );                </span>
-[ "A2", "A1 B2", "A1 B2", "A1 B2", "B3", "B3", "B3", "A1 A1 A1 A1" ]
-
-# We see that the subalgebras on positions 35 and 36 are isomorphic;
-# however they are not linearly equivalent:
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, sub[35], [0,0,1,0] );</span>
-[ [ [ 1, 0, 1 ] ], [ 1 ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Branching( L, sub[36], [0,0,1,0] );</span>
-[ [ [ 0, 1, 0 ], [ 2, 0, 0 ] ], [ 1, 1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms( "E", 8, 8 );;  </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">h:= f[8];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl2:= NilpotentOrbitsOfThetaRepresentation(h);;  </span>
+#I  Selected carrier algebra method.
+#I  Constructed 2782 root bases of possible flat subalgebras, now checking them...
+#I  Obtained 58 Cartan elements, weeding out equivalent copies...
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(sl2);</span>
+27
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= Source(h);;                    </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= ClosureDiagram( L, h, sl2 );;  </span>
+#I  All (non-) inclusions proved!
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r.diag;</span>
+[ [ 2, 1 ], [ 3, 1 ], [ 4, 2 ], [ 4, 3 ], [ 5, 1 ], [ 6, 5 ], [ 7, 2 ], 
+  [ 7, 5 ], [ 8, 4 ], [ 9, 4 ], [ 9, 7 ], [ 10, 6 ], [ 10, 7 ], [ 11, 3 ], 
+  [ 11, 6 ], [ 12, 7 ], [ 13, 9 ], [ 13, 10 ], [ 13, 11 ], [ 14, 9 ], 
+  [ 14, 12 ], [ 15, 8 ], [ 15, 9 ], [ 16, 6 ], [ 17, 10 ], [ 17, 12 ], 
+  [ 17, 16 ], [ 18, 13 ], [ 18, 16 ], [ 19, 13 ], [ 19, 15 ], [ 20, 11 ], 
+  [ 20, 16 ], [ 21, 14 ], [ 21, 17 ], [ 21, 18 ], [ 22, 14 ], [ 22, 15 ], 
+  [ 23, 18 ], [ 23, 20 ], [ 24, 18 ], [ 24, 19 ], [ 25, 21 ], [ 25, 22 ], 
+  [ 25, 24 ], [ 26, 23 ], [ 26, 24 ], [ 27, 21 ], [ 27, 23 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># Now we do the adjoint representation of the Lie algebra of type F4:</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("F",4,Rationals);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">o:= NilpotentOrbits(L);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl2:= List( o, SL2Triple );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= ClosureDiagram( L, [0,0,0,0], sl2 );;      </span>
+#I  All (non-) inclusions proved!
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r.diag;</span>
+[ [ 2, 1 ], [ 3, 2 ], [ 4, 3 ], [ 5, 3 ], [ 6, 4 ], [ 6, 5 ], [ 7, 6 ], 
+  [ 8, 7 ], [ 9, 7 ], [ 10, 8 ], [ 10, 9 ], [ 11, 8 ], [ 12, 10 ], 
+  [ 13, 11 ], [ 13, 12 ], [ 14, 13 ], [ 15, 14 ] ]
 </pre></div>
 
-<p><a id="X7C81C2B57D94EC2B" name="X7C81C2B57D94EC2B"></a></p>
+<p><a id="X8108B6487A3A363B" name="X8108B6487A3A363B"></a></p>
 
-<h5>5.2-5 SubalgebrasInclusion</h5>
+<h5>5.1-8 CarrierAlgebra</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SubalgebrasInclusion</code>( <var class="Arg">L</var>, <var class="Arg">K1</var>, <var class="Arg">K2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">K1</var>, <var class="Arg">K2</var>, are two subalgebras of the semisimple Lie algebra <var class="Arg">L</var>, constructed using the database. If <var class="Arg">K2</var> contains a subalgebra that is linearly equivalent to <var class="Arg">K1</var> then such a subalgebra is returned. Otherwise the result is <var class="Arg">fail</var>.</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CarrierAlgebra</code>( <var class="Arg">L</var>, <var class="Arg">f</var>, <var class="Arg">e</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CarrierAlgebra</code>( <var class="Arg">L</var>, <var class="Arg">d</var>, <var class="Arg">e</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is an automorphism of a simple Lie algebra <span class="SimpleMath">L</span> of order <span class="SimpleMath">m</span>, and <var class="Arg">e</var> a nilpotent element of <span class="SimpleMath">L_1</span>. This function returns the carrier algebra of <var class="Arg">e</var>. This is a <span class="SimpleMath">Z</span>-graded semisimple subalgebra <span class="SimpleMath">K</span> of <span class="SimpleMath">L</span>, such that <var class="Arg">e</var> lies in <span class="SimpleMath">K_1</span>. For the precise definition we refer to <a href="chapBib.html#biBvinberg2">[Vin79]</a>, <a href="chapBib.html#biBvinberg3">[Vin75]</a>. The output is given in the form of a record, with three components: <var class="Arg">g0</var>, a basis of <span class="SimpleMath">K_0</span>, <var class="Arg">gp</var> a list containing bases of <span class="SimpleMath">K_1</span>, <span class="SimpleMath">K_2</span> and so on, and <var class="Arg">gn</var> a list containing bases of <span class="SimpleMath">K_-1</span>, <span class="SimpleMath">K_-2</span> and so on.</p>
+
+<p>In the second version, the second argument <var class="Arg">d</var> is a list of non-negative integers. Then <var class="Arg">L</var> is <span class="SimpleMath">Z</span>-graded by giving the root space corresponding to the <span class="SimpleMath">i</span>-th simple root the degree <var class="Arg">d[i]</var>. Apart from this the function works in the same way.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= LieAlgebraAndSubalgebras( "C3" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:= InclusionsGraph( "C3" );</span>
-[ [ 10, 1 ], [ 11, 1 ], [ 12, 1 ], [ 8, 2 ], [ 10, 2 ], [ 11, 2 ], [ 11, 3 ], 
-  [ 13, 3 ], [ 8, 4 ], [ 13, 4 ], [ 9, 5 ], [ 12, 5 ], [ 12, 6 ], [ 13, 6 ], 
-  [ 0, 7 ], [ 0, 8 ], [ 15, 9 ], [ 9, 10 ], [ 14, 10 ], [ 14, 11 ], 
-  [ 15, 12 ], [ 0, 13 ], [ 15, 14 ], [ 0, 15 ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># there are the edges [ 14, 10] and [ 10, 2 ]; hence a conjugate of the</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"># second algebra is contained in the 14-th.</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= s.liealg;</span>
-&lt;Lie algebra of dimension 21 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:= s.subalgs;;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=SubalgebrasInclusion( L, sub[2], sub[14] );</span>
-&lt;Lie algebra of dimension 3 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basis(K)[1] in sub[14];</span>
-true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms( "F", 4, 5 );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">h:= f[4];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl2:= NilpotentOrbitsOfThetaRepresentation( h );;  </span>
+#I  Selected Weyl orbit method.
+#I  Constructed a Weyl transversal of 144 elements.
+#I  Constructed 621 Cartan elements to be checked.
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= Source(h);   </span>
+&lt;Lie algebra of dimension 52 over CF(5)&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:=CarrierAlgebra( L, h, sl2[1][3] );   </span>
+rec( g0 := [ v.49+(2)*v.50+(2)*v.51+(3)*v.52, v.50+(1/2)*v.51+v.52 ], 
+  gn := [ [ v.24, v.33 ], [ v.21 ], [ v.15 ] ], 
+  gp := [ [ v.9, v.48 ], [ v.45 ], [ v.39 ] ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );</span>
+&lt;Lie algebra over CF(5), with 10 generators&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SemiSimpleType( K );</span>
+"B2"
 </pre></div>
 
-<p><a id="X82458B807A8D77F6" name="X82458B807A8D77F6"></a></p>
+<p><a id="X7A8D86667BC7C033" name="X7A8D86667BC7C033"></a></p>
 
-<h5>5.2-6 DynkinIndex</h5>
+<h5>5.1-9 CartanSubspace</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DynkinIndex</code>( <var class="Arg">K</var>, <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">K</var> is a semisimple subalgebra of the <em>simple</em> Lie algebra <var class="Arg">L</var>. This function returns a list of integers, containing the Dynkin indices of the simple components of <var class="Arg">K</var>. If the input Lie algebra <var class="Arg">L</var> is not simple, then still a list of rationals is returned, but they may have no meaning. The Dynkin index is defined as follows. Consider a simple component in <var class="Arg">K</var> and let <span class="SimpleMath">h</span> be the coroot of the shortest root of <var class="Arg">K</var>. Let <span class="SimpleMath">k</span> denote the Killing form of <var class="Arg">L</var>, normalised so that the coroot of the shortest root of <var class="Arg">L</var> has squared length 2. Then the Dynkin index is <span class="SimpleMath">k(h,h)/2</span>.</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; CartanSubspace</code>( <var class="Arg">f</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>Here <var class="Arg">f</var> is an automorphism of a simple Lie algebra <span class="SimpleMath">L</span> of order <span class="SimpleMath">m</span>. Then <var class="Arg">f</var> defines a grading on <span class="SimpleMath">L</span>. Let the homogeneous components of this grading be denoted <span class="SimpleMath">L_i</span> for <span class="SimpleMath">i=0,...,m-1</span>. Let <span class="SimpleMath">G_0</span> be the group corresponding to <span class="SimpleMath">L_0</span> (i.e., the connected subgroup of the adjoint group of <span class="SimpleMath">L</span> with Lie algebra <span class="SimpleMath">L_0</span>). This function computes a maximal subspace of <span class="SimpleMath">L_1</span> consisting of commuting semisimple elements. (Such a subspace is called a <em>Cartan subspace</em>.)</p>
+
+<p>Every semisimple orbit of <span class="SimpleMath">G_0</span> in <span class="SimpleMath">L_1</span> contains an element of a fixed Cartan subspace.</p>
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= LieAlgebraAndSubalgebras( "C7" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:= InclusionsGraph( "C7" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:= Filtered( g, x -&gt; x[1]=0 );; i:= List( m, x -&gt; x[2] );</span>
-[ 63, 498, 665, 804, 819, 821, 822 ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= s.liealg;</span>
-&lt;Lie algebra of dimension 105 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sub:= s.subalgs;;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( sub{i}, SemiSimpleType );   </span>
-[ "A1", "C3", "A1 B3", "A6", "C3 C4", "B2 C5", "A1 C6" ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DynkinIndex( sub[665], L );   </span>
-[ 7, 4 ]
-</pre></div>
-
-<p><a id="X7AAE2B317A4B7D9F" name="X7AAE2B317A4B7D9F"></a></p>
-
-<h5>5.2-7 AreLinearlyEquivalentSubalgebras</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AreLinearlyEquivalentSubalgebras</code>( <var class="Arg">L</var>, <var class="Arg">K1</var>, <var class="Arg">K2</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> is a semisimple Lie algebra, and <var class="Arg">K1</var>, <var class="Arg">K2</var> are subalgebras. It is assumed that the Cartan subalgebras (as returned by <var class="Arg">CartanSubalgebra</var>) of <var class="Arg">K1</var>, <var class="Arg">K2</var> are contained in the Cartan subalgebra of <var class="Arg">L</var> (otherwise <var class="Arg">fail</var> is returned). This function returns <var class="Arg">true</var> if <var class="Arg">K1</var>, <var class="Arg">K2</var> are linearly equivalent, <var class="Arg">false </var> otherwise.</p>
-
-
-<div class="example"><pre>
-# Lets find the subalgebras in the database for C5 that are linearly
-# equivalent to regular subalgebras:
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s:= LieAlgebraAndSubalgebras("C5");; L:= s.liealg; sub:= s.subalgs;;</span>
-&lt;Lie algebra of dimension 55 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">reg:= RegularSemisimpleSubalgebras( L );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">posn:= [];;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for K in reg do  </span>
-<span class="GAPprompt">&gt;</span> <span class="GAPinput">Add(posn,PositionProperty(sub,M -&gt; AreLinearlyEquivalentSubalgebras(L,M,K)));</span>
-<span class="GAPprompt">&gt;</span> <span class="GAPinput">od;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">posn;</span>
-[ 2, 24, 93, 111, 105, 82, 106, 81, 41, 109, 70, 85, 29, 112, 94, 25, 1, 118, 
-  100, 102, 64, 108, 84, 28, 117, 107, 116, 96, 101, 63, 115, 114, 95, 113 ]
-</pre></div>
-
-<p><a id="X7B1A01FE86A7718F" name="X7B1A01FE86A7718F"></a></p>
-
-<h5>5.2-8 MakeDatabaseEntry</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MakeDatabaseEntry</code>( <var class="Arg">r</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AddToDatabase</code>( <var class="Arg">d</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>These are functions that help to save a computed list of subalgebras of a semisimple Lie algebra in a file, and in a new session, read it again. In the first function <var class="Arg">r</var> is a record as produced by <code class="func">LieAlgebraAndSubalgebras</code> (<a href="chap5.html#X832B17BA819FB057"><span class="RefLink">5.2-3</span></a>). It returns a record that can be saved in a file. (It is not advisable to print it on the screen.) In the second function <var class="Arg">d</var> is a record that is output by <code class="func">MakeDatabaseEntry</code>. This function adds this entry to the database.</p>
-
-<p>We give two examples; in the first one we create a new database entry, and save it to a file. In the second example we read it and add it to the database.</p>
-
-
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= LieAlgebraAndSubalgebras( "A2 B2" );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">d:= MakeDatabaseEntry( r );;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrintTo( "A2B2", "d:= ",d,";\n");</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">f:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= CartanSubspace( f[3] ); </span>
+&lt;vector space of dimension 1 over CF(3)&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">BasisVectors( Basis( c ) );</span>
+[ v.1+v.5+v.12 ]
 </pre></div>
 
 
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Read("A2B2");</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AddToDatabase( d );</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SSSTypes();</span>
-[ "A1", "A2", "B2", "G2", "A3", "B3", "C3", "A4", "B4", "C4", "D4", "F4", 
-  "A5", "B5", "C5", "D5", "A6", "B6", "C6", "D6", "E6", "A7", "B7", "C7", 
-  "D7", "E7", "A8", "B8", "C8", "D8", "E8", "A2 B2" ]
-</pre></div>
-
-<p><a id="X85A6B70B83A36495" name="X85A6B70B83A36495"></a></p>
-
-<h5>5.2-9 ClosedSubsets</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ClosedSubsets</code>( <var class="Arg">R</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">R</var> is a root system. A subset <span class="SimpleMath">S</span> of the roots of <var class="Arg">R</var> is said to be closed if for all <span class="SimpleMath">a,b∈ S</span> we have that <span class="SimpleMath">a+b</span> lies in <span class="SimpleMath">S</span> whenever <span class="SimpleMath">a+b</span> is a root. This function computes the list of the closed subsets of <var class="Arg">R</var> up to conjugacy by the Weyl group. In other words, each closed subset of <var class="Arg">R</var> is conjugate under the Weyl group to exactly one element of the output of this function. The output is a list of which each element is a list of roots. A root in such a list, or its negative, lies in the attribute <var class="Arg">PositiveRootsNF( R )</var>.</p>
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:= RootSystem("F",4);</span>
-&lt;root system of type F4&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(c);</span>
-4844
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c[1005];</span>
-[ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 2, 0 ], [ 0, 1, 1, 1 ], 
-  [ 1, 1, 1, 1 ], [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], 
-  [ 1, 1, 2, 2 ], [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], 
-  [ 1, 2, 4, 2 ], [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ], [ 0, -1, -2, 0 ] ]
-</pre></div>
-
-<p><a id="X7A3EAA637F94D973" name="X7A3EAA637F94D973"></a></p>
-
-<h5>5.2-10 DecompositionOfClosedSet</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DecompositionOfClosedSet</code>( <var class="Arg">c</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">c</var> is a closed set of roots of some root system. We have that <var class="Arg">c</var> is the disjoint union of its symmetric part (consisting of all roots <span class="SimpleMath">a</span> in <var class="Arg">c</var> such that <span class="SimpleMath">-a</span> also lies in <var class="Arg">c</var>) and its special part (consisting of all roots <span class="SimpleMath">a</span> in <var class="Arg">c</var> such that <span class="SimpleMath">-a</span> does not lie in <var class="Arg">c</var>). This function returns a list of two entries. The first is the symmetric part of <var class="Arg">c</var>, the second is the special part of <var class="Arg">c</var>.</p>
-
-
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:= RootSystem("F",4);</span>
-&lt;root system of type F4&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DecompositionOfClosedSet( c[1005] );</span>
-[ [ [ 0, 1, 2, 0 ], [ 0, -1, -2, 0 ] ], 
-  [ [ 1, 1, 0, 0 ], [ 0, 0, 1, 1 ], [ 0, 1, 1, 1 ], [ 1, 1, 1, 1 ], 
-      [ 1, 2, 2, 0 ], [ 1, 1, 2, 1 ], [ 0, 1, 2, 2 ], [ 1, 1, 2, 2 ], 
-      [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], [ 1, 2, 4, 2 ], 
-      [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ] ] ]
-</pre></div>
-
-<p><a id="X798DF4D67DE56EB1" name="X798DF4D67DE56EB1"></a></p>
-
-<h5>5.2-11 IsSpecialClosedSet</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsSpecialClosedSet</code>( <var class="Arg">c</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">c</var> is a closed set of roots of some root system. This function returns <var class="Arg">true</var> is <var class="Arg">c</var> is special (that is, for all <span class="SimpleMath">a</span> in <var class="Arg">c</var> we have that <span class="SimpleMath">-a</span> does not lie in <var class="Arg">c</var>), otherwise it returns <var class="Arg">false</var>.</p>
-
-
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:= RootSystem("F",4);</span>
-&lt;root system of type F4&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);;</span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsSpecialClosedSet( c[1005] );</span>
-false
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsSpecialClosedSet( c[1006] );</span>
-true
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length( Filtered( c, IsSpecialClosedSet ) );</span>
-3579
-</pre></div>
-
-<p><a id="X7D31AA9780B054C1" name="X7D31AA9780B054C1"></a></p>
-
-<h5>5.2-12 LieAlgebraOfClosedSet</h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LieAlgebraOfClosedSet</code>( <var class="Arg">L</var>, <var class="Arg">c</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>Here <var class="Arg">L</var> is a semisimple Lie algebra and <var class="Arg">c</var> is a closed set of roots of its root system. This function returns the subalgebra of <var class="Arg">L</var> spanned a the Cartan subalgebra of <var class="Arg">L</var> (the one relative to which the root system is taken) along with the root vectors corresponding to the roots in <var class="Arg">c</var>.</p>
-
-
-<div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L:= SimpleLieAlgebra("F",4,Rationals);</span>
-&lt;Lie algebra of dimension 52 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">R:= RootSystem( L );</span>
-&lt;root system of rank 4&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c:= ClosedSubsets(R);; </span>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">c[1005];</span>
-[ [ 1, 0, 1, 0 ], [ 0, 1, 0, 1 ], [ 1, 0, 1, 1 ], [ 0, 0, 2, 1 ], 
-  [ 1, 1, 1, 1 ], [ 1, 1, 2, 1 ], [ 2, 0, 2, 1 ], [ 0, 1, 2, 2 ], 
-  [ 2, 1, 2, 1 ], [ 1, 1, 3, 2 ], [ 2, 1, 2, 2 ], [ 2, 1, 3, 2 ], 
-  [ 2, 1, 4, 2 ], [ 2, 1, 4, 3 ], [ 2, 2, 4, 3 ], [ 0, 0, -2, -1 ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:= SubalgebraOfClosedSet( L, c[1005] );</span>
-&lt;Lie algebra of dimension 20 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LeviMalcevDecomposition(K);</span>
-[ &lt;Lie algebra of dimension 3 over Rationals&gt;, 
-  &lt;two-sided ideal in &lt;Lie algebra of dimension 20 over Rationals&gt;, 
-      (dimension 17)&gt; ]
-</pre></div>
-
-
-<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
-
-
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
-<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
 </body>
 </html>

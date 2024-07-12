@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/sla.svg)](https://travis-ci.org/gap-packages/sla)
+[![Build Status](https://github.com/gap-packages/sla/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/sla/actions?query=workflow%3ACI+branch%3Amaster)
 [![Code Coverage](https://codecov.io/github/gap-packages/sla/coverage.svg)](https://codecov.io/gh/gap-packages/sla)
 
 # SLA
