@@ -62,7 +62,6 @@ PackageDoc := rec(
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
   LongTitle := "Computing with simple Lie algebras",
-  Autoload  := true
 ),
 
 AvailabilityTest := ReturnTrue,
