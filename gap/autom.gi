@@ -3539,6 +3539,461 @@ end function; \n\n";
 
 end;
 
+SLAfcts.inc0:= function( sl2, domh, L, K, GM, G1, H0, i0, j0, file, matlist )
+
+   # see whether orbit i0 is inclued in j0.
+
+   local hi, hj, gh, W, ww, V2, U, wd, k, v0, f_chk, R, hh, BH, KH, Ci, Um, q,
+         K0, h0, b0, sp0, h_start, c0, kk, KL, v, t, mats, oh, sp, kval, adh, Uinds, ord,
+         maxU, i, j, mats0, c1, inconvexhull, kappamat, kapinv, invnu, dist0, ip0;
+
+
+inconvexhull:= function( B, S0, p0, dist, ip, eps0 ) 
+                                            # S set of vecs in R^m (rat coords),
+                                            # p a point in R^m, is p\in S?
+                                            # dist: distance fct
+
+    local m, i, one, eps, dists, pos, v, pp, k, j, u, t, S, p;
+
+    S:= List( S0, x -> Coefficients( B, x ) );
+    p:= Coefficients( B, p0 );
+    one:= 1.00000000000000000000000000;
+    S:= List( S, u -> u*one );
+    p:= p*one;
+
+    eps:= one*eps0; 
+
+    dists:= List( S, s -> dist(s,p) );
+    pos:= Position( dists, Minimum( dists ) );
+    v:= S[pos];
+    pp:= S[pos];
+
+    while true do
+       if dist(p,pp) < eps*dist(p,v) then
+          return [ pp, true ];
+       else
+          k:= 0;
+          for j in [1..Length(S)] do
+              if dist(pp,S[j]) >= dist(p,S[j]) then
+                 k:= j; break;
+              fi;
+          od;
+          if k > 0 then
+             v:= S[k];
+          else
+             return [ pp, false ];
+          fi;
+       fi;
+
+       u:= pp-v;
+       t:= -ip(u,p-pp)/ip(u,u);
+       pp:= pp+t*(-u);
+
+    od;
+end;
+
+   kappamat:= List( Basis(H0), h1 -> List( Basis(H0), h2 ->
+        TraceMat( AdjointMatrix( Basis(L), h1 )*AdjointMatrix(Basis(L),h2)) ));
+   kapinv:= kappamat^-1;
+
+   invnu:= function(x)  # x a root vec in g1, compute invnu of corr root.
+
+        local sp, b, u;
+
+        sp:= Basis( Subspace( L, [x] ), [x] );
+        b:= List( Basis(H0), h1 -> Coefficients( sp, h1*x )[1] );
+        return (kapinv*b)*Basis(H0);
+   end;
+
+    dist0:= function(u,v) return (u-v)*kappamat*(u-v); end;
+    ip0:= function(u,v) return u*kappamat*v; end;
+
+
+
+   ord:= function( i1, i2 )
+
+      if Length(i1) <> Length(i2) then
+         return Length(i1) < Length(i2);
+      else
+         return i1 < i2;
+      fi;
+   end;
+
+   hi:= domh[i0];
+   hj:= domh[j0];
+
+   kval:=  TraceMat( AdjointMatrix( Basis(L), hi )*AdjointMatrix(Basis(L),hj));
+   kval:= kval/TraceMat(AdjointMatrix(Basis(L),hi)*AdjointMatrix(Basis(L),hi));
+
+   if kval < 1 then
+      return false; 
+   fi;
+
+   ww:= [ ];
+   for v in Basis(G1) do
+       sp:= Basis( Subspace( L, [v] ), [v] );
+       k:= Coefficients( sp, hi*v )[1];
+       if k = 2 then Add( ww, v ); fi;
+   od;
+   V2:= ww;  
+
+   Um:= Filtered( Basis(GM), x -> hi*x = -2*x );
+   q:= K;
+
+   mats:= [ ];
+   mats0:= [ ];
+
+   Uinds:= [ ];
+   maxU:= [ ];
+
+   f_chk:= function( h, c0, t )
+
+      local gh, U, k, v0, u1, A, sol, P, M, sp, B, q0, inds, p,
+            i, j, m, n, x, u, c, cf, R, a, s, v, d, r, V, t0, Uind, pos, cf0, found, Om,
+            matrc, colinds, Bt, kval0, kval1, hhh, kv, h00, eps, bl;
+
+
+      if Length(c0) > 0 then
+         u1:= h+c0*h0;
+      else
+         u1:= h;
+      fi;
+
+      U:= [ ];  
+      for i in [1..Length(V2)] do
+          v:= V2[i];
+          sp:= Basis( Subspace( L, [v] ), [v] );
+          k:= Coefficients( sp, u1*v )[1];
+          if k >= 2 then Add( U, v ); fi;
+      od;
+
+      if Length(U) = 0 then return false; fi;
+
+      M:= SLAfcts.normaliser( L, K, U );
+      Om:= [0..Dimension(L)];
+      for k in [1..5] do
+
+          cf0:= List( U, x -> Random( Om ) );
+          v0:= cf0*U; 
+          A:= List( Um, x -> Coefficients( Basis(K), v0*x ) );
+          if Length(A) = 0 then
+             sol:= fail;
+          else
+             sol:= SolutionMat( A, Coefficients( Basis(K), hi ) );
+          fi;
+          if sol <> fail then
+             return true;
+          else
+             if Dimension( Subspace( L, v0*M ) ) = Length(U) then
+                return false;
+             fi;
+          fi;
+
+      od;
+
+      hhh:= List( U, x -> invnu(x) );
+      kv:= TraceMat(AdjointMatrix(Basis(L),hi)*AdjointMatrix(Basis(L),hi));
+      h00:= 2*hi/kv;
+      eps:= 1/10;
+      while eps > 1/10000000 do
+         bl:= inconvexhull( Basis(H0), hhh, h00, dist0, ip0, eps )[2];
+         if bl then
+            eps:= eps/10;
+         else  
+            return false;
+         fi;
+      od;
+
+      if Length(file) > 0 then
+
+         V:= Subspace( L, V2 );
+
+         m:= Length(U);
+         if m = 0 then return false; fi;
+         n:= Dimension(q);
+         s:= Dimension(V);
+         x:= BasisVectors( Basis(q) );
+         v:= BasisVectors( Basis(V) );
+
+         c:= List( [1..n], r -> [ [ ] ] );
+         for i in [1..n] do
+             for j in [1..s] do
+                 c[i][j]:= Coefficients( Basis( V ), x[i]*v[j] );
+             od;
+         od;
+
+         d:= List( U, r -> Coefficients( Basis(V), r ) );
+
+         P:= PolynomialRing( Rationals, m );
+         a:= IndeterminatesOfPolynomialRing( P );
+         A:= List( [1..s], r -> [ ] );
+         for r in [1..s] do
+             for i in [1..n] do
+                 cf:= Zero(P);
+                 for k in [1..m] do
+                     for j in [1..s] do
+                         cf:= cf + a[k]*d[k][j]*c[i][j][r];
+                     od;
+                 od;
+                 A[r][i]:= cf;
+             od;
+         od;
+
+         if Dimension(q)-Length(A) > t then
+            return false;
+         fi;
+
+         if ForAny(A, IsZero ) then 
+            return false;
+         fi;
+
+         matrc:= rec( inds:= [i0,j0], numindets:= Length(a), fullmat:= A );
+
+         q0:= BasisVectors( CanonicalBasis( Intersection( 
+                                     q, KappaPerp( L, Subalgebra(L,[hi]) ) ) ) );
+         B:= [ ];
+         # first we find a max set of lin indep rows, for a random v0\in U
+         cf0:= List( U, x -> Random( [1..Dimension(L)^2] ) );
+         v0:= cf0*U;
+         for i in [1..Length(q0)] do
+             Add( B, Coefficients( Basis(V), q0[i]*v0 ) );
+         od;
+         inds:= [ 1 ];
+         sp:= MutableBasis( LeftActingDomain(L), [ ], List( Basis(V), x -> 0 ) );
+         for i in [1..Length(B)] do
+             if not IsContainedInSpan( sp, B[i] ) then
+                CloseMutableBasis( sp, B[i] );
+                Add( inds, i+1 );
+             fi;
+         od;
+
+         colinds:= [ ];
+         Bt:= TransposedMat(B{[1..Length(B)]});
+         sp:= MutableBasis( LeftActingDomain(L), [ ], List( [1..Length(q0)], x -> 0 ) );
+         for i in [1..Length(Bt)] do
+             if not IsContainedInSpan( sp, Bt[i] ) then
+                CloseMutableBasis( sp, Bt[i] );
+                Add( colinds, i );
+             fi;
+         od;
+
+         # now make the "real" matrix...         
+         x:= Concatenation( [hi], q0 );
+         A:= List( inds, zz -> [ ] );
+         c:= List( [1..n], r -> [ [ ] ] );
+         for i in [1..n] do
+             for j in [1..m] do
+                 c[i][j]:= Coefficients( Basis( V ), x[i]*U[j] );
+             od;
+         od;
+         
+         for i in [1..Length(inds)] do
+             for j in [1..s] do
+                 p:= Zero(P);
+                 for k in [1..m] do
+                     p:= p + a[k]*c[inds[i]][k][j];
+                     A[i][j]:= p;
+                 od;
+             od;
+         od;
+
+         matrc.redmat:= A;
+         matrc.colinds:= colinds;
+
+         Add( matlist, matrc );
+
+      else
+        Add( matlist, rec( inds:= [i0,j0] ) );
+      fi;
+        
+      return false;
+
+   end;
+
+   t:= Dimension( Intersection( LieCentralizer( K, Subalgebra(K,[sl2[i0][2]]) ), 
+                LieCentralizer(L,Subalgebra(L,[sl2[i0][3]])) ) );
+
+   return f_chk(hj,[],t);
+
+end;
+
+
+SLAfcts.hasse_diag0:= function( L, grad, sl2 )
+   
+   local K, GM, G1, dim, dim1, d1, d2, diag, i, j, k, incs, b, file, K0, R, posRv,
+         posR, negRv, fundR, sums, inds, basH, H0, rank, C, B, posR_L, dualBas,
+         Ci, c, g0, g1, gm, gsp, Cu, domh, sims, pos, bas, mu, h0, b0, c0, sp0,
+         m, m0, r, numvar, matlist, info, set, magmaprog, dualBas0;
+
+   g0:= grad[1]; gm:= grad[ Length(grad) ]; 
+   if Length( grad ) > 1 then
+      g1:= grad[2];
+   else
+      g1:= grad[1];
+   fi;
+
+   file:= ValueOption( "filenm" );
+   if file = fail then file:= ""; fi;
+
+   K:= Subalgebra( L, g0 );
+   GM:= Subspace( L, gm );
+   G1:= Subspace( L, g1 );
+
+   dim:= function( u ) return Dimension( Subspace( L, Basis(K)*u[3] ) ); end;
+
+   d1:= List( sl2, dim );
+
+   SortParallel( d1, sl2 );
+   d1:= Reversed(d1);
+   sl2:= Reversed(sl2);
+
+   # now map all h-s to dominant Weyl chamber.
+   domh:= List( sl2, x -> x[2] );
+
+   gsp:= List( grad, x -> Subspace( L, x ) );
+   d2:= [ ];
+   for i in [1..Length(sl2)] do
+       Cu:= LieCentralizer( L, Subalgebra( L, [sl2[i][3]] ) );
+       Add( d2, List( gsp, x -> Dimension( Intersection( x, Cu ) ) ) );
+   od;
+
+   diag:= [ ];
+
+   # [ i, j ] in diag means orbit i is included in the closure of
+   # orbit j.
+
+   matlist:= [ ];
+
+   for i in [2..Length(sl2)] do
+       for j in [i-1,i-2..1] do
+
+           if (not [i,j] in diag) and d1[i] < d1[j] and
+               ForAll( [1..Length(grad)], k -> d2[i][k] >= d2[j][k] ) then 
+
+              b:= SLAfcts.inc0( sl2, domh, L, K, GM, G1, K, i, j, file, matlist );
+              if b then
+                 Add( diag, [i,j] );
+                 incs:= SLAfcts.is_included_in( diag, j );
+                 for k in incs do Add( diag, [i,k] ); od;
+              fi;
+           fi;
+       od;                 
+   od;
+
+   matlist:= Filtered( matlist, x -> not x.inds in diag );
+
+   if Length(matlist) = 0 then
+      Info( InfoSLA,2,"All (non-) inclusions proved!");
+   else
+      info:= "For the following pairs of orbits the first could be included in the\nclosure of the second\
+ (but this is unlikely):\n";
+      set:= Set( List( matlist, r -> r.inds ) );
+      for i in  [1..Length(set)] do
+          Append( info, String(set[i]) );
+          if i < Length( set ) then
+             Append( info, ", " );
+          fi;
+      od;
+      Info( InfoSLA,2, info );
+   fi;      
+
+   if Length(file) > 0 and Length(matlist) > 0 then
+
+magmaprog:= 
+"minors:= function( m )\n\n\
+   \/\/ m and rxs matrix with s >= r, compute all rxr minors,\n\
+   \/\/ return false if a nonzero found; otherwise return true.\n\n\
+   r:= NumberOfRows(m);\n\
+   s:= NumberOfColumns(m);\n\
+   if r eq s then return Determinant(m) eq 0; end if;\n\
+   rows:= [1..r];\n\
+   done:= false;\n\
+   len:= s-r;\n\
+   exc:= [1..len];\n\
+   while not done do\n\
+        cols:= [ ];\n\
+        for i in [1..s] do\n\
+            if not i in exc then Append( ~cols, i ); end if;\n\
+        end for;\n\
+        d:= Minor( m, rows, cols ); \n\
+        if not IsZero(d) then return false; end if;\n\
+        pos:= len;\n\
+        found:= (exc[pos] lt s); \n\
+        while not found do \n\
+            pos:= pos-1; \n\
+            if pos eq 0 then // done... \n\
+               done:= true;\n\
+               found:= true;\n\
+            else\n\
+               found:= (exc[pos] lt s-(len-pos));\n\
+            end if;\n\
+        end while;\n\
+        if not done then \n\
+           l:= exc[pos]+1;\n\
+           for i in [pos..len] do \n\
+               exc[i]:= l+i-pos; \n\
+           end for; \n\
+        end if; \n\
+   end while; \n\
+   return true;\n\
+end function;\n\n\n\n\
+minors0:= function( m, cols )\n\n\
+   \/\/ m and rxs matrix with s > r \n\
+   \/\/ and cols are indices of lin indep columns.\n\
+   \/\/ check whether first row is in span of last r-1 rows...\n\n\
+   r:= NumberOfRows(m);\n\
+   s:= NumberOfColumns(m);\n\
+   rows:= [1..r]; \n\
+   for i in [1..s] do \n\
+       if not i in cols then \n\
+          columns:= cols; \n\
+          Append( ~columns, i ); \n\
+          Sort( ~columns ); \n\
+          d:= Minor( m, rows, columns ); \n\
+          if not IsZero(d) then return false; end if; \n\
+       end if; \n\
+   end for; \n\
+   return true; \n\
+end function; \n\n";
+
+      AppendTo( file, magmaprog );
+
+      numvar:= 0;
+      for r in matlist do 
+          if r.numindets > numvar then numvar:= r.numindets; fi;
+      od;
+      AppendTo( file, "F<" );
+      for i in [1..numvar] do
+          AppendTo( file, "x_" );
+          AppendTo( file, i );
+          if i < numvar then
+             AppendTo(file,",");
+          fi;
+      od;
+      AppendTo( file, ">:= RationalFunctionField( Rationals(), ");
+      AppendTo( file, numvar );
+      AppendTo( file, ");\n\n");
+
+      for r in matlist do
+          AppendTo( file, "print \"inclusion: orbit \", ",r.inds[1], ", \" in orbit \",",r.inds[2],";\n");
+          m:= r.fullmat; m0:= r.redmat;
+          AppendTo( file, "m:= \n ",m,";\n\n", "m:= Matrix(m);\n\n",
+                          "m0:= \n ",m0,";\n\n", "m0:= Matrix(m0);\n\n" );
+          AppendTo( file, "cols:= ",r.colinds,";\n\n" );
+          if Length(m[1])-Length(m) < Length(m0[1])-Length(m0) then
+             AppendTo( file, "minors(m);\n\n" );
+          else
+             AppendTo( file, 
+                    "if not minors0(m0,cols) then minors(m); else true; end if;\n\n");
+          fi;
+      od;     
+   fi;
+
+   return rec( diag:= diag, sl2:= sl2 );
+
+end;
+
+
 InstallMethod( ClosureDiagram,
 "for Lie algebra, list or automorphism, list of sl2 triples", true, [ IsLieAlgebra, IsObject, IsList ], 0,
 function( L, obj, sl2 )
@@ -3564,7 +4019,9 @@ function( L, obj, sl2 )
             Add( gm, negRv[i] );
          fi;
       od;
-      if Length(g1) > 0 then
+      if Length(g0) = Length(ChevalleyBasis(L)[3]) then
+         r:= SLAfcts.hasse_diag0( L, [g0,g1,gm], sl2 );
+      elif Length(g1) > 0 then
          r:= SLAfcts.hasse_diag( L, [g0,g1,gm], sl2 );
       else
          r:= SLAfcts.hasse_diag( L, [g0], sl2 );
@@ -3572,7 +4029,11 @@ function( L, obj, sl2 )
    elif IsMapping( obj ) then
       f:= obj;
       g:= Grading(f);
-      r:= SLAfcts.hasse_diag( L, g, sl2 );
+      if Dimension(CartanSubalgebra(Subalgebra(L,g[1]))) = Length(g[1]) then
+         r:= SLAfcts.hasse_diag0( L, g, sl2 );
+      else	 
+         r:= SLAfcts.hasse_diag( L, g, sl2 );
+      fi;
    else
       Error( "the second argument has to be an automorphism or a list giving a Z-grading");
    fi;
