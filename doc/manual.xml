@@ -127,7 +127,8 @@ rec( enumeration := [ [ 3, 1 ], [ 2, 4 ] ],
 
 <ManSection>
   <Oper Name="DisplayDynkinDiagram"  Arg="C" Comm="Cartan matrix"/>
-   <Oper Name="DisplayDynkinDiagram"  Arg="R" Comm="Root system"/>
+   <Oper Name="DisplayDynkinDiagram"  Arg="R" Comm="Root system"
+         Label="DisplayDynkinDiagramRootSystem"/>
    <Description>
 
 Here <A>C</A> is a Cartan matrix. This function displays the Dynkin diagram of
@@ -159,7 +160,7 @@ G2:  5#&lt;#2
    <Oper Name="WeylTransversal"  Arg="R, inds" 
          Comm="Root system and list"/>
    <Oper Name="WeylTransversal"  Arg="R, roots" 
-         Comm="Root system and list"/>
+         Comm="Root system and list" Label="WeylTransversalRoots"/>
    <Description>
 
 Here <A>R</A> is a root system, and <A>inds</A> a list of indices of
@@ -194,8 +195,8 @@ gap> Length(a);
 
 <ManSection>
    <Oper Name="SizeOfWeylGroup"  Arg="R" />
-   <Oper Name="SizeOfWeylGroup"  Arg="type" />
-   <Oper Name="SizeOfWeylGroup"  Arg="X,n" />
+   <Oper Name="SizeOfWeylGroup"  Arg="type" Label="SizeOfWeylGroupTypeList"/>
+   <Oper Name="SizeOfWeylGroup"  Arg="X,n" Label="SizeOfWeylGroupTypeSing"/>
    <Description>
 
 In the first from <A>R</A> is a root system. In the second
@@ -356,7 +357,8 @@ returns an isomorphism.
 </ManSection>
 
 <ManSection>
-   <Oper Name="DisplayDynkinDiagram"  Arg="L"/>
+   <Oper Name="DisplayDynkinDiagram"  Arg="L"
+         Label="DisplayDynkinDiagramLieAlg"/>
 
 <Description>
 
@@ -662,7 +664,8 @@ gap> Image(f, Basis(V)[10] );
 
 <ManSection>
    <Oper Name="CharacteristicsOfStrata"  Arg="L, hw"/>
- <Oper Name="CharacteristicsOfStrata"  Arg="L, B, hw"/>
+   <Oper Name="CharacteristicsOfStrata"  Arg="L, B, hw"
+         Label="CharacteristicsOfStrataBLForm"/>
 <Description>
 
 Here <A>L</A> is a semisimple Lie algebra over a field of characteristic 0.
@@ -924,7 +927,8 @@ Dynkin diagram.
 
 <ManSection>
    <Meth Name="WeightedDynkinDiagram"  Arg="L, x" 
-         Comm="Lie algebra and nilpotent element"/>
+         Comm="Lie algebra and nilpotent element"
+         Label="WeightedDynkinDiagramLieAlg"/>
    <Description>
 
 Here <A>L</A> is a semisimple Lie algebra, and <A>x</A> a nilpotent element.
@@ -965,7 +969,8 @@ E6:  0---1---0---1---0
 </ManSection>
 
 <ManSection>
-   <Meth Name="DisplayWeightedDynkinDiagram"  Arg="L, x" />
+   <Meth Name="DisplayWeightedDynkinDiagram"  Arg="L, x"
+         Label="DisplayWeightedDynkinDiagramLieAlg"/>
    <Description>
 
 Here <A>L</A> is a semisimple Lie algebra with nilpotent element <A>x</A>.
@@ -1090,7 +1095,7 @@ gap> SL2Grading( L, sl2[2] );
 
 <ManSection>
    <Oper Name="SL2Triple"  Arg="L, x" 
-         Comm="Lie algebra and nilpotent element"/>
+         Comm="Lie algebra and nilpotent element" Label="SL2TripleLieAlg"/>
    <Description>
 
 Here <A>L</A> is a simple Lie algebra, and <A>x</A> is a nilpotent 
@@ -1499,7 +1504,8 @@ where <M>v</M> is a primitive <M>m</M>-th root of unity (i.e., <A>v=E(m)</A>).
    <Oper Name="NilpotentOrbitsOfThetaRepresentation"  Arg="f" 
          Comm="automorphism"/>
    <Oper Name="NilpotentOrbitsOfThetaRepresentation"  Arg="L, d" 
-         Comm="Lie algebra and grading diagram"/>
+         Comm="Lie algebra and grading diagram"
+         Label="NilpotentOrbitsOfThetaRepresentationLieAlg"/>
 
    <Description>
 
@@ -1568,7 +1574,8 @@ gap> NilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );
    <Oper Name="ClosureDiagram"  Arg="L, f, s" 
          Comm="Lie algebra, automorphism, list of sl2-triples"/>
    <Oper Name="ClosureDiagram"  Arg="L, d, s" 
-         Comm="Lie algebra, grading diagram, list of sl2-triples"/>
+         Comm="Lie algebra, grading diagram, list of sl2-triples"
+         Label="ClosureDiagramGrading"/>
 
    <Description>
 
@@ -1654,7 +1661,8 @@ gap> r.diag;
    <Oper Name="CarrierAlgebra"  Arg="L, f, e" 
          Comm="Lie algebra, automorphism, element of L"/>
    <Oper Name="CarrierAlgebra"  Arg="L, d, e" 
-         Comm="Lie algebra, grading diagram, element of L"/>
+         Comm="Lie algebra, grading diagram, element of L"
+         Label="CarrierAlgebraGrading"/>
 
    <Description>
 
@@ -1787,7 +1795,7 @@ gap> ProjectionMatrix( L, K );
 
 <ManSection>
   <Oper Name="Branching"  Arg="L, K, hw"/>
-  <Oper Name="Branching"  Arg="L, K, cc, hw"/>
+  <Oper Name="Branching"  Arg="L, K, cc, hw" Label="BranchingToral"/>
    <Description>
 
 Here <A>L</A> and <A>K</A> are as in the previous function, and <A>hw</A> is
