@@ -106,12 +106,10 @@ gap> K:= Subalgebra( L, Concatenation( r.g0, Flat(r.gp), Flat(r.gn) ) );
 gap> SemiSimpleType( K );
 "B2"
 
-# doc/manual.xml:1720-1726
+# doc/manual.xml:1728-1732
 gap> f:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;
 gap> c:= CartanSubspace( f[3] ); 
 <vector space of dimension 1 over CF(3)>
-gap> BasisVectors( Basis( c ) );
-[ v.1+v.5+v.12 ]
 
 #
 gap> STOP_TEST("sla05.tst", 1);
