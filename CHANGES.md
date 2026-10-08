@@ -3,6 +3,7 @@ This file describes changes in the SLA package.
 ## Unreleased
 
 - Fix an error in `ClosureDiagram`
+- Janitorial changes
 
 ## 1.6.2 (2024-07-12)
 

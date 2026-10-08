@@ -1729,9 +1729,15 @@ of a fixed Cartan subspace.
 gap> f:= FiniteOrderInnerAutomorphisms( "A", 3, 3 );;
 gap> c:= CartanSubspace( f[3] ); 
 &lt;vector space of dimension 1 over CF(3)>
+</Example>
+
+Cartan subspaces are not unique, and the algorithm is randomised, so the
+result may differ from the one shown here.
+
+<Log>
 gap> BasisVectors( Basis( c ) );
 [ v.1+v.5+v.12 ]
-</Example>
+</Log>
 
 </Description>
 </ManSection>
