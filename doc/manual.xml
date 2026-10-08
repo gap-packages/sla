@@ -707,7 +707,7 @@ a specific basis, which we now describe. Let <A>K</A> denote the derived
 subalgebra of <A>L</A> (which is semisimple). Let <A>h</A> be the list
 <A>CanonicalGenerators( RootSystem( K ) )[3]</A> (this is a basis of a
 Cartan subalgebra of <A>K</A>). Let <A>c</A> be the list
-<A>BasisVectors( Basis( LieCentre(K) ) )</A>. Then the basis we require
+<A>BasisVectors( Basis( LieCentre(L) ) )</A>. Then the basis we require
 is the concatenation of <A>h</A> and <A>c</A>. Again <A>hw</A> can be a highest
 weight, or a list of highest weights. These highest weights are lists of
 eigenvalues of the elements of the particular basis of a Cartan subalgebra of
@@ -1042,7 +1042,7 @@ gap> SL2Triple( orbs[10] );
    <Description>
 
 Here <A>o</A> is a nilpotent orbit; this function returns a random <M>sl_2</M>-triple
-<M>(x,h,y)</M> corresponding to <A>o</A>. This means that every call
+<M>(y,h,x)</M> corresponding to <A>o</A>. This means that every call
 (potentially) returns a different <M>sl_2</M>-triple.
 
 
@@ -1860,8 +1860,8 @@ gap> Branching( L, K, cc, [1,0,0,0,0,0,1] );
    <Description>
 
 Here <A>L</A> is a <E>simple</E> Lie algebra. This function returns a
-list of its conjugacy classes of semisimple subalgebras (conjugacy
-under the adjoint group). 
+list of representatives of the conjugacy classes of its regular semisimple
+subalgebras (conjugacy under the adjoint group). 
 
 
 
@@ -2199,7 +2199,7 @@ gap> Length( Filtered( c, IsSpecialClosedSet ) );
 
 
 <ManSection>
-   <Oper Name="LieAlgebraOfClosedSet" Arg="L, c"/>
+   <Oper Name="SubalgebraOfClosedSet" Arg="L, c"/>
    <Description>
 
 Here <A>L</A> is a semisimple Lie algebra and 
