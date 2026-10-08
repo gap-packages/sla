@@ -10,7 +10,7 @@
 #
 gap> START_TEST("sla05.tst");
 
-# doc/manual.xml:1419-1431
+# doc/manual.xml:1424-1436
 gap> f:= FiniteOrderInnerAutomorphisms("E",6,3);
 [ [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> [ (E(3))*v.72, (E(3)^2)*v.1, v.2, 
       v.3, v.4, v.5, v.6 ], [ v.72, v.1, v.2, v.3, v.4, v.5, v.6 ] -> 
@@ -23,7 +23,7 @@ gap> f:= FiniteOrderInnerAutomorphisms("E",6,3);
 gap> Source(f[1]);
 <Lie algebra of dimension 78 over CF(3)>
 
-# doc/manual.xml:1471-1479
+# doc/manual.xml:1476-1484
 gap> f:= FiniteOrderOuterAutomorphisms( "A", 5, 4, 2 );;
 gap> r:= KacDiagram( f[1] );
 rec( 
@@ -32,7 +32,7 @@ rec(
 gap> r.labels*r.CM;      
 [ 0, 0, 0, 0 ]
 
-# doc/manual.xml:1538-1561
+# doc/manual.xml:1544-1567
 gap> # reset random state to ensure the output of this example match
 gap> Reset(GlobalMersenneTwister, 1);;
 gap> f:= FiniteOrderInnerAutomorphisms( "D", 5, 3 );;   
@@ -56,7 +56,7 @@ gap> NilpotentOrbitsOfThetaRepresentation( L, [0,1,0,0,0,0] );
   [ v.66+v.70, (2)*v.73+(2)*v.74+(3)*v.75+(4)*v.76+(3)*v.77+(2)*v.78, 
       v.30+v.34 ], [ v.71, v.73+v.74+(2)*v.75+(3)*v.76+(2)*v.77+v.78, v.35 ] ]
 
-# doc/manual.xml:1617-1648
+# doc/manual.xml:1624-1655
 gap> f:= FiniteOrderInnerAutomorphisms( "E", 8, 8 );;  
 gap> h:= f[8];;
 gap> sl2:= NilpotentOrbitsOfThetaRepresentation(h);;  
@@ -88,7 +88,7 @@ gap> r.diag;
   [ 8, 7 ], [ 9, 7 ], [ 10, 8 ], [ 10, 9 ], [ 11, 8 ], [ 12, 10 ], 
   [ 13, 11 ], [ 13, 12 ], [ 14, 13 ], [ 15, 14 ] ]
 
-# doc/manual.xml:1680-1697
+# doc/manual.xml:1688-1705
 gap> f:= FiniteOrderInnerAutomorphisms( "F", 4, 5 );;
 gap> h:= f[4];;
 gap> sl2:= NilpotentOrbitsOfThetaRepresentation( h );;  

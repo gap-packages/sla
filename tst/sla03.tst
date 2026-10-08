@@ -10,13 +10,13 @@
 #
 gap> START_TEST("sla03.tst");
 
-# doc/manual.xml:366-371
+# doc/manual.xml:368-373
 gap> L:= SimpleLieAlgebra("F",4,Rationals);
 <Lie algebra of dimension 52 over Rationals>
 gap> DisplayDynkinDiagram(L);              
 F4:  2---4=>=3---1
 
-# doc/manual.xml:387-399
+# doc/manual.xml:389-401
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
 gap> R:= RootSystem(L);;
 gap> W:= WeylGroupAsPermGroup(R);;
@@ -29,7 +29,7 @@ v.49+v.50+v.51+v.52
 gap> ApplyWeylPermToCartanElement( L, w, h );
 (-1)*v.52
 
-# doc/manual.xml:421-435
+# doc/manual.xml:423-437
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> V:= HighestWeightModule( L, [2,0] );
 <27-dimensional left-module over <Lie algebra of dimension 14 over Rationals>>
@@ -44,7 +44,7 @@ gap> exp:=Sum( List( [0..4], i -> mx^i/Factorial(i) ) );;
 gap> ForAll( Flat(exp), IsInt );
 true
 
-# doc/manual.xml:449-461
+# doc/manual.xml:451-463
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> V:= HighestWeightModule( L, [1,0] );;
 gap> W:= TensorProductOfAlgebraModules( V, V );
@@ -57,7 +57,7 @@ gap> DirectSumDecomposition( W );
 gap> List( last, Dimension );
 [ 27, 7, 14, 1 ]
 
-# doc/manual.xml:475-482
+# doc/manual.xml:477-484
 gap> L:= SimpleLieAlgebra("F",4,Rationals);
 <Lie algebra of dimension 52 over Rationals>
 gap> V:= HighestWeightModule( L, [0,1,0,0] );
@@ -65,7 +65,7 @@ gap> V:= HighestWeightModule( L, [0,1,0,0] );
 gap> IsIrreducibleHWModule(V);
 true
 
-# doc/manual.xml:499-511
+# doc/manual.xml:501-513
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> V:= HighestWeightModule( L, [1,0] );;
 gap> W:= TensorProductOfAlgebraModules( V, V );;
@@ -78,7 +78,7 @@ gap> List( cg[3], h -> h^v0 );
 gap> List( cg[1], h -> h^v0 );
 [ <0-tensor>, <0-tensor> ]
 
-# doc/manual.xml:527-534
+# doc/manual.xml:529-536
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> V:= HighestWeightModule( L, [1,0] );;
 gap> W:= TensorProductOfAlgebraModules( V, V );;
@@ -86,7 +86,7 @@ gap> dW:= DirectSumDecomposition( W );;
 gap> List( dW, HighestWeight );
 [ [ 2, 0 ], [ 1, 0 ], [ 0, 1 ], [ 0, 0 ] ]
 
-# doc/manual.xml:548-579
+# doc/manual.xml:550-581
 gap> r:= LieAlgebraAndSubalgebras( "E8" );;
 gap> L:= r.liealg;;
 gap> K:= r.subalgs[823];
@@ -118,7 +118,7 @@ gap> DisplayHighestWeight( dW[1] );
 A1:  2
 B5:  1---0---0---0=>=0
 
-# doc/manual.xml:594-615
+# doc/manual.xml:596-617
 gap> r:= LieAlgebraAndSubalgebras( "E8" );;
 gap> L:= r.liealg;;
 gap> K:= r.subalgs[823];;
@@ -140,7 +140,7 @@ v.205
 gap> HighestWeightVector( dW[6] );
 v.205
 
-# doc/manual.xml:636-656
+# doc/manual.xml:638-658
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> V:= HighestWeightModule( L, [0,0,1,0,0,0] );; Dimension(V);
 351
@@ -161,13 +161,13 @@ gap> f:= ExtRepOfObj( v0 );
 gap> Image(f, Basis(V)[10] );
 0
 
-# doc/manual.xml:714-719
+# doc/manual.xml:717-722
 gap> L:= SimpleLieAlgebra("G",2,Rationals);;
 gap> CharacteristicsOfStrata( L, [0,1] );
 [ [ v.13+(2)*v.14, (2)*v.13+(3)*v.14, (2)*v.13+(4)*v.14, (6)*v.13+(10)*v.14 ],
   [ 6, 8, 10, 12 ] ]
 
-# doc/manual.xml:728-790
+# doc/manual.xml:731-793
 gap> f:= FiniteOrderInnerAutomorphisms("E",6,3)[2];;
 gap> M:= Source(f);;
 gap> gr:= Grading(f);;

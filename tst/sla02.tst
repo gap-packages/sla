@@ -23,14 +23,14 @@ gap> CartanType(C);
 rec( enumeration := [ [ 3, 1 ], [ 2, 4 ] ], 
   types := [ [ "G", 2 ], [ "A", 2 ] ] )
 
-# doc/manual.xml:139-145
+# doc/manual.xml:140-146
 gap> C:=[[2,0,-1,0,0,0],[0,2,0,0,-3,0],[-1,0,2,0,0,-1],[0,0,0,2,0,-1],
 > [0,-1,0,0,2,0],[0,0,-2,-1,0,2]];;
 gap> DisplayDynkinDiagram(C); 
 F4:  4---6=>=3---1
 G2:  5#<#2
 
-# doc/manual.xml:181-190
+# doc/manual.xml:182-191
 gap> R:= RootSystem("A",3);;
 gap> WeylTransversal( R, [2,6] );
 [ [  ], [ 1 ], [ 3 ], [ 1, 2 ], [ 1, 3 ], [ 3, 2 ] ]
@@ -40,7 +40,7 @@ gap> a:= WeylTransversal( R, [p[1],p[3],p[4],p[5],p[6],p[7],p[8],-p[120]] );;
 gap> Length(a);
 1920
 
-# doc/manual.xml:209-217
+# doc/manual.xml:210-218
 gap> R:= RootSystem( SimpleLieAlgebra("E",6,Rationals) );;
 gap> SizeOfWeylGroup(R);                
 51840
@@ -49,7 +49,7 @@ gap> SizeOfWeylGroup( [["E",6]] );
 gap> SizeOfWeylGroup( "E", 6 );   
 51840
 
-# doc/manual.xml:253-260
+# doc/manual.xml:254-261
 gap> R:= RootSystem("E",6);
 <root system of type E6>
 gap> G:= WeylGroupAsPermGroup( R );
@@ -57,7 +57,7 @@ gap> G:= WeylGroupAsPermGroup( R );
 gap> Size(G);
 51840
 
-# doc/manual.xml:277-284
+# doc/manual.xml:278-285
 gap> R:= RootSystem("D",4);;
 gap> G:= WeylGroupAsPermGroup(R);
 <permutation group with 4 generators>
@@ -65,12 +65,12 @@ gap> wt:= ApplyWeylPermToWeight( R, Random(G), [1,1,1,1] );;
 gap> ConjugateDominantWeight( WeylGroup(R), wt );
 [ 1, 1, 1, 1 ] 
 
-# doc/manual.xml:301-305
+# doc/manual.xml:302-306
 gap> R:= RootSystem("D",4);;
 gap> WeylWordAsPerm( R, [1,2,1,3,4,2,3,4,1] );
 (1,23,12,17)(2,10,14,22)(3,19,16,6)(4,18,15,7)(5,13,11,24)(8,21)(9,20)
 
-# doc/manual.xml:321-332
+# doc/manual.xml:322-333
 gap> R:= RootSystem("D",4);;
 gap> rts:= [1,3,4,12,13,15,16,24];;
 gap> G:= WeylGroupAsPermGroup(R);;

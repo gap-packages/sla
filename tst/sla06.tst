@@ -10,7 +10,7 @@
 #
 gap> START_TEST("sla06.tst");
 
-# doc/manual.xml:1771-1783
+# doc/manual.xml:1785-1797
 gap> L:= SimpleLieAlgebra("E",7,Rationals);;                
 gap> K:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               
 > L.64,L.66,L.67,L.68,L.69,L.70,L.126] );;
@@ -23,7 +23,7 @@ gap> ProjectionMatrix( L, K );
   [ 0, 0, 0, 0, -1, 0, 0 ], [ 0, 0, 0, 0, 0, -1, 0 ], 
   [ 0, 0, 0, 0, 0, 0, -1 ], [ -1, -2, -2, -3, -2, -1, 0 ] ]
 
-# doc/manual.xml:1809-1834
+# doc/manual.xml:1823-1848
 gap> L:= SimpleLieAlgebra("E",7,Rationals);;                
 gap> K:= Subalgebra( L, [ L.1,L.3,L.4,L.5,L.6,L.7,L.63,               
 > L.64,L.66,L.67,L.68,L.69,L.70,L.126] );;
@@ -49,7 +49,7 @@ gap> Branching( L, K, cc, [1,0,0,0,0,0,1] );
       [ 0, 0, 0, 0, 0, 1, 1/2 ], [ 1, 0, 0, 0, 0, 0, -1/2 ] ], 
   [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ] ]      
 
-# doc/manual.xml:1854-1868
+# doc/manual.xml:1868-1882
 gap> L:= SimpleLieAlgebra("E",6,Rationals);;
 gap> K:= RegularSemisimpleSubalgebras( L );;
 gap> Length(K);
@@ -64,7 +64,7 @@ gap> Branching( L, K[5], [1,0,0,0,0,1] );
       [ 0, 0, 0, 0, 1 ], [ 0, 1, 0, 0, 0 ], [ 0, 0, 0, 0, 0 ] ], 
   [ 2, 1, 1, 1, 1, 1, 1, 1, 1 ] ]
 
-# doc/manual.xml:1932-1956
+# doc/manual.xml:1946-1970
 # Semisimple subalgebras of the Lie algebra of type D4:
 gap> s:= LieAlgebraAndSubalgebras( "D4" );;
 gap> L:= s.liealg;
@@ -89,7 +89,7 @@ gap> Branching( L, sub[35], [0,0,1,0] );
 gap> Branching( L, sub[36], [0,0,1,0] );
 [ [ [ 0, 1, 0 ], [ 2, 0, 0 ] ], [ 1, 1 ] ]
 
-# doc/manual.xml:1970-1986
+# doc/manual.xml:1984-2000
 gap> s:= LieAlgebraAndSubalgebras( "C3" );;
 gap> g:= InclusionsGraph( "C3" );
 [ [ 10, 1 ], [ 11, 1 ], [ 12, 1 ], [ 8, 2 ], [ 10, 2 ], [ 11, 2 ], [ 11, 3 ], 
@@ -106,7 +106,7 @@ gap> K:=SubalgebrasInclusion( L, sub[2], sub[14] );
 gap> Basis(K)[1] in sub[14];
 true
 
-# doc/manual.xml:2008-2020
+# doc/manual.xml:2022-2034
 gap> s:= LieAlgebraAndSubalgebras( "C7" );;
 gap> g:= InclusionsGraph( "C7" );;
 gap> m:= Filtered( g, x -> x[1]=0 );; i:= List( m, x -> x[2] );
@@ -119,7 +119,7 @@ gap> List( sub{i}, SemiSimpleType );
 gap> DynkinIndex( sub[665], L );   
 [ 7, 4 ]
 
-# doc/manual.xml:2039-2052
+# doc/manual.xml:2053-2066
 # Lets find the subalgebras in the database for C5 that are linearly
 # equivalent to regular subalgebras:
 gap> s:= LieAlgebraAndSubalgebras("C5");; L:= s.liealg; sub:= s.subalgs;;
@@ -133,12 +133,12 @@ gap> posn;
 [ 2, 24, 93, 111, 105, 82, 106, 81, 41, 109, 70, 85, 29, 112, 94, 25, 1, 118, 
   100, 102, 64, 108, 84, 28, 117, 107, 116, 96, 101, 63, 115, 114, 95, 113 ]
 
-# doc/manual.xml:2079-2083
+# doc/manual.xml:2093-2097
 gap> r:= LieAlgebraAndSubalgebras( "A2 B2" );;
 gap> d:= MakeDatabaseEntry( r );;
 gap> PrintTo( "A2B2", "d:= ",d,";\n");
 
-# doc/manual.xml:2114-2125
+# doc/manual.xml:2128-2139
 gap> R:= RootSystem("F",4);
 <root system of type F4>
 gap> c:= ClosedSubsets(R);;
@@ -150,7 +150,7 @@ gap> c[1005];
   [ 1, 1, 2, 2 ], [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], 
   [ 1, 2, 4, 2 ], [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ], [ 0, -1, -2, 0 ] ]
 
-# doc/manual.xml:2144-2154
+# doc/manual.xml:2158-2168
 gap> R:= RootSystem("F",4);
 <root system of type F4>
 gap> c:= ClosedSubsets(R);;
@@ -161,7 +161,7 @@ gap> DecompositionOfClosedSet( c[1005] );
       [ 1, 2, 3, 1 ], [ 1, 2, 2, 2 ], [ 1, 2, 3, 2 ], [ 1, 2, 4, 2 ], 
       [ 1, 3, 4, 2 ], [ 2, 3, 4, 2 ] ] ]
 
-# doc/manual.xml:2171-2181
+# doc/manual.xml:2185-2195
 gap> R:= RootSystem("F",4);
 <root system of type F4>
 gap> c:= ClosedSubsets(R);;
@@ -172,7 +172,7 @@ true
 gap> Length( Filtered( c, IsSpecialClosedSet ) );
 3579
 
-# doc/manual.xml:2198-2215
+# doc/manual.xml:2212-2229
 gap> L:= SimpleLieAlgebra("F",4,Rationals);
 <Lie algebra of dimension 52 over Rationals>
 gap> R:= RootSystem( L );
