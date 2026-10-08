@@ -3174,8 +3174,7 @@ end;
          inds:= [ 1 ];
          sp:= MutableBasis( LeftActingDomain(L), [ ], List( Basis(V), x -> 0 ) );
          for i in [1..Length(B)] do
-             if not IsContainedInSpan( sp, B[i] ) then
-                CloseMutableBasis( sp, B[i] );
+             if CloseMutableBasis( sp, B[i] ) then
                 Add( inds, i+1 );
              fi;
          od;
@@ -3184,8 +3183,7 @@ end;
          Bt:= TransposedMat(B{[1..Length(B)]});
          sp:= MutableBasis( LeftActingDomain(L), [ ], List( [1..Length(q0)], x -> 0 ) );
          for i in [1..Length(Bt)] do
-             if not IsContainedInSpan( sp, Bt[i] ) then
-                CloseMutableBasis( sp, Bt[i] );
+             if CloseMutableBasis( sp, Bt[i] ) then
                 Add( colinds, i );
              fi;
          od;
@@ -3761,8 +3759,7 @@ end;
          inds:= [ 1 ];
          sp:= MutableBasis( LeftActingDomain(L), [ ], List( Basis(V), x -> 0 ) );
          for i in [1..Length(B)] do
-             if not IsContainedInSpan( sp, B[i] ) then
-                CloseMutableBasis( sp, B[i] );
+             if CloseMutableBasis( sp, B[i] ) then
                 Add( inds, i+1 );
              fi;
          od;
@@ -3771,8 +3768,7 @@ end;
          Bt:= TransposedMat(B{[1..Length(B)]});
          sp:= MutableBasis( LeftActingDomain(L), [ ], List( [1..Length(q0)], x -> 0 ) );
          for i in [1..Length(Bt)] do
-             if not IsContainedInSpan( sp, Bt[i] ) then
-                CloseMutableBasis( sp, Bt[i] );
+             if CloseMutableBasis( sp, Bt[i] ) then
                 Add( colinds, i );
              fi;
          od;
