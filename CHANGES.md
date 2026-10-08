@@ -1,8 +1,11 @@
 This file describes changes in the SLA package.
 
-## Unreleased
+## 1.6.3 (2026-10-08)
 
-- Fix an error in `ClosureDiagram`
+- Fix an error in `ClosureDiagram` for gradings whose 0-component is a torus
+- Fix the manual entry of `SubalgebraOfClosedSet`, which was listed as
+  `LieAlgebraOfClosedSet`, and correct several other statements and typos
+  in the manual
 - Janitorial changes
 
 ## 1.6.2 (2024-07-12)
