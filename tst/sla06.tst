@@ -120,7 +120,7 @@ gap> DynkinIndex( sub[665], L );
 [ 7, 4 ]
 
 # doc/manual.xml:2053-2066
-# Lets find the subalgebras in the database for C5 that are linearly
+# Let's find the subalgebras in the database for C5 that are linearly
 # equivalent to regular subalgebras:
 gap> s:= LieAlgebraAndSubalgebras("C5");; L:= s.liealg; sub:= s.subalgs;;
 <Lie algebra of dimension 55 over Rationals>

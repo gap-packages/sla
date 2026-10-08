@@ -47,7 +47,7 @@ ArchiveURL      := Concatenation( ~.SourceRepository.URL,
 ArchiveFormats := ".tar.gz",
 
 AbstractHTML := "The package <span class=\"pkgname\">SLA</span> contains \
-                 functionality for working with simple Lie algebras,",
+                 functionality for working with simple Lie algebras.",
 
 Dependencies := rec(
   GAP := ">=4.12",

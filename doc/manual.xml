@@ -49,16 +49,16 @@ given simple Lie algebra, of a given finite order. <P/>
 The eigenspaces of an automorphism of finite order of a simple
 Lie algebra form a grading of that Lie algebra. Moreover, the
 0-component is a reductive subalgebra, acting on the 1-component.
-The 0-component corresponds to a reductive reductive group, also acting
+The 0-component corresponds to a reductive group, also acting
 on the 1-component. This group (with its action) is called a 
-<M>\theta</M>-group. It was introduced and studied in the 70-s by Vinberg
-(<Cite Key="vinberg3"/> , <Cite Key="vinberg"/>, <Cite Key="vinberg2"/>)  
+<M>\theta</M>-group. It was introduced and studied in the 1970s by Vinberg
+(<Cite Key="vinberg3"/>, <Cite Key="vinberg"/>, <Cite Key="vinberg2"/>).
 The package has a function for listing the
 nilpotent orbits of this group. <P/>
 
 The last chapter has functions for working with semisimple subalgebras
 of semisimple Lie algebras. The package contains a database of semisimple
-subalgebras of the simple subalgebras of ranks up to 8. Moreover, there
+subalgebras of the simple Lie algebras of ranks up to 8. Moreover, there
 are functions for computing the semisimple subalgebras of semisimple Lie
 algebras on the fly. Finally, there are some functions for computing
 branching rules. <P/>
@@ -84,7 +84,7 @@ objects in the title of the chapter.
    <Description>
 
 Here <A>R</A> is a root system. This function returns the extended Cartan
-matrix of <A>R</A>. That is the Cartan matrix correponding to the 
+matrix of <A>R</A>. That is the Cartan matrix corresponding to the 
 lowest root (coming first), and the simple roots of <A>R</A>. <P/>
 The output is a record with components <A>ECM</A> (the extended Cartan
 matrix) and <A>labels</A> (the labels of the corresponding Dynkin diagram;
@@ -105,7 +105,7 @@ rec( ECM := [ [ 2, -1, 0, 0, 0 ], [ -1, 2, -1, 0, 0 ], [ 0, -1, 2, -2, 0 ],
          Comm="Cartan matrix"/>
    <Description>
 
-Here <A>C</A> is a Cartan matrix (i.e., an integer matrix with 2-s on the  
+Here <A>C</A> is a Cartan matrix (i.e., an integer matrix with 2s on the  
 diagonal, non-positive entries otherwise, and there exists a diagonal
 integer matrix <A>D</A> such that <A>CD</A> is a positive definite 
 symmetric matrix). This function returns a record with two components:
@@ -171,9 +171,9 @@ index of a positive root is its position in the list
 This function returns a list of shortest representatives of the right
 cosets of the corresponding Weyl subgroup of the Weyl group of <A>R</A>.
 The elements of the Weyl group are given as reduced expressions. <P/>
-In the second form <A>rts</A> is a list of roots of <A>R</A>, that form
+In the second form <A>roots</A> is a list of roots of <A>R</A>, that form
 a set of simple roots of a root subsystem of <A>R</A> (again, this is
-not checked). In this form the roots so not have to be positive.
+not checked). In this form the roots do not have to be positive.
 They have to be represented with respect to the basis of simple roots,
 i.e., they are elements of <A>PositiveRootsNF(R)</A> or of 
 <A>NegativeRootsNF(R)</A>.
@@ -199,11 +199,11 @@ gap> Length(a);
    <Oper Name="SizeOfWeylGroup"  Arg="X,n" Label="SizeOfWeylGroupTypeSing"/>
    <Description>
 
-In the first from <A>R</A> is a root system. In the second
+In the first form <A>R</A> is a root system. In the second
 form <A>type</A> is a list of lists describing the type of a 
 root system. For example: <A>[["A",3],["B",5],["G",2]]</A>. 
 In the third form <A>X</A> is a letter (i.e., a string) and 
-<A>n</A> a positive integer, so that <A> Xn</A> is the type of
+<A>n</A> a positive integer, so that <A>Xn</A> is the type of
 a root system. In all cases the number of elements of the Weyl group
 is returned.
 
@@ -230,7 +230,7 @@ whose set of elements is in bijection with the set of elements of the Weyl
 group of <A>R</A>. More precisely, this bijection works as follows. <P/>
 
 Let <M>n</M> be the number of positive roots of <A>R</A>. We list the
-positive roots in the order in which they apppear in
+positive roots in the order in which they appear in
 <A>PositiveRootsNF( R )</A>. To this list we append the negative roots, listed
 in the same order. Thus the list of roots is <M>\{\alpha_1,\ldots,\alpha_{2n}\}
 </M>, where <M>\alpha_{i+n} = -\alpha_i</M> for <M>1\leq i\leq n</M>.
@@ -270,7 +270,7 @@ gap> Size(G);
 
      Here <A>R</A> is a root system, <A>p</A> is an element of the group 
      returned by <Ref Oper="WeylGroupAsPermGroup"/> with input <A>R</A>.
-     Here <A>w</A> is a weight, that the list of coefficients of a weight
+     Here <A>w</A> is a weight, that is, the list of coefficients of a weight
      when written as a linear combination of fundamental weights. This
      function returns the result of acting with the element of the Weyl group
      corresponding to <A>p</A> on <A>w</A>.
@@ -296,7 +296,7 @@ gap> ConjugateDominantWeight( WeylGroup(R), wt );
      group given as a (not necessarily reduced) word, that is, <A>u</A> is
      given by a list of indices between 1 and the rank of <A>R</A>.
      This function returns the permutation corresponding to <A>u</A>, that is,
-     the image of <A>u</A> under the anti-iromorphism discussed in
+     the image of <A>u</A> under the anti-isomorphism discussed in
      <Ref Oper="WeylGroupAsPermGroup"/>.
 
 <Example>
@@ -314,7 +314,7 @@ gap> WeylWordAsPerm( R, [1,2,1,3,4,2,3,4,1] );
 
      This is the inverse operation to the one discussed in
      <Ref Oper="WeylWordAsPerm"/>. That is, the element of the Weyl group
-     (this time given as reduced expression) corresponding to the permutation
+     (this time given as a reduced expression) corresponding to the permutation
      <A>p</A> is returned. <P/>
      In the next example we compute generators of the stabilizer of
      a subset of a root system. The generators are given as reduced words.
@@ -383,7 +383,7 @@ F4:  2---4=>=3---1
 Here <A>L</A> is a semisimple Lie algebra, <A>w</A> is a permutation which is
 an element of <A>WeylGroupAsPermGroup( RootSystem(L) )</A>, and <A>h</A> is
 an element of the Cartan subalgebra <A>CartanSubalgebra( L )</A>. The Weyl
-groups naturally acts on this Cartan subalgebra and this function returns
+group naturally acts on this Cartan subalgebra and this function returns
 the result of applying <A>w</A> to <A>h</A>.
 
 <Example>
@@ -472,7 +472,7 @@ gap> List( last, Dimension );
 <Description>
 
 Returns <A>true</A> if <A>V</A> is an irreducible module over a semisimple
-Lie algebra, and <A>false</A> otherwise  
+Lie algebra, and <A>false</A> otherwise.
 
 <Example>
 gap> L:= SimpleLieAlgebra("F",4,Rationals);
@@ -629,8 +629,8 @@ Here <A>V</A> is a module over a Lie algebra. This function returns the
 dual module. <P/>
 
 The basis elements of this module are printed as <A>F@v</A> where <A>v</A> is
-a basis element of <A>v</A>. This represents the function which takes the value
-1 on te basis element <A>v</A> and 0 on all other basis elements. However,
+a basis element of <A>V</A>. This represents the function which takes the value
+1 on the basis element <A>v</A> and 0 on all other basis elements. However,
 an element of the module is a module element and not a function. We can
 access the function by taking the <A>ExtRepOfObj</A> of an element of the
 module, as illustrated by the example below.
@@ -670,13 +670,13 @@ gap> Image(f, Basis(V)[10] );
 
 Here <A>L</A> is a semisimple Lie algebra over a field of characteristic 0.
 Secondly, <A>hw</A> is a dominant weight, represented as a list of non-negative
-integers (where the ordering of the fundamantal weights is given by the
+integers (where the ordering of the fundamental weights is given by the
 Cartan matrix of the root system of <A>L</A>). Let <M>G</M> denote the 
 semisimple algebraic group acting on the irreducible representation with
 highest weight <A>hw</A>. Alternatively, <A>hw</A> can also be a list of
 highest weights, in which case the representation is the direct sum of the
 irreducible representations with highest weights in the list. 
-
+<P/>
 Hesselink (<Cite Key="hesselink"/>)
 defined a stratification of the nullcone relative to the action of <M>G</M>. 
 Popov and Vinberg (<Cite Key="povin"/>) have described this
@@ -696,7 +696,7 @@ nilpotent <M>G</M>-orbits in <A>L</A>. <P/>
 
 We remark that the characteristics depend on the choice of an invariant bilinear
 form. This form is unique if <A>L</A> is simple. If we give just two arguments,
-<A>L</A>, <A>hw</A>, then Killing form is chosen.
+<A>L</A>, <A>hw</A>, then the Killing form is chosen.
 It is possible to use a different form using the three argument variant of the
 function. <P/>
 
@@ -810,30 +810,30 @@ This chapter contains functions for dealing with the nilpotent orbits of a
 semisimple Lie algebra <M>K</M> under its adjoint group <M>G</M>. We refer
 to the book by Collingwood and McGovern,  <Cite Key="colmcgov"/>
 (and the references therein) for an account of the theory of nilpotent orbits.
-
+<P/>
 A nilpotent orbit has two important attributes: the weighted Dynkin diagram,
 and an <M>sl_2</M>-triple. The weighted Dynkin diagram is represented by a list of 
 integers in {0,1,2} of length equal to the rank of the Lie algebra. The i-th 
-position in this list correponds to the i-th node of the Dynkin diagram of the 
+position in this list corresponds to the i-th node of the Dynkin diagram of the 
 root system. The Dynkin diagram of the root system is described by the Cartan 
-matrix of the root system. Now in GAP this Cartan matrix can be somewhat 
+matrix of the root system. Now in &GAP; this Cartan matrix can be somewhat 
 different from the more usual forms. This holds most particularly for type F4, 
 where the enumeration of the simple roots is rather different from the one 
 usually found. So when using the functions in this chapter one should keep this 
 in mind.
 <P/>
-Every nilpotent orbit has an <M>sl_2</M>-triple, that is a triple <M>(y,h,x)</M> of 
+Every nilpotent orbit has an <M>sl_2</M>-triple, that is, a triple <M>(y,h,x)</M> of 
 elements of the simple Lie algebra with <M>[x,y]=h</M>, 
 <M>[h,x]=2x</M>, <M>[h,y]=-2y</M>. The 
 nilpotent orbit corresponding to this is the orbit
-of the element x under the action of the adjoint group. 
+of the element <M>x</M> under the action of the adjoint group. 
 <P/>
 Let <M>P</M> be a parabolic subalgebra of <M>K</M>
 (i.e., generated by the Cartan subalgebra of <M>K</M>,
 all positive root vectors, along with the negative simple
 root vectors corresponding to a given subset of the basis of simple
 roots), <M>L</M> the corresponding Levi subalgebra (i.e., the reductive part of 
-<M>P</M>), and <M>N</M> the nilradical of <M>P</M>. Let <M> O_L</M> be a nilpotent
+<M>P</M>), and <M>N</M> the nilradical of <M>P</M>. Let <M>O_L</M> be a nilpotent
 orbit in <M>L</M>. There exists a 
 unique nilpotent orbit <M>O_K</M> in <M>K</M> such that the intersection of 
 <M>O_K</M> and <M>O_L + N</M> is dense in the latter. In this situation <M>O_K</M> is
@@ -843,17 +843,17 @@ induced are said to be <E>rigid</E>.
 Now consider the variety of all <M>G</M>-orbits in <M>K</M> of a given dimension
 <M>d</M>. The irreducible components of this variety are called the <E>sheets</E>
 of <M>K</M>. Every sheet has a unique nilpotent
-orbit. Moreover this nilpotent orbit is induced from an orbit <M>O_L</M>, and
+orbit. Moreover, this nilpotent orbit is induced from an orbit <M>O_L</M>, and
 <M>O_L</M> is rigid in <M>L</M>. So the sheets are parametrised by pairs 
 <M>(L,O_L)</M>, where <M>L</M> is a Levi subalgebra, and <M>O_L</M> a rigid nilpotent
 orbit in it. This data can conveniently be given by a <E>sheet diagram</E>:
-this is the Dynkin diagram of <M>K</M>, were the nodes that do <E>not</E> correspond
+this is the Dynkin diagram of <M>K</M>, where the nodes that do <E>not</E> correspond
 to simple roots of <M>L</M> have label 2. So, leaving out the nodes with label 2, one
 obtains the Dynkin diagram of <M>L</M>. The remaining labels in the sheet diagram
 then correspond to the weighted Dynkin diagram of the nilpotent orbit <M>O_L</M>.
-Since this orbit is rigid, its weighted Dynki diagram has labels 0 or 1. From that
+Since this orbit is rigid, its weighted Dynkin diagram has labels 0 or 1. From that
 it follows that one can recover <M>L</M> and <M>O_L</M> from the sheet diagram.
-The <E>rank</E> of a sheet is defined as the dimension of the centre of <M>L</M>,
+The <E>rank</E> of a sheet is defined as the dimension of the centre of <M>L</M>;
 obviously that is equal to the number of 2's in the sheet diagram.
 
 
@@ -890,8 +890,8 @@ gap> o:= NilpotentOrbit( L, [1,2,0,0,0,1] );
 
 Here <A>L</A> is a semisimple Lie algebra. This function returns the
 list of all nilpotent orbits of <A>L</A>. 
-
-If <A>L</A> is simple of classical type, then the nilpotent orbits correpond
+<P/>
+If <A>L</A> is simple of classical type, then the nilpotent orbits correspond
 to partitions (of <M>n+1</M> for type <M>A_n</M>, of <M>2n+1</M> for type
 <M>B_n</M>, of <M>2n</M> for type <M>C_n</M> and of <M>2n</M> for type
 <M>D_n</M>, see <Cite Key="colmcgov"/>). If <A>L</A> is of one of these
@@ -1021,7 +1021,7 @@ Lie algebra it lives in.
          Comm="nilpotent orbit"/>
    <Description>
 
-Here <A>o</A> is a nilpotent orbit; this function returns an sl_2-triple
+Here <A>o</A> is a nilpotent orbit; this function returns an <M>sl_2</M>-triple
 <M>(y,h,x)</M> corresponding to <A>o</A>. For the exceptional types the 
 <M>x</M> is as in the paper <Cite Key="wdg08"/>. For the classical types
 the <M>x</M> is computed on the fly.
@@ -1041,9 +1041,9 @@ gap> SL2Triple( orbs[10] );
          Comm="nilpotent orbit"/>
    <Description>
 
-Here <A>o</A> is a nilpotent orbit; this function returns a random sl_2-triple
+Here <A>o</A> is a nilpotent orbit; this function returns a random <M>sl_2</M>-triple
 <M>(x,h,y)</M> corresponding to <A>o</A>. This means that every call
-(potentially) returns a different sl_2-triple.
+(potentially) returns a different <M>sl_2</M>-triple.
 
 
 <Example>
@@ -1061,16 +1061,16 @@ gap> RandomSL2Triple( orbs[10] );
 
 <ManSection>
    <Oper Name="SL2Grading"  Arg="L, h" 
-         Comm="Lie algebra and nuetral element of sl_2 triple"/>
+         Comm="Lie algebra and neutral element of sl_2 triple"/>
    <Description>
 
 Here <A>L</A> is a Lie algebra, and <A>h</A> is an element of it, such
-that there is an sl_2 triple of which it is the Cartan element (the system
+that there is an <M>sl_2</M>-triple of which it is the Cartan element (the system
 does not check that). This function returns the grading of <A>L</A> in
 eigenspaces of <A>h</A>.
-
+<P/>
 A list containing three lists is returned:
-the first list contains bases of the components with degrees 1,2,3,... the
+the first list contains bases of the components with degrees 1,2,3,..., the
 second list has bases of the components with degrees -1,-2,-3,..., the
 last list contains a basis of the zero component.
 
@@ -1100,7 +1100,7 @@ gap> SL2Grading( L, sl2[2] );
 
 Here <A>L</A> is a simple Lie algebra, and <A>x</A> is a nilpotent 
 element of it. A list of three elements is returned, forming an 
-sl_2-triple, the last of which is equal to <A>x</A>.
+<M>sl_2</M>-triple, the last of which is equal to <A>x</A>.
 
 <Example>
 gap> L:= SimpleLieAlgebra("F",4,Rationals);;
@@ -1274,18 +1274,18 @@ An induced orbit is given by a record containing
 two fields: <A>sheetdiag</A>, which is a diagram describing the Levi subalgebra and the 
 rigid nilpotent orbit in it from which the nilpotent orbit is induced, and <A>norbit</A>,
 which is the induced nilpotent orbit in <A>L</A>. 
-
+<P/>
 The sheet diagram is a labeled Dynkin diagram, and the labels are 0, 1 or 2. 
 If we take the Dynkin diagram and erase the nodes which have label 2 then we obtain
 the Dynkin diagram of the Levi subalgebra. Moreover, the labels 0 and 1 on that diagram 
 give the rigid nilpotent orbit in the Levi subalgebra. From this pair the nilpotent
 orbit <A>norbit</A> is induced.
-
-It may happen that the same nilpotent orbit is induced from more pairs consisting of a 
+<P/>
+It may happen that the same nilpotent orbit is induced from more than one pair consisting of a 
 Levi subalgebra and a rigid nilpotent orbit in it. In that case the same nilpotent
 orbit appears more than once in the list, each time with a different sheet diagram 
 attached.
-
+<P/>
 This function works for the Lie algebras of exceptional type and for the Lie 
 algebras of type <M>A</M> regardless of the rank. It works for the Lie algebras 
 of the other types up to rank 10.
@@ -1368,7 +1368,7 @@ representatives of the conjugacy classes of such automorphisms). <P/>
 
 NB: such automorphisms are not created for a given Lie algebra, but
 the Lie algebra is constructed at the same time as the automorphism.
-This because the base field may need extending (it needs enough roots of 
+This is because the base field may need extending (it needs enough roots of 
 unity). <P/>
 
 As noted above the functions give representatives of the conjugacy
@@ -1399,7 +1399,7 @@ generate <M>L</M> and the automorphism <M>f</M> is described by
 <M>f(x_i) = v^{s_i} x_i </M>, where the non-negative integers <M>s_i</M>
 have greatest common divisor 1, and are such that <M>m=d\sum a_i s_i</M>
 is the order of <M>f</M>, and where <M>v</M> is a primitive
-<M>m</M>-th order root of unity. Now the Kac diagram of the
+<M>m</M>-th root of unity. Now the Kac diagram of the
 automorphism <M>f</M> is the Dynkin diagram of <M>C</M>, labelled with
 the labels <M>s_i</M>.
 
@@ -1599,17 +1599,17 @@ either states that all inclusions have been proved, or lists a number of
 possible inclusions, for which it could not be proved with absolute certainty
 that these do not occur. This is due to the randomised nature of the algorithm:
 if the algorithm finds an inclusion, then this inclusion is certain.
-However, sometimes a non-inclusion can only be estabished by random methods,
+However, sometimes a non-inclusion can only be established by random methods,
 which means that it is possible that there is an inclusion without the
-program finding it. (This however, is very unlikely, and in practice almost
+program finding it. (This, however, is very unlikely, and in practice almost
 never happens.) Now showing that a non-inclusion really is a non-inclusion
 can be done by computing the ranks of certain matrices with polynomial entries.
 In principle &GAP; can do this; however, the system certainly is not very strong
-at it. Therefore, as optional argument a filename can be given, by
+at it. Therefore, as an optional argument a filename can be given, by
 <A>filenm:= "file.m"</A>. If this argument
 is present the program prints a Magma script in the file, which can be loaded
 directly into the computer algebra system Magma. If the output is always true, 
-then all non-inclusions are proved. If there are non non-inclusions to be 
+then all non-inclusions are proved. If there are no non-inclusions to be 
 proved, then the file is not written.
 <P/>
 In the second version, the second argument <A>d</A> is a list of 
@@ -1618,7 +1618,7 @@ the root space corresponding to the <M>i</M>-th simple root the degree
 <A>d[i]</A>. Apart from this the function works in the same way.
 <P/>
 We note that the adjoint representation can be obtained by giving a <A>d</A>
-that eintirely consists of zeros.
+that entirely consists of zeros.
 
 
 <Example>
@@ -1755,7 +1755,7 @@ This chapter contains functions for dealing with semisimple subalgebras
 of semisimple Lie algebras. There are functions for computing branching rules,
 for computing the regular subalgebras, and for working with the database
 of semisimple subalgebras of the simple Lie algebras.
-
+<P/>
 This last database contains the semisimple subalgebras of the simple
 Lie algebras of ranks up to 8. The semisimple subalgebras are classified
 up to linear equivalence. (Two subalgebras are called linearly equivalent 
@@ -1776,11 +1776,11 @@ Here <A>L</A> and <A>K</A> are semisimple Lie algebras with the following
 properties: <A>K</A> is contained in <A>L</A>,
 the Cartan subalgebra of <A>L</A>, as returned by 
 <A>CartanSubalgebra(L)</A> is split (this is automatic if <A>L</A> is
-created by the built in &GAP; function) and <A>K</A> has a Cartan subalgebra
+created by the built-in &GAP; function) and <A>K</A> has a Cartan subalgebra
 that is a subalgebra of the Cartan subalgebra of <A>L</A>. We note that
 the function checks only the last property. The function returns a matrix
-<A>P</A> such that if <A>u</A> is a weight of a <A>L</A>-module <M>V</M>, then
-<A>P*u</A> is a weight of <A>V</A>, when considered as a <A>K</A>-module.
+<A>P</A> such that if <A>u</A> is a weight of an <A>L</A>-module <M>V</M>, then
+<A>P*u</A> is a weight of <M>V</M>, when considered as a <A>K</A>-module.
 
 <Example>
 gap> L:= SimpleLieAlgebra("E",7,Rationals);;                
@@ -1809,7 +1809,7 @@ the highest weight of an irreducible <A>L</A>-module. This function computes
 the splitting of the module when seen as a <A>K</A>-module. Returned is a 
 list of two lists: the first list contains the highest weights of the 
 modules involved, the second list contains their multiplicities.
-
+<P/>
 In the second form the subalgebra is reductive rather than semisimple.
 Here <A>K</A> is again a semisimple subalgebra, and <A>cc</A> is a list of
 toral elements centralizing <A>K</A>. These toral elements must lie in the
@@ -1905,17 +1905,17 @@ Here <A>type</A> is a string describing the type of a semisimple Lie
 algebra. A simple type is a capital letter (A, B, C, D, E, F, or G) followed
 by a positive integer. Example: <A>"D5"</A>. In general a type is a sequence
 of simple types separated by spaces. Example: <A>"A2 C3 E6"</A>.
-
-This function is appliccable if each simple type that occurs in <A>type</A>
+<P/>
+This function is applicable if each simple type that occurs in <A>type</A>
 has rank less than or equal to 8.
-
+<P/>
 In that case a record is returned with two components: <A>liealg</A>, which
 is a semisimple Lie algebra of type <A>type</A>, and <A>subalgs</A> which
 is the list of its semisimple subalgebras up to linear equivalence.
-
+<P/>
 If <A>type</A> is a simple type then the list will be simply fetched from
 the database. Otherwise a computation will be triggered, and afterwards the
-database will be bigger. (One can check this with a call to <A>SSSTypes()</A>).
+database will be bigger. (One can check this with a call to <A>SSSTypes()</A>.)
 Also we remark that for non-simple types of not so small rank this computation
 can be difficult.
 
@@ -1928,17 +1928,17 @@ can be difficult.
 
 Here <A>type</A> is a string describing the type of a semisimple Lie
 algebra. This is the same as in the previous function.
-
+<P/>
 This function returns a list containing the edges of the inclusion graph
 of the semisimple subalgebras returned by the previous function. An edge
 is represented by a list of two integers. If the edge <A>[ i, j ]</A> occurs,
 then this means that the subalgebra on position <A>j</A> in the list is
 linearly equivalent to a subalgebra of the subalgebra in position <A>i</A>.
-
+<P/>
 Only the maximal subalgebras are considered; so if we have edges <A>[ i, j ]</A>
 and <A>[ j, k ]</A> then there will be no edge <A>[ i, k ]</A>. (Otherwise 
 this list can become huge.)
-
+<P/>
 Edges of the form <A>[ 0, j ]</A> express that the subalgebra on position
 <A>j</A> is a maximal semisimple subalgebra of the Lie algebra of type 
 <A>type</A>.
@@ -1975,7 +1975,7 @@ gap> Branching( L, sub[36], [0,0,1,0] );
    <Oper Name="SubalgebrasInclusion" Arg="L, K1, K2"/>
    <Description>
 
-Here <A>K1</A>, <A>K2</A>, are two subalgebras of the semisimple Lie algebra
+Here <A>K1</A>, <A>K2</A> are two subalgebras of the semisimple Lie algebra
 <A>L</A>, constructed using the database. If <A>K2</A> 
 contains a subalgebra that is linearly equivalent to <A>K1</A> then
 such a subalgebra is returned. Otherwise the result is <A>fail</A>.
@@ -2012,7 +2012,7 @@ Here <A>K</A> is a semisimple subalgebra of the <E>simple</E> Lie algebra
 indices of the simple components of <A>K</A>. If the input Lie algebra
 <A>L</A> is not simple, then still a list of rationals is returned, but they
 may have no meaning.
-
+<P/>
 The Dynkin index is defined as follows. Consider a simple component
 in <A>K</A> and let <M>h</M> be the coroot of the shortest root of <A>K</A>. 
 Let <M>k</M> denote the Killing form of <A>L</A>, normalised so that
@@ -2046,12 +2046,12 @@ subalgebras. It is assumed that the Cartan subalgebras (as returned by
 <A>CartanSubalgebra</A>) of <A>K1</A>, <A>K2</A> are contained in the
 Cartan subalgebra of <A>L</A> (otherwise <A>fail</A> is returned).
 This function returns <A>true</A> if <A>K1</A>, <A>K2</A> are linearly 
-equivalent, <A>false </A> otherwise.
+equivalent, <A>false</A> otherwise.
 
 
 
 <Example>
-# Lets find the subalgebras in the database for C5 that are linearly
+# Let's find the subalgebras in the database for C5 that are linearly
 # equivalent to regular subalgebras:
 gap> s:= LieAlgebraAndSubalgebras("C5");; L:= s.liealg; sub:= s.subalgs;;
 &lt;Lie algebra of dimension 55 over Rationals>
@@ -2078,11 +2078,11 @@ gap> posn;
 
 These are functions that help to save a computed list of subalgebras of a 
 semisimple Lie algebra in a file, and in a new session, read it again.
-
+<P/>
 In the first function <A>r</A> is a record as produced by 
 <Ref Oper="LieAlgebraAndSubalgebras"/>. It returns a record that can be saved
 in a file. (It is not advisable to print it on the screen.)
-
+<P/>
 In the second function <A>d</A> is a record that is output by
 <Ref Oper="MakeDatabaseEntry"/>. This function adds this entry to the database.
 <P/>
@@ -2119,7 +2119,7 @@ said to be closed if for all <M>a,b\in S</M> we have that <M>a+b</M> lies in
 closed subsets of <A>R</A> up to conjugacy by the Weyl group. In other words,
 each closed subset of <A>R</A> is conjugate under the Weyl group to exactly
 one element of the output of this function.
-
+<P/>
 The output is a list of which each element is a list of roots. A root in
 such a list, or its negative, lies in the attribute
 <A>PositiveRootsNF( R )</A>.
@@ -2177,7 +2177,7 @@ gap> DecompositionOfClosedSet( c[1005] );
    <Description>
 
 Here <A>c</A> is a closed set of roots of some root system. This function
-returns <A>true</A> is <A>c</A> is special (that is, for all <M>a</M> in
+returns <A>true</A> if <A>c</A> is special (that is, for all <M>a</M> in
 <A>c</A> we have that <M>-a</M> does not lie in <A>c</A>), otherwise it
 returns <A>false</A>.
 
@@ -2204,7 +2204,7 @@ gap> Length( Filtered( c, IsSpecialClosedSet ) );
 
 Here <A>L</A> is a semisimple Lie algebra and 
 <A>c</A> is a closed set of roots of its root system.
-This function returns the subalgebra of <A>L</A> spanned a the Cartan
+This function returns the subalgebra of <A>L</A> spanned by the Cartan
 subalgebra of <A>L</A> (the one relative to which the root system is
 taken) along with the root vectors corresponding to the roots in
 <A>c</A>.

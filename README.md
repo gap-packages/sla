@@ -3,7 +3,7 @@
 
 # SLA
 
-This package containing diverse functions for workin with simple Lie
+This package contains diverse functions for working with simple Lie
 algebras in GAP (base fields are of characteristic 0).
 
 
@@ -30,6 +30,6 @@ to be installed.
 The manual of SLA is contained in the `doc` directory. There are the
 following files (among others):
 
-* manual.pdf       df version of the manual
-* chap0.html      the manual in html
+* manual.pdf       PDF version of the manual
+* chap0.html       the manual in HTML
 
