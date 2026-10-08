@@ -883,8 +883,7 @@ hdimstrata:= function( R, H, BH, hh, ip, srk, rrk, posR, delt, h_wts, mults, wts
            sp:= MutableBasis( LeftActingDomain(H), hh0, Zero(H) );
            i:= 1;
            while Length(hh0) < Length(cs) do
-                if not IsContainedInSpan( sp, cs[i] ) then
-                   CloseMutableBasis( sp, cs[i] );
+                if CloseMutableBasis( sp, cs[i] ) then
                    Add( hh0, cs[i] );
                 fi;
                 i:= i+1;

@@ -28,9 +28,8 @@ SLAfcts.canbas:= function( L, c )
         for i in [1..Length(x)] do
             for j in [1..Length(levelx)] do
                 u:= x[i]*levelx[j];
-                if not IsZero(u) and not IsContainedInSpan(sp,u) then
+                if not IsZero(u) and CloseMutableBasis( sp, u ) then
                    Add( newlevx, u );
-                   CloseMutableBasis( sp, u );
                    u:= y[i]*levely[j];
                    Add( newlevy, u );
                 fi;
